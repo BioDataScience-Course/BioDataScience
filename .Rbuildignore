@@ -1,0 +1,14 @@
+.DS_Store
+.gitignore
+.git
+.git/*
+README.md
+NEWS.md
+CONDUCT.md
+FAQ.md
+Makefile
+.Rprofile
+^\.travis\.yml$
+^appveyor\.yml$
+^\.Rproj\.user$
+^.*\.Rproj$
