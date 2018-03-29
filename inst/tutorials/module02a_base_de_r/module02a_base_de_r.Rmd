@@ -1,6 +1,5 @@
 ---
-title: "Le nuage de point : découverte de l'outils"
-subtitle: "Evaluation des compétences"
+title: "Les base de R : découverte de l'outils"
 author : "Guyliann Engels & Philippe Grosjean"
 output: 
   learnr::tutorial:
@@ -12,8 +11,9 @@ runtime: shiny_prerendered
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 
-# Load package 
-SciViews::R
+library(chart)
+library(data)
+library(tidyverse)
 
 # Dataset
 urchin <- data::read(file = "urchin_bio", package = "data")
@@ -22,18 +22,27 @@ urchin <- data::read(file = "urchin_bio", package = "data")
 
 ## Introduction
 
-Ce questionnaire a pour objectif de vérifier l'acquisition des concepts lié à la réalisation d'un nuage de points. Il comporte : 
+Vos objectifs dans ce learnR est découvrir les bases du language R 
 
-- Exercice théorique 
+![](../image/Rlogo.png)
 
-- Exercice pratique
 
 L'ensemble de vos réponses sont collectées afin d'analyser votre progression
 
-```{r}
-chart(urchin, formula = skeleton ~ weight) +
-  geom_point(na.rm = TRUE)
+## R une calculette 
+
+Vous pouvez tout d'abord employer R comme un calculatice ( ce qui est bien réducteur de la puissance du language)
+
+```{r calculatrice, echo= TRUE}
+4 + 5
 ```
+
+Additionnez  les nombres `15` et `23`
+
+```{r calcul1, exercise = TRUE}
+
+```
+
 
 
 ## Quizz
