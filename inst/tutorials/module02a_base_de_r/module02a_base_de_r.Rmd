@@ -47,14 +47,14 @@ Multipliez les nombres `15` et `23`
 ```
 
 
-Vous pouvez également utiliser des fonctions mathématiques directement implementer dans R comme le logarithme en base 10 avec la `fonction` : `log()`. Ce language a été mise au point pour suivre les convention des mathématiques et des statistiques comme le respect de l'ordre des opérations.
+Vous pouvez également utiliser des fonctions mathématiques directement implementer dans R comme le logarithme en base 10 avec la `fonction` : `log()`. Ce language a été mise au point pour suivre les conventions des mathématiques et des statistiques comme le respect de l'ordre des opérations.
 
 ```{r, echo= TRUE}
 log(4 + 5)
 ```
 
 
-Calculez le exponentiel dont la fonction est `exp()` de la soustraction de `23` et `15`
+Calculez l'exponentiel dont la fonction est `exp()` de la soustraction de `23` et `15`
 
 ```{r calcul2, exercise = TRUE}
 
@@ -149,9 +149,9 @@ sum(vecteur)
 
 La valeur obtenues ne vous convient pas ? Il semble que la valeur manquante induit un problème dans le calcul de la somme du vecteur.
 
-L'outil indispensable dans vous ne devez jamais oublier l'existance est l'aide des fonction. Pour appeler l'aide, vous devez ajouter un point d'interrogation devant une fonction. 
+L'outil indispensable dans vous ne devez jamais oublier l'existance est l'aide des fonctions. Pour appeler l'aide, vous devez ajouter un point d'interrogation devant une fonction. 
 
-Prennons l'exemple de la fonction `log()`
+Prenez l'exemple de la fonction `log()`
 
 ```{r, echo = TRUE}
 ?log()
