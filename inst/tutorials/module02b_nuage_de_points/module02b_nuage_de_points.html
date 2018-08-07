@@ -266,13 +266,14 @@ Bravo! Vous venez de terminez votre séance d’exercice dans un learnr.
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
-library(chart)
-library(data)
-library(tidyverse)
 
 # Load package 
 SciViews::R
 
+library(BioDataScience)
+library(chart)
+library(data)
+library(tidyverse)
 # Dataset
 urchin <- data::read(file = "urchin_bio", package = "data", lang = "eng")
 </script>

@@ -11,14 +11,14 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
-library(BioDataScience)
-library(chart)
-library(data)
-library(tidyverse)
 
 # Load package 
 SciViews::R
 
+library(BioDataScience)
+library(chart)
+library(data)
+library(tidyverse)
 # Dataset
 urchin <- data::read(file = "urchin_bio", package = "data", lang = "eng")
 ```

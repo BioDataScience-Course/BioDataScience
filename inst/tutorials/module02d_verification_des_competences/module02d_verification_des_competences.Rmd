@@ -12,6 +12,7 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
+library(BioDataScience)
 SciViews::R
 library(chart)
 data("biometrie")
