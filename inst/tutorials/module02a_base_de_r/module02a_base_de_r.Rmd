@@ -1,5 +1,5 @@
 ---
-title: "Les base de R : découverte de l'outils"
+title: "Les bases de R : découverte de l'outils"
 author : "Guyliann Engels & Philippe Grosjean"
 output: 
   learnr::tutorial:
@@ -10,7 +10,7 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
-
+library(knitr)
 library(chart)
 library(data)
 library(tidyverse)
@@ -20,17 +20,38 @@ urchin <- data::read(file = "urchin_bio", package = "data")
 ```
 
 
-## Introduction
+## Objectif
 
-Vos objectifs dans ce learnR est de découvrir les bases du language R 
+Ce tutoriel a pour objectif de vous permettre de :
 
-![](image/Rlogo.png)
+- Découvrir les bases du language R  
 
-L'ensemble de vos réponses sont collectées afin d'analyser votre progression
+```{r, out.width = "50%"}
+include_graphics(path = "images/Rlogo.png")
+```
 
-## R,  une calculette 
 
-Vous pouvez tout d'abord employer R comme un calculatice (ce qui est bien réducteur de la puissance de cet outil). Les opérations de bases sont que sont les additions (`+`), les soustractions (`-`), les divisions (`/`), les multiplications (`*`), les exponentiations (`^`) sont directement utilisable dans R. 
+Il est important de préciser que l'ensemble de vos résultats est collecté afin de suivre votre progression. Ce test n'est cependant pas certificatif.
+
+## Introduction 
+
+R est un language de programmation **Open source**  axée sur l'analyse de données. Ce language date de 1993 et prend ces sources du language S. 
+
+R permet entre autres la manipulation, la visualisation et l'application de calculs statistiques sur des données. 
+
+## R,  une calculette scientifique
+
+Vous pouvez tout d'abord employer R comme une calculatice (ce qui est bien réducteur de la puissance de cet outil). Les opérations de base sont directement utilisable dans R. 
+
+| Opérations de bases | Symboles |
+|------------------|---------------|
+| additions | `+` |
+| soustractions | `-` |
+| divisions | `/` | 
+| multiplications | `*` | 
+| exponentiations | `^` |
+
+Voici un premier exemple simple
 
 ```{r calculatrice, echo= TRUE}
 4 + 5
@@ -42,7 +63,7 @@ Multipliez les nombres `15` et `23`
 
 ```
 
-```{r calcul1-solution }
+```{r calcul1-solution}
 15 * 23
 ```
 
@@ -54,7 +75,7 @@ log(4 + 5)
 ```
 
 
-Calculez l'exponentiel dont la fonction est `exp()` de la soustraction de `23` et `15`
+Calculez l'exponentiel dont la fonction est `exp()` de la soustraction de `23` et `15`.
 
 ```{r calcul2, exercise = TRUE}
 
@@ -67,7 +88,7 @@ exp(23 - 15)
 
 ## R, les assignations
 
-Vous pouvez être amené dans vos recherches à `assigner` une valeur particulière à une lettre par exemple que vous réutiliserez par la suite. L'instructions permettant cela est une simple flèche (`<-`).
+Vous pouvez être amené dans vos recherches à `assigner` une valeur particulière à une chaine de caractères que vous réutiliserez par la suite. L'instruction permettant cela est une simple flèche (`<-`).
 
 ```{r assignation, echo = TRUE}
 a <- 5
@@ -76,7 +97,7 @@ b <- 4 + 3
 a + b
 ```
 
-Assignez la valeur `18` à la lettre `a` et la `division` de `12` par `14` à `b`. Multipliez ensuite a par b
+Assignez la valeur `18` à la lettre `a` et la `division` de `12` par `14` à `b`. Multipliez ensuite a par b.
 
 ```{r assig1, exercise = TRUE}
 # assignation de a
@@ -97,7 +118,7 @@ b <- 12 / 14
 a * b
 ```
 
-L'assignation peut également être faite sur un série de nombre ou sur une série de caractères avec la fonction `c()`
+L'assignation peut également être faite sur une série de nombres ou sur une série de caractères avec la fonction `c()`.
 
 ```{r vecteur, echo = TRUE}
 vecteur <- c(2, 5, 8, 11, 13, 16)
@@ -107,7 +128,7 @@ vecteur_1 <- c(2, 5, NA, 11, 13, 16)
 vecteur_1 <- c("noir", "jaune", "rouge")
 ```
 
-Assignez les valeurs `15 , 19, une valeur manquante (NA) et 13`. Multipliez ensuite ce vecteur par `4` et assignez cela sur vecteur_b. Terminez par affichez les valeurs du vecteur_b en écrivant simplement vecteur_b dans la console R
+Assignez les valeurs `15 , 19, une valeur manquante (NA) et 13`. Multipliez ensuite ce vecteur par `4` et assignez cela sur vecteur_b. Terminez par affichez les valeurs du vecteur_b en écrivant simplement vecteur_b dans la console R.
 
 ```{r vec1, exercise = TRUE}
 # assignation des valeurs à un vecteur
@@ -130,13 +151,12 @@ vecteur_b
 
 ## R, les fonctions
 
-Réalisez la somme du vecteur réalisé précédement avec la fonction `sum()`
+Réalisez la moyenne du vecteur réalisé précédement avec la fonction `mean()`.
 
 ```{r vec2, exercise = TRUE}
 # assignation des valeurs à `vecteurs`
 vecteur <- c(15, 19, NA, 13)
-# somme du vecteur
-
+# moyenne du vecteur
 
 ```
 
@@ -144,10 +164,10 @@ vecteur <- c(15, 19, NA, 13)
 # assignation des valeurs à `vecteurs`
 vecteur <- c(15, 19, NA, 13)
 # somme du vecteur
-sum(vecteur)
+mean(vecteur)
 ```
 
-La valeur obtenues ne vous convient pas ? Il semble que la valeur manquante induit un problème dans le calcul de la somme du vecteur.
+La valeur obtenue ne vous convient pas ? Il semble que la valeur manquante induit un problème dans le calcul de la moyenne du vecteur.
 
 L'outil indispensable dans vous ne devez jamais oublier l'existance est l'aide des fonctions. Pour appeler l'aide, vous devez ajouter un point d'interrogation devant une fonction. 
 
@@ -157,7 +177,7 @@ Prenez l'exemple de la fonction `log()`
 ?log()
 ```
 
-Appelez l'aide sur la fonction `sum()`.
+Appelez l'aide sur la fonction `mean()`.
 
 ```{r aide, exercise = TRUE}
 
@@ -165,14 +185,14 @@ Appelez l'aide sur la fonction `sum()`.
 
 
 ```{r aide-solution}
-?sum()
+?mean()
 ```
 
 Comme vous avez pu le voir ci-dessus, les fonctions sont largement documentées. L 'argument `na.rm = ` est par défault encodé avec comme valeur `FALSE`. Cela peut se traduire par notre vecteur ne contient pas de valeurs manquantes. 
 
-Notre exemple contient une valeur manquante, vous devez donc ajouter l'argument `na.rm = TRUE` dans votre fonction `sum()`. La séparation entre plusieurs argument au sein d'une même fonction est la virgule (`,`)
+Notre exemple contient une valeur manquante, vous devez donc ajouter l'argument `na.rm = TRUE` dans votre fonction `mean()`. La séparation entre plusieurs argument au sein d'une même fonction est la virgule (`,`).
 
-Réalisez la somme du vecteur réalisé précédement avec la fonction `sum()`
+Réalisez la moyenne du vecteur réalisé précédement avec la fonction `mean()`
 
 ```{r vec3, exercise = TRUE}
 # assignation des valeurs à `vecteurs`
@@ -185,7 +205,7 @@ vecteur <- c(15, 19, NA, 13)
 # assignation des valeurs à `vecteurs`
 vecteur <- c(15, 19, NA, 13)
 # somme du vecteur
-sum(vecteur, na.rm = TRUE)
+mean(vecteur, na.rm = TRUE)
 ```
 
 Vous obtenez cette fois-ci la réponse souhaitée.
@@ -193,7 +213,10 @@ Vous obtenez cette fois-ci la réponse souhaitée.
 
 ## Conclusion
 
-Vous venez de terminez votre première séance d'exercice dans un learnR. 
+Bravo! Vous venez de terminez votre première séance d'exercice dans un learnr. 
 
-Pour obtenir de plus amples imformations sur les base du Language, nous te renvoyons vers les ressources supplémentaires.
+Durant cette séance, vous avez appris à : 
 
+- employer l'assignation 
+- employer des fonctions 
+- utiliser l'aide au fonctions

@@ -1,16 +1,17 @@
 ---
 title: "Le nuage de point : découverte de l'outils"
-subtitle: "Evaluation des compétences"
 author : "Guyliann Engels & Philippe Grosjean"
 output: 
   learnr::tutorial:
   progressive: TRUE
+  fig_caption: yes
 runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
+library(BioDataScience)
 library(chart)
 library(data)
 library(tidyverse)
@@ -19,65 +20,71 @@ library(tidyverse)
 SciViews::R
 
 # Dataset
-urchin <- data::read(file = "urchin_bio", package = "data")
+urchin <- data::read(file = "urchin_bio", package = "data", lang = "eng")
 ```
 
+## Objectifs
+
+Ce tutoriel interactif a pour objectif d'apprendre à réaliser des graphiques de type nuage de points comme montré sur la figure ci-dessous.
+
+```{r, fig.cap= "Variation de la masse du squelette en fonction de la masse totale de *Paracentrotus lividus* Lamarck 1816"}
+chart(urchin, formula = skeleton ~ weight) +
+  geom_point(na.rm = TRUE) +
+  labs( y = "Masse du squelette [g]", x ="Masse totale [g]")
+```
+
+
+**Il est important de préciser que l'ensemble de vos résultats est collecté afin de suivre votre progression. Ce test n'est cependant pas certificatif.**
 
 ## Introduction
 
-Ce questionnaire a pour objectif de vérifier l'acquisition des concepts lié à la réalisation d'un nuage de points. Il comporte : 
+Le nuage de points permet de représenter une variable numérique en fonction d'une autre variable numérique. On peut exprimer cette relation dans R sous la forme de  $$y \sim x$$ que l'on peut lire : $$y \ en \ fonction \ de \ x$$
 
-- Exercice théorique 
 
-- Exercice pratique
+```{r, echo=FALSE, results= 'hide', message=FALSE, fig.cap= "Points essentiels d'un nuage de points"}
 
-L'ensemble de vos réponses sont collectées afin d'analyser votre progression
-
-```{r}
-chart(urchin, formula = skeleton ~ weight) +
-  geom_point(na.rm = TRUE)
+chart(urchin,formula = height ~  weight) + 
+  geom_point() +
+  labs( x = "Label de l'axe x  + [Unité]", 
+        y = "Label de l'axe y + [Unité]") +
+  theme(axis.text.x = element_text(colour = "#a80039", size = 15), 
+        axis.title.x = element_text(colour = "#029687", size = 15), 
+        axis.text.y = element_text(colour = "#a80039", size = 15), 
+        axis.title.y = element_text(colour = "#029687", size = 15),
+        axis.line.x = element_line(colour = "#a80039"),
+        axis.line.y = element_line(colour = "#a80039"))
 ```
 
 
-## Quizz
+Les instructions de base afin de produire un nuage de points sont :
 
-```{r quiz}
-quiz(
-  question("Sur quel axe se situe l'ordonnée ?",
-           answer("Axe x"),
-           answer("Axe y", correct = TRUE),
-           random_answer_order = TRUE, incorrect = " L'axe des ordonnées fait référence à l'axe y "
-           ),
-  question("Sur quel axe se situe l'abscisse ? ",
-           answer("Axe x", correct = TRUE),
-           answer("Axe y", message = " L'axe des abscisses fait référence à l'axe x "),
-           random_answer_order = TRUE
-           ),
-  question("Quels sont les éléments indispensables à la compréhension d'un nuage de point ?",
-           answer("L'axe x, l'axe y, un titre et les labels", message = "Les unités sont indispensables afin de pouvoir interpréter ton graphique"),
-           answer("L'axe y , l'axe x, un titre, une légende, les labels et les unités"),
-           answer("L'axe x, l'axe y"),
-           answer("L'axe x, l'axe y et les labels"),
-           answer("L'axe y, l'axe, les labels et les unités", correct = TRUE),
-           random_answer_order = TRUE, incorrect = "Il faut différencier les élements faisant partie d'un graphique complet par rapport aux éléments indispensables de ce dernier. Les axes, les labels et les unités sont le minimum afin d'interpréter un graphique"
-           )
-)
 ```
+chart(DF, formula = YNUM ~ XNUM) +
+  geom_point()
+```
+
+La fonction `chart()` requiert comme argument le jeu de données (dataframe, DF), ainsi que la formule à employer YNUM ~ XNUM. Pour réaliser une nuage de point vous devez ajouter la seconde fonction `geom_point()` à l'aide du `+`. 
+
+Les éléments indispensables à la compréhension d'un nuage de points sont (ici mis en évidence en couleur) : 
+
+- les axes avec les graduations (en rouge)
+- les labels et unités des axes (en bleu)
+
 
 ## Retour sur la vidéo
 
-Commencons par réaliser rapidement les graphiques vu durant la capsule vidéo.
+Commencez par réaliser rapidement les graphiques vus durant la capsule vidéo.
 
 ### Exercice 1
 
-Le jeu de données `urchin_bio` portant sur la biométrie d'oursins est assigné à `urchin`. Les variables employées pour ce premier graphique sont le poids du squelette (`skeleton`) et le poids total (`weight`).
+Le jeu de données `urchin_bio` portant sur la biométrie d'oursins est assigné à `urchin`. Les variables employées pour ce premier graphique sont la masse du squelette (`skeleton`) et le masse totale (`weight`).
 
 ```{r first_graph_intro}
 chart(urchin, formula = skeleton ~ weight) +
   geom_point()
 ```
 
-Réalisez un nuage de point montrant le poids du squelette en ordonnée et le poids en abscisse afin d'obtenir le graphique ci-dessus.
+Réalisez un nuage de points montrant la masse du squelette en ordonnée et la masse totale en abscisse afin d'obtenir le graphique ci-dessus.
 
 ```{r first_graph, exercise=TRUE}
 chart(DF, formula = YNUM ~ XNUM) +
@@ -94,22 +101,29 @@ chart(urchin, formula = skeleton ~ weight) +
   geom_point()
 ```
 
-
-
 #### Exercice 2
 
-Le jeu de données contient des valeurs manquantes comme le précise le message suivant lors de la réalisation du graphique précédent 
+Le jeu de données assigné à `urchin` contient des valeurs manquantes comme le précise le message suivant lors de la réalisation du graphique précédent.
 
 **Warning message: Removed 163 rows containing missing values (geom_point).**
 
-Dans la fonction `geom_point()`, il est possible d'employer l'argument `na.rm =` afin de préciser qu'il y a des valeurs manquantes (`na.rm = TRUE`) 
+Faites appel à la fonction d'aide de la fonction geom_point afin de trouver une solution. Rapellez vous qu'il suffit d'employer le point d'interrogation `?` devant la fonction d'intérêt. 
+
+```{r appel_aide, exercise=TRUE}
+
+```
+
+```{r appel_aide-solution}
+?geom_point()
+```
+
 
 ```{r na_graph_intro}
 chart(urchin, formula = skeleton ~ weight) +
   geom_point(na.rm = TRUE)
 ```
 
-Réalisez un nuage de point montrant le poids du squelette en ordonnée et le poids en abscisse. Précisez qu'il y a des valeurs manquantes.
+Réalisez un nuage de points montrant le masse du squelette en ordonnée et le masse totale en abscisse. Précisez qu'il y a des valeurs manquantes.
 
 ```{r na_graph, exercise=TRUE}
 chart(DF, formula = YNUM ~ XNUM) +
@@ -119,18 +133,20 @@ chart(DF, formula = YNUM ~ XNUM) +
 ```{r na_graph-solution}
 chart(urchin, formula = skeleton ~ weight) +
   geom_point(na.rm = TRUE)
+
+#Dans la fonction `geom_point()`, il est possible d'employer l'argument `na.rm =` afin de préciser qu'il y a des valeurs manquantes (`na.rm = TRUE`). 
 ```
 
 ### Exercice 3
 
-Nous souhaitons visualiser la différence d'origine des oursins mesurés. Ces informations se situent dans la variable sur l'origine (`origin`). L'utilisation de la couleur peut permettre de différencier ces derniers. La formule peut etre complétée avec l'argument faisant référence à la couleur (`%col=%`). 
+Vous souhaitez visualiser la différence d'origine des oursins mesurés. Ces informations se situent dans la variable sur l'origine (`origin`). L'utilisation de la couleur peut permettre de différencier ces derniers. La formule de la fonction `chart()` peut être complétée avec l'argument faisant référence à la couleur (`%col=%`). 
 
 ```{r col_graph_intro}
 chart(urchin, formula = skeleton ~ weight %col=% origin) +
   geom_point(na.rm = TRUE)
 ```
 
-Réalisez un nuage de point montrant le poids du squelette en ordonnée et le poids en abscisse. Utilisez la couleur afin de différencier l'origine des individus et précisez à nouveau qu'il y a des valeurs manquantes.
+Réalisez un nuage de points montrant la masse du squelette en ordonnée et la masse en abscisse. Utilisez la couleur afin de différencier l'origine des individus et précisez à nouveau qu'il y a des valeurs manquantes.
 
 ```{r col_graph, exercise=TRUE}
 chart(DF, formula = YNUM ~ XNUM %col=% FACTOR) +
@@ -143,13 +159,13 @@ chart(urchin, formula = skeleton ~ weight %col=% origin) +
 ```
 
 
-## Les Exercices sur le nuage de point  
+## Exercices sur le nuage de points  
 
-Maintenant que nous avons rapidement réalisé les graphiques vu durant la vidéo, nous te proposons de changer de variable pour expérimenter d'autres fonctions et argumenst liées au nuage de points.
+Maintenant que vous avez rapidement réalisé les graphiques vus durant la vidéo, expérimentez d'autres fonctions et arguments liés au nuage de points.
 
 ### Exercice 1
 
-La couleur n'est pas forcément l'argument le plus judicieux à employer pour différencier une variable facteur au sein d'un nuage de points. Il vous sera parfois demandé d'employer des formes (`%shape=%`) ou encore des nuances de gris différentes (`%alpha=%`).
+La couleur n'est pas forcément l'argument le plus judicieux à employer pour différencier une variable facteur au sein d'un nuage de points. Il vous sera parfois demandé d'employer des formes (`%shape=%`) ou encore des nuances de gris différentes (`%alpha=%`) que vous devez ajouter à la formule de la fonction `chart()`.
 
 ```{r alpha_graph_intro}
 a <- chart(urchin, formula = lantern ~ test %alpha=% origin) +
@@ -161,11 +177,11 @@ b <- chart(urchin, formula = lantern ~ test %shape=% origin) +
 ggpubr::ggarrange(a,b)
 ```
 
-Nous pouvons observer que l'utilisation de la forme n'est pas forcément l'argument le plus judicieux dans cette exemple. 
+Nous pouvons observer que l'utilisation de la forme n'est pas forcément l'argument le plus judicieux dans cet exemple. 
 
-Intéressons nous à la masse de la lanterne d'aristote (`lantern`) en fonction de la masse du test (`test`). 
+Intéressez-vous à la masse de la lanterne d'aristote (`lantern`) en fonction de la masse du test (`test`). 
 
-Réalisez un nuage de point montrant le masse de la lanterne d'aristote (`lantern`) en ordonnée et la masse du test (`test`) en abscisse. Utilisez les nuances de gris afin de différencier l'origine des individus. Précisez à nouveau qu'il y a des valeurs manquantes.  
+Réalisez un nuage de points montrant le masse de la lanterne d'Aristote (`lantern`) en ordonnée et la masse du test (`test`) en abscisse. Utilisez les nuances de gris afin de différencier l'origine des individus. Précisez à nouveau qu'il y a des valeurs manquantes.  
 
 
 ```{r alpha_graph, exercise=TRUE}
@@ -187,9 +203,9 @@ chart(urchin, formula = lantern ~ test %alpha=% origin) +
 
 ### Exercice 2
 
-Intéressons nous à la masse (`weight`) des individus en fonction de leur masse immergée (` buoyant_weight`). 
+Intéressez-vous maintenant à la masse (`weight`) des individus en fonction de leur masse immergée (`buoyant_weight`). 
 
-Nous pouvons avoir le besoin d'employer 2 variables facteurs pour obtenir un graphique plus informatif. La variable portant sur le sex des individus (`sex`) peut être employée. 
+Vous pouvez avoir le souhait d'employer 2 variables facteurs pour obtenir un graphique plus informatif. La variable portant sur le sex des individus (`sex`) peut être employée. 
 
 ```{r 2factor_graph_intro}
 urchin <- filter(urchin, sex != "NA")
@@ -198,9 +214,9 @@ chart(urchin, formula = weight ~ buoyant_weight %col=% origin %shape=% sex ) +
   geom_point(na.rm = TRUE)
 ```
 
-Réalisez un nuage de point montrant la masse en ordonnée et la masse immergée en abscisse. Utilisez la couleur afin de différencier l'origine des individus, différentes formes afin de différencier le sex des individus et précisez à nouveau qu'il y a des valeurs manquantes. 
+Réalisez un nuage de points montrant la masse en ordonnée et la masse immergée en abscisse. Utilisez la couleur afin de différencier l'origine des individus et différentes formes afin de différencier le sex des individus. Précisez à nouveau qu'il y a des valeurs manquantes. 
 
-Vous pouvez observer qu'une première ligne de code vous est fournies afin de retirer les lignes de tableau ne contenant pas l'information sur le sex des individus.
+Vous pouvez observer qu'une première ligne de code vous est fournies afin de retirer les lignes de tableau ne contenant pas l'information sur le sex des individus. Vous apprendrez dans les prochains cours à manipuler vos jeux de données.
 
 ```{r 2factor_graph, exercise=TRUE}
 urchin <- filter(urchin, sex != "NA")
@@ -227,7 +243,7 @@ chart(urchin, formula = weight ~ buoyant_weight %col=% origin %shape=% sex) +
 
 ### Exercice 3
 
-Intéressons nous à la hauteur (`height`) en fonction de la masse (`weight`) des individus.
+Intéressez-vous maintenant à la hauteur (`height`) en fonction de la masse (`weight`) des individus.
 
 ```{r}
 a <- chart(urchin, formula = height ~ weight %col=% origin) +
@@ -238,7 +254,7 @@ ggpubr::ggarrange(a,b, common.legend = TRUE, legend = "right")
 ```
 
 
-Réalisez un nuage de point montrant le logar de la masse en ordonnée et le logar la masse immergée en abscisse. Utilisez la couleur afin de différencier l'origine des individus et précisez à nouveau qu'il y a des valeurs manquantes.
+Réalisez un nuage de points montrant le logarithme de la masse en ordonnée et le logarithme de la masse immergée en abscisse. Utilisez la couleur afin de différencier l'origine des individus et précisez à nouveau qu'il y a des valeurs manquantes.
 
 ```{r log_log, exercise = TRUE}
 chart(DF, formula = YNUM ~ XNUM) +
@@ -263,18 +279,18 @@ chart(urchin, formula = log(height) ~ log(weight) %col=% origin) +
 
 ## Challenge
 
-Cette partie du learnR requiert d'appliquer les concepts vu précédement mais d'y ajouter de nouvelles que vous devez appréhender par vous même.
+Cette partie du learnr requiert d'appliquer les concepts vus précédement mais d'y ajouter de nouvelles que vous devez appréhender par vous-même via entre autres la section `Pour en savoir plus...` du livre. 
 
-Employons le graphique que nous avons déjà réaliser précédement.
+Employez le graphique que vous avez déjà réalisé précédement.
 
 ```{r challenge1_intro}
 chart(urchin, formula = skeleton ~ weight) +
   geom_point(na.rm = TRUE)
 ```
 
-Nous souhaitons changer le nom des axes pour rendre le graphique présentable en francais. 
+Vous souhaitez changer le nom des axes pour rendre le graphique présentable en francais. 
 
-Réalisez un nuage de point montrant le poids du squelette en ordonnée et le poids en abscisse et précisez qu'il y a des valeurs manquantes. De plus, changez le nom des variables `Weight of skeleton [g]` par `Masse du squelette [g]` et `Total weight [g]` par `Masse totale [g]`.
+Réalisez un nuage de points montrant la masse du squelette en ordonnée et la masse totale en abscisse et précisez qu'il y a des valeurs manquantes. De plus, changez le nom des variables `Weight of skeleton [g]` par `Masse du squelette [g]` et `Total weight [g]` par `Masse totale [g]`.
 
 ```{r challenge1, exercise = TRUE}
 
@@ -292,7 +308,7 @@ chart(urchin, formula = skeleton ~ weight) +
   labs(x = "Masse totale [g]", y = "Masse du squelette [g]") 
 ```
 
-Employons le graphique que nous avons déjà réaliser précédement utilisant la couleur comme variable facteur différenciant les oursins mesurés en élevage et en milieu naturel. 
+Employez le graphique que vous avez déjà réalisé précédement utilisant la couleur comme variable facteur différenciant les oursins mesurés en élevage et en milieu naturel. 
 
 ```{r}
 chart(urchin, formula = skeleton ~ weight %col=% origin) +
@@ -300,7 +316,7 @@ chart(urchin, formula = skeleton ~ weight %col=% origin) +
 ```
 
 
-Nous souhaitons continuer la personalisation du graphique en changeant changer le nom des axes, Changer le nom de la légende pour rendre le graphique présentable en francais. 
+Vous souhaitez continuer la personalisation du graphique en changeant le nom des axes, le nom de la légende pour rendre le graphique présentable en francais. 
 
 
 ```{r challenge2_intro}
@@ -310,12 +326,12 @@ chart(urchin, formula = skeleton ~ weight %col=% origin) +
   scale_color_manual(values=c('#999999','#E69F00'), name = "Origine", labels = c("Elevage", "Milieu naturel"))
 ```
 
-Réalisez un nuage de point montrant le poids du squelette en ordonnée et le poids en abscisse et précisez qu'il y a des valeurs manquantes. De plus, 
+Réalisez un nuage de point montrant la masse du squelette en ordonnée et la masse en abscisse et précisez qu'il y a des valeurs manquantes. De plus, 
 * changez le nom des variables `Weight of skeleton [g]` par `Masse du squelette [g]` et `Total weight [g]` par `Masse totale [g]`
 
 * Changez le nom des légendes  `Origin` par `Origine`, `Farm` par `Elevage` et `Fishery` par `Milieu naturel`
 
-* Changez les deux couleurs par les couleurs de votre choix. Nous avons employé du jaune et du gros pour notre part.
+* Changez les deux couleurs par les couleurs de votre choix. Nous avons employé du jaune et du gris pour notre part.
 
 
 ```{r challenge2, exercise = TRUE}
@@ -340,7 +356,4 @@ chart(urchin, formula = skeleton ~ weight %col=% origin) +
 
 ## Conclusion
 
-Vous venez de terminez votre séance d'exercice sur le nuage de point. 
-
-Pour obtenir de plus amples imformations sur le nuage de point, nous te renvoyons vers les ressources supplémentaires.
-
+Bravo! Vous venez de terminez votre séance d'exercice dans un learnr. 
