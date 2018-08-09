@@ -4,7 +4,7 @@
 \name{biometrie}
 \alias{biometrie}
 \title{Mesure de biometrie humaine}
-\format{An object of class \code{dataframe} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 396 rows and 8 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 395 rows and 8 columns.}
 \usage{
 biometrie
 }

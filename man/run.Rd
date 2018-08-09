@@ -21,7 +21,7 @@ selected tutorial.
 }
 \examples{
 # To list the availalble tutorials:
-run("module02a_base_de_r")
+run()
 \dontrun{
 run("module02a_nuage_de_points")
 }

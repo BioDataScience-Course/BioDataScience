@@ -84,7 +84,11 @@ var2
 ```
 
 
-Calculez la division du cube de `var2` par la somme de `var1` et `var2` et assignez cette variable à var4`.
+Calculez la division du cube de `var2` par la somme de `var1` et `var2` et assignez cette variable à `var4`.
+
+Assignez à `var4` le résultat de:
+
+$$\frac{var2^3}{var1\ +\ var2}$$
 
 ```{r fctmath1-setup}
 var1 <- 43
