@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Guyliann Engels &amp; Philippe Grosjean" />
+
+
+<meta name="progressive" content="true" />
+<meta name="allow-skip" content="true" />
+
+<title>Module 2: Découverte de R</title>
+
+
+<!-- highlightjs -->
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+</head>
+
+<body>
+
+
+
+<div class="pageContent band">
+<div class="bandContent page">
+
+<div class="topics">
+
+<div id="section-objectif" class="section level2">
+<h2>Objectif</h2>
+<p>Ce tutoriel a pour objectif de vous permettre de :</p>
+<ul>
+<li><p>Utilisation de programme R afin de résoudre une question sur l’obésité</p></li>
+<li><p>Découvrir les bases du language R</p></li>
+</ul>
+<p><img src="images/Rlogo.png" width="50%" /></p>
+<p>Il est important de préciser que l’ensemble de vos résultats est collecté afin de suivre votre progression. Ce test n’est cependant pas certificatif.</p>
+</div>
+<div id="section-introduction" class="section level2">
+<h2>Introduction</h2>
+<p>R est un programme <strong>Open Source</strong> qui permet la manipulation, la visualisation et l’application de calculs statistiques sur des données.</p>
+<ul>
+<li>Manipuler</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="center">genre</th>
+<th align="center">ddn</th>
+<th align="center">masse</th>
+<th align="center">taille</th>
+<th align="center">poignet</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">H</td>
+<td align="center">1998-04-03</td>
+<td align="center">74</td>
+<td align="center">190</td>
+<td align="center">16.0</td>
+</tr>
+<tr class="even">
+<td align="center">H</td>
+<td align="center">1967-04-04</td>
+<td align="center">83</td>
+<td align="center">185</td>
+<td align="center">17.5</td>
+</tr>
+<tr class="odd">
+<td align="center">H</td>
+<td align="center">1994-02-10</td>
+<td align="center">60</td>
+<td align="center">175</td>
+<td align="center">15.0</td>
+</tr>
+<tr class="even">
+<td align="center">F</td>
+<td align="center">1990-12-02</td>
+<td align="center">48</td>
+<td align="center">167</td>
+<td align="center">14.0</td>
+</tr>
+<tr class="odd">
+<td align="center">F</td>
+<td align="center">1994-07-15</td>
+<td align="center">52</td>
+<td align="center">179</td>
+<td align="center">14.0</td>
+</tr>
+<tr class="even">
+<td align="center">F</td>
+<td align="center">1971-03-03</td>
+<td align="center">72</td>
+<td align="center">167</td>
+<td align="center">15.5</td>
+</tr>
+<tr class="odd">
+<td align="center">F</td>
+<td align="center">1997-06-24</td>
+<td align="center">74</td>
+<td align="center">180</td>
+<td align="center">16.0</td>
+</tr>
+</tbody>
+</table>
+<p>On peut filtrer simplement les lignes d’un tableau de données.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">genre</th>
+<th align="center">ddn</th>
+<th align="center">masse</th>
+<th align="center">taille</th>
+<th align="center">poignet</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">F</td>
+<td align="center">1990-12-02</td>
+<td align="center">48</td>
+<td align="center">167</td>
+<td align="center">14.0</td>
+</tr>
+<tr class="even">
+<td align="center">F</td>
+<td align="center">1994-07-15</td>
+<td align="center">52</td>
+<td align="center">179</td>
+<td align="center">14.0</td>
+</tr>
+<tr class="odd">
+<td align="center">F</td>
+<td align="center">1971-03-03</td>
+<td align="center">72</td>
+<td align="center">167</td>
+<td align="center">15.5</td>
+</tr>
+<tr class="even">
+<td align="center">F</td>
+<td align="center">1997-06-24</td>
+<td align="center">74</td>
+<td align="center">180</td>
+<td align="center">16.0</td>
+</tr>
+<tr class="odd">
+<td align="center">F</td>
+<td align="center">1966-11-26</td>
+<td align="center">61</td>
+<td align="center">154</td>
+<td align="center">15.4</td>
+</tr>
+<tr class="even">
+<td align="center">F</td>
+<td align="center">1964-07-31</td>
+<td align="center">57</td>
+<td align="center">164</td>
+<td align="center">15.0</td>
+</tr>
+</tbody>
+</table>
+<p>On peut sélectionner simplement les colonnes d’un tableau de données.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">genre</th>
+<th align="center">masse</th>
+<th align="center">taille</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">H</td>
+<td align="center">74</td>
+<td align="center">190</td>
+</tr>
+<tr class="even">
+<td align="center">H</td>
+<td align="center">83</td>
+<td align="center">185</td>
+</tr>
+<tr class="odd">
+<td align="center">H</td>
+<td align="center">60</td>
+<td align="center">175</td>
+</tr>
+<tr class="even">
+<td align="center">F</td>
+<td align="center">48</td>
+<td align="center">167</td>
+</tr>
+<tr class="odd">
+<td align="center">F</td>
+<td align="center">52</td>
+<td align="center">179</td>
+</tr>
+<tr class="even">
+<td align="center">F</td>
+<td align="center">72</td>
+<td align="center">167</td>
+</tr>
+</tbody>
+</table>
+<p>On peut filter les lignes et sélectionner les colonnes simplement d’un tableau de données.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">genre</th>
+<th align="center">masse</th>
+<th align="center">taille</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">F</td>
+<td align="center">48</td>
+<td align="center">167</td>
+</tr>
+<tr class="even">
+<td align="center">F</td>
+<td align="center">52</td>
+<td align="center">179</td>
+</tr>
+<tr class="odd">
+<td align="center">F</td>
+<td align="center">72</td>
+<td align="center">167</td>
+</tr>
+<tr class="even">
+<td align="center">F</td>
+<td align="center">74</td>
+<td align="center">180</td>
+</tr>
+<tr class="odd">
+<td align="center">F</td>
+<td align="center">61</td>
+<td align="center">154</td>
+</tr>
+<tr class="even">
+<td align="center">F</td>
+<td align="center">57</td>
+<td align="center">164</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Visualiser</li>
+</ul>
+<div class="figure">
+<img src="02a_r_decouverte_files/figure-html/unnamed-chunk-7-1.png" alt="Variation de la taille [mm] de 4 groupes d'organismes zooplanctoniques. A l'exception du phylum des Annelida, les Calanoida, Cyclopoida et Decapoda sont des ordres dans la classification moderne." width="624" />
+<p class="caption">
+Variation de la taille [mm] de 4 groupes d’organismes zooplanctoniques. A l’exception du phylum des Annelida, les Calanoida, Cyclopoida et Decapoda sont des ordres dans la classification moderne.
+</p>
+</div>
+<div class="figure">
+<img src="02a_r_decouverte_files/figure-html/unnamed-chunk-8-1.png" alt="Variation de la température (A) et de l'intensité lumineuse (B) dans la baie de Calvi(Corse,France) la température" width="624" />
+<p class="caption">
+Variation de la température (A) et de l’intensité lumineuse (B) dans la baie de Calvi(Corse,France) la température
+</p>
+</div>
+<div class="figure">
+<img src="02a_r_decouverte_files/figure-html/unnamed-chunk-9-1.png" alt="Croissance de la coquille d' **Achatina achatina** exprimée en radian par rapport au nombre de spire modélisé par une régression linaire durant pour la protochonque et une regression polynomiale pour la téléochonque." width="624" />
+<p class="caption">
+Croissance de la coquille d’ <strong>Achatina achatina</strong> exprimée en radian par rapport au nombre de spire modélisé par une régression linaire durant pour la protochonque et une regression polynomiale pour la téléochonque.
+</p>
+</div>
+</div>
+<div id="section-lobesite" class="section level2">
+<h2>L’obésité</h2>
+<p>Plusieurs médias publient ou ont publié récement des articles avec des titres accrocheurs comme <a href="https://www.lesechos.fr/idees-debats/cercle/cercle-166670-obesite-le-mal-du-siecle-2067263.php">Obésité, le mal du siècle</a>, <a href="https://www.lemonde.fr/sante/article/2016/04/01/13-de-la-population-adulte-mondiale-est-obese-20-pourrait-bientot-l-etre_4893671_1651302.html">13 % de la population adulte mondiale est obèse, 20 % pourrait l’être en 2025</a> ou encore <a href="http://www.natura-sciences.com/sante/obesite-malnutrition.html">Obésité et malnutrition, fléaux du XXIe siècle</a>. Ils se basent sur plusieurs déclarations de l’Organisation Mondial de la Santé indiquant que la lutte contre l’obésité sera l’un des défis majeurs pour la santé publique au 21ième siècle. L’OMS estime que 1.5 milliards de personnes sont en surpoids actuellement et ce chiffre va augmenter si rien ne change.</p>
+<div class="figure">
+<img src="images/belly.jpg" style="width:50.0%" />
+
+</div>
+<p>Une multitude d’indicateur pour quantifier l’excédent de poids ont été employé au cours du temps (formule de Lorentz, formule de Creff ou encore la formule de Broca). Actuellement, c’est l’indice de masse corporelle (IMC ou encore <strong>BMI</strong> en anglais) qui est l’indicateur le plus employé. La formule est la suivant :</p>
+<p><span class="math display">\[IMC (kg/m^2) = \frac{masse(kg)}{taille(m)^2}\]</span></p>
+<p>Une fois la valeur obtenue de l’IMC, il faut la comparer au tableau ci-dessous pour connaitre son état de santé.</p>
+<table>
+<thead>
+<tr class="header">
+<th>IMC (kg/m2)</th>
+<th>Interprétation (selon l’OMS)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>inférieur 18.5</td>
+<td>sous-poids</td>
+</tr>
+<tr class="even">
+<td>Entre 18.5 et 25</td>
+<td>Corpulence normale</td>
+</tr>
+<tr class="odd">
+<td>Entre 25 et 30</td>
+<td>Surpoids</td>
+</tr>
+<tr class="even">
+<td>supérieur à 30</td>
+<td>Obésité</td>
+</tr>
+</tbody>
+</table>
+<p>Avancez pas à pas en toute simplicité dans cette première analyse avec R</p>
+</div>
+<div id="section-calcul-de-limc" class="section level2">
+<h2>Calcul de l’IMC</h2>
+<p>Les premières personnes dont vous avez les résultats sont les suivants:</p>
+<ul>
+<li>identifiant: 1</li>
+<li>sexe : Femme</li>
+<li>masse : 50 kg</li>
+<li>taille : 1.70 m</li>
+</ul>
+<p>Rappelez vous de la formule qui est :</p>
+<p><span class="math display">\[IMC (kg/m^2) = \frac{masse(kg)}{taille(m)^2}\]</span></p>
+<p>On peut employer les opérations mathématiques de base avec R, qui respecte également l’ordre des priorités mathématiques.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Opérations de base</th>
+<th>Symboles</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>additions</td>
+<td><code>+</code></td>
+</tr>
+<tr class="even">
+<td>soustractions</td>
+<td><code>-</code></td>
+</tr>
+<tr class="odd">
+<td>divisions</td>
+<td><code>/</code></td>
+</tr>
+<tr class="even">
+<td>multiplications</td>
+<td><code>*</code></td>
+</tr>
+<tr class="odd">
+<td>exponentiations</td>
+<td><code>^</code></td>
+</tr>
+</tbody>
+</table>
+<p>On va traduire la formule mathématique en une suite d’instructions.</p>
+<pre class="r"><code>50 / 1.70^2</code></pre>
+<pre><code>## [1] 17.30104</code></pre>
+<p>Son IMC indique que cette femme est dans la catégorie <code>sous-poids</code> selon l’échelle de l’OMS</p>
+<p>Réalisez la même opération mathématique sur notre deuxième individu :</p>
+<ul>
+<li>identifiant: 2</li>
+<li>sexe : Homme</li>
+<li>masse : 93 kg</li>
+<li>taille : 1.91 m</li>
+</ul>
+<p>L’espace ci-dessous est une zone de code R. Tu peux y ajouter tes réponses et cliquer sur <code>Run Code</code>.</p>
+<div class="tutorial-exercise" data-label="id2_imc" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="id2_imc-hint" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>93 / 1.91^2</code></pre>
+</div>
+<p>Son IMC indique que cet homme est par contre dans la catégorie <code>surpoids</code> selon l’échelle de l’OMS.</p>
+</div>
+<div id="section-calcul-de-limc-sur-plusieurs-individus" class="section level2">
+<h2>Calcul de l’IMC sur plusieurs individus</h2>
+<p>Vous vous retrouvez rapidement avec 5 nouveaux individus femme et homme.</p>
+<ul>
+<li>identifiant: 3, 4, 5, 6, 7</li>
+<li>sexe : femme, femme, femme, femme, femme</li>
+<li>masse : 63, 49, 75, 66, 54 kg</li>
+<li>taille : 1.74, 1.55, 1.69, 1.79, 1.68 m</li>
+</ul>
+<p>Le calcul un à un de l’IMC de chaque individu va très rapidement devenir fastidueux. R permet de créer des vecteurs que l’on peut affecter à des symboles avec la flèche <code>&lt;-</code> comme le montre l’exemple ci-dessous.</p>
+<pre class="r"><code># affectation des valeurs de masse dans un vecteur au symbole w1
+w1 &lt;- c(63, 49, 75, 66, 54)
+# affectation des valeurs dans un vecteur au symbole h1
+h1 &lt;- c(1.74, 1.55, 1.69, 1.79, 1.68)
+# formule de IMC
+w1 / h1^2</code></pre>
+<pre><code>## [1] 20.80856 20.39542 26.25958 20.59861 19.13265</code></pre>
+<p>Réalisez les mêmes opérations sur les individus de 8 à 12</p>
+<ul>
+<li>identifiant: 8, 9, 10, 11, 12</li>
+<li>sexe : homme, homme, homme, homme</li>
+<li>masse : 82, 73, 105, 61, 95 kg</li>
+<li>taille : 1.74, 1.86, 2.03, 1.72, 1.90 m</li>
+</ul>
+<div class="tutorial-exercise" data-label="vec_imc" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># assignation des valeurs de masse dans un vecteur au symbole masse 
+w2 &lt;- c( )
+# assignation des valeurs dans un vecteur au symbole taille
+h2 &lt;- 
+# formule de IMC</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+<p>Vous obtenez les 5 valeurs d’IMC d’une seule fois avec l’utilisation de vecteurs.</p>
+<div class="tutorial-exercise-support" data-label="vec_imc-hint" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># assignation des valeurs de masse dans un vecteur au symbole masse 
+w2 &lt;- c(82, 73, 105, 61, 95)
+# assignation des valeurs dans un vecteur au symbole taille
+h2 &lt;- c(1.74, 1.86, 2.03, 1.72, 1.90)
+# formule de IMC
+w2/h2^2</code></pre>
+</div>
+</div>
+<div id="section-ecriture-dun-tableau-de-donnees" class="section level2">
+<h2>Ecriture d’un tableau de données</h2>
+<p>Il devient évident qu’il est plus simple que nos observations de terrains soient rassemblées en un jeu de données structurées pour cela vous allez employer votre première fonction <code>data_frame()</code>. Cette dernière va permettre de combiner vos différents vecteurs en un jeu de données.</p>
+<p>R utilise un ensemble de fonction afin de réaliser des opérations comme <code>data_frame()</code> qui permet de créer un tableau de données. Vous pouvez observer que la fonction comprend plusieurs arguments séparés par une <code>,</code>. Analysez avec attention l’exemple ci-dessous.</p>
+<pre class="r"><code># formation du jeu de données
+woman1 &lt;- data_frame(id = c(3, 4, 5, 6, 7), # ensemble de valeurs numériques
+                    sex = c(&quot;w&quot;, &quot;w&quot;, &quot;w&quot;, &quot;w&quot;, &quot;w&quot;), # ensemble de chaines de caracères specifié par l&#39;utilisation des guillemets.
+                    weight = w1, # le vecteur masse fait précédement
+                    height = h1) # le vecteur taille fait précédement
+# afficher le jeu de données
+head(woman1) # head() permet d&#39;afficher les premiers résultats d&#39;un tableau</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sex"],"name":[2],"type":["chr"],"align":["left"]},{"label":["weight"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["height"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"w","3":"63","4":"1.74"},{"1":"4","2":"w","3":"49","4":"1.55"},{"1":"5","2":"w","3":"75","4":"1.69"},{"1":"6","2":"w","3":"66","4":"1.79"},{"1":"7","2":"w","3":"54","4":"1.68"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Avez-vous remarquez la différence entre des valeurs numériques et des chaines de caractères ?</p>
+<p>Réalisez les mêmes opérations sur les individus de 8 à 12 :</p>
+<ul>
+<li>identifiant: 8, 9, 10, 11, 12</li>
+<li>sexe : homme, homme, homme, homme</li>
+<li>masse : 82, 73, 105, 61, 95 kg</li>
+<li>taille : 1.74, 1.86, 2.03, 1.72, 1.90 m</li>
+</ul>
+<div class="tutorial-exercise-support" data-label="prepare" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># assignation des valeurs de masse dans un vecteur au symbole masse 
+w2 &lt;- c(82, 73, 105, 61, 95)
+# assignation des valeurs dans un vecteur au symbole taille
+h2 &lt;- c(1.74, 1.86, 2.03, 1.72, 1.90)</code></pre>
+</div>
+<div class="tutorial-exercise" data-label="data_homme" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># formation du jeu de données
+man1 &lt;- data_frame(id = ,
+                   sex = ,
+                   weight = ,
+                   height = )
+# afficher le tableau de données avec la fonction head()</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"prepare","exercise.checker":"NULL"}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="data_homme-hint" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># formation du jeu de données
+man1 &lt;- data_frame(id = c(8, 9, 10, 11, 12),
+                    sex = c(&quot;h&quot;, &quot;h&quot;, &quot;h&quot;, &quot;h&quot;, &quot;h&quot;), 
+                    weight = w2, 
+                    height = h2) 
+# afficher le jeu de données
+man1</code></pre>
+</div>
+<p>Calculez de nouveau l’IMC et ajoutez vos résultats dans le tableau de données. Vous avez à votre disposition la fonction <code>mutate()</code> qui requiert comme argument le jeu de données et le nom de la nouvelle variable suivi de la formule mathématique.</p>
+<pre class="r"><code># calculer l&#39;IMC
+woman1 &lt;- mutate(woman1, bmi = weight/height^2)
+# afficher le tableau de données avec la fonction head()
+head(woman1)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sex"],"name":[2],"type":["chr"],"align":["left"]},{"label":["weight"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["height"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["bmi"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"w","3":"63","4":"1.74","5":"20.80856"},{"1":"4","2":"w","3":"49","4":"1.55","5":"20.39542"},{"1":"5","2":"w","3":"75","4":"1.69","5":"26.25958"},{"1":"6","2":"w","3":"66","4":"1.79","5":"20.59861"},{"1":"7","2":"w","3":"54","4":"1.68","5":"19.13265"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Vous pouvez observez que vous obtenez une nouvelle colonne au sein de votre tableau de données. Réalisez les mêmes opérations sur le jeu de données <code>man1</code></p>
+<div class="tutorial-exercise-support" data-label="prepare1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>man1 &lt;- data_frame(id = c(8, 9, 10, 11, 12),
+                    sex = c(&quot;h&quot;, &quot;h&quot;, &quot;h&quot;, &quot;h&quot;, &quot;h&quot;), 
+                    weight = c(82, 73, 105, 61, 95), 
+                    height = c(1.74, 1.86, 2.03, 1.72, 1.90)) </code></pre>
+</div>
+<div class="tutorial-exercise" data-label="imc_mutate" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># calculer l&#39;IMC
+man1 &lt;- mutate(man1, bmi = )
+# afficher le tableau de données avec la fonction head()</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"prepare1","exercise.checker":"NULL"}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="imc_mutate-hint" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># calculer l&#39;IMC
+man1 &lt;- mutate(man1, bmi = weight/height^2)
+# afficher le tableau de données avec la fonction head()
+head(man1)</code></pre>
+</div>
+<p>Vous pouvez observez que tout comme le tableau de données portant sur les femme, vous obtenez une nouvelle colonne au sein de votre tableau de données portant le nom de BMI soit l’IMC en français.</p>
+</div>
+<div id="section-de-la-population-adulte-mondiale-est-obese" class="section level2">
+<h2>13% de la population adulte mondiale est obèse</h2>
+<p>Le monde titre que 13% de la populaton mondiale est obèse. Vérifiez cette affirmation avec le jeu de données <code>bio</code> qui regroupe les masse et le taille de 395 personnes adulte vivant sur le territoire belge.</p>
+<pre class="r"><code>head(bio) </code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["sex"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["height"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"H","2":"69","3":"182"},{"1":"H","2":"74","3":"190"},{"1":"H","2":"83","3":"185"},{"1":"H","2":"60","3":"175"},{"1":"F","2":"48","3":"167"},{"1":"F","2":"52","3":"179"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Vous pouvez observer que la taille est exprimé en centimètre, il faut en tenir compte lors du cacul de l’IMC.</p>
+<p>Un jeu de données réduit est employé pour expliciter les suites d’instructions <code>bio_ex</code> qui comprends uniquement 100 observations.</p>
+<p>Calculez l’IMC sur le jeu de données <code>bio_ex</code>. Employez à nouveau la fonction <code>mutate()</code>.</p>
+<pre class="r"><code># calculer le IMC (BMI en anglais) avec la fonction mutate()
+bio_ex &lt;- mutate(bio_ex, bmi = weight/(height/100)^2)
+# afficher les premières lignes du tableau de données 
+head(bio_ex, n = 5)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["sex"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["height"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["bmi"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"F","2":"62.0","3":"158.0","4":"24.83576"},{"1":"F","2":"68.8","3":"162.0","4":"26.21552"},{"1":"F","2":"52.0","3":"162.0","4":"19.81405"},{"1":"F","2":"49.0","3":"156.0","4":"20.13478"},{"1":"F","2":"57.8","3":"170.5","4":"19.88287"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Calculez l’IMC sur le jeu de données <code>bio</code></p>
+<div class="tutorial-exercise" data-label="bio_imc" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># calculer le IMC (BMI en anglais)
+
+# afficher les premières lignes du tableau de données avec la fonction head()</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="bio_imc-hint" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># calculer le IMC (BMI en anglais)
+bio &lt;- mutate(bio, bmi = weight/(height/100)^2)
+# afficher les premières lignes du tableau de données
+head(bio, n = 5)</code></pre>
+</div>
+</div>
+<div id="section-signification-de-limc-selon-lechelle" class="section level2">
+<h2>Signification de l’IMC selon l’échelle</h2>
+<p>Une fois la valeur obtenue de l’IMC, il faut lui attribuer son interprétation pour connaitre son état de santé.</p>
+<table>
+<thead>
+<tr class="header">
+<th>IMC (kg/m2)</th>
+<th>Interprétation (selon l’OMS)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Inférieur 18.5</td>
+<td>Sous-poids (en anglais underweight)</td>
+</tr>
+<tr class="even">
+<td>Entre 18.5 et 25</td>
+<td>Corpulence normale (en anglais normal weight)</td>
+</tr>
+<tr class="odd">
+<td>Entre 25 et 30</td>
+<td>Surpoids (en anglais overweight)</td>
+</tr>
+<tr class="even">
+<td>Supérieur à 30</td>
+<td>Obésité (en anglais obese)</td>
+</tr>
+</tbody>
+</table>
+<p>Vous avez à votre disposition la fonction <code>case_when()</code> qui permet d’attribuer l’interprétation de l’OMS à la valeur d’IMC. Vous devez lui indiquer d’une part la condition (ex = BMI &lt; 18.5) et d’autre part son interprétation (ex : sous-poids), le tout séparé par un <code>~</code>. Vous pouvez retrouver les conditions ci-dessous.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Condition</th>
+<th>Représentation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Egal à</td>
+<td><code>==</code></td>
+</tr>
+<tr class="even">
+<td>Tout sauf</td>
+<td><code>!=</code></td>
+</tr>
+<tr class="odd">
+<td>Supérieur à</td>
+<td><code>&gt;</code></td>
+</tr>
+<tr class="even">
+<td>Inférieur à</td>
+<td><code>&lt;</code></td>
+</tr>
+<tr class="odd">
+<td>Supérieur ou égal à</td>
+<td><code>&gt;=</code></td>
+</tr>
+<tr class="even">
+<td>Inférieur ou égal à</td>
+<td><code>&lt;=</code></td>
+</tr>
+<tr class="odd">
+<td>et</td>
+<td><code>&amp;</code></td>
+</tr>
+<tr class="even">
+<td>ou</td>
+<td><code>|</code></td>
+</tr>
+</tbody>
+</table>
+<p>Ajoutez une nouvelle variable qui tient compte de l’échelle de l’OMS avec le jeu de données <code>bio_ex</code>. Analysez la structuration de la suite d’instructions, les conditions employées, la position des guillemets,…</p>
+<pre class="r"><code>#ajouter la nouvelles variable
+bio_ex &lt;- mutate(bio_ex, bmi_signif = 
+                   case_when(
+                     bmi &lt; 18.5 ~ &quot;underweight&quot;,
+                     bmi &gt;= 18.5 &amp; bmi &lt; 25 ~ &quot;normal weight&quot;,
+                     bmi &gt;= 25 &amp; bmi &lt; 30 ~ &quot;overweight&quot;,
+                     bmi &gt;= 30 ~ &quot;obese&quot;))
+# afficher le tableau 
+head(bio_ex)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["sex"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["height"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["bmi"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["bmi_signif"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"F","2":"62.0","3":"158.0","4":"24.83576","5":"normal weight"},{"1":"F","2":"68.8","3":"162.0","4":"26.21552","5":"overweight"},{"1":"F","2":"52.0","3":"162.0","4":"19.81405","5":"normal weight"},{"1":"F","2":"49.0","3":"156.0","4":"20.13478","5":"normal weight"},{"1":"F","2":"57.8","3":"170.5","4":"19.88287","5":"normal weight"},{"1":"H","2":"90.0","3":"164.0","4":"33.46222","5":"obese"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Ajoutez une nouvelle variable au jeu de données <code>bio</code> en complétant les informations manquantes.</p>
+<div class="tutorial-exercise-support" data-label="prepare2" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>bio &lt;- read(&quot;biometrie&quot;, package = &quot;BioDataScience&quot;)
+bio &lt;- bio[ , c(&quot;genre&quot;, &quot;masse&quot;, &quot;taille&quot;)]
+bio &lt;- rename(bio, sex = genre, weight = masse, height = taille)
+bio$bmi &lt;- bio$weight/(bio$height/100)^2</code></pre>
+</div>
+<div class="tutorial-exercise" data-label="case_when" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>#ajouter la nouvelles variable
+   &lt;- mutate(   , bmi_signif = 
+                   case_when(
+                     bmi  ~ &quot;underweight&quot;,
+                     bmi  ~ &quot;normal weight&quot;,
+                     bmi  ~&quot;overweight&quot;,
+                     bmi  ~ &quot;obese&quot;))
+# afficher le tableau 
+head()</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"prepare2","exercise.checker":"NULL"}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="case_when-hint" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>#ajouter la nouvelles variable
+bio &lt;- mutate(bio, bmi_signif = 
+                   case_when(
+                     bmi &lt; 18.5 ~ &quot;underweight&quot;,
+                     bmi &gt; 18.5 &amp; bmi &lt; 25 ~ &quot;normal weight&quot;,
+                     bmi &gt;= 25 &amp; bmi &lt; 30 ~ &quot;overweight&quot;,
+                     bmi &gt;= 30 ~ &quot;obese&quot;))
+# afficher le tableau 
+head()</code></pre>
+</div>
+<p>Votre nouvelles variables comprend une succession de lignes complétée par des chaines de caractères. Organisez cette variables de votre tableau de données avec la fonction <code>factor()</code>. Observez la nouvelle structuration de la suite d’instructions. Vous observez pour la première fois l’opérateur <code>$</code>. Dans l’exemple ci-dessous, vous pouvez l’interpréter comme dans le tableau de données <code>bio_ex</code>, je m’intéresse à la colonne/variable <code>bmi_signif</code>. La fonction <code>factor()</code> s’appliqe donc sur cette colonne. Avec l’argument <code>levels</code>, vous spécifiez les différents niveaux de votre variable à classer.</p>
+<p>Classer votre nouvelle variable avec le jeu de données <code>bio_ex</code>.</p>
+<p>Classer votre nouvelle variable avec le jeu de données <code>bio</code>.</p>
+<div class="tutorial-exercise-support" data-label="prepare3" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>bio &lt;- read(&quot;biometrie&quot;, package = &quot;BioDataScience&quot;)
+bio &lt;- bio[ , c(&quot;genre&quot;, &quot;masse&quot;, &quot;taille&quot;)]
+bio &lt;- rename(bio, sex = genre, weight = masse, height = taille)
+bio$bmi &lt;- bio$weight/(bio$height/100)^2
+
+bio &lt;- mutate(bio, bmi_signif = 
+                   case_when(
+                     bmi &lt; 18.5 ~ &quot;underweight&quot;,
+                     bmi &gt; 18.5 &amp; bmi &lt; 25 ~ &quot;normal weight&quot;,
+                     bmi &gt;= 25 &amp; bmi &lt; 30 ~ &quot;overweight&quot;,
+                     bmi &gt;= 30 ~ &quot;obese&quot;))</code></pre>
+</div>
+<div class="tutorial-exercise" data-label="factor" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>bio$   &lt;- factor(bio_ex$bmi_signif, levels = )</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"prepare3","exercise.checker":"NULL"}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="factor-hint" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>bio$bmi_signif &lt;- factor(bio_ex$bmi_signif, levels = c(&quot;underweight&quot;, &quot;normal weight&quot;, &quot;overweight&quot;, &quot;obese&quot;))</code></pre>
+</div>
+</div>
+<div id="section-verification-de-laffirmation-de-journal-le-monde" class="section level2">
+<h2>Vérification de l’affirmation de journal le monde</h2>
+<p>La fonction <code>summary()</code> permet d’obtenir un résumé complet d’un tableau de données.</p>
+<pre><code>##  sex        weight           height           bmi       
+##  H:52   Min.   : 43.00   Min.   :149.0   Min.   :16.23  
+##  F:48   1st Qu.: 57.95   1st Qu.:162.0   1st Qu.:20.49  
+##         Median : 69.15   Median :170.0   Median :24.02  
+##         Mean   : 70.59   Mean   :170.2   Mean   :24.31  
+##         3rd Qu.: 82.00   3rd Qu.:178.2   3rd Qu.:26.68  
+##         Max.   :122.00   Max.   :192.0   Max.   :41.24  
+##          bmi_signif
+##  underweight  : 7  
+##  normal weight:50  
+##  overweight   :31  
+##  obese        :12  
+##                    
+## </code></pre>
+<pre><code>## [1] 0.14</code></pre>
+<div class="tutorial-exercise-support" data-label="prepare4" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>bio &lt;- read(&quot;biometrie&quot;, package = &quot;BioDataScience&quot;)
+bio &lt;- bio[ , c(&quot;genre&quot;, &quot;masse&quot;, &quot;taille&quot;)]
+bio &lt;- rename(bio, sex = genre, weight = masse, height = taille)
+bio$bmi &lt;- bio$weight/(bio$height/100)^2
+
+bio &lt;- mutate(bio, bmi_signif = 
+                   case_when(
+                     bmi &lt; 18.5 ~ &quot;underweight&quot;,
+                     bmi &gt; 18.5 &amp; bmi &lt; 25 ~ &quot;normal weight&quot;,
+                     bmi &gt;= 25 &amp; bmi &lt; 30 ~ &quot;overweight&quot;,
+                     bmi &gt;= 30 ~ &quot;obese&quot;))
+bio$bmi_signif &lt;- factor(bio$bmi_signif, levels = c(&quot;underweight&quot;, &quot;normal weight&quot;, &quot;overweight&quot;, &quot;obese&quot;))</code></pre>
+</div>
+Utilisez la fonction <code>summary()</code> pour obtenir une description du tableau de données
+<div class="tutorial-exercise" data-label="obese" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># résumé des données
+summary()</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"prepare4","exercise.checker":"NULL"}</script>
+</div>
+<div class="tutorial-exercise" data-label="obese1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># calculer le pourcentage d&#39;obèse dans notre tableau de données
+ / 395</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+</div>
+<div id="section-conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>Le nombre d’obèse sur notre jeu de données est 12.6% ce qui est très proche des 13% annoncé par le monde.</p>
+<p>Vous venez de finir votre premier tutoriel interractif. Ce dernier vous a proposé une première découverte des inombrables possibilités de R.</p>
+<p>Laissez nous vos impressions sur cet outil pédagogique. Afin de placer un commentaire dans une zone de réponse utilisez la dièse (<code>#</code>) devant vos phrases.</p>
+<div class="tutorial-exercise" data-label="comm" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># ajout de commentaires 
+# </code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+
+<script type="application/shiny-prerendered" data-context="server-start">
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
+SciViews::R
+library(tibble)
+library(tidyverse)
+library(BioDataScience)
+library(chart)
+library(data)
+library(flow)
+library(skimr)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::register_http_handlers(session, metadata = list(version = 0.111111111111))
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-id2_imc-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-id2_imc-code-editor`)), session)
+output$`tutorial-exercise-id2_imc-output` <- renderUI({
+  `tutorial-exercise-id2_imc-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-vec_imc-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-vec_imc-code-editor`)), session)
+output$`tutorial-exercise-vec_imc-output` <- renderUI({
+  `tutorial-exercise-vec_imc-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-data_homme-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-data_homme-code-editor`)), session)
+output$`tutorial-exercise-data_homme-output` <- renderUI({
+  `tutorial-exercise-data_homme-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-imc_mutate-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-imc_mutate-code-editor`)), session)
+output$`tutorial-exercise-imc_mutate-output` <- renderUI({
+  `tutorial-exercise-imc_mutate-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-bio_imc-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-bio_imc-code-editor`)), session)
+output$`tutorial-exercise-bio_imc-output` <- renderUI({
+  `tutorial-exercise-bio_imc-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-case_when-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-case_when-code-editor`)), session)
+output$`tutorial-exercise-case_when-output` <- renderUI({
+  `tutorial-exercise-case_when-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-factor-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-factor-code-editor`)), session)
+output$`tutorial-exercise-factor-output` <- renderUI({
+  `tutorial-exercise-factor-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-obese-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-obese-code-editor`)), session)
+output$`tutorial-exercise-obese-output` <- renderUI({
+  `tutorial-exercise-obese-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-obese1-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-obese1-code-editor`)), session)
+output$`tutorial-exercise-obese1-output` <- renderUI({
+  `tutorial-exercise-obese1-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-comm-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-comm-code-editor`)), session)
+output$`tutorial-exercise-comm-output` <- renderUI({
+  `tutorial-exercise-comm-result`()
+})
+</script>
+ <!--html_preserve-->
+<script type="application/shiny-prerendered" data-context="dependencies">
+{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["1.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/jquery-1.11.3"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap"]},{"type":"character","attributes":{},"value":["3.3.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/bootstrap-3.3.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["viewport"]}},"value":[{"type":"character","attributes":{},"value":["width=device-width, initial-scale=1"]}]},{"type":"character","attributes":{},"value":["js/bootstrap.min.js","shim/html5shiv.min.js","shim/respond.min.js"]},{"type":"character","attributes":{},"value":["css/cerulean.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["pagedtable"]},{"type":"character","attributes":{},"value":["1.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/pagedtable-1.1"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/pagedtable.js"]},{"type":"character","attributes":{},"value":["css/pagedtable.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["highlightjs"]},{"type":"character","attributes":{},"value":["9.12.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/highlightjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["highlight.js"]},{"type":"character","attributes":{},"value":["textmate.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial.js"]},{"type":"character","attributes":{},"value":["tutorial.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-autocompletion"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-autocompletion.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-diagnostics"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-diagnostics.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-format"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmarkdown/templates/tutorial/resources"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-format.js"]},{"type":"character","attributes":{},"value":["tutorial-format.css","rstudio-theme.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["1.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/jquery-1.11.3"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["font-awesome"]},{"type":"character","attributes":{},"value":["5.0.13"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/fontawesome"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/fontawesome-all.min.js","js/fa-v4-shims.min.js"]},{"type":"character","attributes":{},"value":["css/fa-svg-with-js.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootbox"]},{"type":"character","attributes":{},"value":["4.4.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/bootbox"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["bootbox.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["localforage"]},{"type":"character","attributes":{},"value":["1.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/localforage"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["localforage.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial.js"]},{"type":"character","attributes":{},"value":["tutorial.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-autocompletion"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-autocompletion.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-diagnostics"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-diagnostics.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]}]}
+</script>
+<!--/html_preserve-->
+</div>
+
+</div> <!-- topics -->
+
+<div class="topicsContainer">
+<div class="topicsPositioner">
+<div class="band">
+<div class="bandContent topicsListContainer">
+
+<!-- begin doc-metadata -->
+<div id="doc-metadata">
+<h2 class="title toc-ignore" style="display:none;">Module 2: Découverte de R</h2>
+<h4 class="author"><em>Guyliann Engels &amp; Philippe Grosjean</em></h4>
+</div>
+<!-- end doc-metadata -->
+
+</div> <!-- bandContent.topicsListContainer -->
+</div> <!-- band -->
+</div> <!-- topicsPositioner -->
+</div> <!-- topicsContainer -->
+
+
+</div> <!-- bandContent page -->
+</div> <!-- pageContent band -->
+
+
+
+
+<script>
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+
+</html>

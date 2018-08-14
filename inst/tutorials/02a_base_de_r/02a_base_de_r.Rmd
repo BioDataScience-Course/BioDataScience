@@ -4,6 +4,8 @@ author : "Guyliann Engels & Philippe Grosjean"
 output: 
   learnr::tutorial:
   progressive: TRUE
+tutorial:
+  version: 0.1
 runtime: shiny_prerendered
 ---
 
@@ -38,6 +40,7 @@ Il est important de préciser que l'ensemble de vos résultats est collecté afi
 R est un language de programmation **Open source**  axée sur l'analyse de données. Ce language date de 1993 et prend ces sources du language S. 
 
 R permet entre autres la manipulation, la visualisation et l'application de calculs statistiques sur des données. 
+
 
 ## R,  une calculette scientifique
 
@@ -220,3 +223,5 @@ Durant cette séance, vous avez appris à :
 - employer l'assignation 
 - employer des fonctions 
 - utiliser l'aide au fonctions
+
+
