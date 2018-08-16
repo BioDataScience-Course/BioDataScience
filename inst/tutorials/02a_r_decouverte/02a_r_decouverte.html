@@ -49,8 +49,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <h2>Objectif</h2>
 <p>Ce tutoriel a pour objectif de vous permettre de :</p>
 <ul>
-<li><p>Utilisation de programme R afin de résoudre une question sur l’obésité</p></li>
-<li><p>Découvrir les bases du language R</p></li>
+<li>utilisation de programme R afin de résoudre une question sur l’obésité</li>
 </ul>
 <p><img src="images/Rlogo.png" width="50%" /></p>
 <p>Il est important de préciser que l’ensemble de vos résultats est collecté afin de suivre votre progression. Ce test n’est cependant pas certificatif.</p>
@@ -61,6 +60,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <ul>
 <li>Manipuler</li>
 </ul>
+<p>En partant d’un tableau de données relatif à la biométrie humaine de 395 observations.</p>
 <table>
 <thead>
 <tr class="header">
@@ -123,7 +123,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </tr>
 </tbody>
 </table>
-<p>On peut filtrer simplement les lignes d’un tableau de données.</p>
+<p>On peut filtrer simplement les lignes d’un tableau de données afin de ne garder que les femmes dans le tableau de données.</p>
 <table>
 <thead>
 <tr class="header">
@@ -279,11 +279,12 @@ Variation de la température (A) et de l’intensité lumineuse (B) dans la baie
 </p>
 </div>
 <div class="figure">
-<img src="02a_r_decouverte_files/figure-html/unnamed-chunk-9-1.png" alt="Croissance de la coquille d' **Achatina achatina** exprimée en radian par rapport au nombre de spire modélisé par une régression linaire durant pour la protochonque et une regression polynomiale pour la téléochonque." width="624" />
+<img src="02a_r_decouverte_files/figure-html/unnamed-chunk-9-1.png" alt="Croissance de la coquille d' *Achatina achatina* exprimée en radian par rapport au nombre de spire modélisé par une régression linaire durant pour la protochonque et une regression polynomiale pour la téléochonque." width="624" />
 <p class="caption">
-Croissance de la coquille d’ <strong>Achatina achatina</strong> exprimée en radian par rapport au nombre de spire modélisé par une régression linaire durant pour la protochonque et une regression polynomiale pour la téléochonque.
+Croissance de la coquille d’ <em>Achatina achatina</em> exprimée en radian par rapport au nombre de spire modélisé par une régression linaire durant pour la protochonque et une regression polynomiale pour la téléochonque.
 </p>
 </div>
+<p><strong>Ceci n’est qu’un bref aperçu de possibilité que propose R, vous en découvrirez une partie lors des cours de la science de données.</strong></p>
 </div>
 <div id="section-lobesite" class="section level2">
 <h2>L’obésité</h2>
@@ -321,7 +322,7 @@ Croissance de la coquille d’ <strong>Achatina achatina</strong> exprimée en r
 </tr>
 </tbody>
 </table>
-<p>Avancez pas à pas en toute simplicité dans cette première analyse avec R</p>
+<p>Avancez pas à pas en toute simplicité dans cette première analyse avec R.</p>
 </div>
 <div id="section-calcul-de-limc" class="section level2">
 <h2>Calcul de l’IMC</h2>
@@ -429,7 +430,7 @@ w2/h2^2</code></pre>
 </div>
 <div id="section-ecriture-dun-tableau-de-donnees" class="section level2">
 <h2>Ecriture d’un tableau de données</h2>
-<p>Il devient évident qu’il est plus simple que nos observations de terrains soient rassemblées en un jeu de données structurées pour cela vous allez employer votre première fonction <code>data_frame()</code>. Cette dernière va permettre de combiner vos différents vecteurs en un jeu de données.</p>
+<p>Il devient évident qu’il est plus simple que nos observations de terrain soient rassemblées en un jeu de données structurées pour cela vous allez employer votre première fonction <code>data_frame()</code>. Cette dernière va permettre de combiner vos différents vecteurs en un jeu de données.</p>
 <p>R utilise un ensemble de fonction afin de réaliser des opérations comme <code>data_frame()</code> qui permet de créer un tableau de données. Vous pouvez observer que la fonction comprend plusieurs arguments séparés par une <code>,</code>. Analysez avec attention l’exemple ci-dessous.</p>
 <pre class="r"><code># formation du jeu de données
 woman1 &lt;- data_frame(id = c(3, 4, 5, 6, 7), # ensemble de valeurs numériques
@@ -485,7 +486,7 @@ head(woman1)</code></pre>
 {"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sex"],"name":[2],"type":["chr"],"align":["left"]},{"label":["weight"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["height"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["bmi"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"w","3":"63","4":"1.74","5":"20.80856"},{"1":"4","2":"w","3":"49","4":"1.55","5":"20.39542"},{"1":"5","2":"w","3":"75","4":"1.69","5":"26.25958"},{"1":"6","2":"w","3":"66","4":"1.79","5":"20.59861"},{"1":"7","2":"w","3":"54","4":"1.68","5":"19.13265"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>Vous pouvez observez que vous obtenez une nouvelle colonne au sein de votre tableau de données. Réalisez les mêmes opérations sur le jeu de données <code>man1</code></p>
+<p>Vous pouvez observer que vous obtenez une nouvelle colonne au sein de votre tableau de données. Réalisez les mêmes opérations sur le jeu de données <code>man1</code>.</p>
 <div class="tutorial-exercise-support" data-label="prepare1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>man1 &lt;- data_frame(id = c(8, 9, 10, 11, 12),
                     sex = c(&quot;h&quot;, &quot;h&quot;, &quot;h&quot;, &quot;h&quot;, &quot;h&quot;), 
@@ -504,19 +505,19 @@ man1 &lt;- mutate(man1, bmi = weight/height^2)
 # afficher le tableau de données avec la fonction head()
 head(man1)</code></pre>
 </div>
-<p>Vous pouvez observez que tout comme le tableau de données portant sur les femme, vous obtenez une nouvelle colonne au sein de votre tableau de données portant le nom de BMI soit l’IMC en français.</p>
+<p>Vous pouvez observer que tout comme le tableau de données portant sur les femmes, vous obtenez une nouvelle colonne au sein de votre tableau de données portant le nom de BMI soit l’IMC en français.</p>
 </div>
 <div id="section-de-la-population-adulte-mondiale-est-obese" class="section level2">
 <h2>13% de la population adulte mondiale est obèse</h2>
-<p>Le monde titre que 13% de la populaton mondiale est obèse. Vérifiez cette affirmation avec le jeu de données <code>bio</code> qui regroupe les masse et le taille de 395 personnes adulte vivant sur le territoire belge.</p>
+<p>Le monde titre que 13% de la populaton mondiale est obèse. Vérifiez cette affirmation avec le jeu de données <code>bio</code> qui regroupe les masses et les tailles de 395 personnes adulte vivant sur le territoire belge.</p>
 <pre class="r"><code>head(bio) </code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["sex"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["height"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"H","2":"69","3":"182"},{"1":"H","2":"74","3":"190"},{"1":"H","2":"83","3":"185"},{"1":"H","2":"60","3":"175"},{"1":"F","2":"48","3":"167"},{"1":"F","2":"52","3":"179"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>Vous pouvez observer que la taille est exprimé en centimètre, il faut en tenir compte lors du cacul de l’IMC.</p>
-<p>Un jeu de données réduit est employé pour expliciter les suites d’instructions <code>bio_ex</code> qui comprends uniquement 100 observations.</p>
+<p>Vous pouvez observer que la taille est exprimée en centimètres, il faut en tenir compte lors du calcul de l’IMC.</p>
+<p>Un jeu de données réduit est employé pour expliciter les suites d’instructions <code>bio_ex</code> qui comprend uniquement 100 observations.</p>
 <p>Calculez l’IMC sur le jeu de données <code>bio_ex</code>. Employez à nouveau la fonction <code>mutate()</code>.</p>
 <pre class="r"><code># calculer le IMC (BMI en anglais) avec la fonction mutate()
 bio_ex &lt;- mutate(bio_ex, bmi = weight/(height/100)^2)
@@ -527,7 +528,7 @@ head(bio_ex, n = 5)</code></pre>
 {"columns":[{"label":["sex"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["height"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["bmi"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"F","2":"62.0","3":"158.0","4":"24.83576"},{"1":"F","2":"68.8","3":"162.0","4":"26.21552"},{"1":"F","2":"52.0","3":"162.0","4":"19.81405"},{"1":"F","2":"49.0","3":"156.0","4":"20.13478"},{"1":"F","2":"57.8","3":"170.5","4":"19.88287"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>Calculez l’IMC sur le jeu de données <code>bio</code></p>
+<p>Calculez l’IMC sur le jeu de données <code>bio</code>.</p>
 <div class="tutorial-exercise" data-label="bio_imc" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># calculer le IMC (BMI en anglais)
 
@@ -658,7 +659,7 @@ bio &lt;- mutate(bio, bmi_signif =
 # afficher le tableau 
 head()</code></pre>
 </div>
-<p>Votre nouvelles variables comprend une succession de lignes complétée par des chaines de caractères. Organisez cette variables de votre tableau de données avec la fonction <code>factor()</code>. Observez la nouvelle structuration de la suite d’instructions. Vous observez pour la première fois l’opérateur <code>$</code>. Dans l’exemple ci-dessous, vous pouvez l’interpréter comme dans le tableau de données <code>bio_ex</code>, je m’intéresse à la colonne/variable <code>bmi_signif</code>. La fonction <code>factor()</code> s’appliqe donc sur cette colonne. Avec l’argument <code>levels</code>, vous spécifiez les différents niveaux de votre variable à classer.</p>
+<p>Votre nouvelle variable comprend une succession de lignes complétée par des chaines de caractères. Organisez cette variable de votre tableau de données avec la fonction <code>factor()</code>. Observez la nouvelle structuration de la suite d’instructions. Vous observez pour la première fois l’opérateur <code>$</code>. Dans l’exemple ci-dessous, vous pouvez l’interpréter comme dans le tableau de données <code>bio_ex</code>, je m’intéresse à la colonne/variable <code>bmi_signif</code>. La fonction <code>factor()</code> s’appliqe donc sur cette colonne. Avec l’argument <code>levels</code>, vous spécifiez les différents niveaux de votre variable à classer.</p>
 <p>Classer votre nouvelle variable avec le jeu de données <code>bio_ex</code>.</p>
 <p>Classer votre nouvelle variable avec le jeu de données <code>bio</code>.</p>
 <div class="tutorial-exercise-support" data-label="prepare3" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
@@ -682,8 +683,8 @@ bio &lt;- mutate(bio, bmi_signif =
 <pre class="text"><code>bio$bmi_signif &lt;- factor(bio_ex$bmi_signif, levels = c(&quot;underweight&quot;, &quot;normal weight&quot;, &quot;overweight&quot;, &quot;obese&quot;))</code></pre>
 </div>
 </div>
-<div id="section-verification-de-laffirmation-de-journal-le-monde" class="section level2">
-<h2>Vérification de l’affirmation de journal le monde</h2>
+<div id="section-verification-de-laffirmation-du-journal-le-monde" class="section level2">
+<h2>Vérification de l’affirmation du journal le monde</h2>
 <p>La fonction <code>summary()</code> permet d’obtenir un résumé complet d’un tableau de données.</p>
 <pre><code>##  sex        weight           height           bmi       
 ##  H:52   Min.   : 43.00   Min.   :149.0   Min.   :16.23  
@@ -699,7 +700,7 @@ bio &lt;- mutate(bio, bmi_signif =
 ##  obese        :12  
 ##                    
 ## </code></pre>
-<pre><code>## [1] 0.14</code></pre>
+<pre><code>## [1] 0.12</code></pre>
 <div class="tutorial-exercise-support" data-label="prepare4" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>bio &lt;- read(&quot;biometrie&quot;, package = &quot;BioDataScience&quot;)
 bio &lt;- bio[ , c(&quot;genre&quot;, &quot;masse&quot;, &quot;taille&quot;)]
@@ -714,7 +715,7 @@ bio &lt;- mutate(bio, bmi_signif =
                      bmi &gt;= 30 ~ &quot;obese&quot;))
 bio$bmi_signif &lt;- factor(bio$bmi_signif, levels = c(&quot;underweight&quot;, &quot;normal weight&quot;, &quot;overweight&quot;, &quot;obese&quot;))</code></pre>
 </div>
-Utilisez la fonction <code>summary()</code> pour obtenir une description du tableau de données
+<p>Utilisez la fonction <code>summary()</code> pour obtenir une description du tableau de données.</p>
 <div class="tutorial-exercise" data-label="obese" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># résumé des données
 summary()</code></pre>
@@ -752,7 +753,7 @@ library(skimr)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::register_http_handlers(session, metadata = list(version = 0.111111111111))
+learnr:::register_http_handlers(session, metadata = list(version = 0.11111111111111))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
