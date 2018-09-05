@@ -1,13 +1,15 @@
 ---
 title: "Module 2 : vérification des compétences"
 tutorial:
-  version: 0.1
+  version: 0.11
 output:
   learnr::tutorial:
     progressive: true
     allow_skip: true
 runtime: shiny_prerendered
 ---
+
+![remplacer cette image par une sorte de banière reprennant les logo EcoNum, Umons, BioDataScience](images/EcoNum-logo_large.png)
 
 ```{r setup, include=FALSE}
 library(learnr)
@@ -21,7 +23,7 @@ data("biometrie")
 
 ## Objectifs
 
-Ce tutoriel a pour objectif d'évaluer l'acquisition des compétences de module 2.
+Ce test a pour objectif d'évaluer l'acquisition des compétences de module 2.
 
 Les compétences évaluées sont : 
 
@@ -38,21 +40,26 @@ Ce dernier comporte des questions théoriques ainsi que des questions pratiques.
 
 Il est important de préciser que l'ensemble de vos résultats est collecté afin de suivre votre progression. Ce test est **certificatif**. 
 
-
 ## Base de R 
 
 ### Assignation
 
-Assignez la valeur `43` à la chaine de caractères `var1`. Terminez par appeler `var1`.
+Assignez la valeur `43` au symbole  `vec1`. 
+
+Afficher les résultat de la `vec1`.
 
 ```{r assignation, exercise = TRUE, exercise.lines = 2, exercise.startover = FALSE}
 
 ```
 
 ```{r assignation-solution}
-var1 <- 43
-var1
+vec1 <- 43
+vec1
 ```
+
+Assignez la chaine de caractère `aaaa` au symbole  `vec2`. 
+
+Afficher les résultat de la `var1`.
 
 Assignez la chaine de caractères `a` à la variable `var3`. Terminez par appeler `var3`.
 
@@ -61,7 +68,8 @@ Assignez la chaine de caractères `a` à la variable `var3`. Terminez par appele
 ```
 
 ```{r assignation_carac-solution}
-var3 <- "a"
+vec2 <- "a"
+vec2
 ```
 
 

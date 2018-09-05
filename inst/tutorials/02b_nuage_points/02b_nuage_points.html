@@ -49,18 +49,18 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <h2>Objectifs</h2>
 <p>Ce tutoriel interactif a pour objectif d’apprendre à réaliser des graphiques de type nuage de points comme montré sur la figure ci-dessous.</p>
 <div class="figure">
-<img src="module02b_nuage_de_points_files/figure-html/unnamed-chunk-1-1.png" alt="Variation de la masse du squelette en fonction de la masse totale de *Paracentrotus lividus* Lamarck 1816" width="624" />
+<img src="02b_nuage_points_files/figure-html/unnamed-chunk-1-1.png" alt="Variation de la masse du squelette en fonction de la masse totale de *Paracentrotus lividus* Lamarck 1816" width="624" />
 <p class="caption">
 Variation de la masse du squelette en fonction de la masse totale de <em>Paracentrotus lividus</em> Lamarck 1816
 </p>
 </div>
-<p><strong>Il est important de préciser que l’ensemble de vos résultats est collecté afin de suivre votre progression. Ce test n’est cependant pas certificatif.</strong></p>
+<p>Il est important de préciser que l’ensemble de vos résultats est collecté afin de suivre votre progression. Ce test n’est cependant pas certificatif.</p>
 </div>
 <div id="section-introduction" class="section level2">
 <h2>Introduction</h2>
 <p>Le nuage de points permet de représenter une variable numérique en fonction d’une autre variable numérique. On peut exprimer cette relation dans R sous la forme de <span class="math display">\[y \sim x\]</span> que l’on peut lire : <span class="math display">\[y \ en \ fonction \ de \ x\]</span></p>
 <div class="figure">
-<img src="module02b_nuage_de_points_files/figure-html/unnamed-chunk-2-1.png" alt="Points essentiels d'un nuage de points" width="624" />
+<img src="02b_nuage_points_files/figure-html/unnamed-chunk-2-1.png" alt="Points essentiels d'un nuage de points" width="624" />
 <p class="caption">
 Points essentiels d’un nuage de points
 </p>
@@ -82,7 +82,7 @@ Points essentiels d’un nuage de points
 <h3>Exercice 1</h3>
 <p>Le jeu de données <code>urchin_bio</code> portant sur la biométrie d’oursins est assigné à <code>urchin</code>. Les variables employées pour ce premier graphique sont la masse du squelette (<code>skeleton</code>) et le masse totale (<code>weight</code>).</p>
 <pre><code>## Warning: Removed 163 rows containing missing values (geom_point).</code></pre>
-<p><img src="module02b_nuage_de_points_files/figure-html/first_graph_intro-1.png" width="624" /></p>
+<p><img src="02b_nuage_points_files/figure-html/first_graph_intro-1.png" width="624" /></p>
 <p>Réalisez un nuage de points montrant la masse du squelette en ordonnée et la masse totale en abscisse afin d’obtenir le graphique ci-dessus.</p>
 <div class="tutorial-exercise" data-label="first_graph" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>chart(DF, formula = YNUM ~ XNUM) +
@@ -101,15 +101,7 @@ Points essentiels d’un nuage de points
 <h4>Exercice 2</h4>
 <p>Le jeu de données assigné à <code>urchin</code> contient des valeurs manquantes comme le précise le message suivant lors de la réalisation du graphique précédent.</p>
 <p><strong>Warning message: Removed 163 rows containing missing values (geom_point).</strong></p>
-<p>Faites appel à la fonction d’aide de la fonction geom_point afin de trouver une solution. Rapellez vous qu’il suffit d’employer le point d’interrogation <code>?</code> devant la fonction d’intérêt.</p>
-<div class="tutorial-exercise" data-label="appel_aide" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
-</div>
-<div class="tutorial-exercise-support" data-label="appel_aide-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>?geom_point()</code></pre>
-</div>
-<p><img src="module02b_nuage_de_points_files/figure-html/na_graph_intro-1.png" width="624" /></p>
-<p>Réalisez un nuage de points montrant le masse du squelette en ordonnée et le masse totale en abscisse. Précisez qu’il y a des valeurs manquantes.</p>
+<p>Ajoutez l’argument <code>na.rm = TRUE</code> dans la fonction <code>geom_point()</code> afin de préciser que les variables du jeu de données contiennent des valeurs manquantes. Réalisez un nuage de points montrant le masse du squelette en ordonnée et le masse totale en abscisse. Précisez qu’il y a des valeurs manquantes.</p>
 <div class="tutorial-exercise" data-label="na_graph" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>chart(DF, formula = YNUM ~ XNUM) +
   geom_point()</code></pre>
@@ -126,7 +118,7 @@ Points essentiels d’un nuage de points
 <div id="section-exercice-3" class="section level3">
 <h3>Exercice 3</h3>
 <p>Vous souhaitez visualiser la différence d’origine des oursins mesurés. Ces informations se situent dans la variable sur l’origine (<code>origin</code>). L’utilisation de la couleur peut permettre de différencier ces derniers. La formule de la fonction <code>chart()</code> peut être complétée avec l’argument faisant référence à la couleur (<code>%col=%</code>).</p>
-<p><img src="module02b_nuage_de_points_files/figure-html/col_graph_intro-1.png" width="624" /></p>
+<p><img src="02b_nuage_points_files/figure-html/col_graph_intro-1.png" width="624" /></p>
 <p>Réalisez un nuage de points montrant la masse du squelette en ordonnée et la masse en abscisse. Utilisez la couleur afin de différencier l’origine des individus et précisez à nouveau qu’il y a des valeurs manquantes.</p>
 <div class="tutorial-exercise" data-label="col_graph" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>chart(DF, formula = YNUM ~ XNUM %col=% FACTOR) +
@@ -144,9 +136,9 @@ Points essentiels d’un nuage de points
 <p>Maintenant que vous avez rapidement réalisé les graphiques vus durant la vidéo, expérimentez d’autres fonctions et arguments liés au nuage de points.</p>
 <div id="section-exercice-1-1" class="section level3">
 <h3>Exercice 1</h3>
-<p>La couleur n’est pas forcément l’argument le plus judicieux à employer pour différencier une variable facteur au sein d’un nuage de points. Il vous sera parfois demandé d’employer des formes (<code>%shape=%</code>) ou encore des nuances de gris différentes (<code>%alpha=%</code>) que vous devez ajouter à la formule de la fonction <code>chart()</code>.</p>
+<p>La couleur n’est pas forcément l’argument le plus judicieux à employer pour différencier une variable facteur au sein d’un nuage de points. Il vous sera parfois demandé d’employer des formes (<code>%shape=%</code>) ou encore l’opacité (<code>%alpha=%</code>) que vous devez ajouter à la formule de la fonction <code>chart()</code>.</p>
 <pre><code>## Warning: Using alpha for a discrete variable is not advised.</code></pre>
-<p><img src="module02b_nuage_de_points_files/figure-html/alpha_graph_intro-1.png" width="624" /></p>
+<p><img src="02b_nuage_points_files/figure-html/alpha_graph_intro-1.png" width="624" /></p>
 <p>Nous pouvons observer que l’utilisation de la forme n’est pas forcément l’argument le plus judicieux dans cet exemple.</p>
 <p>Intéressez-vous à la masse de la lanterne d’aristote (<code>lantern</code>) en fonction de la masse du test (<code>test</code>).</p>
 <p>Réalisez un nuage de points montrant le masse de la lanterne d’Aristote (<code>lantern</code>) en ordonnée et la masse du test (<code>test</code>) en abscisse. Utilisez les nuances de gris afin de différencier l’origine des individus. Précisez à nouveau qu’il y a des valeurs manquantes.</p>
@@ -168,7 +160,7 @@ Points essentiels d’un nuage de points
 <h3>Exercice 2</h3>
 <p>Intéressez-vous maintenant à la masse (<code>weight</code>) des individus en fonction de leur masse immergée (<code>buoyant_weight</code>).</p>
 <p>Vous pouvez avoir le souhait d’employer 2 variables facteurs pour obtenir un graphique plus informatif. La variable portant sur le sex des individus (<code>sex</code>) peut être employée.</p>
-<p><img src="module02b_nuage_de_points_files/figure-html/2factor_graph_intro-1.png" width="624" /></p>
+<p><img src="02b_nuage_points_files/figure-html/2factor_graph_intro-1.png" width="624" /></p>
 <p>Réalisez un nuage de points montrant la masse en ordonnée et la masse immergée en abscisse. Utilisez la couleur afin de différencier l’origine des individus et différentes formes afin de différencier le sex des individus. Précisez à nouveau qu’il y a des valeurs manquantes.</p>
 <p>Vous pouvez observer qu’une première ligne de code vous est fournies afin de retirer les lignes de tableau ne contenant pas l’information sur le sex des individus. Vous apprendrez dans les prochains cours à manipuler vos jeux de données.</p>
 <div class="tutorial-exercise" data-label="2factor_graph" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
@@ -194,7 +186,7 @@ chart(urchin, formula = weight ~ buoyant_weight %col=% origin %shape=% sex) +
 <div id="section-exercice-3-1" class="section level3">
 <h3>Exercice 3</h3>
 <p>Intéressez-vous maintenant à la hauteur (<code>height</code>) en fonction de la masse (<code>weight</code>) des individus.</p>
-<p><img src="module02b_nuage_de_points_files/figure-html/unnamed-chunk-3-1.png" width="624" /></p>
+<p><img src="02b_nuage_points_files/figure-html/unnamed-chunk-3-1.png" width="624" /></p>
 <p>Réalisez un nuage de points montrant le logarithme de la masse en ordonnée et le logarithme de la masse immergée en abscisse. Utilisez la couleur afin de différencier l’origine des individus et précisez à nouveau qu’il y a des valeurs manquantes.</p>
 <div class="tutorial-exercise" data-label="log_log" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>chart(DF, formula = YNUM ~ XNUM) +
@@ -219,7 +211,7 @@ chart(urchin, formula = weight ~ buoyant_weight %col=% origin %shape=% sex) +
 <h2>Challenge</h2>
 <p>Cette partie du learnr requiert d’appliquer les concepts vus précédement mais d’y ajouter de nouvelles que vous devez appréhender par vous-même via entre autres la section <code>Pour en savoir plus...</code> du livre.</p>
 <p>Employez le graphique que vous avez déjà réalisé précédement.</p>
-<p><img src="module02b_nuage_de_points_files/figure-html/challenge1_intro-1.png" width="624" /></p>
+<p><img src="02b_nuage_points_files/figure-html/challenge1_intro-1.png" width="624" /></p>
 <p>Vous souhaitez changer le nom des axes pour rendre le graphique présentable en francais.</p>
 <p>Réalisez un nuage de points montrant la masse du squelette en ordonnée et la masse totale en abscisse et précisez qu’il y a des valeurs manquantes. De plus, changez le nom des variables <code>Weight of skeleton [g]</code> par <code>Masse du squelette [g]</code> et <code>Total weight [g]</code> par <code>Masse totale [g]</code>.</p>
 <div class="tutorial-exercise" data-label="challenge1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
@@ -236,9 +228,9 @@ chart(urchin, formula = weight ~ buoyant_weight %col=% origin %shape=% sex) +
   labs(x = &quot;Masse totale [g]&quot;, y = &quot;Masse du squelette [g]&quot;) </code></pre>
 </div>
 <p>Employez le graphique que vous avez déjà réalisé précédement utilisant la couleur comme variable facteur différenciant les oursins mesurés en élevage et en milieu naturel.</p>
-<p><img src="module02b_nuage_de_points_files/figure-html/unnamed-chunk-4-1.png" width="624" /></p>
+<p><img src="02b_nuage_points_files/figure-html/unnamed-chunk-4-1.png" width="624" /></p>
 <p>Vous souhaitez continuer la personalisation du graphique en changeant le nom des axes, le nom de la légende pour rendre le graphique présentable en francais.</p>
-<p><img src="module02b_nuage_de_points_files/figure-html/challenge2_intro-1.png" width="624" /></p>
+<p><img src="02b_nuage_points_files/figure-html/challenge2_intro-1.png" width="624" /></p>
 <p>Réalisez un nuage de point montrant la masse du squelette en ordonnée et la masse en abscisse et précisez qu’il y a des valeurs manquantes. De plus, * changez le nom des variables <code>Weight of skeleton [g]</code> par <code>Masse du squelette [g]</code> et <code>Total weight [g]</code> par <code>Masse totale [g]</code></p>
 <ul>
 <li><p>Changez le nom des légendes <code>Origin</code> par <code>Origine</code>, <code>Farm</code> par <code>Elevage</code> et <code>Fishery</code> par <code>Milieu naturel</code></p></li>
@@ -262,7 +254,14 @@ chart(urchin, formula = weight ~ buoyant_weight %col=% origin %shape=% sex) +
 </div>
 <div id="section-conclusion" class="section level2">
 <h2>Conclusion</h2>
-Bravo! Vous venez de terminez votre séance d’exercice dans un learnr. 
+<p>Bravo! Vous venez de terminez votre séance d’exercice dans un learnr. Ce dernier vous a proposé d’apprendre à employer le graphique de type nuage de point.</p>
+<p>Laissez nous vos impressions sur cet outil pédagogique. Afin de placer un commentaire dans une zone de réponse utilisez la dièse (<code>#</code>) devant vos phrases.</p>
+<div class="tutorial-exercise" data-label="comm" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># ajout de commentaires 
+# </code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
@@ -286,13 +285,6 @@ learnr:::register_http_handlers(session, metadata = NULL)
 `tutorial-exercise-first_graph-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-first_graph-code-editor`)), session)
 output$`tutorial-exercise-first_graph-output` <- renderUI({
   `tutorial-exercise-first_graph-result`()
-})
-</script>
- 
-<script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-appel_aide-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-appel_aide-code-editor`)), session)
-output$`tutorial-exercise-appel_aide-output` <- renderUI({
-  `tutorial-exercise-appel_aide-result`()
 })
 </script>
  
@@ -342,6 +334,13 @@ output$`tutorial-exercise-challenge1-output` <- renderUI({
 `tutorial-exercise-challenge2-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-challenge2-code-editor`)), session)
 output$`tutorial-exercise-challenge2-output` <- renderUI({
   `tutorial-exercise-challenge2-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-comm-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-comm-code-editor`)), session)
+output$`tutorial-exercise-comm-output` <- renderUI({
+  `tutorial-exercise-comm-result`()
 })
 </script>
  <!--html_preserve-->

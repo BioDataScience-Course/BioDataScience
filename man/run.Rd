@@ -29,7 +29,5 @@ run("module02a_nuage_de_points")
 \seealso{
 \code{\link[=run_tutorial]{run_tutorial()}}
 }
-\concept{
-run interactive learnr documents from the BioDataScience package
-}
+\concept{run interactive learnr documents from the BioDataScience package}
 \keyword{utilities}

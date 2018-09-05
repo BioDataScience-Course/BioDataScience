@@ -34,7 +34,7 @@ chart(urchin, formula = skeleton ~ weight) +
 ```
 
 
-**Il est important de préciser que l'ensemble de vos résultats est collecté afin de suivre votre progression. Ce test n'est cependant pas certificatif.**
+Il est important de préciser que l'ensemble de vos résultats est collecté afin de suivre votre progression. Ce test n'est cependant pas certificatif.
 
 ## Introduction
 
@@ -42,7 +42,6 @@ Le nuage de points permet de représenter une variable numérique en fonction d'
 
 
 ```{r, echo=FALSE, results= 'hide', message=FALSE, fig.cap= "Points essentiels d'un nuage de points"}
-
 chart(urchin,formula = height ~  weight) + 
   geom_point() +
   labs( x = "Label de l'axe x  + [Unité]", 
@@ -107,23 +106,7 @@ Le jeu de données assigné à `urchin` contient des valeurs manquantes comme le
 
 **Warning message: Removed 163 rows containing missing values (geom_point).**
 
-Faites appel à la fonction d'aide de la fonction geom_point afin de trouver une solution. Rapellez vous qu'il suffit d'employer le point d'interrogation `?` devant la fonction d'intérêt. 
-
-```{r appel_aide, exercise=TRUE}
-
-```
-
-```{r appel_aide-solution}
-?geom_point()
-```
-
-
-```{r na_graph_intro}
-chart(urchin, formula = skeleton ~ weight) +
-  geom_point(na.rm = TRUE)
-```
-
-Réalisez un nuage de points montrant le masse du squelette en ordonnée et le masse totale en abscisse. Précisez qu'il y a des valeurs manquantes.
+Ajoutez l'argument `na.rm = TRUE` dans la fonction `geom_point()` afin de préciser que les variables du jeu de données contiennent des valeurs manquantes. Réalisez un nuage de points montrant le masse du squelette en ordonnée et le masse totale en abscisse. Précisez qu'il y a des valeurs manquantes.
 
 ```{r na_graph, exercise=TRUE}
 chart(DF, formula = YNUM ~ XNUM) +
@@ -165,7 +148,7 @@ Maintenant que vous avez rapidement réalisé les graphiques vus durant la vidé
 
 ### Exercice 1
 
-La couleur n'est pas forcément l'argument le plus judicieux à employer pour différencier une variable facteur au sein d'un nuage de points. Il vous sera parfois demandé d'employer des formes (`%shape=%`) ou encore des nuances de gris différentes (`%alpha=%`) que vous devez ajouter à la formule de la fonction `chart()`.
+La couleur n'est pas forcément l'argument le plus judicieux à employer pour différencier une variable facteur au sein d'un nuage de points. Il vous sera parfois demandé d'employer des formes (`%shape=%`) ou encore l'opacité (`%alpha=%`) que vous devez ajouter à la formule de la fonction `chart()`.
 
 ```{r alpha_graph_intro}
 a <- chart(urchin, formula = lantern ~ test %alpha=% origin) +
@@ -356,4 +339,13 @@ chart(urchin, formula = skeleton ~ weight %col=% origin) +
 
 ## Conclusion
 
-Bravo! Vous venez de terminez votre séance d'exercice dans un learnr. 
+Bravo! Vous venez de terminez votre séance d'exercice dans un learnr. Ce dernier vous a proposé d'apprendre à employer le graphique de type nuage de point.
+
+
+
+Laissez nous vos impressions sur cet outil pédagogique. Afin de placer un commentaire dans une zone de réponse utilisez la dièse (`#`) devant vos phrases.
+
+```{r comm, exercise = TRUE}
+# ajout de commentaires 
+# 
+```

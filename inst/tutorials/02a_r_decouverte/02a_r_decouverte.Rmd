@@ -8,21 +8,18 @@ output:
     allow_skip: true
     fig_caption: yes
 tutorial:
-  version: 0.11111111111111
+  version: 0.12
 runtime: shiny_prerendered
 ---
+
+![](images/intro.png)
 
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 library(knitr)
 SciViews::R
-library(tibble)
-library(tidyverse)
 library(BioDataScience)
-library(chart)
-library(data)
-library(flow)
 library(skimr)
 ```
 
