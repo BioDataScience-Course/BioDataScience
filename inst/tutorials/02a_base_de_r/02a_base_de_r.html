@@ -45,6 +45,10 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div class="topics">
 
+<div class="figure">
+<img src="images/intro.png" />
+
+</div>
 <div id="section-objectif" class="section level2">
 <h2>Objectif</h2>
 <p>Ce tutoriel a pour objectif de vous permettre de :</p>
@@ -56,12 +60,12 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 <div id="section-introduction" class="section level2">
 <h2>Introduction</h2>
-<p>R est un language de programmation <strong>Open source</strong> axée sur l’analyse de données. Ce language date de 1993 et prend ces sources du language S.</p>
-<p>R permet entre autres la manipulation, la visualisation et l’application de calculs statistiques sur des données.</p>
+<p>R est un language de programmation <strong>Open source</strong> axée sur l’analyse de données. Ce language date de 1993 et prend ces sources du language S. R permet entre autres la manipulation, la visualisation et l’application de calculs statistiques sur des données.</p>
+<p>Ce tutoriel vous propose une suite d’activité afin d’apprendre les rudiments de R.</p>
 </div>
 <div id="section-r-une-calculette-scientifique" class="section level2">
 <h2>R, une calculette scientifique</h2>
-<p>Vous pouvez tout d’abord employer R comme une calculatice (ce qui est bien réducteur de la puissance de cet outil). Les opérations de base sont directement utilisable dans R.</p>
+<p>Vous pouvez tout d’abord employer R comme une calculatrice (ce qui est bien réducteur de la puissance de cet outil). Les opérations de base sont directement utilisable dans R.</p>
 <table>
 <thead>
 <tr class="header">
@@ -95,17 +99,21 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <p>Voici un premier exemple simple</p>
 <pre class="r"><code>4 + 5</code></pre>
 <pre><code>## [1] 9</code></pre>
-<p>Multipliez les nombres <code>15</code> et <code>23</code></p>
+<ul>
+<li>Multipliez les nombres <code>15</code> et <code>23</code></li>
+</ul>
 <div class="tutorial-exercise" data-label="calcul1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="calcul1-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>15 * 23</code></pre>
 </div>
-<p>Vous pouvez également utiliser des fonctions mathématiques directement implementer dans R comme le logarithme en base 10 avec la <code>fonction</code> : <code>log()</code>. Ce language a été mise au point pour suivre les conventions des mathématiques et des statistiques comme le respect de l’ordre des opérations.</p>
+<p>Vous pouvez également utiliser des fonctions mathématiques directement implementer dans R comme le logarithme népérien avec la <code>fonction</code> : <code>log()</code>. Ce language a été mise au point pour suivre les conventions des mathématiques et des statistiques comme le respect de l’ordre des opérations.</p>
 <pre class="r"><code>log(4 + 5)</code></pre>
 <pre><code>## [1] 2.197225</code></pre>
-<p>Calculez l’exponentiel dont la fonction est <code>exp()</code> de la soustraction de <code>23</code> et <code>15</code>.</p>
+<ul>
+<li>Calculez l’exponentiel dont la fonction est <code>exp()</code> de la soustraction de <code>23</code> et <code>15</code>.</li>
+</ul>
 <div class="tutorial-exercise" data-label="calcul2" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
@@ -121,7 +129,11 @@ b &lt;- 4 + 3
 # addition de la valeur de a et de b
 a + b</code></pre>
 <pre><code>## [1] 12</code></pre>
-<p>Assignez la valeur <code>18</code> à la lettre <code>a</code> et la <code>division</code> de <code>12</code> par <code>14</code> à <code>b</code>. Multipliez ensuite a par b.</p>
+<ul>
+<li><p>Assignez à <code>a</code> la valeur <code>18</code>.</p></li>
+<li><p>Assignez à <code>b</code> la <code>division</code> de <code>12</code> par <code>14</code>.</p></li>
+<li><p>Multipliez ensuite a par b.</p></li>
+</ul>
 <div class="tutorial-exercise" data-label="assig1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># assignation de a
 a &lt;- 
@@ -140,15 +152,19 @@ b &lt;- 12 / 14
 a * b</code></pre>
 </div>
 <p>L’assignation peut également être faite sur une série de nombres ou sur une série de caractères avec la fonction <code>c()</code>.</p>
-<pre class="r"><code>vecteur &lt;- c(2, 5, 8, 11, 13, 16)
+<pre class="r"><code>vec_1 &lt;- c(2, 5, 8, 11, 13, 16)
 
-vecteur_1 &lt;- c(2, 5, NA, 11, 13, 16)
+vec_2 &lt;- c(2, 5, NA, 11, 13, 16)
 
-vecteur_1 &lt;- c(&quot;noir&quot;, &quot;jaune&quot;, &quot;rouge&quot;)</code></pre>
-<p>Assignez les valeurs <code>15 , 19, une valeur manquante (NA) et 13</code>. Multipliez ensuite ce vecteur par <code>4</code> et assignez cela sur vecteur_b. Terminez par affichez les valeurs du vecteur_b en écrivant simplement vecteur_b dans la console R.</p>
+vec_3 &lt;- c(&quot;noir&quot;, &quot;jaune&quot;, &quot;rouge&quot;)</code></pre>
+<ul>
+<li><p>Assignez à <code>vec</code> les valeurs <code>15 , 19, une valeur manquante (NA) et 13</code>.</p></li>
+<li><p>Assignez à <code>vec_4</code> la multiplication de <code>vec</code> par <code>4</code>.</p></li>
+<li><p>Terminez par affichez les valeurs du vecteur_b en écrivant simplement vec_b dans la console R.</p></li>
+</ul>
 <div class="tutorial-exercise" data-label="vec1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># assignation des valeurs à un vecteur
-vecteur &lt;- 
+vec &lt;- 
 # multipliez ce vecteur par 4 et assignez le
 
 # affichez le résultat de votre calcul.</code></pre>
@@ -156,65 +172,64 @@ vecteur &lt;-
 </div>
 <div class="tutorial-exercise-support" data-label="vec1-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>#assignation des valeurs à un vecteur
-vecteur &lt;- c(15, 19, NA, 13)
+vec &lt;- c(15, 19, NA, 13)
 #multipliez ce vecteur par 4
-vecteur_b &lt;- vecteur*4
+vec_4 &lt;- vecteur*4
 # afficher le résultat de cette multiplication
-vecteur_b</code></pre>
+vec_4</code></pre>
 </div>
 </div>
 <div id="section-r-les-fonctions" class="section level2">
 <h2>R, les fonctions</h2>
-<p>Réalisez la moyenne du vecteur réalisé précédement avec la fonction <code>mean()</code>.</p>
+<ul>
+<li>Réalisez la moyenne du vecteur <code>vec_5</code> avec la fonction <code>mean()</code>.</li>
+</ul>
 <div class="tutorial-exercise" data-label="vec2" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># assignation des valeurs à `vecteurs`
-vecteur &lt;- c(15, 19, NA, 13)
+vec_5 &lt;- c(15, 19, NA, 13)
 # moyenne du vecteur</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="vec2-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># assignation des valeurs à `vecteurs`
-vecteur &lt;- c(15, 19, NA, 13)
+vec_5 &lt;- c(15, 19, NA, 13)
 # somme du vecteur
-mean(vecteur)</code></pre>
+mean(vec_5)</code></pre>
 </div>
 <p>La valeur obtenue ne vous convient pas ? Il semble que la valeur manquante induit un problème dans le calcul de la moyenne du vecteur.</p>
-<p>L’outil indispensable dans vous ne devez jamais oublier l’existance est l’aide des fonctions. Pour appeler l’aide, vous devez ajouter un point d’interrogation devant une fonction.</p>
-<p>Prenez l’exemple de la fonction <code>log()</code></p>
-<pre class="r"><code>?log()</code></pre>
-<p>Appelez l’aide sur la fonction <code>mean()</code>.</p>
-<div class="tutorial-exercise" data-label="aide" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
-</div>
-<div class="tutorial-exercise-support" data-label="aide-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>?mean()</code></pre>
-</div>
-<p>Comme vous avez pu le voir ci-dessus, les fonctions sont largement documentées. L ’argument <code>na.rm =</code> est par défault encodé avec comme valeur <code>FALSE</code>. Cela peut se traduire par notre vecteur ne contient pas de valeurs manquantes.</p>
+<p>L’outil indispensable dans vous ne devez jamais oublier l’existance est l’aide des fonctions. Pour appeler l’aide, vous devez ajouter un point d’interrogation devant une fonction comme le montre l’exemple ci-dessous</p>
+<p>Les fonctions sont généralement largement documentées. L’argument <code>na.rm =</code> est par défault encodé avec comme valeur <code>FALSE</code>. Cela peut se traduire par notre vecteur ne contient pas de valeurs manquantes.</p>
 <p>Notre exemple contient une valeur manquante, vous devez donc ajouter l’argument <code>na.rm = TRUE</code> dans votre fonction <code>mean()</code>. La séparation entre plusieurs argument au sein d’une même fonction est la virgule (<code>,</code>).</p>
 <p>Réalisez la moyenne du vecteur réalisé précédement avec la fonction <code>mean()</code></p>
 <div class="tutorial-exercise" data-label="vec3" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># assignation des valeurs à `vecteurs`
-vecteur &lt;- c(15, 19, NA, 13)
+vec_5 &lt;- c(15, 19, NA, 13)
 # somme du vecteur</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="vec3-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># assignation des valeurs à `vecteurs`
-vecteur &lt;- c(15, 19, NA, 13)
+vec_5 &lt;- c(15, 19, NA, 13)
 # somme du vecteur
-mean(vecteur, na.rm = TRUE)</code></pre>
+mean(vec_5, na.rm = TRUE)</code></pre>
 </div>
 <p>Vous obtenez cette fois-ci la réponse souhaitée.</p>
 </div>
 <div id="section-conclusion" class="section level2">
 <h2>Conclusion</h2>
-<p>Bravo! Vous venez de terminez votre première séance d’exercice dans un learnr.</p>
+<p>Bravo! Vous venez de terminez cette séance séance d’exercice dans un learnr.</p>
 <p>Durant cette séance, vous avez appris à :</p>
 <ul>
-<li>employer l’assignation</li>
-<li>employer des fonctions</li>
-<li>utiliser l’aide au fonctions</li>
+<li>Employer l’assignation</li>
+<li>Employer des fonctions</li>
+<li>Utiliser l’aide au fonctions</li>
 </ul>
+<p>Laissez nous vos impressions sur cet outil pédagogique. Afin de placer un commentaire dans une zone de réponse utilisez la dièse (<code>#</code>) devant vos phrases.</p>
+<div class="tutorial-exercise" data-label="comm" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># ajout de commentaires 
+# </code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
 
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
@@ -222,14 +237,12 @@ knitr::opts_chunk$set(echo = FALSE)
 library(knitr)
 SciViews::R
 library(BioDataScience)
-library(chart)
-library(data)
 # Dataset
-urchin <- data::read(file = "urchin_bio", package = "data")
+urchin <- read(file = "urchin_bio", package = "data.io")
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::register_http_handlers(session, metadata = list(version = 0.1))
+learnr:::register_http_handlers(session, metadata = list(version = 0.1111))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
@@ -268,16 +281,16 @@ output$`tutorial-exercise-vec2-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-aide-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-aide-code-editor`)), session)
-output$`tutorial-exercise-aide-output` <- renderUI({
-  `tutorial-exercise-aide-result`()
+`tutorial-exercise-vec3-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-vec3-code-editor`)), session)
+output$`tutorial-exercise-vec3-output` <- renderUI({
+  `tutorial-exercise-vec3-result`()
 })
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-vec3-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-vec3-code-editor`)), session)
-output$`tutorial-exercise-vec3-output` <- renderUI({
-  `tutorial-exercise-vec3-result`()
+`tutorial-exercise-comm-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-comm-code-editor`)), session)
+output$`tutorial-exercise-comm-output` <- renderUI({
+  `tutorial-exercise-comm-result`()
 })
 </script>
  <!--html_preserve-->

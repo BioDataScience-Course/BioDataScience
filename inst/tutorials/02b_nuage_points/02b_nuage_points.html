@@ -45,6 +45,10 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div class="topics">
 
+<div class="figure">
+<img src="images/intro.png" />
+
+</div>
 <div id="section-objectifs" class="section level2">
 <h2>Objectifs</h2>
 <p>Ce tutoriel interactif a pour objectif d’apprendre à réaliser des graphiques de type nuage de points comme montré sur la figure ci-dessous.</p>
@@ -66,14 +70,6 @@ Points essentiels d’un nuage de points
 </p>
 </div>
 <p>Les instructions de base afin de produire un nuage de points sont :</p>
-<pre><code>chart(DF, formula = YNUM ~ XNUM) +
-  geom_point()</code></pre>
-<p>La fonction <code>chart()</code> requiert comme argument le jeu de données (dataframe, DF), ainsi que la formule à employer YNUM ~ XNUM. Pour réaliser une nuage de point vous devez ajouter la seconde fonction <code>geom_point()</code> à l’aide du <code>+</code>.</p>
-<p>Les éléments indispensables à la compréhension d’un nuage de points sont (ici mis en évidence en couleur) :</p>
-<ul>
-<li>les axes avec les graduations (en rouge)</li>
-<li>les labels et unités des axes (en bleu)</li>
-</ul>
 </div>
 <div id="section-retour-sur-la-video" class="section level2">
 <h2>Retour sur la vidéo</h2>
@@ -186,7 +182,7 @@ chart(urchin, formula = weight ~ buoyant_weight %col=% origin %shape=% sex) +
 <div id="section-exercice-3-1" class="section level3">
 <h3>Exercice 3</h3>
 <p>Intéressez-vous maintenant à la hauteur (<code>height</code>) en fonction de la masse (<code>weight</code>) des individus.</p>
-<p><img src="02b_nuage_points_files/figure-html/unnamed-chunk-3-1.png" width="624" /></p>
+<p><img src="02b_nuage_points_files/figure-html/unnamed-chunk-4-1.png" width="624" /></p>
 <p>Réalisez un nuage de points montrant le logarithme de la masse en ordonnée et le logarithme de la masse immergée en abscisse. Utilisez la couleur afin de différencier l’origine des individus et précisez à nouveau qu’il y a des valeurs manquantes.</p>
 <div class="tutorial-exercise" data-label="log_log" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>chart(DF, formula = YNUM ~ XNUM) +
@@ -228,7 +224,7 @@ chart(urchin, formula = weight ~ buoyant_weight %col=% origin %shape=% sex) +
   labs(x = &quot;Masse totale [g]&quot;, y = &quot;Masse du squelette [g]&quot;) </code></pre>
 </div>
 <p>Employez le graphique que vous avez déjà réalisé précédement utilisant la couleur comme variable facteur différenciant les oursins mesurés en élevage et en milieu naturel.</p>
-<p><img src="02b_nuage_points_files/figure-html/unnamed-chunk-4-1.png" width="624" /></p>
+<p><img src="02b_nuage_points_files/figure-html/unnamed-chunk-5-1.png" width="624" /></p>
 <p>Vous souhaitez continuer la personalisation du graphique en changeant le nom des axes, le nom de la légende pour rendre le graphique présentable en francais.</p>
 <p><img src="02b_nuage_points_files/figure-html/challenge2_intro-1.png" width="624" /></p>
 <p>Réalisez un nuage de point montrant la masse du squelette en ordonnée et la masse en abscisse et précisez qu’il y a des valeurs manquantes. De plus, * changez le nom des variables <code>Weight of skeleton [g]</code> par <code>Masse du squelette [g]</code> et <code>Total weight [g]</code> par <code>Masse totale [g]</code></p>
@@ -265,20 +261,15 @@ chart(urchin, formula = weight ~ buoyant_weight %col=% origin %shape=% sex) +
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
-
 # Load package 
 SciViews::R
-
 library(BioDataScience)
-library(chart)
-library(data)
-library(tidyverse)
 # Dataset
-urchin <- data::read(file = "urchin_bio", package = "data", lang = "eng")
+urchin <- read(file = "urchin_bio", package = "data.io", lang = "eng")
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::register_http_handlers(session, metadata = NULL)
+learnr:::register_http_handlers(session, metadata = list(version = 0.001))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">

@@ -5,22 +5,21 @@ output:
   learnr::tutorial:
   progressive: TRUE
   fig_caption: yes
+tutorial:
+  version: 0.001
 runtime: shiny_prerendered
 ---
+
+![](images/intro.png)
 
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
-
 # Load package 
 SciViews::R
-
 library(BioDataScience)
-library(chart)
-library(data)
-library(tidyverse)
 # Dataset
-urchin <- data::read(file = "urchin_bio", package = "data", lang = "eng")
+urchin <- read(file = "urchin_bio", package = "data.io", lang = "eng")
 ```
 
 ## Objectifs
@@ -32,7 +31,6 @@ chart(urchin, formula = skeleton ~ weight) +
   geom_point(na.rm = TRUE) +
   labs( y = "Masse du squelette [g]", x ="Masse totale [g]")
 ```
-
 
 Il est important de préciser que l'ensemble de vos résultats est collecté afin de suivre votre progression. Ce test n'est cependant pas certificatif.
 
@@ -57,18 +55,13 @@ chart(urchin,formula = height ~  weight) +
 
 Les instructions de base afin de produire un nuage de points sont :
 
-```
-chart(DF, formula = YNUM ~ XNUM) +
+```{r, eval=FALSE}
+# Importation du jeu de données
+ub <- read("urchin_bio", package = "data.io")
+# Réalisation du graphique 
+chart(ub, formula = height ~ weight) +
   geom_point()
 ```
-
-La fonction `chart()` requiert comme argument le jeu de données (dataframe, DF), ainsi que la formule à employer YNUM ~ XNUM. Pour réaliser une nuage de point vous devez ajouter la seconde fonction `geom_point()` à l'aide du `+`. 
-
-Les éléments indispensables à la compréhension d'un nuage de points sont (ici mis en évidence en couleur) : 
-
-- les axes avec les graduations (en rouge)
-- les labels et unités des axes (en bleu)
-
 
 ## Retour sur la vidéo
 
@@ -340,7 +333,6 @@ chart(urchin, formula = skeleton ~ weight %col=% origin) +
 ## Conclusion
 
 Bravo! Vous venez de terminez votre séance d'exercice dans un learnr. Ce dernier vous a proposé d'apprendre à employer le graphique de type nuage de point.
-
 
 
 Laissez nous vos impressions sur cet outil pédagogique. Afin de placer un commentaire dans une zone de réponse utilisez la dièse (`#`) devant vos phrases.

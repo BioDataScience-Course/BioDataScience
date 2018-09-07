@@ -5,7 +5,7 @@ output:
   learnr::tutorial:
   progressive: TRUE
 tutorial:
-  version: 0.1
+  version: 0.12
 runtime: shiny_prerendered
 ---
 
@@ -15,12 +15,11 @@ knitr::opts_chunk$set(echo = FALSE)
 library(knitr)
 SciViews::R
 library(BioDataScience)
-library(chart)
-library(data)
 # Dataset
-urchin <- data::read(file = "urchin_bio", package = "data")
+urchin <- read(file = "urchin_bio", package = "data.io")
 ```
 
+![](images/intro.png)
 
 ## Objectif
 
@@ -32,19 +31,18 @@ Ce tutoriel a pour objectif de vous permettre de :
 include_graphics(path = "images/Rlogo.png")
 ```
 
-
 Il est important de préciser que l'ensemble de vos résultats est collecté afin de suivre votre progression. Ce test n'est cependant pas certificatif.
 
 ## Introduction 
 
 R est un language de programmation **Open source**  axée sur l'analyse de données. Ce language date de 1993 et prend ces sources du language S. 
-
 R permet entre autres la manipulation, la visualisation et l'application de calculs statistiques sur des données. 
 
+Ce tutoriel vous propose une suite d'activité afin d'apprendre les rudiments de R. 
 
 ## R,  une calculette scientifique
 
-Vous pouvez tout d'abord employer R comme une calculatice (ce qui est bien réducteur de la puissance de cet outil). Les opérations de base sont directement utilisable dans R. 
+Vous pouvez tout d'abord employer R comme une calculatrice (ce qui est bien réducteur de la puissance de cet outil). Les opérations de base sont directement utilisable dans R. 
 
 | Opérations de bases | Symboles |
 |------------------|---------------|
@@ -60,7 +58,7 @@ Voici un premier exemple simple
 4 + 5
 ```
 
-Multipliez les nombres `15` et `23`
+- Multipliez les nombres `15` et `23`
 
 ```{r calcul1, exercise = TRUE}
 
@@ -71,14 +69,14 @@ Multipliez les nombres `15` et `23`
 ```
 
 
-Vous pouvez également utiliser des fonctions mathématiques directement implementer dans R comme le logarithme en base 10 avec la `fonction` : `log()`. Ce language a été mise au point pour suivre les conventions des mathématiques et des statistiques comme le respect de l'ordre des opérations.
+Vous pouvez également utiliser des fonctions mathématiques directement implementer dans R comme le logarithme népérien avec la `fonction` : `log()`. Ce language a été mise au point pour suivre les conventions des mathématiques et des statistiques comme le respect de l'ordre des opérations.
 
 ```{r, echo= TRUE}
 log(4 + 5)
 ```
 
 
-Calculez l'exponentiel dont la fonction est `exp()` de la soustraction de `23` et `15`.
+- Calculez l'exponentiel dont la fonction est `exp()` de la soustraction de `23` et `15`.
 
 ```{r calcul2, exercise = TRUE}
 
@@ -100,7 +98,11 @@ b <- 4 + 3
 a + b
 ```
 
-Assignez la valeur `18` à la lettre `a` et la `division` de `12` par `14` à `b`. Multipliez ensuite a par b.
+- Assignez à `a`  la valeur `18`.
+
+- Assignez à `b` la `division` de `12` par `14`.
+
+- Multipliez ensuite a par b.
 
 ```{r assig1, exercise = TRUE}
 # assignation de a
@@ -124,18 +126,22 @@ a * b
 L'assignation peut également être faite sur une série de nombres ou sur une série de caractères avec la fonction `c()`.
 
 ```{r vecteur, echo = TRUE}
-vecteur <- c(2, 5, 8, 11, 13, 16)
+vec_1 <- c(2, 5, 8, 11, 13, 16)
 
-vecteur_1 <- c(2, 5, NA, 11, 13, 16)
+vec_2 <- c(2, 5, NA, 11, 13, 16)
 
-vecteur_1 <- c("noir", "jaune", "rouge")
+vec_3 <- c("noir", "jaune", "rouge")
 ```
 
-Assignez les valeurs `15 , 19, une valeur manquante (NA) et 13`. Multipliez ensuite ce vecteur par `4` et assignez cela sur vecteur_b. Terminez par affichez les valeurs du vecteur_b en écrivant simplement vecteur_b dans la console R.
+- Assignez à `vec` les valeurs `15 , 19, une valeur manquante (NA) et 13`.
+
+- Assignez à `vec_4` la multiplication de `vec` par `4`. 
+
+- Terminez par affichez les valeurs du vecteur_b en écrivant simplement vec_b dans la console R.
 
 ```{r vec1, exercise = TRUE}
 # assignation des valeurs à un vecteur
-vecteur <- 
+vec <- 
 # multipliez ce vecteur par 4 et assignez le
 
 # affichez le résultat de votre calcul.
@@ -144,54 +150,41 @@ vecteur <-
 
 ```{r vec1-solution}
 #assignation des valeurs à un vecteur
-vecteur <- c(15, 19, NA, 13)
+vec <- c(15, 19, NA, 13)
 #multipliez ce vecteur par 4
-vecteur_b <- vecteur*4
+vec_4 <- vecteur*4
 # afficher le résultat de cette multiplication
-vecteur_b
+vec_4
 ```
 
 
 ## R, les fonctions
 
-Réalisez la moyenne du vecteur réalisé précédement avec la fonction `mean()`.
+- Réalisez la moyenne du vecteur `vec_5` avec la fonction `mean()`.
 
 ```{r vec2, exercise = TRUE}
 # assignation des valeurs à `vecteurs`
-vecteur <- c(15, 19, NA, 13)
+vec_5 <- c(15, 19, NA, 13)
 # moyenne du vecteur
 
 ```
 
 ```{r vec2-solution}
 # assignation des valeurs à `vecteurs`
-vecteur <- c(15, 19, NA, 13)
+vec_5 <- c(15, 19, NA, 13)
 # somme du vecteur
-mean(vecteur)
+mean(vec_5)
 ```
 
 La valeur obtenue ne vous convient pas ? Il semble que la valeur manquante induit un problème dans le calcul de la moyenne du vecteur.
 
-L'outil indispensable dans vous ne devez jamais oublier l'existance est l'aide des fonctions. Pour appeler l'aide, vous devez ajouter un point d'interrogation devant une fonction. 
+L'outil indispensable dans vous ne devez jamais oublier l'existance est l'aide des fonctions. Pour appeler l'aide, vous devez ajouter un point d'interrogation devant une fonction comme le montre l'exemple ci-dessous
 
-Prenez l'exemple de la fonction `log()`
-
-```{r, echo = TRUE}
-?log()
-```
-
-Appelez l'aide sur la fonction `mean()`.
-
-```{r aide, exercise = TRUE}
-
-```
-
-
-```{r aide-solution}
+```{r, eval=FALSE}
 ?mean()
 ```
 
-Comme vous avez pu le voir ci-dessus, les fonctions sont largement documentées. L 'argument `na.rm = ` est par défault encodé avec comme valeur `FALSE`. Cela peut se traduire par notre vecteur ne contient pas de valeurs manquantes. 
+Les fonctions sont généralement largement documentées. L'argument `na.rm = ` est par défault encodé avec comme valeur `FALSE`. Cela peut se traduire par notre vecteur ne contient pas de valeurs manquantes. 
 
 Notre exemple contient une valeur manquante, vous devez donc ajouter l'argument `na.rm = TRUE` dans votre fonction `mean()`. La séparation entre plusieurs argument au sein d'une même fonction est la virgule (`,`).
 
@@ -199,29 +192,35 @@ Réalisez la moyenne du vecteur réalisé précédement avec la fonction `mean()
 
 ```{r vec3, exercise = TRUE}
 # assignation des valeurs à `vecteurs`
-vecteur <- c(15, 19, NA, 13)
+vec_5 <- c(15, 19, NA, 13)
 # somme du vecteur
 
 ```
 
 ```{r vec3-solution}
 # assignation des valeurs à `vecteurs`
-vecteur <- c(15, 19, NA, 13)
+vec_5 <- c(15, 19, NA, 13)
 # somme du vecteur
-mean(vecteur, na.rm = TRUE)
+mean(vec_5, na.rm = TRUE)
 ```
 
 Vous obtenez cette fois-ci la réponse souhaitée.
 
-
 ## Conclusion
 
-Bravo! Vous venez de terminez votre première séance d'exercice dans un learnr. 
+Bravo! Vous venez de terminez cette séance séance d'exercice dans un learnr. 
 
 Durant cette séance, vous avez appris à : 
 
-- employer l'assignation 
-- employer des fonctions 
-- utiliser l'aide au fonctions
+- Employer l'assignation 
+- Employer des fonctions 
+- Utiliser l'aide au fonctions
+
+Laissez nous vos impressions sur cet outil pédagogique. Afin de placer un commentaire dans une zone de réponse utilisez la dièse (`#`) devant vos phrases.
+
+```{r comm, exercise = TRUE}
+# ajout de commentaires 
+# 
+```
 
 
