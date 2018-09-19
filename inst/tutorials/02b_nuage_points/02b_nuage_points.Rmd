@@ -16,7 +16,7 @@ runtime: shiny_prerendered
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 # Load package 
-SciViews::R
+SciViews::R()
 library(BioDataScience)
 # Dataset
 urchin <- read(file = "urchin_bio", package = "data.io", lang = "eng")
