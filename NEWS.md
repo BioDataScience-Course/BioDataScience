@@ -1,8 +1,13 @@
 # BioDataScience News
 
+## Changes in version 0.1.2
+
+- The run() function allows for selecting tutorials in a list.
+
+
 ## Changes in version 0.1.1
 
-- The run function now looks if there is an updated release and proposes to
+- The run() function now looks if there is an updated release and proposes to
   install it. Also, it provides a menu to select tutorials, in case no arguments
   are provided.
 
