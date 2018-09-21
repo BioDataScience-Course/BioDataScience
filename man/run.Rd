@@ -4,13 +4,18 @@
 \alias{run}
 \title{Run learnr tutorials from the BioDataScience package}
 \usage{
-run(tutorial, ...)
+run(tutorial, ..., update = ask, ask = interactive())
 }
 \arguments{
 \item{tutorial}{The name of the tutorial to use. If not provided, a list of
 available tutorials is displayed.}
 
 \item{...}{Further arguments passed to \code{\link[=run_tutorial]{run_tutorial()}}}
+
+\item{update}{Do we check for an updated version first, and if it is found,
+update the package automatically?}
+
+\item{ask}{In case \code{tutorial} is not provided, do we ask to select in a list?}
 }
 \value{
 If \code{tutorial} is not provided, a list of available tutorials.
@@ -20,7 +25,7 @@ Start the learnr R engine in the current R session with the
 selected tutorial.
 }
 \examples{
-# To list the availalble tutorials:
+# To list the available tutorials:
 run()
 \dontrun{
 run("module02a_nuage_de_points")

@@ -160,20 +160,20 @@ Points essentiels d’un nuage de points
 <p>Réalisez un nuage de points montrant la masse en ordonnée et la masse immergée en abscisse. Utilisez la couleur afin de différencier l’origine des individus et différentes formes afin de différencier le sex des individus. Précisez à nouveau qu’il y a des valeurs manquantes.</p>
 <p>Vous pouvez observer qu’une première ligne de code vous est fournies afin de retirer les lignes de tableau ne contenant pas l’information sur le sex des individus. Vous apprendrez dans les prochains cours à manipuler vos jeux de données.</p>
 <div class="tutorial-exercise" data-label="2factor_graph" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>urchin &lt;- filter(urchin, sex != &quot;NA&quot;)
+<pre class="text"><code>urchin &lt;- dplyr::filter(urchin, sex != &quot;NA&quot;)
 
 chart(DF, formula = YNUM ~ XNUM) +
   geom_point()</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="2factor_graph-hint" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>urchin &lt;- filter(urchin, sex != &quot;NA&quot;)
+<pre class="text"><code>urchin &lt;- dplyr::filter(urchin, sex != &quot;NA&quot;)
 
 chart(DF, formula = YNUM ~ XNUM %col=% FACTOR1 %shape=% FACTOR2) +
   geom_point()</code></pre>
 </div>
 <div class="tutorial-exercise-support" data-label="2factor_graph-hint-2" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>urchin &lt;- filter(urchin, sex != &quot;NA&quot;)
+<pre class="text"><code>urchin &lt;- dplyr::filter(urchin, sex != &quot;NA&quot;)
 
 chart(urchin, formula = weight ~ buoyant_weight %col=% origin %shape=% sex) +
   geom_point(na.rm = TRUE)</code></pre>
@@ -262,10 +262,12 @@ chart(urchin, formula = weight ~ buoyant_weight %col=% origin %shape=% sex) +
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 # Load package 
-SciViews::R
+#This does not seems to work?! SciViews::R()
+library(data.io)
+library(chart)
 library(BioDataScience)
 # Dataset
-urchin <- read(file = "urchin_bio", package = "data.io", lang = "eng")
+urchin <- read(file = "urchin_bio", package = "data.io", lang = "en")
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">

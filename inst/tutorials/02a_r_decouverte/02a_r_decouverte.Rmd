@@ -46,7 +46,7 @@ En partant d'un tableau de données relatif à la biométrie humaine de 395 obse
 
 ```{r}
 library(dplyr)
-bio <- read(file = "biometrie", package = "BioDataScience")
+bio <- read("biometrie", package = "BioDataScience")
 bio %>.%
   select(., -c(3, 7, 8)) -> bio
 
@@ -87,11 +87,11 @@ c
 lux <- read("../../../data-raw/Lux_hobo.csv")
 achatina <- read("../../../data-raw/achatina.csv")
 achatina$shell <- factor(x = achatina$shell, levels = c("protoconch", "teleoconch"), labels = c("protochonque", "téléochonque"))
-zp <- data::read( file = "zooplankton", package = "data", lang = "fr")
+zp <- data.io::read("zooplankton", package = "data.io", lang = "fr")
 zp <- filter(zp, class %in% c("Annelid", "Calanoid", "Cyclopoid", "Decapod") & size < 2)
 zp$class <- factor(as.character(zp$class), levels = c("Annelid", "Calanoid", "Cyclopoid", "Decapod"), labels = c("Annelida", "Calanoida", "Cyclopoida", "Decapoda"))
 
-tg <- data::read(file = "ToothGrowth", package = "datasets", lang = "fr")
+tg <- data.io::read("ToothGrowth", package = "datasets", lang = "fr")
 tg$dose <- as.factor(tg$dose)
 
 

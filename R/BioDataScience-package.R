@@ -10,4 +10,8 @@
 #' @name BioDataScience-package
 #'
 #' @importFrom learnr run_tutorial
+#' @importFrom httr content status_code parse_url authenticate GET
+#' @importFrom jsonlite fromJSON
+#' @importFrom utils compareVersion packageVersion select.list
+#' @importFrom remotes install_github
 NULL

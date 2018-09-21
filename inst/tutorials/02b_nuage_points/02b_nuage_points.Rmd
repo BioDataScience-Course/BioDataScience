@@ -16,10 +16,12 @@ runtime: shiny_prerendered
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 # Load package 
-SciViews::R()
+#This does not seems to work?! SciViews::R()
+library(data.io)
+library(chart)
 library(BioDataScience)
 # Dataset
-urchin <- read(file = "urchin_bio", package = "data.io", lang = "eng")
+urchin <- read(file = "urchin_bio", package = "data.io", lang = "en")
 ```
 
 ## Objectifs
@@ -184,7 +186,7 @@ Intéressez-vous maintenant à la masse (`weight`) des individus en fonction de 
 Vous pouvez avoir le souhait d'employer 2 variables facteurs pour obtenir un graphique plus informatif. La variable portant sur le sex des individus (`sex`) peut être employée. 
 
 ```{r 2factor_graph_intro}
-urchin <- filter(urchin, sex != "NA")
+urchin <- dplyr::filter(urchin, sex != "NA")
 
 chart(urchin, formula = weight ~ buoyant_weight %col=% origin %shape=% sex ) +
   geom_point(na.rm = TRUE)
@@ -195,7 +197,7 @@ Réalisez un nuage de points montrant la masse en ordonnée et la masse immergé
 Vous pouvez observer qu'une première ligne de code vous est fournies afin de retirer les lignes de tableau ne contenant pas l'information sur le sex des individus. Vous apprendrez dans les prochains cours à manipuler vos jeux de données.
 
 ```{r 2factor_graph, exercise=TRUE}
-urchin <- filter(urchin, sex != "NA")
+urchin <- dplyr::filter(urchin, sex != "NA")
 
 chart(DF, formula = YNUM ~ XNUM) +
   geom_point()
@@ -203,7 +205,7 @@ chart(DF, formula = YNUM ~ XNUM) +
 
 
 ```{r 2factor_graph-hint}
-urchin <- filter(urchin, sex != "NA")
+urchin <- dplyr::filter(urchin, sex != "NA")
 
 chart(DF, formula = YNUM ~ XNUM %col=% FACTOR1 %shape=% FACTOR2) +
   geom_point()
@@ -211,7 +213,7 @@ chart(DF, formula = YNUM ~ XNUM %col=% FACTOR1 %shape=% FACTOR2) +
 
 
 ```{r 2factor_graph-hint-2}
-urchin <- filter(urchin, sex != "NA")
+urchin <- dplyr::filter(urchin, sex != "NA")
 
 chart(urchin, formula = weight ~ buoyant_weight %col=% origin %shape=% sex) +
   geom_point(na.rm = TRUE)
