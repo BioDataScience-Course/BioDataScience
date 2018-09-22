@@ -10,16 +10,18 @@
 #' @description Start the learnr R engine in the current R session with the
 #' selected tutorial.
 #'
-#' @return If `tutorial` is not provided, a list of available tutorials.
+#' @return If `tutorial` is not provided, in interactive mode with `ask = TRUE`,
+#' you have to select one in a list, and in non interactive mode, or
+#' `ask = FALSE`, it returns the list of all available tutorials.
 #' @export
 #' @seealso [run_tutorial()]
 #' @keywords utilities
 #' @concept run interactive learnr documents from the BioDataScience package
 #' @examples
-#' # To list the available tutorials:
+#' # To start from a list of available tutorials:
 #' run()
 #' \dontrun{
-#' run("module02a_nuage_de_points")
+#' run("02b_nuage_points")
 #' }
 run <- function(tutorial, ..., update = ask, ask = interactive()) {
   # devtools:::github_GET() and dependencies are not exported.

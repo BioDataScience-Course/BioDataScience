@@ -11,7 +11,7 @@
 <meta name="author" content="Guyliann Engels &amp; Philippe Grosjean" />
 
 
-<meta name="progressive" content="false" />
+<meta name="progressive" content="true" />
 <meta name="allow-skip" content="false" />
 
 <title>Les bases de R : découverte de l’outils</title>
@@ -51,17 +51,23 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 <div id="section-objectif" class="section level2">
 <h2>Objectif</h2>
-<p>Ce tutoriel a pour objectif de vous permettre de :</p>
 <ul>
 <li>Découvrir les bases du language R</li>
 </ul>
 <p><img src="images/Rlogo.png" width="50%" /></p>
-<p>Il est important de préciser que l’ensemble de vos résultats est collecté afin de suivre votre progression. Ce test n’est cependant pas certificatif.</p>
+<blockquote>
+<p>Il est important de préciser que l’ensemble de vos résultats sera collecté afin de suivre votre progression. Ce test n’est cependant pas certificatif. Conformément au RGPD (<a href="https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr">Règlement Général sur la Protection des Données</a>) en Europe, effectif depuis le 25 mai 2018, nous sommes tenus de vous informer et de demander votre accord pour cela. Donc, en cliquant sur le bouton ci-dessous, vous marquez expressément votre accord pour que ces données puissent être collectées et utilisées dans le but d’analyser votre progression pour (1) vous aider, et (2) améliorer ces tutoriaux. Ces données pourront également servir à des études globales (évaluation des résultats globaux par année et au fil du temps, ou évaluation globale de la méthode d’apprentissage par exemple, y compris dans des publications scientifiques). Dans ce dernier cas, les données seront rendues anonymes. Seuls vos enseignants pourront utiliser ces données de manière non anonymes dans le cadre de votre évaluation, et les détails de cette évaluation ne seront accessibles que par vous-même de manière non anonyme.</p>
+</blockquote>
 </div>
 <div id="section-introduction" class="section level2">
 <h2>Introduction</h2>
-<p>R est un language de programmation <strong>Open source</strong> axée sur l’analyse de données. Ce language date de 1993 et prend ces sources du language S. R permet entre autres la manipulation, la visualisation et l’application de calculs statistiques sur des données.</p>
-<p>Ce tutoriel vous propose une suite d’activité afin d’apprendre les rudiments de R.</p>
+<div class="figure">
+<img src="https://www.youtube.com/watch?v=XcBLEVknqvY" />
+
+</div>
+<p><a href="https://www.r-project.org/about.html">R</a> est un logiciel <strong>open source</strong> axé sur l’analyse de données. Le language de programmation R qu’il implémente est mature et développé depuis 1993. Il prend ses sources dans le language S (spécialement conçu pour les statistiques dans les années 1970). R permet entre autres la manipulation, la visualisation et l’application de calculs statistiques sur des données. C’est l’un des environnements les plus utilisés et les plus puissants pour l’analyse des données. Python est un autre language très utilisé en science des données, mais il est moins facile à aborder pour un non informaticien. Donc, étudier R sera un <strong>investissement clé</strong> pour votre future carrière de biologiste, car des données, vous en aurez tous à analyser dans votre travail !</p>
+<p><strong>Eléments optionnels :</strong> si vous voulez lire une analyse complète et objective (un peu longue, technique et en anglais) qui compare R à d’autres logiciels d’analyse des données, <a href="http://blog.revolutionanalytics.com/popularity/">suivez ce lien</a>. Et en voici <a href="http://r4stats.com/articles/popularity/">un autre</a>. <a href="https://www.infoworld.com/article/2940864/application-development/r-programming-language-statistical-data-analysis.html">Pourquoi R ?</a>, un autre point de vue (toujours en anglais).</p>
+<p>Ce tutoriel vous propose une suite d’activités afin d’apprendre les rudiments de R.</p>
 </div>
 <div id="section-r-une-calculette-scientifique" class="section level2">
 <h2>R, une calculette scientifique</h2>
@@ -96,7 +102,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </tr>
 </tbody>
 </table>
-<p>Voici un premier exemple simple</p>
+<p>Voici un premier exemple simple:</p>
 <pre class="r"><code>4 + 5</code></pre>
 <pre><code>## [1] 9</code></pre>
 <ul>
@@ -108,11 +114,11 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div class="tutorial-exercise-support" data-label="calcul1-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>15 * 23</code></pre>
 </div>
-<p>Vous pouvez également utiliser des fonctions mathématiques directement implementer dans R comme le logarithme népérien avec la <code>fonction</code> : <code>log()</code>. Ce language a été mise au point pour suivre les conventions des mathématiques et des statistiques comme le respect de l’ordre des opérations.</p>
+<p>Vous pouvez également utiliser des fonctions mathématiques directement implementées dans R comme le logarithme népérien avec la <strong>fonction</strong> <code>log()</code>. Ce language a été mis au point pour suivre les conventions des mathématiques et des statistiques comme le respect de l’ordre des opérations.</p>
 <pre class="r"><code>log(4 + 5)</code></pre>
 <pre><code>## [1] 2.197225</code></pre>
 <ul>
-<li>Calculez l’exponentiel dont la fonction est <code>exp()</code> de la soustraction de <code>23</code> et <code>15</code>.</li>
+<li>Calculez l’exponentielle (fonction <code>exp()</code>) de <code>23</code> moins <code>15</code>.</li>
 </ul>
 <div class="tutorial-exercise" data-label="calcul2" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
@@ -123,124 +129,142 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 <div id="section-r-les-assignations" class="section level2">
 <h2>R, les assignations</h2>
-<p>Vous pouvez être amené dans vos recherches à <code>assigner</code> une valeur particulière à une chaine de caractères que vous réutiliserez par la suite. L’instruction permettant cela est une simple flèche (<code>&lt;-</code>).</p>
+<p>Effectuer des calculs, c’est bien… pouvoir sauvegarder et réutiliser les résultats, c’est encore mieux. L’action qui consiste à associer un résultat à un nom s’appelle une <strong>assignation</strong>. L’instruction correspondante dans R symbolise une flèche indiquant le sens de l’assignation (<code>&lt;-</code>). Par exemple :</p>
 <pre class="r"><code>a &lt;- 5
 b &lt;- 4 + 3
-# addition de la valeur de a et de b
-a + b</code></pre>
+# Réutilisation : addition de la valeur de a et de b
+a + b # Somme de a et b</code></pre>
 <pre><code>## [1] 12</code></pre>
+<p>Notez aussi que tout de qui suit un dièse (<code>#</code>) dans R est considéré comme un <strong>commentaire</strong>, et n’est pas interprété par le programme. Servez-vous en pour documenter vos instructions !</p>
 <ul>
 <li><p>Assignez à <code>a</code> la valeur <code>18</code>.</p></li>
-<li><p>Assignez à <code>b</code> la <code>division</code> de <code>12</code> par <code>14</code>.</p></li>
-<li><p>Multipliez ensuite a par b.</p></li>
+<li><p>Assignez à <code>b</code> la division de <code>12</code> par <code>14</code>.</p></li>
+<li><p>Multipliez ensuite <code>a</code> par <code>b</code>.</p></li>
 </ul>
-<div class="tutorial-exercise" data-label="assig1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># assignation de a
+<div class="tutorial-exercise" data-label="assig1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="7">
+<pre class="text"><code># Assignation à a
 a &lt;- 
-
-# assignation de b
+# Assignation à b
   
-# multiplication de a par b</code></pre>
+# Multiplication de a par b</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="assig1-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># assignation de a
+<pre class="text"><code># Assignation à a
 a &lt;- 18
-# assignation de b
+# Assignation à b
 b &lt;- 12 / 14
 # Multiplication de a par b
 a * b</code></pre>
 </div>
-<p>L’assignation peut également être faite sur une série de nombres ou sur une série de caractères avec la fonction <code>c()</code>.</p>
-<pre class="r"><code>vec_1 &lt;- c(2, 5, 8, 11, 13, 16)
-
-vec_2 &lt;- c(2, 5, NA, 11, 13, 16)
-
-vec_3 &lt;- c(&quot;noir&quot;, &quot;jaune&quot;, &quot;rouge&quot;)</code></pre>
+<p>Dans R, et contrairement à une calculatrice de poche, vous pouvez rassembler divers éléments de même nature dans un <strong>vecteur</strong>. C’est la fonction <code>c()</code> qui s’en charge :</p>
+<pre class="r"><code>v1 &lt;- c(2, 5, 8, 11, 13, 16)
+# NA indique une valeur manquante (&#39;not available&#39;)
+v2 &lt;- c(2, 5, NA, 11, 13, 16)
+# Aussi avec des chaînes de caractères (entre guillements)
+v3 &lt;- c(&quot;noir&quot;, &quot;jaune&quot;, &quot;rouge&quot;)</code></pre>
 <ul>
-<li><p>Assignez à <code>vec</code> les valeurs <code>15 , 19, une valeur manquante (NA) et 13</code>.</p></li>
-<li><p>Assignez à <code>vec_4</code> la multiplication de <code>vec</code> par <code>4</code>.</p></li>
-<li><p>Terminez par affichez les valeurs du vecteur_b en écrivant simplement vec_b dans la console R.</p></li>
+<li><p>Assignez à <code>v4</code> les valeurs <code>15</code> , <code>19</code>, une valeur manquante (<code>NA</code>) et <code>13</code>.</p></li>
+<li><p>Assignez à <code>v5</code> la multiplication de <code>v4</code> par <code>4</code>.</p></li>
+<li><p>Terminez par affichez les valeurs contenues dans <code>v5</code> en écrivant simplement le noms de la variable comme seule instruction dans une ligne.</p></li>
 </ul>
-<div class="tutorial-exercise" data-label="vec1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># assignation des valeurs à un vecteur
-vec &lt;- 
-# multipliez ce vecteur par 4 et assignez le
+<div class="tutorial-exercise" data-label="vec1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="6">
+<pre class="text"><code># Assignation des valeurs à v4
+v4 &lt;- 
+# Multipliez v4 par 4 et assignez-le à v5
 
-# affichez le résultat de votre calcul.</code></pre>
+# Affichez le résultat contenu dans v5</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="vec1-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>#assignation des valeurs à un vecteur
-vec &lt;- c(15, 19, NA, 13)
-#multipliez ce vecteur par 4
-vec_4 &lt;- vecteur*4
-# afficher le résultat de cette multiplication
-vec_4</code></pre>
+<pre class="text"><code># Assignation des valeurs à v4
+v4 &lt;- c(15, 19, NA, 13)
+# Multipliez v4 par 6 et assignez-le à v5
+v5 &lt;- v4 * 6
+# Affichez le résultat contenu dans v5
+v5</code></pre>
 </div>
+<p><strong>Trois commentaires :</strong></p>
+<ul>
+<li><p>Lors d’une assignation, le résultat du calcul n’est pas imprimé. Il peut être récupéré plus tard en indiquant juste le nom de l’objet assigné. On peut combiner les deux en plaçant l’assignation entre parenthèses : <code>(x &lt;- 3 * 2)</code> assigne 3 à <code>x</code> <strong>et</strong> imprime aussi le résultat du calcul (<code>6</code>).</p></li>
+<li><p>Les calculs et beaucoup de fonctions sont dites <em>vectorisées</em> dans R. C’est-à-dire que les calculs se répartissent naturellement élément par élément lorsqu’un ou plusieurs vecteurs de longueur supérieure à un sont fournis. ainsi, <code>v4 * 6</code> affectue naturellement la multiplication par six à <em>chacun</em> des quatres éléments de <code>v4</code>.</p></li>
+<li><p>Un calcul effectué sur une ou plusieurs valeurs manquantes <code>NA</code> a lui-même pour résultat une valeur manquante <code>NA</code>.</p></li>
+</ul>
 </div>
 <div id="section-r-les-fonctions" class="section level2">
 <h2>R, les fonctions</h2>
 <ul>
-<li>Réalisez la moyenne du vecteur <code>vec_5</code> avec la fonction <code>mean()</code>.</li>
+<li>Calculez la moyenne du vecteur <code>v4</code> en utilisant la fonction <code>mean()</code>.</li>
 </ul>
-<div class="tutorial-exercise" data-label="vec2" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># assignation des valeurs à `vecteurs`
-vec_5 &lt;- c(15, 19, NA, 13)
-# moyenne du vecteur</code></pre>
+<div class="tutorial-exercise" data-label="vec2" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="4">
+<pre class="text"><code># Assignation des valeurs à v4
+v4 &lt;- c(15, 19, NA, 13)
+# Moyenne du vecteur</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="vec2-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># assignation des valeurs à `vecteurs`
-vec_5 &lt;- c(15, 19, NA, 13)
-# somme du vecteur
-mean(vec_5)</code></pre>
+<pre class="text"><code># Assignation des valeurs à v4
+v4 &lt;- c(15, 19, NA, 13)
+# Moyenne du vecteur
+mean(v4)</code></pre>
 </div>
-<p>La valeur obtenue ne vous convient pas ? Il semble que la valeur manquante induit un problème dans le calcul de la moyenne du vecteur.</p>
-<p>L’outil indispensable dans vous ne devez jamais oublier l’existance est l’aide des fonctions. Pour appeler l’aide, vous devez ajouter un point d’interrogation devant une fonction comme le montre l’exemple ci-dessous</p>
-<p>Les fonctions sont généralement largement documentées. L’argument <code>na.rm =</code> est par défault encodé avec comme valeur <code>FALSE</code>. Cela peut se traduire par notre vecteur ne contient pas de valeurs manquantes.</p>
-<p>Notre exemple contient une valeur manquante, vous devez donc ajouter l’argument <code>na.rm = TRUE</code> dans votre fonction <code>mean()</code>. La séparation entre plusieurs argument au sein d’une même fonction est la virgule (<code>,</code>).</p>
-<p>Réalisez la moyenne du vecteur réalisé précédement avec la fonction <code>mean()</code></p>
-<div class="tutorial-exercise" data-label="vec3" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># assignation des valeurs à `vecteurs`
-vec_5 &lt;- c(15, 19, NA, 13)
-# somme du vecteur</code></pre>
+<p>Certaines fonctions servent à <strong>résumer</strong> un ensemble de données, c’est-à-dire qu’elles les représentent avec une seule ou un petit nombre de valeurs. Ainsi, quelle que soit la taille du vecteur, sa moyenne est toujours un nombre unique. Ici, nous avons obtenu <code>NA</code>. Nous savons pourquoi. Les valeurs manquantes sont <strong>contaminantes</strong> dans les calculs. Il en suffit d’une seule pour que l’ensemble du résultat soit <code>NA</code>. Naturellement dans ce cas, c’est dommage, car la moyenne pourrait être <em>estimée</em> sur base des trois autres valeurs connues. la fonction <code>mean()</code> offre une solution à cela, … mais nous vous laissons la découvrir par vous même en lisant <strong>la page d’aide (technique) de la fonction</strong>. Pour cela, utilisez l’instruction <code>?</code> suivi du nom de la fonction :</p>
+<pre class="r"><code>?mean</code></pre>
+<p>Les fonctions sont largement documentées. Dans la page d’aide, vous pourrez trouver des informations sur les <strong>arguments</strong> de la fonction. Les arguments d’une fonction sont des valeurs nommées <code>nom = valeur</code> rentrées à l’intérieur de la parenthèse qui suit le nom de la fonction. Les différents arguments sont par ailleurs séparés par des virgules à l’intérieur de la parenthèse. Ces arguments fournissent les données à traiter, mais peuvent aussi être des informations qui vont moduler le calcul à réaliser.</p>
+<p>Un argument est intéressant ici : <code>na.rm =</code>. Cet argument détermine si les valeurs manquantes sont éliminées du vecteur avant calcul ou non (“<strong>na</strong> <strong>r</strong>e<strong>m</strong>ove”). Comme vous pouvez le voir dans la page d’aide, cet argument prend la valeur <code>FALSE</code> par défaut. Cela signifie que les valeurs manquantes ne sont <strong>pas</strong> éliminées par défaut. Mais il est possible d’indiquer <code>na.rm = TRUE</code> pour changer le calcul et obtenir quand même une estimation de moyenne en présence de valeurs manquantes (les constantes <code>TRUE</code> et <code>FALSE</code>, toujours en majuscules, sont les valeurs logiques dans R -objects <code>logical</code>- voulant dire “vrai” ou “faux”).</p>
+<ul>
+<li>Calculez la moyenne du vecteur <code>v4</code> à nouveau, mais cette fois-ci, en ignorant la valeur manquante.</li>
+</ul>
+<div class="tutorial-exercise" data-label="vec3" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="4">
+<pre class="text"><code># Assignation des valeurs à v4
+v4 &lt;- c(15, 19, NA, 13)
+# Moyenne du vecteur, avec élimination des NAs</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="vec3-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># assignation des valeurs à `vecteurs`
-vec_5 &lt;- c(15, 19, NA, 13)
-# somme du vecteur
-mean(vec_5, na.rm = TRUE)</code></pre>
+<pre class="text"><code># Assignation des valeurs à v4
+v4 &lt;- c(15, 19, NA, 13)
+# Moyenne du vecteur, avec élimination des NAs
+mean(v4, na.rm = TRUE)</code></pre>
 </div>
 <p>Vous obtenez cette fois-ci la réponse souhaitée.</p>
+<blockquote>
+<p>La prise en charge des valeurs manquantes de manière fine est une caractéristique importante de tout logiciel d’analyse de données digne de ce nom. Notez, par exemple, qu’Excel <strong>n’est pas</strong> capable de le faire de manière aussi fine que R (mais Excel <strong>n’est pas</strong> un logiciel d’analyse des données) !</p>
+</blockquote>
 </div>
 <div id="section-conclusion" class="section level2">
 <h2>Conclusion</h2>
-<p>Bravo! Vous venez de terminez cette séance séance d’exercice dans un learnr.</p>
+<div class="figure">
+<img src="images/bravo.gif" />
+
+</div>
+<p>Bravo! Vous venez de terminez cette séance d’exercices dans un tutorial “learnr”.</p>
 <p>Durant cette séance, vous avez appris à :</p>
 <ul>
-<li>Employer l’assignation</li>
-<li>Employer des fonctions</li>
-<li>Utiliser l’aide au fonctions</li>
+<li>Effectuer des calculs dans R</li>
+<li>Créer des vecteurs et vectoriser vos claculs</li>
+<li>Assigner les résultats à un nom</li>
+<li>Employer des fonctions, et accéder à leurs pages d’aide</li>
+<li>Manipuler les valeurs manquantes, et les calculs en leur présence</li>
 </ul>
-<p>Laissez nous vos impressions sur cet outil pédagogique. Afin de placer un commentaire dans une zone de réponse utilisez la dièse (<code>#</code>) devant vos phrases.</p>
-<div class="tutorial-exercise" data-label="comm" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># ajout de commentaires 
-# </code></pre>
+<p>Laissez nous vos impressions sur cet outil pédagogique. Rappelez-vous que pour placer un commentaire dans une zone de réponse, vous devez utilisez un dièse (<code>#</code>) devant vos phrases.</p>
+<div class="tutorial-exercise" data-label="comm" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="6">
+<pre class="text"><code># Ajout de commentaires 
+# ...</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
 </div>
 
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
-library(knitr)
+
 SciViews::R()
-library(BioDataScience)
+#library(BioDataScience)
+#library(knitr)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::register_http_handlers(session, metadata = list(version = 0.12))
+learnr:::register_http_handlers(session, metadata = list(id = "sdd1.02a", version = "0.1-0"))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">

@@ -18,17 +18,19 @@ update the package automatically?}
 \item{ask}{In case \code{tutorial} is not provided, do we ask to select in a list?}
 }
 \value{
-If \code{tutorial} is not provided, a list of available tutorials.
+If \code{tutorial} is not provided, in interactive mode with \code{ask = TRUE},
+you have to select one in a list, and in non interactive mode, or
+\code{ask = FALSE}, it returns the list of all available tutorials.
 }
 \description{
 Start the learnr R engine in the current R session with the
 selected tutorial.
 }
 \examples{
-# To list the available tutorials:
+# To start from a list of available tutorials:
 run()
 \dontrun{
-run("module02a_nuage_de_points")
+run("02b_nuage_points")
 }
 }
 \seealso{

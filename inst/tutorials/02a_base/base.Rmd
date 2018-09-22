@@ -1,0 +1,239 @@
+---
+title: "Les bases de R : découverte de l'outils"
+author : "Guyliann Engels & Philippe Grosjean"
+tutorial:
+  id: "sdd1.02a"
+  version: 0.1-0
+output: 
+  learnr::tutorial:
+    progressive: TRUE
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+
+SciViews::R()
+#library(BioDataScience)
+#library(knitr)
+```
+
+![](images/intro.png)
+
+## Objectif
+
+- Découvrir les bases du language R  
+
+```{r, out.width='50%'}
+knitr::include_graphics("images/Rlogo.png")
+```
+
+> Il est important de préciser que l'ensemble de vos résultats sera collecté afin de suivre votre progression. Ce test n'est cependant pas certificatif. Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)) en Europe, effectif depuis le 25 mai 2018, nous sommes tenus de vous informer et de demander votre accord pour cela. Donc, en cliquant sur le bouton ci-dessous, vous marquez expressément votre accord pour que ces données puissent être collectées et utilisées dans le but d'analyser votre progression pour (1) vous aider, et (2) améliorer ces tutoriaux. Ces données pourront également servir à des études globales (évaluation des résultats globaux par année et au fil du temps, ou évaluation globale de la méthode d'apprentissage par exemple, y compris dans des publications scientifiques). Dans ce dernier cas, les données seront rendues anonymes. Seuls vos enseignants pourront utiliser ces données de manière non anonymes dans le cadre de votre évaluation, et les détails de cette évaluation ne seront accessibles que par vous-même de manière non anonyme.
+
+
+## Introduction 
+
+![](https://www.youtube.com/watch?v=XcBLEVknqvY)
+
+[R](https://www.r-project.org/about.html) est un logiciel **open source**  axé sur l'analyse de données. Le language de programmation R qu'il implémente est mature et développé depuis 1993. Il prend ses sources dans le language S (spécialement conçu pour les statistiques dans les années 1970). R permet entre autres la manipulation, la visualisation et l'application de calculs statistiques sur des données. C'est l'un des environnements les plus utilisés et les plus puissants pour l'analyse des données. Python est un autre language très utilisé en science des données, mais il est moins facile à aborder pour un non informaticien. Donc, étudier R sera un **investissement clé** pour votre future carrière de biologiste, car des données, vous en aurez tous à analyser dans votre travail !
+
+**Eléments optionnels :** si vous voulez lire une analyse complète et objective (un peu longue, technique et en anglais) qui compare R à d'autres logiciels d'analyse des données, [suivez ce lien](http://blog.revolutionanalytics.com/popularity/). Et en voici [un autre](http://r4stats.com/articles/popularity/). [Pourquoi R ?](https://www.infoworld.com/article/2940864/application-development/r-programming-language-statistical-data-analysis.html), un autre point de vue (toujours en anglais).
+
+Ce tutoriel vous propose une suite d'activités afin d'apprendre les rudiments de R. 
+
+
+## R, une calculette scientifique
+
+Vous pouvez tout d'abord employer R comme une calculatrice (ce qui est bien réducteur de la puissance de cet outil). Les opérations de base sont directement utilisable dans R. 
+
+| Opérations de bases | Symboles |
+|------------------|---------------|
+| additions | `+` |
+| soustractions | `-` |
+| divisions | `/` | 
+| multiplications | `*` | 
+| exponentiations | `^` |
+
+Voici un premier exemple simple:
+
+```{r calculatrice, echo=TRUE}
+4 + 5
+```
+
+- Multipliez les nombres `15` et `23`
+
+```{r calcul1, exercise=TRUE}
+
+```
+
+```{r calcul1-solution}
+15 * 23
+```
+
+Vous pouvez également utiliser des fonctions mathématiques directement implementées dans R comme le logarithme népérien avec la **fonction** `log()`. Ce language a été mis au point pour suivre les conventions des mathématiques et des statistiques comme le respect de l'ordre des opérations.
+
+```{r, echo=TRUE}
+log(4 + 5)
+```
+
+- Calculez l'exponentielle (fonction `exp()`) de `23` moins `15`.
+
+```{r calcul2, exercise=TRUE}
+
+```
+
+```{r calcul2-solution}
+exp(23 - 15)
+```
+
+
+## R, les assignations
+
+Effectuer des calculs, c'est bien... pouvoir sauvegarder et réutiliser les résultats, c'est encore mieux. L'action qui consiste à associer un résultat à un nom s'appelle une **assignation**.
+L'instruction correspondante dans R symbolise une flèche indiquant le sens de l'assignation (`<-`). Par exemple :
+
+```{r assignation, echo=TRUE}
+a <- 5
+b <- 4 + 3
+# Réutilisation : addition de la valeur de a et de b
+a + b # Somme de a et b
+```
+
+Notez aussi que tout de qui suit un dièse (`#`) dans R est considéré comme un **commentaire**, et n'est pas interprété par le programme. Servez-vous en pour documenter vos instructions !
+
+- Assignez à `a` la valeur `18`.
+
+- Assignez à `b` la division de `12` par `14`.
+
+- Multipliez ensuite `a` par `b`.
+
+```{r assig1, exercise=TRUE, exercise.lines=7}
+# Assignation à a
+a <- 
+# Assignation à b
+  
+# Multiplication de a par b
+
+```
+
+```{r assig1-solution}
+# Assignation à a
+a <- 18
+# Assignation à b
+b <- 12 / 14
+# Multiplication de a par b
+a * b
+```
+
+Dans R, et contrairement à une calculatrice de poche, vous pouvez rassembler divers éléments de même nature dans un **vecteur**. C'est la fonction `c()` qui s'en charge :
+
+```{r vecteur, echo=TRUE}
+v1 <- c(2, 5, 8, 11, 13, 16)
+# NA indique une valeur manquante ('not available')
+v2 <- c(2, 5, NA, 11, 13, 16)
+# Aussi avec des chaînes de caractères (entre guillements)
+v3 <- c("noir", "jaune", "rouge")
+```
+
+- Assignez à `v4` les valeurs `15` , `19`, une valeur manquante (`NA`) et `13`.
+
+- Assignez à `v5` la multiplication de `v4` par `4`. 
+
+- Terminez par affichez les valeurs contenues dans `v5` en écrivant simplement le noms de la variable comme seule instruction dans une ligne.
+
+```{r vec1, exercise=TRUE, exercise.lines=6}
+# Assignation des valeurs à v4
+v4 <- 
+# Multipliez v4 par 4 et assignez-le à v5
+
+# Affichez le résultat contenu dans v5
+
+```
+
+```{r vec1-solution}
+# Assignation des valeurs à v4
+v4 <- c(15, 19, NA, 13)
+# Multipliez v4 par 6 et assignez-le à v5
+v5 <- v4 * 6
+# Affichez le résultat contenu dans v5
+v5
+```
+
+**Trois commentaires :**
+
+- Lors d'une assignation, le résultat du calcul n'est pas imprimé. Il peut être récupéré plus tard en indiquant juste le nom de l'objet assigné. On peut combiner les deux en plaçant l'assignation entre parenthèses : `(x <- 3 * 2)` assigne 3 à `x` **et** imprime aussi le résultat du calcul (`6`).
+
+- Les calculs et beaucoup de fonctions sont dites _vectorisées_ dans R. C'est-à-dire que les calculs se répartissent naturellement élément par élément lorsqu'un ou plusieurs vecteurs de longueur supérieure à un sont fournis. ainsi, `v4 * 6` affectue naturellement la multiplication par six à _chacun_ des quatres éléments de `v4`.
+
+- Un calcul effectué sur une ou plusieurs valeurs manquantes `NA` a lui-même pour résultat une valeur manquante `NA`.
+
+
+## R, les fonctions
+
+- Calculez la moyenne du vecteur `v4` en utilisant la fonction `mean()`.
+
+```{r vec2, exercise=TRUE, exercise.lines=4}
+# Assignation des valeurs à v4
+v4 <- c(15, 19, NA, 13)
+# Moyenne du vecteur
+
+```
+
+```{r vec2-solution}
+# Assignation des valeurs à v4
+v4 <- c(15, 19, NA, 13)
+# Moyenne du vecteur
+mean(v4)
+```
+
+Certaines fonctions servent à **résumer** un ensemble de données, c'est-à-dire qu'elles les représentent avec une seule ou un petit nombre de valeurs. Ainsi, quelle que soit la taille du vecteur, sa moyenne est toujours un nombre unique. Ici, nous avons obtenu `NA`. Nous savons pourquoi. Les valeurs manquantes sont **contaminantes** dans les calculs. Il en suffit d'une seule pour que l'ensemble du résultat soit `NA`. Naturellement dans ce cas, c'est dommage, car la moyenne pourrait être _estimée_ sur base des trois autres valeurs connues. la fonction `mean()` offre une solution à cela, ... mais nous vous laissons la découvrir par vous même en lisant **la page d'aide (technique) de la fonction**. Pour cela, utilisez l'instruction `?` suivi du nom de la fonction :
+
+```{r, eval=FALSE, echo=TRUE}
+?mean
+```
+
+Les fonctions sont largement documentées. Dans la page d'aide, vous pourrez trouver des informations sur les **arguments** de la fonction. Les arguments d'une fonction sont des valeurs nommées `nom = valeur` rentrées à l'intérieur de la parenthèse qui suit le nom de la fonction. Les différents arguments sont par ailleurs séparés par des virgules à l'intérieur de la parenthèse. Ces arguments fournissent les données à traiter, mais peuvent aussi être des informations qui vont moduler le calcul à réaliser.
+
+Un argument est intéressant ici : `na.rm = `. Cet argument détermine si les valeurs manquantes sont éliminées du vecteur avant calcul ou non ("**na** **r**e**m**ove"). Comme vous pouvez le voir dans la page d'aide, cet argument prend la valeur `FALSE` par défaut. Cela signifie que les valeurs manquantes ne sont **pas** éliminées par défaut. Mais il est possible d'indiquer `na.rm = TRUE` pour changer le calcul et obtenir quand même une estimation de moyenne en présence de valeurs manquantes (les constantes `TRUE` et `FALSE`, toujours en majuscules, sont les valeurs logiques dans R -objects `logical`- voulant dire "vrai" ou "faux"). 
+
+- Calculez la moyenne du vecteur `v4` à nouveau, mais cette fois-ci, en ignorant la valeur manquante.
+
+```{r vec3, exercise=TRUE, exercise.lines=4}
+# Assignation des valeurs à v4
+v4 <- c(15, 19, NA, 13)
+# Moyenne du vecteur, avec élimination des NAs
+
+```
+
+```{r vec3-solution}
+# Assignation des valeurs à v4
+v4 <- c(15, 19, NA, 13)
+# Moyenne du vecteur, avec élimination des NAs
+mean(v4, na.rm = TRUE)
+```
+
+Vous obtenez cette fois-ci la réponse souhaitée.
+
+> La prise en charge des valeurs manquantes de manière fine est une caractéristique importante de tout logiciel d'analyse de données digne de ce nom. Notez, par exemple, qu'Excel **n'est pas** capable de le faire de manière aussi fine que R (mais Excel **n'est pas** un logiciel d'analyse des données) !
+
+## Conclusion
+
+![](images/bravo.gif)
+
+Bravo! Vous venez de terminez cette séance d'exercices dans un  tutorial "learnr". 
+
+Durant cette séance, vous avez appris à : 
+
+- Effectuer des calculs dans R
+- Créer des vecteurs et vectoriser vos claculs
+- Assigner les résultats à un nom 
+- Employer des fonctions, et accéder à leurs pages d'aide 
+- Manipuler les valeurs manquantes, et les calculs en leur présence
+
+Laissez nous vos impressions sur cet outil pédagogique. Rappelez-vous que pour placer un commentaire dans une zone de réponse, vous devez utilisez un dièse (`#`) devant vos phrases.
+
+```{r comm, exercise=TRUE, exercise.lines = 6}
+# Ajout de commentaires 
+# ...
+```

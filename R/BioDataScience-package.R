@@ -11,7 +11,9 @@
 #'
 #' @importFrom learnr run_tutorial
 #' @importFrom httr content status_code parse_url authenticate GET
-#' @importFrom jsonlite fromJSON
-#' @importFrom utils compareVersion packageVersion select.list
+#' @importFrom jsonlite fromJSON base64_dec base64_enc
+#' @importFrom utils compareVersion packageVersion select.list create.post
 #' @importFrom remotes install_github
+#' @importFrom svMisc list_to_json
+#' @importFrom mongolite mongo
 NULL
