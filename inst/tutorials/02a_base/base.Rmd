@@ -3,7 +3,7 @@ title: "Les bases de R : découverte de l'outils"
 author : "Guyliann Engels & Philippe Grosjean"
 tutorial:
   id: "sdd1.02a"
-  version: 0.1-0
+  version: 0.1.0
 output: 
   learnr::tutorial:
     progressive: TRUE
@@ -12,11 +12,12 @@ runtime: shiny_prerendered
 
 ```{r setup, include=FALSE}
 library(learnr)
+options(tutorial.event_recorder = BioDataScience::record_sdd)
+tutorial_options(exercise.checker = BioDataScience::checker_sdd)
+tutorial_options(exercise.timelimit = 60)
+tutorial_options(exercise.cap = "Instructions R")
 knitr::opts_chunk$set(echo = FALSE)
-
 SciViews::R()
-#library(BioDataScience)
-#library(knitr)
 ```
 
 ![](images/intro.png)
@@ -29,7 +30,7 @@ SciViews::R()
 knitr::include_graphics("images/Rlogo.png")
 ```
 
-> Il est important de préciser que l'ensemble de vos résultats sera collecté afin de suivre votre progression. Ce test n'est cependant pas certificatif. Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)) en Europe, effectif depuis le 25 mai 2018, nous sommes tenus de vous informer et de demander votre accord pour cela. Donc, en cliquant sur le bouton ci-dessous, vous marquez expressément votre accord pour que ces données puissent être collectées et utilisées dans le but d'analyser votre progression pour (1) vous aider, et (2) améliorer ces tutoriaux. Ces données pourront également servir à des études globales (évaluation des résultats globaux par année et au fil du temps, ou évaluation globale de la méthode d'apprentissage par exemple, y compris dans des publications scientifiques). Dans ce dernier cas, les données seront rendues anonymes. Seuls vos enseignants pourront utiliser ces données de manière non anonymes dans le cadre de votre évaluation, et les détails de cette évaluation ne seront accessibles que par vous-même de manière non anonyme.
+> Il est important de préciser que l'ensemble de vos résultats sera collecté afin de suivre votre progression. Ce test n'est cependant pas certificatif. Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)) en Europe, effectif depuis le 25 mai 2018, nous sommes tenus de vous informer et de demander votre accord pour cela. Donc, en cliquant sur le bouton ci-dessous, vous marquez expressément votre accord pour que ces données puissent être collectées et utilisées dans le but d'analyser votre progression pour (1) vous aider, et (2) améliorer ces tutoriaux. Ces données pourront également servir à des études globales (évaluation des résultats globaux par année et au fil du temps, ou évaluation globale de la méthode d'apprentissage par exemple, y compris dans des publications scientifiques). Dans ce dernier cas, les données seront rendues anonymes. Seuls vos enseignants pourront utiliser ces données de manière non anonymes dans le cadre de votre évaluation, et les détails de cette évaluation ne seront nommément accessibles que par vous-même.
 
 
 ## Introduction 
@@ -69,6 +70,10 @@ Voici un premier exemple simple:
 
 ```{r calcul1-solution}
 15 * 23
+```
+
+```{r calcul1-check}
+# Not yet...
 ```
 
 Vous pouvez également utiliser des fonctions mathématiques directement implementées dans R comme le logarithme népérien avec la **fonction** `log()`. Ce language a été mis au point pour suivre les conventions des mathématiques et des statistiques comme le respect de l'ordre des opérations.
@@ -138,14 +143,14 @@ v3 <- c("noir", "jaune", "rouge")
 
 - Assignez à `v4` les valeurs `15` , `19`, une valeur manquante (`NA`) et `13`.
 
-- Assignez à `v5` la multiplication de `v4` par `4`. 
+- Assignez à `v5` la multiplication de `v4` par `6`. 
 
 - Terminez par affichez les valeurs contenues dans `v5` en écrivant simplement le noms de la variable comme seule instruction dans une ligne.
 
 ```{r vec1, exercise=TRUE, exercise.lines=6}
 # Assignation des valeurs à v4
 v4 <- 
-# Multipliez v4 par 4 et assignez-le à v5
+# Multipliez v4 par 6 et assignez-le à v5
 
 # Affichez le résultat contenu dans v5
 
@@ -193,6 +198,12 @@ Certaines fonctions servent à **résumer** un ensemble de données, c'est-à-di
 ?mean
 ```
 
+<center>
+
+![](images/help_mean.png)
+
+</center>
+
 Les fonctions sont largement documentées. Dans la page d'aide, vous pourrez trouver des informations sur les **arguments** de la fonction. Les arguments d'une fonction sont des valeurs nommées `nom = valeur` rentrées à l'intérieur de la parenthèse qui suit le nom de la fonction. Les différents arguments sont par ailleurs séparés par des virgules à l'intérieur de la parenthèse. Ces arguments fournissent les données à traiter, mais peuvent aussi être des informations qui vont moduler le calcul à réaliser.
 
 Un argument est intéressant ici : `na.rm = `. Cet argument détermine si les valeurs manquantes sont éliminées du vecteur avant calcul ou non ("**na** **r**e**m**ove"). Comme vous pouvez le voir dans la page d'aide, cet argument prend la valeur `FALSE` par défaut. Cela signifie que les valeurs manquantes ne sont **pas** éliminées par défaut. Mais il est possible d'indiquer `na.rm = TRUE` pour changer le calcul et obtenir quand même une estimation de moyenne en présence de valeurs manquantes (les constantes `TRUE` et `FALSE`, toujours en majuscules, sont les valeurs logiques dans R -objects `logical`- voulant dire "vrai" ou "faux"). 
@@ -226,7 +237,7 @@ Bravo! Vous venez de terminez cette séance d'exercices dans un  tutorial "learn
 Durant cette séance, vous avez appris à : 
 
 - Effectuer des calculs dans R
-- Créer des vecteurs et vectoriser vos claculs
+- Créer des vecteurs et vectoriser vos calculs
 - Assigner les résultats à un nom 
 - Employer des fonctions, et accéder à leurs pages d'aide 
 - Manipuler les valeurs manquantes, et les calculs en leur présence
@@ -237,3 +248,7 @@ Laissez nous vos impressions sur cet outil pédagogique. Rappelez-vous que pour 
 # Ajout de commentaires 
 # ...
 ```
+
+**Pour aller plus loin...**
+
+- [Ce tutorial](https://tutorials.shinyapps.io/04-Programming-Basics/#section-lists) (en anglais), explique avec plus de détails les fonctions, les arguments et les vecteurs dans R.

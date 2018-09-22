@@ -42,13 +42,14 @@ record_sdd <- function(tutorial_id, tutorial_version, user_id, event, data) {
     version = tutorial_version, user = user_id, user_name = user_name,
     user_email = user_email, label = label, correct = correct, event = event,
     data = list_to_json(data))
-  if (correct == "") {
-    add_file_base64(entry, file = bds_file)
-    return()
-  }
+  # Not a good idea: if user never clicks "Submit", nothing is fed to database
+  #if (correct == "") {
+  #  add_file_base64(entry, file = bds_file)
+  #  return()
+  #}
   # Once http request with stitch will be available, we could do something like
   #https://stitch.mongodb.com/api/client/v2.0/app/sdd-relay-aizkd/service/sdd-http/incoming_webhook/webhook0
-  m <- try(mongo("ex01",
+  m <- try(mongo("sdd",
     #url = "mongodb://sdd:sdd@ds125388.mlab.com:25388/sdd-test")$insert(entry)
     url = "mongodb://sdd:sdd@sdd-umons-shard-00-00-umnnw.mongodb.net:27017,sdd-umons-shard-00-01-umnnw.mongodb.net:27017,sdd-umons-shard-00-02-umnnw.mongodb.net:27017/test?ssl=true&replicaSet=sdd-umons-shard-0&authSource=admin"),
     silent = TRUE)
@@ -69,3 +70,16 @@ record_sdd <- function(tutorial_id, tutorial_version, user_id, event, data) {
   }
 }
 # Use: options(tutorial.event_recorder = record_sdd)
+#
+# To collect these data:
+collect_sdd <- function() {
+  mdb <- mongolite::mongo("sdd", #url = "mongodb://sdd:sdd@ds125318.mlab.com:25318/sdd-cours")
+    #url = "mongodb://sdd:sdd@ds125388.mlab.com:25388/sdd-test")
+    url = "mongodb://sdd:sdd@sdd-umons-shard-00-00-umnnw.mongodb.net:27017,sdd-umons-shard-00-01-umnnw.mongodb.net:27017,sdd-umons-shard-00-02-umnnw.mongodb.net:27017/test?ssl=true&replicaSet=sdd-umons-shard-0&authSource=admin")
+    # url = "mongodb://sdd:sdd@sdd-umons-shard-00-01-umnnw.mongodb.net:27017")
+    #mongodb://sdd:<PASSWORD>@sdd-umons-shard-00-00-umnnw.mongodb.net:27017,sdd-umons-shard-00-01-umnnw.mongodb.net:27017,sdd-umons-shard-00-02-umnnw.mongodb.net:27017/test?ssl=true&replicaSet=sdd-umons-shard-0&authSource=admin
+  #print(mdb)
+  if (mdb$count())
+    mdb$find()
+}
+#sdd_data <- collect_sdd(); View(sdd_data)

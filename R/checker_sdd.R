@@ -2,10 +2,11 @@
 #'
 #' @param label The label for the learnr exercice.
 #' @param user_code The code submitted by the user.
-#' @param check_code The code to check against.
-#' @param envir_result The environment for results.
+#' @param solution_code The code provided by the "-solution" chunk.
+#' @param check_code The code provided by the "-check" chunk.
+#' @param envir_result The environment after the execution of the chunk.
 #' @param evaluate_result Result from evaluation of the code.
-#' @param ... Additional parameters.
+#' @param ... Additional parameters (currently not used).
 #'
 #' @description Check code submitted during an exercice. This version just
 #' acknowledges reception of the submission. This function is used internally
@@ -16,9 +17,10 @@
 #' @seealso [run()]
 #' @keywords utilities
 #' @concept record events from the BioDataScience package
-checker_sdd <- function(label, user_code, check_code, envir_result,
-evaluate_result, ...) {
-  list(message = "Your answer is recorded!", correct = TRUE, location = "append")
+checker_sdd <- function(label, user_code, solution_code, check_code,
+envir_result, evaluate_result, ...) {
+  list(message = "Your answer is recorded!", correct = TRUE, type = "info",
+    location = "append")
 }
 #Use: tutorial_options(exercise.checker = checker_sdd)
 #

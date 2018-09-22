@@ -4,21 +4,23 @@
 \alias{checker_sdd}
 \title{A default checker that just aknowledge submission}
 \usage{
-checker_sdd(label, user_code, check_code, envir_result, evaluate_result,
-  ...)
+checker_sdd(label, user_code, solution_code, check_code, envir_result,
+  evaluate_result, ...)
 }
 \arguments{
 \item{label}{The label for the learnr exercice.}
 
 \item{user_code}{The code submitted by the user.}
 
-\item{check_code}{The code to check against.}
+\item{solution_code}{The code provided by the "-solution" chunk.}
 
-\item{envir_result}{The environment for results.}
+\item{check_code}{The code provided by the "-check" chunk.}
+
+\item{envir_result}{The environment after the execution of the chunk.}
 
 \item{evaluate_result}{Result from evaluation of the code.}
 
-\item{...}{Additional parameters.}
+\item{...}{Additional parameters (currently not used).}
 }
 \value{
 A list with components \code{message}, \code{correct} and \code{location}.
