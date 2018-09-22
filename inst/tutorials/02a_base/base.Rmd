@@ -92,6 +92,10 @@ log(4 + 5)
 exp(23 - 15)
 ```
 
+```{r calcul2-check}
+# Not yet...
+```
+
 
 ## R, les assignations
 
@@ -131,6 +135,11 @@ b <- 12 / 14
 a * b
 ```
 
+```{r assig1-check}
+# Not yet...
+```
+
+
 Dans R, et contrairement à une calculatrice de poche, vous pouvez rassembler divers éléments de même nature dans un **vecteur**. C'est la fonction `c()` qui s'en charge :
 
 ```{r vecteur, echo=TRUE}
@@ -165,6 +174,10 @@ v5 <- v4 * 6
 v5
 ```
 
+```{r vec1-check}
+# Not yet...
+```
+
 **Trois commentaires :**
 
 - Lors d'une assignation, le résultat du calcul n'est pas imprimé. Il peut être récupéré plus tard en indiquant juste le nom de l'objet assigné. On peut combiner les deux en plaçant l'assignation entre parenthèses : `(x <- 3 * 2)` assigne 3 à `x` **et** imprime aussi le résultat du calcul (`6`).
@@ -190,6 +203,10 @@ v4 <- c(15, 19, NA, 13)
 v4 <- c(15, 19, NA, 13)
 # Moyenne du vecteur
 mean(v4)
+```
+
+```{r vec2-check}
+# Not yet...
 ```
 
 Certaines fonctions servent à **résumer** un ensemble de données, c'est-à-dire qu'elles les représentent avec une seule ou un petit nombre de valeurs. Ainsi, quelle que soit la taille du vecteur, sa moyenne est toujours un nombre unique. Ici, nous avons obtenu `NA`. Nous savons pourquoi. Les valeurs manquantes sont **contaminantes** dans les calculs. Il en suffit d'une seule pour que l'ensemble du résultat soit `NA`. Naturellement dans ce cas, c'est dommage, car la moyenne pourrait être _estimée_ sur base des trois autres valeurs connues. la fonction `mean()` offre une solution à cela, ... mais nous vous laissons la découvrir par vous même en lisant **la page d'aide (technique) de la fonction**. Pour cela, utilisez l'instruction `?` suivi du nom de la fonction :
@@ -224,6 +241,10 @@ v4 <- c(15, 19, NA, 13)
 mean(v4, na.rm = TRUE)
 ```
 
+```{r vec3-check}
+# Not yet...
+```
+
 Vous obtenez cette fois-ci la réponse souhaitée.
 
 > La prise en charge des valeurs manquantes de manière fine est une caractéristique importante de tout logiciel d'analyse de données digne de ce nom. Notez, par exemple, qu'Excel **n'est pas** capable de le faire de manière aussi fine que R (mais Excel **n'est pas** un logiciel d'analyse des données) !
@@ -247,6 +268,10 @@ Laissez nous vos impressions sur cet outil pédagogique. Rappelez-vous que pour 
 ```{r comm, exercise=TRUE, exercise.lines = 6}
 # Ajout de commentaires 
 # ...
+```
+
+```{r comm-check}
+# Not yet...
 ```
 
 **Pour aller plus loin...**

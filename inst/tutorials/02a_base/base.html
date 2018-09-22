@@ -129,6 +129,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div class="tutorial-exercise-support" data-label="calcul2-solution" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>exp(23 - 15)</code></pre>
 </div>
+<div class="tutorial-exercise-support" data-label="calcul2-check" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Not yet...</code></pre>
+</div>
 </div>
 <div id="section-r-les-assignations" class="section level2">
 <h2>R, les assignations</h2>
@@ -160,6 +163,9 @@ b &lt;- 12 / 14
 # Multiplication de a par b
 a * b</code></pre>
 </div>
+<div class="tutorial-exercise-support" data-label="assig1-check" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Not yet...</code></pre>
+</div>
 <p>Dans R, et contrairement à une calculatrice de poche, vous pouvez rassembler divers éléments de même nature dans un <strong>vecteur</strong>. C’est la fonction <code>c()</code> qui s’en charge :</p>
 <pre class="r"><code>v1 &lt;- c(2, 5, 8, 11, 13, 16)
 # NA indique une valeur manquante (&#39;not available&#39;)
@@ -187,6 +193,9 @@ v5 &lt;- v4 * 6
 # Affichez le résultat contenu dans v5
 v5</code></pre>
 </div>
+<div class="tutorial-exercise-support" data-label="vec1-check" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Not yet...</code></pre>
+</div>
 <p><strong>Trois commentaires :</strong></p>
 <ul>
 <li><p>Lors d’une assignation, le résultat du calcul n’est pas imprimé. Il peut être récupéré plus tard en indiquant juste le nom de l’objet assigné. On peut combiner les deux en plaçant l’assignation entre parenthèses : <code>(x &lt;- 3 * 2)</code> assigne 3 à <code>x</code> <strong>et</strong> imprime aussi le résultat du calcul (<code>6</code>).</p></li>
@@ -210,6 +219,9 @@ v4 &lt;- c(15, 19, NA, 13)
 v4 &lt;- c(15, 19, NA, 13)
 # Moyenne du vecteur
 mean(v4)</code></pre>
+</div>
+<div class="tutorial-exercise-support" data-label="vec2-check" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Not yet...</code></pre>
 </div>
 <p>Certaines fonctions servent à <strong>résumer</strong> un ensemble de données, c’est-à-dire qu’elles les représentent avec une seule ou un petit nombre de valeurs. Ainsi, quelle que soit la taille du vecteur, sa moyenne est toujours un nombre unique. Ici, nous avons obtenu <code>NA</code>. Nous savons pourquoi. Les valeurs manquantes sont <strong>contaminantes</strong> dans les calculs. Il en suffit d’une seule pour que l’ensemble du résultat soit <code>NA</code>. Naturellement dans ce cas, c’est dommage, car la moyenne pourrait être <em>estimée</em> sur base des trois autres valeurs connues. la fonction <code>mean()</code> offre une solution à cela, … mais nous vous laissons la découvrir par vous même en lisant <strong>la page d’aide (technique) de la fonction</strong>. Pour cela, utilisez l’instruction <code>?</code> suivi du nom de la fonction :</p>
 <pre class="r"><code>?mean</code></pre>
@@ -236,6 +248,9 @@ v4 &lt;- c(15, 19, NA, 13)
 # Moyenne du vecteur, avec élimination des NAs
 mean(v4, na.rm = TRUE)</code></pre>
 </div>
+<div class="tutorial-exercise-support" data-label="vec3-check" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Not yet...</code></pre>
+</div>
 <p>Vous obtenez cette fois-ci la réponse souhaitée.</p>
 <blockquote>
 <p>La prise en charge des valeurs manquantes de manière fine est une caractéristique importante de tout logiciel d’analyse de données digne de ce nom. Notez, par exemple, qu’Excel <strong>n’est pas</strong> capable de le faire de manière aussi fine que R (mais Excel <strong>n’est pas</strong> un logiciel d’analyse des données) !</p>
@@ -261,6 +276,9 @@ mean(v4, na.rm = TRUE)</code></pre>
 <pre class="text"><code># Ajout de commentaires 
 # ...</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="comm-check" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Not yet...</code></pre>
 </div>
 <p><strong>Pour aller plus loin…</strong></p>
 <ul>
