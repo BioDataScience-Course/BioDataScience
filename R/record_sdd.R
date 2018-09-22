@@ -54,7 +54,8 @@ record_sdd <- function(tutorial_id, tutorial_version, user_id, event, data) {
     url = "mongodb://sdd:sdd@sdd-umons-shard-00-00-umnnw.mongodb.net:27017,sdd-umons-shard-00-01-umnnw.mongodb.net:27017,sdd-umons-shard-00-02-umnnw.mongodb.net:27017/test?ssl=true&replicaSet=sdd-umons-shard-0&authSource=admin"),
     silent = TRUE)
   if (!inherits(m, "try-error") &&
-      m$run(command = "{\"ping\": 1}", simplify = TRUE)$ok == 1) {
+      #m$run(command = "{\"ping\": 1}", simplify = TRUE)$ok == 1) {
+      m$count() > -1) {
     m$insert(entry)
     # If there is something in the biodatascience file, inject it also now
     if (file.exists(bds_file)) {
