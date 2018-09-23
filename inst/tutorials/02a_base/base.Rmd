@@ -27,8 +27,8 @@ fixedRow(
     "Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)"
   )),
   column(3, div(
-    textInput("user", "Utilisateur :", BioDataScience::user_name()),
-    textInput("email", "Email :", BioDataScience::user_email())
+    textInput("user", "Utilisateur :", ""),
+    textInput("email", "Email :", "")
   ))
 )
 textOutput("user") # This is newer shown, but required to trigger an event!
@@ -38,6 +38,8 @@ textOutput("email") # Idem!
 ```{r, context="server"}
 output$user <- renderText({BioDataScience::user_name(input$user);""})
 output$email <- renderText({BioDataScience::user_email(input$email);""})
+updateTextInput(session, "user", value = BioDataScience::user_name())
+updateTextInput(session, "email", value = BioDataScience::user_email())
 ```
 
 

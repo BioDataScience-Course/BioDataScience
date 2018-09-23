@@ -57,11 +57,11 @@ Réalisé par le service d'Écologie numérique des Milieux aquatiques, Universi
 <div>
 <div class="form-group shiny-input-container">
 <label for="user">Utilisateur :</label>
-<input id="user" type="text" class="form-control" value="phgrosjean"/>
+<input id="user" type="text" class="form-control" value=""/>
 </div>
 <div class="form-group shiny-input-container">
 <label for="email">Email :</label>
-<input id="email" type="text" class="form-control" value="phgrosjean@sciviews.org"/>
+<input id="email" type="text" class="form-control" value=""/>
 </div>
 </div>
 </div>
@@ -379,7 +379,7 @@ round(log(mean(x)), digits = 3)</code></pre>
 <p>Mais dans ce dernier cas, la lecture devient plus difficile. On peut aussi <strong>chaîner</strong> des instructions avec l’opérateur <code>%&gt;.%</code> dans la version <code>SciViews::R</code> qui charge des “packages” supplémentaires pour fournir des fonctions en plus de R de base :</p>
 <pre class="r"><code># Installer SciViews::R
 SciViews::R</code></pre>
-<pre><code>── Attaching packages ─────────────────────────────────────────────────────── SciViews::R 1.1.0 ──</code></pre>
+<pre><code>── Attaching packages ─────────────────────────────────────────────────────────────────── SciViews::R 1.1.0 ──</code></pre>
 <pre><code>✔ SciViews  1.1.0       ✔ purrr     0.2.5  
 ✔ chart     1.2.0       ✔ readr     1.1.1  
 ✔ flow      1.1.0       ✔ tidyr     0.8.1  
@@ -388,7 +388,7 @@ SciViews::R</code></pre>
 ✔ forcats   0.3.0       ✔ tidyverse 1.2.1  
 ✔ stringr   1.3.1       ✔ lattice   0.20.35
 ✔ dplyr     0.7.6       ✔ MASS      7.3.50 </code></pre>
-<pre><code>── Conflicts ──────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>── Conflicts ──────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter()                 masks stats::filter()
 ✖ dplyr::lag()                    masks stats::lag()
 ✖ chart::scale_color_continuous() masks ggplot2::scale_color_continuous()
@@ -477,6 +477,8 @@ learnr:::register_http_handlers(session, metadata = list(id = "sdd1.02a", versio
 <script type="application/shiny-prerendered" data-context="server">
 output$user <- renderText({BioDataScience::user_name(input$user);""})
 output$email <- renderText({BioDataScience::user_email(input$email);""})
+updateTextInput(session, "user", value = BioDataScience::user_name())
+updateTextInput(session, "email", value = BioDataScience::user_email())
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
