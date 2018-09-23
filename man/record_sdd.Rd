@@ -2,9 +2,15 @@
 % Please edit documentation in R/record_sdd.R
 \name{record_sdd}
 \alias{record_sdd}
+\alias{user_name}
+\alias{user_email}
 \title{Record results on a centralized database}
 \usage{
 record_sdd(tutorial_id, tutorial_version, user_id, event, data)
+
+user_name(value)
+
+user_email(value)
 }
 \arguments{
 \item{tutorial_id}{The identifier of the tutorial.}
@@ -17,6 +23,9 @@ record_sdd(tutorial_id, tutorial_version, user_id, event, data)
 or \code{question_submission}}
 
 \item{data}{A JSON field with event-dependent data content.}
+
+\item{value}{The new value for user name or email (if not provided, the
+current value is returned).}
 }
 \value{
 Nothing. The function is used for its side-effects.

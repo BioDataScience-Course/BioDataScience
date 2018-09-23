@@ -14,7 +14,7 @@
 <meta name="progressive" content="true" />
 <meta name="allow-skip" content="false" />
 
-<title>Les bases de R : découverte de l’outils</title>
+<title>Les bases de R : découverte de l’outil</title>
 
 
 <!-- highlightjs -->
@@ -45,9 +45,37 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div class="topics">
 
+<p><div class="row">
+<div class="col-sm-9">
+<div>
+<img src="images/BioDataScience-128.png" align="left"/>
+<h1>Science des données biologiques</h1>
+Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)
+</div>
+</div>
+<div class="col-sm-3">
+<div>
+<div class="form-group shiny-input-container">
+<label for="user">Utilisateur :</label>
+<input id="user" type="text" class="form-control" value="phgrosjean"/>
+</div>
+<div class="form-group shiny-input-container">
+<label for="email">Email :</label>
+<input id="email" type="text" class="form-control" value="phgrosjean@sciviews.org"/>
+</div>
+</div>
+</div>
+</div><div id="user" class="shiny-text-output"></div><div id="email" class="shiny-text-output"></div></p>
+<div id="section-preambule" class="section level2">
+<h2>Préambule</h2>
+<p>Si vous n’avez jamais utilisé de tutoriel “learnr”, familiarisez-vous d’abord avec son interface <a href="http://biodatascience-course.sciviews.org/sdd-umons/learnr.html">ici</a>.</p>
 <div class="figure">
-<img src="images/intro.png" />
+<img src="images/attention.jpg" />
 
+</div>
+<blockquote>
+<p>Conformément au RGPD (<a href="https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr">Règlement Général sur la Protection des Données</a>), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. <strong>Les données seront enregistrées au nom de l’utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !</strong> En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.</p>
+</blockquote>
 </div>
 <div id="section-objectif" class="section level2">
 <h2>Objectif</h2>
@@ -55,12 +83,10 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <li>Découvrir les bases du language R</li>
 </ul>
 <p><img src="images/Rlogo.png" width="50%" /></p>
-<blockquote>
-<p>Il est important de préciser que l’ensemble de vos résultats sera collecté afin de suivre votre progression. Ce test n’est cependant pas certificatif. Conformément au RGPD (<a href="https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr">Règlement Général sur la Protection des Données</a>) en Europe, effectif depuis le 25 mai 2018, nous sommes tenus de vous informer et de demander votre accord pour cela. Donc, en cliquant sur le bouton ci-dessous, vous marquez expressément votre accord pour que ces données puissent être collectées et utilisées dans le but d’analyser votre progression pour (1) vous aider, et (2) améliorer ces tutoriaux. Ces données pourront également servir à des études globales (évaluation des résultats globaux par année et au fil du temps, ou évaluation globale de la méthode d’apprentissage par exemple, y compris dans des publications scientifiques). Dans ce dernier cas, les données seront rendues anonymes. Seuls vos enseignants pourront utiliser ces données de manière non anonymes dans le cadre de votre évaluation, et les détails de cette évaluation ne seront nommément accessibles que par vous-même.</p>
-</blockquote>
 </div>
 <div id="section-introduction" class="section level2">
 <h2>Introduction</h2>
+<p>Regardez la vidéo ci-dessous.</p>
 <div class="figure">
 <img src="https://www.youtube.com/watch?v=XcBLEVknqvY" />
 
@@ -75,79 +101,107 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <table>
 <thead>
 <tr class="header">
-<th>Opérations de bases</th>
-<th>Symboles</th>
+<th align="left">Opération</th>
+<th align="center">Symbole</th>
+<th align="center">Exemple</th>
+<th align="center">Réponse de R</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>additions</td>
-<td><code>+</code></td>
+<td align="left">Addition</td>
+<td align="center"><code>+</code></td>
+<td align="center"><code>3 + 2</code></td>
+<td align="center"><code>[1] 5</code></td>
 </tr>
 <tr class="even">
-<td>soustractions</td>
-<td><code>-</code></td>
+<td align="left">Soustraction</td>
+<td align="center"><code>-</code></td>
+<td align="center"><code>3 - 2</code></td>
+<td align="center"><code>[1] 1</code></td>
 </tr>
 <tr class="odd">
-<td>divisions</td>
-<td><code>/</code></td>
+<td align="left">Multiplication</td>
+<td align="center"><code>*</code></td>
+<td align="center"><code>3 * 2</code></td>
+<td align="center"><code>[1] 6</code></td>
 </tr>
 <tr class="even">
-<td>multiplications</td>
-<td><code>*</code></td>
+<td align="left">Division</td>
+<td align="center"><code>/</code></td>
+<td align="center"><code>3 / 2</code></td>
+<td align="center"><code>[1] 1.5</code></td>
 </tr>
 <tr class="odd">
-<td>exponentiations</td>
-<td><code>^</code></td>
+<td align="left">Puissance</td>
+<td align="center"><code>^</code></td>
+<td align="center"><code>3^2</code></td>
+<td align="center"><code>[1] 9</code></td>
 </tr>
 </tbody>
 </table>
-<p>Voici un premier exemple simple:</p>
-<pre class="r"><code>4 + 5</code></pre>
-<pre><code>## [1] 9</code></pre>
+<p><strong>A noter :</strong></p>
 <ul>
-<li>Multipliez les nombres <code>15</code> et <code>23</code></li>
+<li><p>Les espaces au sein des instructions sont facultatives, mais elles aèrent le code. C’est comme en français : sansespacesonlitnettementmoinsbien! Dans certain cas, il vaut mieux les omettre, comme pour <code>3^2</code> qui indique que cette opération est prioritaire sur les autres. <code>1 - 3^2</code> signifie <code>1 - (3^2)</code>, 3 est d’abord élevé au carré, et puis on soustrait cette valeur à un, et non <code>(1 - 3)^2</code>. De même, la multiplication et la division sont prioritaires sur l’addition et la soustraction.</p></li>
+<li><p>R retourne une réponse précédée de <code>[1]</code>. Nous verrons plus loin qu’il retourne en réalité un vecteur, même si ce vecteur ne contient qu’un seul item. Le <code>[1]</code> indique la position dans le vecteur.</p></li>
 </ul>
-<div class="tutorial-exercise" data-label="calcul1" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<p>Voici un premier exemple d’instruction R tel qu’il se présente dans les tutoriels (les instructions à rentrer dans R sont présentées dans des cadres gris) suivie de la réponse renvoyée par le logiciel (cadre blanc juste en dessous) :</p>
+<pre class="r"><code>3 + 2</code></pre>
+<pre><code>[1] 5</code></pre>
+<p>A vous maintenant :</p>
+<ul>
+<li>Multipliez les nombres <code>15</code> et <code>23</code> (un encadré <strong>Code R</strong> est une zone où vous pouvez vous-même entrer des instructions R et/ou les modifier. Les numéros à gauche sont les numéros de lignes. Ils ne font pas partie des instructions. Utilisez le bouton <strong>Run Code</strong> pour tester, et ensuite <strong>Submit Answer</strong> quand vous êtes satisfait de ce votre réponse)</li>
+</ul>
+<div class="tutorial-exercise" data-label="calcul1" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
-<div class="tutorial-exercise-support" data-label="calcul1-solution" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="calcul1-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>15 * 23</code></pre>
 </div>
-<div class="tutorial-exercise-support" data-label="calcul1-check" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="calcul1-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Not yet...</code></pre>
 </div>
 <p>Vous pouvez également utiliser des fonctions mathématiques directement implementées dans R comme le logarithme népérien avec la <strong>fonction</strong> <code>log()</code>. Ce language a été mis au point pour suivre les conventions des mathématiques et des statistiques comme le respect de l’ordre des opérations.</p>
 <pre class="r"><code>log(4 + 5)</code></pre>
-<pre><code>## [1] 2.197225</code></pre>
+<pre><code>[1] 2.197225</code></pre>
 <ul>
 <li>Calculez l’exponentielle (fonction <code>exp()</code>) de <code>23</code> moins <code>15</code>.</li>
 </ul>
-<div class="tutorial-exercise" data-label="calcul2" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise" data-label="calcul2" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
-<div class="tutorial-exercise-support" data-label="calcul2-solution" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="calcul2-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>exp(23 - 15)</code></pre>
 </div>
-<div class="tutorial-exercise-support" data-label="calcul2-check" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="calcul2-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Not yet...</code></pre>
 </div>
 </div>
 <div id="section-r-les-assignations" class="section level2">
 <h2>R, les assignations</h2>
-<p>Effectuer des calculs, c’est bien… pouvoir sauvegarder et réutiliser les résultats, c’est encore mieux. L’action qui consiste à associer un résultat à un nom s’appelle une <strong>assignation</strong>. L’instruction correspondante dans R symbolise une flèche indiquant le sens de l’assignation (<code>&lt;-</code>). Par exemple :</p>
+<p>Effectuer des calculs, c’est bien… pouvoir sauvegarder et réutiliser les résultats, c’est encore mieux. L’action qui consiste à associer un résultat à un nom s’appelle une <strong>assignation</strong>. L’instruction correspondante dans R symbolise une flèche indiquant le sens de l’assignation (<code>&lt;-</code>, soit l’assemblage du signe plus petit que <code>&lt;</code> et moins <code>-</code>). Par exemple :</p>
 <pre class="r"><code>a &lt;- 5
 b &lt;- 4 + 3
 # Réutilisation : addition de la valeur de a et de b
 a + b # Somme de a et b</code></pre>
-<pre><code>## [1] 12</code></pre>
+<pre><code>[1] 12</code></pre>
 <p>Notez aussi que tout de qui suit un dièse (<code>#</code>) dans R est considéré comme un <strong>commentaire</strong>, et n’est pas interprété par le programme. Servez-vous en pour documenter vos instructions !</p>
+<p><strong>A retenir :</strong></p>
+<ul>
+<li>Vous pouvez voir et gérer vos objets dans l’onglet <strong>Environnement</strong> de RStudio. <img src="images/environnement.png" /></li>
+<li>Les noms reconnus par R doivent commencer par une lettre ou le point <code>.</code>, et être suivis de lettres, chiffres, point ou trait souligné <code>_</code>. Exemple de noms corrects : <code>a</code>, <code>a1</code>, <code>vec</code>, <code>vec_max</code>, <code>.vec</code>, <code>A</code>. Exemple de noms incorrects : <code>1a</code>, <code>_a</code>, <code>vec max</code>, <code>vec-max</code>.</li>
+<li>Evitez d’utiliser des caractères accentués dans les noms.</li>
+<li>R fait la différence entre majuscules et minuscules : <code>x</code> est différent de <code>X</code>.</li>
+<li>Un nom commençant par un point sera “caché” (non visible dans l’onglet <strong>Environnement</strong> de RStudio)</li>
+<li>Utilisez des noms courts, mais représentatifs du contenu de l’objet. Si possible, séparez les mots par un trait souligné, et utilisez uniquement des lettres minuscules. On a coutume d’utiliser des noms anglais, car cela facilite l’échange de code avec des collègues internationaux (oui, ça vous arrivera… donc, prenez directement des bonnes habitudes). Exemples corrects : <code>x</code>, <code>v1</code>, <code>initial_date</code>, <code>final_date</code>, <code>elapsed_time</code>. Exemples incorrects : <code>toto</code>, <code>Toto2</code>, <code>FinalDate</code>, <code>fd</code> or <code>FD</code> or <code>fi_dat</code> (pour final date), <code>date_finale</code>, <code>laatse_datum</code>.</li>
+</ul>
+<p>A vous de jouer !</p>
 <ul>
 <li><p>Assignez à <code>a</code> la valeur <code>18</code>.</p></li>
 <li><p>Assignez à <code>b</code> la division de <code>12</code> par <code>14</code>.</p></li>
 <li><p>Multipliez ensuite <code>a</code> par <code>b</code>.</p></li>
 </ul>
-<div class="tutorial-exercise" data-label="assig1" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="7">
+<div class="tutorial-exercise" data-label="assig1" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="7">
 <pre class="text"><code># Assignation à a
 a &lt;- 
 # Assignation à b
@@ -155,7 +209,7 @@ a &lt;-
 # Multiplication de a par b</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
-<div class="tutorial-exercise-support" data-label="assig1-solution" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="assig1-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Assignation à a
 a &lt;- 18
 # Assignation à b
@@ -163,7 +217,7 @@ b &lt;- 12 / 14
 # Multiplication de a par b
 a * b</code></pre>
 </div>
-<div class="tutorial-exercise-support" data-label="assig1-check" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="assig1-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Not yet...</code></pre>
 </div>
 <p>Dans R, et contrairement à une calculatrice de poche, vous pouvez rassembler divers éléments de même nature dans un <strong>vecteur</strong>. C’est la fonction <code>c()</code> qui s’en charge :</p>
@@ -172,12 +226,30 @@ a * b</code></pre>
 v2 &lt;- c(2, 5, NA, 11, 13, 16)
 # Aussi avec des chaînes de caractères (entre guillements)
 v3 &lt;- c(&quot;noir&quot;, &quot;jaune&quot;, &quot;rouge&quot;)</code></pre>
+<p><strong>Astuce :</strong></p>
+<ul>
+<li>Pour créer un vecteur d’une séquence continue de nombre, tel 2, 3, 4, 5, vous pouvez utiiser l’opérateur <code>:</code> en plaçant le nombre initial de la série devant et le nombre final derrière.</li>
+</ul>
+<pre class="r"><code># La série
+c(2, 3, 4, 5)</code></pre>
+<pre><code>[1] 2 3 4 5</code></pre>
+<pre class="r"><code># peut s&#39;écrire plus facilement comme ceci
+2:5</code></pre>
+<pre><code>[1] 2 3 4 5</code></pre>
+<pre class="r"><code># Aussi dans l&#39;autre sens !
+5:2</code></pre>
+<pre><code>[1] 5 4 3 2</code></pre>
+<p>Vous constatez que R ne renvoie rien en cas d’assignation. C’est un comportement normal ! Si vous voulez voir le contenu d’un objet à tout moment, il suffit d’entrer son nom comme instruction. Exemple :</p>
+<pre class="r"><code># Entrer le nom d&#39;un objet pour que R vous montre ce qu&#39;il contient
+v1</code></pre>
+<pre><code>[1]  2  5  8 11 13 16</code></pre>
+<p>Maintenant que vous savez comment réaliser une assignation, à votre tour…</p>
 <ul>
 <li><p>Assignez à <code>v4</code> les valeurs <code>15</code> , <code>19</code>, une valeur manquante (<code>NA</code>) et <code>13</code>.</p></li>
 <li><p>Assignez à <code>v5</code> la multiplication de <code>v4</code> par <code>6</code>.</p></li>
-<li><p>Terminez par affichez les valeurs contenues dans <code>v5</code> en écrivant simplement le noms de la variable comme seule instruction dans une ligne.</p></li>
+<li><p>Terminez par une instruction pour affichez les valeurs contenues dans <code>v5</code>.</p></li>
 </ul>
-<div class="tutorial-exercise" data-label="vec1" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="6">
+<div class="tutorial-exercise" data-label="vec1" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="6">
 <pre class="text"><code># Assignation des valeurs à v4
 v4 &lt;- 
 # Multipliez v4 par 6 et assignez-le à v5
@@ -185,7 +257,7 @@ v4 &lt;-
 # Affichez le résultat contenu dans v5</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
-<div class="tutorial-exercise-support" data-label="vec1-solution" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="vec1-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Assignation des valeurs à v4
 v4 &lt;- c(15, 19, NA, 13)
 # Multipliez v4 par 6 et assignez-le à v5
@@ -193,37 +265,61 @@ v5 &lt;- v4 * 6
 # Affichez le résultat contenu dans v5
 v5</code></pre>
 </div>
-<div class="tutorial-exercise-support" data-label="vec1-check" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="vec1-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Not yet...</code></pre>
 </div>
-<p><strong>Trois commentaires :</strong></p>
+<p><strong>Commentaires :</strong></p>
 <ul>
-<li><p>Lors d’une assignation, le résultat du calcul n’est pas imprimé. Il peut être récupéré plus tard en indiquant juste le nom de l’objet assigné. On peut combiner les deux en plaçant l’assignation entre parenthèses : <code>(x &lt;- 3 * 2)</code> assigne 3 à <code>x</code> <strong>et</strong> imprime aussi le résultat du calcul (<code>6</code>).</p></li>
-<li><p>Les calculs et beaucoup de fonctions sont dites <em>vectorisées</em> dans R. C’est-à-dire que les calculs se répartissent naturellement élément par élément lorsqu’un ou plusieurs vecteurs de longueur supérieure à un sont fournis. ainsi, <code>v4 * 6</code> affectue naturellement la multiplication par six à <em>chacun</em> des quatres éléments de <code>v4</code>.</p></li>
+<li><p>Les calculs et beaucoup de fonctions sont dits <em>vectorisés</em> dans R. C’est-à-dire que les calculs se répartissent naturellement élément par élément lorsqu’un ou plusieurs vecteurs de longueur supérieure à un sont fournis. ainsi, <code>v4 * 6</code> effectue naturellement la multiplication par six à <em>chacun</em> des quatre éléments de <code>v4</code>.</p></li>
 <li><p>Un calcul effectué sur une ou plusieurs valeurs manquantes <code>NA</code> a lui-même pour résultat une valeur manquante <code>NA</code>.</p></li>
 </ul>
+<p><strong>Astuce :</strong></p>
+<ul>
+<li>Il est possible de combiner une assignation et l’impression du contenu de l’objet en une seule ligne. Il suffit de mettre l’assignation entre parenthèses :</li>
+</ul>
+<pre class="r"><code># Assigner et imprimer le contenu en use seule instruction
+(v4 &lt;- c(15, 19, NA, 13))</code></pre>
+<pre><code>[1] 15 19 NA 13</code></pre>
 </div>
 <div id="section-r-les-fonctions" class="section level2">
 <h2>R, les fonctions</h2>
+<p>Les fonctions sont très importantes dans R. C’est elles qui effectuent tous vos calculs. Pour appeler une fonction, on utilise son nom suivi d’une parenthèse, et éventuellement un ou plusieurs arguments fournis à l’intérieur de la parenthèse et séparés par une virgule <code>fun_name(arg1, arg2, ...)</code>. Voici un exemple d’une fonction appelée sans argument :</p>
+<pre class="r"><code>Sys.Date()</code></pre>
+<pre><code>[1] &quot;2018-09-23&quot;</code></pre>
+<p>Une autre fonction appelée avec un seul argument :</p>
+<pre class="r"><code>x &lt;- 1:4
+sum(x)</code></pre>
+<pre><code>[1] 10</code></pre>
+<p>Pour déterminer les arguments que comprend une fonction, on peut utiliser <code>args()</code> :</p>
+<pre class="r"><code>args(sum)</code></pre>
+<pre><code>function (..., na.rm = FALSE) 
+NULL</code></pre>
+<pre class="r"><code>args(mean)</code></pre>
+<pre><code>function (x, ...) 
+NULL</code></pre>
+<p>Lorsque vous voyez <code>...</code>, cela signifie que la fonction accepte un nombre variable d’arguments à cet endroit. Sinon, les arguments portent des noms (<code>x</code> dans la fonction <code>mean()</code>, <code>na.rm</code> à l’intérieur de la fonction <code>sum()</code>). Dans la définition de fonction, un argument peut avoir une valeur par défaut. Par exemple dans <code>sum()</code>, <code>na.rm</code> prend la valeur <code>FALSE</code> par défaut. Lorsque c’est le cas, l’argument est facultatif dans l’appel (ne doit pas être indiqué si la valeur par défaut vous convient).</p>
+<p>Lors de l’appel d’une fonction, si le nom des arguments n’est pas précisé, R associe les arguments dans l’ordre dans lequel ils sont fournis. Si un nom est donné (<code>argument = valeur</code>) alors, la valeur est associée à l’argument qui porte ce nom, quel que soit l’endroit où il se trouve dans la définition de la fonction. On peut mélanger les deux formes, par exemple, <code>sum(1:4, na.rm = TRUE)</code>. Généralement on ne nomme pas le premier ou les deux premiers arguments, mais bien ceux qui suivent.</p>
+<p><strong>Piège :</strong></p>
 <ul>
-<li>Calculez la moyenne du vecteur <code>v4</code> en utilisant la fonction <code>mean()</code>.</li>
+<li><p>Il existe des fonctions dites <strong>génériques</strong> qui peuvent prendre différentes formes en fonction de la nature des arguments. <code>mean()</code> est une fonction générique. Dans ce cas-là, <code>args()</code>ne renvoie pas toujours la totalité des arguments utilisables. Par exemple, <code>mean()</code> accepte aussi l’argument <code>na.rm</code>. Nous le verrons plus loin.</p></li>
+<li><p>Calculez la moyenne du vecteur <code>v4</code> en utilisant la fonction <code>mean()</code>.</p></li>
 </ul>
-<div class="tutorial-exercise" data-label="vec2" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="4">
+<div class="tutorial-exercise" data-label="vec2" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="4">
 <pre class="text"><code># Assignation des valeurs à v4
 v4 &lt;- c(15, 19, NA, 13)
 # Moyenne du vecteur</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
-<div class="tutorial-exercise-support" data-label="vec2-solution" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="vec2-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Assignation des valeurs à v4
 v4 &lt;- c(15, 19, NA, 13)
 # Moyenne du vecteur
 mean(v4)</code></pre>
 </div>
-<div class="tutorial-exercise-support" data-label="vec2-check" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="vec2-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Not yet...</code></pre>
 </div>
-<p>Certaines fonctions servent à <strong>résumer</strong> un ensemble de données, c’est-à-dire qu’elles les représentent avec une seule ou un petit nombre de valeurs. Ainsi, quelle que soit la taille du vecteur, sa moyenne est toujours un nombre unique. Ici, nous avons obtenu <code>NA</code>. Nous savons pourquoi. Les valeurs manquantes sont <strong>contaminantes</strong> dans les calculs. Il en suffit d’une seule pour que l’ensemble du résultat soit <code>NA</code>. Naturellement dans ce cas, c’est dommage, car la moyenne pourrait être <em>estimée</em> sur base des trois autres valeurs connues. la fonction <code>mean()</code> offre une solution à cela, … mais nous vous laissons la découvrir par vous même en lisant <strong>la page d’aide (technique) de la fonction</strong>. Pour cela, utilisez l’instruction <code>?</code> suivi du nom de la fonction :</p>
+<p>Certaines fonctions servent à <strong>résumer</strong> un ensemble de données, c’est-à-dire qu’elles les représentent avec une seule ou un petit nombre de valeurs. Ainsi, quelle que soit la taille du vecteur <code>v4</code>, sa moyenne est toujours un nombre unique. Ici, nous avons obtenu <code>NA</code>. Nous savons pourquoi. Les valeurs manquantes sont <strong>contaminantes</strong> dans les calculs. Il en suffit d’une seule pour que l’ensemble du résultat soit <code>NA</code>. Naturellement dans ce cas, c’est dommage, car la moyenne pourrait être <em>estimée</em> sur base des trois autres valeurs connues. L’argument <code>na.rm</code> permet de le faire… mais comment le savoir ? En lisant <strong>la page d’aide de la fonction</strong>. Pour cela, utilisez l’instruction <code>?</code> suivi du nom de la fonction. Dans RStudio, la page d’aide apparait dans l’onglet <strong>Help</strong> (copie d’écran ci-dessous).</p>
 <pre class="r"><code>?mean</code></pre>
 <center>
 <div class="figure">
@@ -231,30 +327,111 @@ mean(v4)</code></pre>
 
 </div>
 </center>
-<p>Les fonctions sont largement documentées. Dans la page d’aide, vous pourrez trouver des informations sur les <strong>arguments</strong> de la fonction. Les arguments d’une fonction sont des valeurs nommées <code>nom = valeur</code> rentrées à l’intérieur de la parenthèse qui suit le nom de la fonction. Les différents arguments sont par ailleurs séparés par des virgules à l’intérieur de la parenthèse. Ces arguments fournissent les données à traiter, mais peuvent aussi être des informations qui vont moduler le calcul à réaliser.</p>
-<p>Un argument est intéressant ici : <code>na.rm =</code>. Cet argument détermine si les valeurs manquantes sont éliminées du vecteur avant calcul ou non (“<strong>na</strong> <strong>r</strong>e<strong>m</strong>ove”). Comme vous pouvez le voir dans la page d’aide, cet argument prend la valeur <code>FALSE</code> par défaut. Cela signifie que les valeurs manquantes ne sont <strong>pas</strong> éliminées par défaut. Mais il est possible d’indiquer <code>na.rm = TRUE</code> pour changer le calcul et obtenir quand même une estimation de moyenne en présence de valeurs manquantes (les constantes <code>TRUE</code> et <code>FALSE</code>, toujours en majuscules, sont les valeurs logiques dans R -objects <code>logical</code>- voulant dire “vrai” ou “faux”).</p>
+<p>Dans la section <strong>Usage</strong> de l’aide, on découvre la forme générique renvoyée par <code>args()</code> plus avant. La <strong>méthode</strong> par défaut est renseignée ensuite. C’est en fait la forme qui est réellement utilisée dans notre cas. Nous découvrons qu’elle accepte deux arguments supplémentaires: <code>trim</code> et <code>na.rm</code>.</p>
+<p><strong>Astuce :</strong></p>
 <ul>
-<li>Calculez la moyenne du vecteur <code>v4</code> à nouveau, mais cette fois-ci, en ignorant la valeur manquante.</li>
+<li>Dans RStudio, il est encore bien plus facile de placer le curseur sur le nom de la fonction dans le code et d’appuyer sur la touche <code>F1</code> pour faire apparaitre sa page d’aide.</li>
 </ul>
-<div class="tutorial-exercise" data-label="vec3" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="4">
+<p>Plus loin dans la page d’aide, on peut lire que l’argument <code>na.rm =</code> détermine si les valeurs manquantes sont éliminées du vecteur avant calcul ou non (“<strong>na</strong> <strong>r</strong>e<strong>m</strong>ove”). Comme vous pouvez le voir dans la page d’aide, cet argument prend la valeur <code>FALSE</code> par défaut. Cela signifie que les valeurs manquantes ne sont <strong>pas</strong> éliminées par défaut. Mais il est possible d’indiquer <code>na.rm = TRUE</code> pour changer le calcul et obtenir quand même une estimation de moyenne en présence de valeurs manquantes (les constantes <code>TRUE</code> et <code>FALSE</code>, toujours en majuscules, sont les valeurs logiques dans R -objects <code>logical</code>- voulant dire “vrai” ou “faux”).</p>
+<ul>
+<li>Calculez la moyenne du vecteur <code>v4</code> à nouveau, mais cette fois-ci, en ignorant la valeur manquante dans le calcul.</li>
+</ul>
+<div class="tutorial-exercise" data-label="vec3" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="4">
 <pre class="text"><code># Assignation des valeurs à v4
 v4 &lt;- c(15, 19, NA, 13)
 # Moyenne du vecteur, avec élimination des NAs</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
-<div class="tutorial-exercise-support" data-label="vec3-solution" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="vec3-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Assignation des valeurs à v4
 v4 &lt;- c(15, 19, NA, 13)
 # Moyenne du vecteur, avec élimination des NAs
 mean(v4, na.rm = TRUE)</code></pre>
 </div>
-<div class="tutorial-exercise-support" data-label="vec3-check" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="vec3-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Not yet...</code></pre>
 </div>
 <p>Vous obtenez cette fois-ci la réponse souhaitée.</p>
 <blockquote>
-<p>La prise en charge des valeurs manquantes de manière fine est une caractéristique importante de tout logiciel d’analyse de données digne de ce nom. Notez, par exemple, qu’Excel <strong>n’est pas</strong> capable de le faire de manière aussi fine que R (mais Excel <strong>n’est pas</strong> un logiciel d’analyse des données) !</p>
+<p>La prise en charge des valeurs manquantes de manière fine est une caractéristique importante de tout logiciel d’analyse de données digne de ce nom. Notez, par exemple, qu’Excel <strong>n’est pas</strong> capable de le faire de manière aussi fine que R !</p>
 </blockquote>
+</div>
+<div id="section-imbrication-et-chainage" class="section level2">
+<h2>Imbrication et chaînage</h2>
+<p>Vous pouvez utiliser un appel de fonction partout dans une instruction, à la même place que vous utiliseriez un nom ou une valeur. Par exemple :</p>
+<pre class="r"><code>x &lt;- 2:5
+x_mean &lt;- mean(x)
+x_sd &lt;- sd(x) # sd() calcule l&#39;écart type
+10 - x_mean / x_sd</code></pre>
+<pre><code>[1] 7.288912</code></pre>
+<pre class="r"><code># Le même calcul avec appel de fonctions incluses
+10 - mean(x) / sd(x)</code></pre>
+<pre><code>[1] 7.288912</code></pre>
+<p>Plus fort, on peut <strong>imbriquer</strong> des fonctions dans des fonctions :</p>
+<pre class="r"><code>x &lt;- 2:5
+x_mean &lt;- mean(x)
+log_x_mean &lt;- log(x_mean)
+round(log_x_mean, digits = 3) # Arrondi à la 3ème décimale</code></pre>
+<pre><code>[1] 1.253</code></pre>
+<pre class="r"><code># Le même calcul en imbriquant les appels de fonctions
+round(log(mean(x)), digits = 3)</code></pre>
+<pre><code>[1] 1.253</code></pre>
+<p>Mais dans ce dernier cas, la lecture devient plus difficile. On peut aussi <strong>chaîner</strong> des instructions avec l’opérateur <code>%&gt;.%</code> dans la version <code>SciViews::R</code> qui charge des “packages” supplémentaires pour fournir des fonctions en plus de R de base :</p>
+<pre class="r"><code># Installer SciViews::R
+SciViews::R</code></pre>
+<pre><code>── Attaching packages ─────────────────────────────────────────────────────── SciViews::R 1.1.0 ──</code></pre>
+<pre><code>✔ SciViews  1.1.0       ✔ purrr     0.2.5  
+✔ chart     1.2.0       ✔ readr     1.1.1  
+✔ flow      1.1.0       ✔ tidyr     0.8.1  
+✔ data.io   1.2.0       ✔ tibble    1.4.2  
+✔ svMisc    1.1.0       ✔ ggplot2   3.0.0  
+✔ forcats   0.3.0       ✔ tidyverse 1.2.1  
+✔ stringr   1.3.1       ✔ lattice   0.20.35
+✔ dplyr     0.7.6       ✔ MASS      7.3.50 </code></pre>
+<pre><code>── Conflicts ──────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter()                 masks stats::filter()
+✖ dplyr::lag()                    masks stats::lag()
+✖ chart::scale_color_continuous() masks ggplot2::scale_color_continuous()
+✖ chart::scale_color_viridis_c()  masks ggplot2::scale_color_viridis_c()
+✖ chart::scale_colour_viridis_c() masks ggplot2::scale_colour_viridis_c()
+✖ dplyr::select()                 masks MASS::select()</code></pre>
+<pre class="r"><code># Chaîner les calculs mean() -&gt; log() -&gt; round()
+x &lt;- 2:5
+mean(x) %&gt;.%
+  log(.) %&gt;.%
+  round(., digits = 3)</code></pre>
+<pre><code>[1] 1.253</code></pre>
+<ul>
+<li>Le chaînage crée une instruction unique qui effectue un calcul plus complexe, décomposé étape par étape.</li>
+<li>On indique un point <code>.</code> à la place où le résultat précédent doit être inséré dans la fonction.</li>
+<li>Le chaînage est bien plus lisible que l’imbrication au delà de deux niveaux. En effet, si vous lisez l’instruction chaîne à voix haute en disant “ensuite” pour <code>%&gt;.%</code> cela donne : “je prend la moyenne de <code>x</code> ensuite le logarithme, ensuite j’arrondi à trois chiffres derrière la virgule”. C’est parfaitement clair, non ?</li>
+</ul>
+<p>Un petit exercice, maintenant :</p>
+<ul>
+<li><p>Créez un vecteur <code>x</code> qui contient <code>13</code>, <code>19</code>, <code>NA</code> et <code>21</code>,</p></li>
+<li><p>Calculez le logarithme de <code>x</code>,</p></li>
+<li><p><strong>Ensuite</strong> calculez en la moyenne, en écartant les valeurs manquantes,</p></li>
+<li><p><strong>Ensuite</strong> arrondissez le nombre obtenu à deux décimales</p></li>
+</ul>
+<div class="tutorial-exercise" data-label="chain" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
+<pre class="text"><code>SciViews::R
+# Assignation des valeurs à x
+x &lt;- c()
+# Chaînez vos calculs de moyenne du log(x) arrondie à 2 décimales</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="chain-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>SciViews::R
+# Assignation des valeurs à x
+x &lt;- c(13, 19, NA, 21)
+# Chaînez vos calculs de moyenne du log arroundie à 2 décimale
+log(x) %&gt;.%
+  mean(., na.rm = TRUE) %&gt;.%
+  round(., digits = 2)</code></pre>
+</div>
+<div class="tutorial-exercise-support" data-label="chain-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Not yet...</code></pre>
+</div>
 </div>
 <div id="section-conclusion" class="section level2">
 <h2>Conclusion</h2>
@@ -268,33 +445,38 @@ mean(v4, na.rm = TRUE)</code></pre>
 <li>Effectuer des calculs dans R</li>
 <li>Créer des vecteurs et vectoriser vos calculs</li>
 <li>Assigner les résultats à un nom</li>
-<li>Employer des fonctions, et accéder à leurs pages d’aide</li>
+<li>Employer des fonctions, préciser leurs arguments et accéder à leurs pages d’aide</li>
 <li>Manipuler les valeurs manquantes, et les calculs en leur présence</li>
+<li>Imbriquer et chaîner des instructions</li>
 </ul>
-<p>Laissez nous vos impressions sur cet outil pédagogique. Rappelez-vous que pour placer un commentaire dans une zone de réponse, vous devez utilisez un dièse (<code>#</code>) devant vos phrases.</p>
-<div class="tutorial-exercise" data-label="comm" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="6">
+<p>Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (<code>#</code>) devant vos phrases.</p>
+<div class="tutorial-exercise" data-label="comm" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <pre class="text"><code># Ajout de commentaires 
 # ...</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
-<div class="tutorial-exercise-support" data-label="comm-check" data-caption="Instructions R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="comm-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Not yet...</code></pre>
 </div>
 <p><strong>Pour aller plus loin…</strong></p>
 <ul>
-<li><a href="https://tutorials.shinyapps.io/04-Programming-Basics/#section-lists">Ce tutorial</a> (en anglais), explique avec plus de détails les fonctions, les arguments et les vecteurs dans R. 
+<li><a href="https://tutorials.shinyapps.io/04-Programming-Basics/#section-lists">Ce tutoriel</a> (en anglais), explique avec plus de détails les fonctions, les arguments et les vecteurs dans R. 
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
 options(tutorial.event_recorder = BioDataScience::record_sdd)
 tutorial_options(exercise.checker = BioDataScience::checker_sdd)
 tutorial_options(exercise.timelimit = 60)
-tutorial_options(exercise.cap = "Instructions R")
-knitr::opts_chunk$set(echo = FALSE)
-SciViews::R()
+tutorial_options(exercise.cap = "Code R")
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::register_http_handlers(session, metadata = list(id = "sdd1.02a", version = "0.1.0"))
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+output$user <- renderText({BioDataScience::user_name(input$user);""})
+output$email <- renderText({BioDataScience::user_email(input$email);""})
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
@@ -340,6 +522,13 @@ output$`tutorial-exercise-vec3-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-chain-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-chain-code-editor`)), session)
+output$`tutorial-exercise-chain-output` <- renderUI({
+  `tutorial-exercise-chain-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-comm-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-comm-code-editor`)), session)
 output$`tutorial-exercise-comm-output` <- renderUI({
   `tutorial-exercise-comm-result`()
@@ -347,7 +536,7 @@ output$`tutorial-exercise-comm-output` <- renderUI({
 </script>
  <!--html_preserve-->
 <script type="application/shiny-prerendered" data-context="dependencies">
-{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["1.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/jquery-1.11.3"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap"]},{"type":"character","attributes":{},"value":["3.3.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/bootstrap-3.3.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["viewport"]}},"value":[{"type":"character","attributes":{},"value":["width=device-width, initial-scale=1"]}]},{"type":"character","attributes":{},"value":["js/bootstrap.min.js","shim/html5shiv.min.js","shim/respond.min.js"]},{"type":"character","attributes":{},"value":["css/cerulean.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["pagedtable"]},{"type":"character","attributes":{},"value":["1.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/pagedtable-1.1"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/pagedtable.js"]},{"type":"character","attributes":{},"value":["css/pagedtable.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["highlightjs"]},{"type":"character","attributes":{},"value":["9.12.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/highlightjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["highlight.js"]},{"type":"character","attributes":{},"value":["textmate.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial.js"]},{"type":"character","attributes":{},"value":["tutorial.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-autocompletion"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-autocompletion.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-diagnostics"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-diagnostics.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-format"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmarkdown/templates/tutorial/resources"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-format.js"]},{"type":"character","attributes":{},"value":["tutorial-format.css","rstudio-theme.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["1.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/jquery-1.11.3"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["font-awesome"]},{"type":"character","attributes":{},"value":["5.0.13"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/fontawesome"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/fontawesome-all.min.js","js/fa-v4-shims.min.js"]},{"type":"character","attributes":{},"value":["css/fa-svg-with-js.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootbox"]},{"type":"character","attributes":{},"value":["4.4.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/bootbox"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["bootbox.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["localforage"]},{"type":"character","attributes":{},"value":["1.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/localforage"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["localforage.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial.js"]},{"type":"character","attributes":{},"value":["tutorial.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-autocompletion"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-autocompletion.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-diagnostics"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-diagnostics.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]}]}
+{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["1.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/jquery-1.11.3"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap"]},{"type":"character","attributes":{},"value":["3.3.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/bootstrap-3.3.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["viewport"]}},"value":[{"type":"character","attributes":{},"value":["width=device-width, initial-scale=1"]}]},{"type":"character","attributes":{},"value":["js/bootstrap.min.js","shim/html5shiv.min.js","shim/respond.min.js"]},{"type":"character","attributes":{},"value":["css/cerulean.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["pagedtable"]},{"type":"character","attributes":{},"value":["1.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/pagedtable-1.1"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/pagedtable.js"]},{"type":"character","attributes":{},"value":["css/pagedtable.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["highlightjs"]},{"type":"character","attributes":{},"value":["9.12.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/highlightjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["highlight.js"]},{"type":"character","attributes":{},"value":["textmate.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial.js"]},{"type":"character","attributes":{},"value":["tutorial.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-autocompletion"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-autocompletion.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-diagnostics"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-diagnostics.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-format"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmarkdown/templates/tutorial/resources"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-format.js"]},{"type":"character","attributes":{},"value":["tutorial-format.css","rstudio-theme.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["1.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/jquery-1.11.3"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["font-awesome"]},{"type":"character","attributes":{},"value":["5.0.13"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/fontawesome"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/fontawesome-all.min.js","js/fa-v4-shims.min.js"]},{"type":"character","attributes":{},"value":["css/fa-svg-with-js.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootbox"]},{"type":"character","attributes":{},"value":["4.4.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/bootbox"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["bootbox.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["localforage"]},{"type":"character","attributes":{},"value":["1.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/localforage"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["localforage.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial.js"]},{"type":"character","attributes":{},"value":["tutorial.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-autocompletion"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-autocompletion.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-diagnostics"]},{"type":"character","attributes":{},"value":["0.9.2.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-diagnostics.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]}]}
 </script>
 <!--/html_preserve--></li>
 </ul>
@@ -362,7 +551,7 @@ output$`tutorial-exercise-comm-output` <- renderUI({
 
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
-<h2 class="title toc-ignore" style="display:none;">Les bases de R : découverte de l’outils</h2>
+<h2 class="title toc-ignore" style="display:none;">Les bases de R : découverte de l’outil</h2>
 <h4 class="author"><em>Guyliann Engels &amp; Philippe Grosjean</em></h4>
 </div>
 <!-- end doc-metadata -->

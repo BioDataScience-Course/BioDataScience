@@ -6,6 +6,8 @@
 #' @param event The event that triggers the record, like `exercise_submission`
 #' or `question_submission`
 #' @param data A JSON field with event-dependent data content.
+#' @param value The new value for user name or email (if not provided, the
+#' current value is returned).
 #'
 #' @description Record tutorial submissions in a centralized database. The
 #' function is used by learnr tutorials and is not for end-users.
@@ -22,12 +24,6 @@ record_sdd <- function(tutorial_id, tutorial_version, user_id, event, data) {
     dir.create(dirname(file), showWarnings = FALSE, recursive = TRUE)
     cat(str, "\n", file = file, append = TRUE)
   }
-  user_name <- suppressWarnings(system("git config user.name",
-    intern = TRUE, ignore.stderr = TRUE))
-  user_email <- suppressWarnings(system("git config user.email",
-    intern = TRUE, ignore.stderr = TRUE))
-  #user_full_id <- paste(user_id, user_name, user_email, sep = "/")
-  date <- Sys.time()
   label <- data$label
   if (is.null(label)) label <- ""
   data$label <- NULL
@@ -38,9 +34,9 @@ record_sdd <- function(tutorial_id, tutorial_version, user_id, event, data) {
       correct <- ""
   }
   data$correct <- NULL
-  entry <- data.frame(date = date, tutorial = tutorial_id,
-    version = tutorial_version, user = user_id, user_name = user_name,
-    user_email = user_email, label = label, correct = correct, event = event,
+  entry <- data.frame(date = Sys.time(), tutorial = tutorial_id,
+    version = tutorial_version, user = user_id, user_name = user_name(),
+    user_email = user_email(), label = label, correct = correct, event = event,
     data = list_to_json(data))
   # Not a good idea: if user never clicks "Submit", nothing is fed to database
   #if (correct == "") {
@@ -86,3 +82,51 @@ collect_sdd <- function() {
     mdb$find()
 }
 #sdd_data <- collect_sdd(); View(sdd_data)
+
+#' @export
+#' @rdname record_sdd
+user_name <- function(value) {
+  if (missing(value)) {
+    Sys.unsetenv("SDD_USER")
+    user <- Sys.getenv("SDD_USER", unset = "")
+    if (user == "") {
+      user <- try(suppressWarnings(system("git config --global user.name",
+        intern = TRUE, ignore.stderr = TRUE)), silent = TRUE)
+      if (inherits(user, "try-error")) user <- ""
+    }
+    user
+  } else {# Change user
+    # Make sure new_user is correct
+    new_user <- as.character(value)[1]
+    new_user <- gsub(" ", "_", new_user)
+    Sys.setenv(SDD_USER = new_user)
+    cmd <- paste0("git config --global user.name '", new_user, "'")
+    try(suppressWarnings(system(cmd, intern = TRUE, ignore.stderr = TRUE)),
+      silent = TRUE)
+    new_user
+  }
+}
+
+#' @export
+#' @rdname record_sdd
+user_email <- function(value) {
+  if (missing(value)) {
+    Sys.unsetenv("SDD_EMAIL")
+    email <- Sys.getenv("SDD_EMAIL", unset = "")
+    if (email == "") {
+      email <- try(suppressWarnings(system("git config --global user.email",
+        intern = TRUE, ignore.stderr = TRUE)), silent = TRUE)
+      if (inherits(email, "try-error")) email <- ""
+    }
+    email
+  } else {# Change email
+    # Make sure new_email is correct
+    new_email <- as.character(value)[1]
+    new_email <- gsub(" ", "_", new_email)
+    Sys.setenv(SDD_EMAIL = new_email)
+    cmd <- paste0("git config --global user.email '", new_email, "'")
+    try(suppressWarnings(system(cmd, intern = TRUE, ignore.stderr = TRUE)),
+      silent = TRUE)
+    new_email
+  }
+}

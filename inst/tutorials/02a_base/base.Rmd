@@ -1,5 +1,5 @@
 ---
-title: "Les bases de R : découverte de l'outils"
+title: "Les bases de R : découverte de l'outil"
 author : "Guyliann Engels & Philippe Grosjean"
 tutorial:
   id: "sdd1.02a"
@@ -15,25 +15,53 @@ library(learnr)
 options(tutorial.event_recorder = BioDataScience::record_sdd)
 tutorial_options(exercise.checker = BioDataScience::checker_sdd)
 tutorial_options(exercise.timelimit = 60)
-tutorial_options(exercise.cap = "Instructions R")
-knitr::opts_chunk$set(echo = FALSE)
-SciViews::R()
+tutorial_options(exercise.cap = "Code R")
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
 ```
 
-![](images/intro.png)
+```{r, echo=FALSE}
+fixedRow(
+  column(9, div(
+    img(src = 'images/BioDataScience-128.png', align = "left"),
+    h1("Science des données biologiques"),
+    "Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)"
+  )),
+  column(3, div(
+    textInput("user", "Utilisateur :", BioDataScience::user_name()),
+    textInput("email", "Email :", BioDataScience::user_email())
+  ))
+)
+textOutput("user") # This is newer shown, but required to trigger an event!
+textOutput("email") # Idem!
+```
+
+```{r, context="server"}
+output$user <- renderText({BioDataScience::user_name(input$user);""})
+output$email <- renderText({BioDataScience::user_email(input$email);""})
+```
+
+
+## Préambule
+
+Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord avec son interface [ici](http://biodatascience-course.sciviews.org/sdd-umons/learnr.html).
+
+![](images/attention.jpg)
+
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
+
 
 ## Objectif
 
-- Découvrir les bases du language R  
+- Découvrir les bases du language R 
 
 ```{r, out.width='50%'}
 knitr::include_graphics("images/Rlogo.png")
 ```
 
-> Il est important de préciser que l'ensemble de vos résultats sera collecté afin de suivre votre progression. Ce test n'est cependant pas certificatif. Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)) en Europe, effectif depuis le 25 mai 2018, nous sommes tenus de vous informer et de demander votre accord pour cela. Donc, en cliquant sur le bouton ci-dessous, vous marquez expressément votre accord pour que ces données puissent être collectées et utilisées dans le but d'analyser votre progression pour (1) vous aider, et (2) améliorer ces tutoriaux. Ces données pourront également servir à des études globales (évaluation des résultats globaux par année et au fil du temps, ou évaluation globale de la méthode d'apprentissage par exemple, y compris dans des publications scientifiques). Dans ce dernier cas, les données seront rendues anonymes. Seuls vos enseignants pourront utiliser ces données de manière non anonymes dans le cadre de votre évaluation, et les détails de cette évaluation ne seront nommément accessibles que par vous-même.
-
 
 ## Introduction 
+
+Regardez la vidéo ci-dessous.
 
 ![](https://www.youtube.com/watch?v=XcBLEVknqvY)
 
@@ -48,21 +76,29 @@ Ce tutoriel vous propose une suite d'activités afin d'apprendre les rudiments d
 
 Vous pouvez tout d'abord employer R comme une calculatrice (ce qui est bien réducteur de la puissance de cet outil). Les opérations de base sont directement utilisable dans R. 
 
-| Opérations de bases | Symboles |
-|------------------|---------------|
-| additions | `+` |
-| soustractions | `-` |
-| divisions | `/` | 
-| multiplications | `*` | 
-| exponentiations | `^` |
+| Opération           | Symbole  | Exemple | Réponse de R  |
+|:--------------------|:--------:|:-------:|:-------------:|
+| Addition            |   `+`    | `3 + 2` | `[1] 5`       |
+| Soustraction        |   `-`    | `3 - 2` | `[1] 1`       |
+| Multiplication      |   `*`    | `3 * 2` | `[1] 6`       |
+| Division            |   `/`    | `3 / 2` | `[1] 1.5`     |
+| Puissance           |   `^`    | `3^2`   | `[1] 9`       |
 
-Voici un premier exemple simple:
+**A noter :**
+
+- Les espaces au sein des instructions sont facultatives, mais elles aèrent le code. C'est comme en français : sansespacesonlitnettementmoinsbien! Dans certain cas, il vaut mieux les omettre, comme pour `3^2` qui indique que cette opération est prioritaire sur les autres. `1 - 3^2` signifie `1 - (3^2)`, 3 est d'abord élevé au carré, et puis on soustrait cette valeur à un, et non `(1 - 3)^2`. De même, la multiplication et la division sont prioritaires sur l'addition et la soustraction.
+
+- R retourne une réponse précédée de `[1]`. Nous verrons plus loin qu'il retourne en réalité un vecteur, même si ce vecteur ne contient qu'un seul item. Le `[1]` indique la position dans le vecteur.
+
+Voici un premier exemple d'instruction R tel qu'il se présente dans les tutoriels (les instructions à rentrer dans R sont présentées dans des cadres gris) suivie de la réponse renvoyée par le logiciel (cadre blanc juste en dessous) :
 
 ```{r calculatrice, echo=TRUE}
-4 + 5
+3 + 2
 ```
 
-- Multipliez les nombres `15` et `23`
+A vous maintenant :
+
+- Multipliez les nombres `15` et `23` (un encadré **Code R** est une zone où vous pouvez vous-même entrer des instructions R et/ou les modifier. Les numéros à gauche sont les numéros de lignes. Ils ne font pas partie des instructions. Utilisez le bouton **Run Code** pour tester, et ensuite **Submit Answer** quand vous êtes satisfait de ce votre réponse)
 
 ```{r calcul1, exercise=TRUE}
 
@@ -100,7 +136,7 @@ exp(23 - 15)
 ## R, les assignations
 
 Effectuer des calculs, c'est bien... pouvoir sauvegarder et réutiliser les résultats, c'est encore mieux. L'action qui consiste à associer un résultat à un nom s'appelle une **assignation**.
-L'instruction correspondante dans R symbolise une flèche indiquant le sens de l'assignation (`<-`). Par exemple :
+L'instruction correspondante dans R symbolise une flèche indiquant le sens de l'assignation (`<-`, soit l'assemblage du signe plus petit que `<` et moins `-`). Par exemple :
 
 ```{r assignation, echo=TRUE}
 a <- 5
@@ -110,6 +146,18 @@ a + b # Somme de a et b
 ```
 
 Notez aussi que tout de qui suit un dièse (`#`) dans R est considéré comme un **commentaire**, et n'est pas interprété par le programme. Servez-vous en pour documenter vos instructions !
+
+**A retenir :**
+
+- Vous pouvez voir et gérer vos objets dans l'onglet **Environnement** de RStudio.
+    ![](images/environnement.png)
+- Les noms reconnus par R doivent commencer par une lettre ou le point `.`, et être suivis de lettres, chiffres, point ou trait souligné `_`. Exemple de noms corrects : `a`, `a1`, `vec`, `vec_max`, `.vec`, `A`. Exemple de noms incorrects : `1a`, `_a`, `vec max`, `vec-max`.
+- Evitez d'utiliser des caractères accentués dans les noms.
+- R fait la différence entre majuscules et minuscules : `x` est différent de `X`.
+- Un nom commençant par un point sera "caché" (non visible dans l'onglet **Environnement** de RStudio)
+- Utilisez des noms courts, mais représentatifs du contenu de l'objet. Si possible, séparez les mots par un trait souligné, et utilisez uniquement des lettres minuscules. On a coutume d'utiliser des noms anglais, car cela facilite l'échange de code avec des collègues internationaux (oui, ça vous arrivera... donc, prenez directement des bonnes habitudes). Exemples corrects : `x`, `v1`, `initial_date`, `final_date`, `elapsed_time`. Exemples incorrects : `toto`, `Toto2`, `FinalDate`, `fd` or `FD` or `fi_dat` (pour final date), `date_finale`, `laatse_datum`.
+
+A vous de jouer !
 
 - Assignez à `a` la valeur `18`.
 
@@ -150,11 +198,33 @@ v2 <- c(2, 5, NA, 11, 13, 16)
 v3 <- c("noir", "jaune", "rouge")
 ```
 
+**Astuce :**
+
+- Pour créer un vecteur d'une séquence continue de nombre, tel 2, 3, 4, 5, vous pouvez utiiser l'opérateur `:` en plaçant le nombre initial de la série devant et le nombre final derrière.
+
+```{r serie, echo=TRUE}
+# La série
+c(2, 3, 4, 5)
+# peut s'écrire plus facilement comme ceci
+2:5
+# Aussi dans l'autre sens !
+5:2
+```
+
+Vous constatez que R ne renvoie rien en cas d'assignation. C'est un comportement normal ! Si vous voulez voir le contenu d'un objet à tout moment, il suffit d'entrer son nom comme instruction. Exemple :
+
+```{r vecteur2, echo=TRUE}
+# Entrer le nom d'un objet pour que R vous montre ce qu'il contient
+v1
+```
+
+Maintenant que vous savez comment réaliser une assignation, à votre tour...
+
 - Assignez à `v4` les valeurs `15` , `19`, une valeur manquante (`NA`) et `13`.
 
 - Assignez à `v5` la multiplication de `v4` par `6`. 
 
-- Terminez par affichez les valeurs contenues dans `v5` en écrivant simplement le noms de la variable comme seule instruction dans une ligne.
+- Terminez par une instruction pour affichez les valeurs contenues dans `v5`.
 
 ```{r vec1, exercise=TRUE, exercise.lines=6}
 # Assignation des valeurs à v4
@@ -178,16 +248,50 @@ v5
 # Not yet...
 ```
 
-**Trois commentaires :**
+**Commentaires :**
 
-- Lors d'une assignation, le résultat du calcul n'est pas imprimé. Il peut être récupéré plus tard en indiquant juste le nom de l'objet assigné. On peut combiner les deux en plaçant l'assignation entre parenthèses : `(x <- 3 * 2)` assigne 3 à `x` **et** imprime aussi le résultat du calcul (`6`).
-
-- Les calculs et beaucoup de fonctions sont dites _vectorisées_ dans R. C'est-à-dire que les calculs se répartissent naturellement élément par élément lorsqu'un ou plusieurs vecteurs de longueur supérieure à un sont fournis. ainsi, `v4 * 6` affectue naturellement la multiplication par six à _chacun_ des quatres éléments de `v4`.
+- Les calculs et beaucoup de fonctions sont dits _vectorisés_ dans R. C'est-à-dire que les calculs se répartissent naturellement élément par élément lorsqu'un ou plusieurs vecteurs de longueur supérieure à un sont fournis. ainsi, `v4 * 6` effectue naturellement la multiplication par six à _chacun_ des quatre éléments de `v4`.
 
 - Un calcul effectué sur une ou plusieurs valeurs manquantes `NA` a lui-même pour résultat une valeur manquante `NA`.
 
+**Astuce :**
+
+- Il est possible de combiner une assignation et l'impression du contenu de l'objet en une seule ligne. Il suffit de mettre l'assignation entre parenthèses :
+```{r vecteur3, echo=TRUE}
+# Assigner et imprimer le contenu en use seule instruction
+(v4 <- c(15, 19, NA, 13))
+```
+
 
 ## R, les fonctions
+
+Les fonctions sont très importantes dans R. C'est elles qui effectuent tous vos calculs. Pour appeler une fonction, on utilise son nom suivi d'une parenthèse, et éventuellement un ou plusieurs arguments fournis à l'intérieur de la parenthèse et séparés par une virgule `fun_name(arg1, arg2, ...)`. Voici un exemple d'une fonction appelée sans argument :
+
+```{r fun1, echo=TRUE}
+Sys.Date()
+```
+
+Une autre fonction appelée avec un seul argument :
+
+```{r fun2, echo=TRUE}
+x <- 1:4
+sum(x)
+```
+
+Pour déterminer les arguments que comprend une fonction, on peut utiliser `args()` :
+
+```{r fun3, echo=TRUE}
+args(sum)
+args(mean)
+```
+
+Lorsque vous voyez `...`, cela signifie que la fonction accepte un nombre variable d'arguments à cet endroit. Sinon, les arguments portent des noms (`x` dans la fonction `mean()`, `na.rm` à l'intérieur de la fonction `sum()`). Dans la définition de fonction, un argument peut avoir une valeur par défaut. Par exemple dans `sum()`, `na.rm` prend la valeur `FALSE` par défaut. Lorsque c'est le cas, l'argument est facultatif dans l'appel (ne doit pas être indiqué si la valeur par défaut vous convient).
+
+Lors de l'appel d'une fonction, si le nom des arguments n'est pas précisé, R associe les arguments dans l'ordre dans lequel ils sont fournis. Si un nom est donné (`argument = valeur`) alors, la valeur est associée à l'argument qui porte ce nom, quel que soit l'endroit où il se trouve dans la définition de la fonction. On peut mélanger les deux formes, par exemple, `sum(1:4, na.rm = TRUE)`. Généralement on ne nomme pas le premier ou les deux premiers arguments, mais bien ceux qui suivent.
+
+**Piège :**
+
+- Il existe des fonctions dites **génériques** qui peuvent prendre différentes formes en fonction de la nature des arguments. `mean()` est une fonction générique. Dans ce cas-là, `args()`ne renvoie pas toujours la totalité des arguments utilisables. Par exemple, `mean()` accepte aussi l'argument `na.rm`. Nous le verrons plus loin.
 
 - Calculez la moyenne du vecteur `v4` en utilisant la fonction `mean()`.
 
@@ -209,7 +313,7 @@ mean(v4)
 # Not yet...
 ```
 
-Certaines fonctions servent à **résumer** un ensemble de données, c'est-à-dire qu'elles les représentent avec une seule ou un petit nombre de valeurs. Ainsi, quelle que soit la taille du vecteur, sa moyenne est toujours un nombre unique. Ici, nous avons obtenu `NA`. Nous savons pourquoi. Les valeurs manquantes sont **contaminantes** dans les calculs. Il en suffit d'une seule pour que l'ensemble du résultat soit `NA`. Naturellement dans ce cas, c'est dommage, car la moyenne pourrait être _estimée_ sur base des trois autres valeurs connues. la fonction `mean()` offre une solution à cela, ... mais nous vous laissons la découvrir par vous même en lisant **la page d'aide (technique) de la fonction**. Pour cela, utilisez l'instruction `?` suivi du nom de la fonction :
+Certaines fonctions servent à **résumer** un ensemble de données, c'est-à-dire qu'elles les représentent avec une seule ou un petit nombre de valeurs. Ainsi, quelle que soit la taille du vecteur `v4`, sa moyenne est toujours un nombre unique. Ici, nous avons obtenu `NA`. Nous savons pourquoi. Les valeurs manquantes sont **contaminantes** dans les calculs. Il en suffit d'une seule pour que l'ensemble du résultat soit `NA`. Naturellement dans ce cas, c'est dommage, car la moyenne pourrait être _estimée_ sur base des trois autres valeurs connues. L'argument `na.rm` permet de le faire... mais comment le savoir ? En lisant **la page d'aide de la fonction**. Pour cela, utilisez l'instruction `?` suivi du nom de la fonction. Dans RStudio, la page d'aide apparait dans l'onglet **Help** (copie d'écran ci-dessous).
 
 ```{r, eval=FALSE, echo=TRUE}
 ?mean
@@ -221,11 +325,15 @@ Certaines fonctions servent à **résumer** un ensemble de données, c'est-à-di
 
 </center>
 
-Les fonctions sont largement documentées. Dans la page d'aide, vous pourrez trouver des informations sur les **arguments** de la fonction. Les arguments d'une fonction sont des valeurs nommées `nom = valeur` rentrées à l'intérieur de la parenthèse qui suit le nom de la fonction. Les différents arguments sont par ailleurs séparés par des virgules à l'intérieur de la parenthèse. Ces arguments fournissent les données à traiter, mais peuvent aussi être des informations qui vont moduler le calcul à réaliser.
+Dans la section **Usage** de l'aide, on découvre la forme générique renvoyée par `args()` plus avant. La **méthode** par défaut est renseignée ensuite. C'est en fait la forme qui est réellement utilisée dans notre cas. Nous découvrons qu'elle accepte deux arguments supplémentaires: `trim` et `na.rm`.
 
-Un argument est intéressant ici : `na.rm = `. Cet argument détermine si les valeurs manquantes sont éliminées du vecteur avant calcul ou non ("**na** **r**e**m**ove"). Comme vous pouvez le voir dans la page d'aide, cet argument prend la valeur `FALSE` par défaut. Cela signifie que les valeurs manquantes ne sont **pas** éliminées par défaut. Mais il est possible d'indiquer `na.rm = TRUE` pour changer le calcul et obtenir quand même une estimation de moyenne en présence de valeurs manquantes (les constantes `TRUE` et `FALSE`, toujours en majuscules, sont les valeurs logiques dans R -objects `logical`- voulant dire "vrai" ou "faux"). 
+**Astuce :**
 
-- Calculez la moyenne du vecteur `v4` à nouveau, mais cette fois-ci, en ignorant la valeur manquante.
+- Dans RStudio, il est encore bien plus facile de placer le curseur sur le nom de la fonction dans le code et d'appuyer sur la touche `F1` pour faire apparaitre sa page d'aide.
+
+Plus loin dans la page d'aide, on peut lire que l'argument `na.rm = ` détermine si les valeurs manquantes sont éliminées du vecteur avant calcul ou non ("**na** **r**e**m**ove"). Comme vous pouvez le voir dans la page d'aide, cet argument prend la valeur `FALSE` par défaut. Cela signifie que les valeurs manquantes ne sont **pas** éliminées par défaut. Mais il est possible d'indiquer `na.rm = TRUE` pour changer le calcul et obtenir quand même une estimation de moyenne en présence de valeurs manquantes (les constantes `TRUE` et `FALSE`, toujours en majuscules, sont les valeurs logiques dans R -objects `logical`- voulant dire "vrai" ou "faux"). 
+
+- Calculez la moyenne du vecteur `v4` à nouveau, mais cette fois-ci, en ignorant la valeur manquante dans le calcul.
 
 ```{r vec3, exercise=TRUE, exercise.lines=4}
 # Assignation des valeurs à v4
@@ -247,7 +355,81 @@ mean(v4, na.rm = TRUE)
 
 Vous obtenez cette fois-ci la réponse souhaitée.
 
-> La prise en charge des valeurs manquantes de manière fine est une caractéristique importante de tout logiciel d'analyse de données digne de ce nom. Notez, par exemple, qu'Excel **n'est pas** capable de le faire de manière aussi fine que R (mais Excel **n'est pas** un logiciel d'analyse des données) !
+> La prise en charge des valeurs manquantes de manière fine est une caractéristique importante de tout logiciel d'analyse de données digne de ce nom. Notez, par exemple, qu'Excel **n'est pas** capable de le faire de manière aussi fine que R !
+
+
+## Imbrication et chaînage
+
+Vous pouvez utiliser un appel de fonction partout dans une instruction, à la même place que vous utiliseriez un nom ou une valeur. Par exemple :
+
+```{r, fun-astuces, echo=TRUE}
+x <- 2:5
+x_mean <- mean(x)
+x_sd <- sd(x) # sd() calcule l'écart type
+10 - x_mean / x_sd
+# Le même calcul avec appel de fonctions incluses
+10 - mean(x) / sd(x)
+```
+
+Plus fort, on peut **imbriquer** des fonctions dans des fonctions :
+
+```{r, fun-astuces2, echo=TRUE}
+x <- 2:5
+x_mean <- mean(x)
+log_x_mean <- log(x_mean)
+round(log_x_mean, digits = 3) # Arrondi à la 3ème décimale
+# Le même calcul en imbriquant les appels de fonctions
+round(log(mean(x)), digits = 3)
+```
+
+Mais dans ce dernier cas, la lecture devient plus difficile. On peut aussi **chaîner** des instructions avec l'opérateur `%>.%` dans la version `SciViews::R` qui charge des "packages" supplémentaires pour fournir des fonctions en plus de R de base :
+
+```{r, fun-astuces3, echo=TRUE}
+# Installer SciViews::R
+SciViews::R
+# Chaîner les calculs mean() -> log() -> round()
+x <- 2:5
+mean(x) %>.%
+  log(.) %>.%
+  round(., digits = 3)
+```
+
+- Le chaînage crée une instruction unique qui effectue un calcul plus complexe, décomposé étape par étape.
+- On indique un point `.` à la place où le résultat précédent doit être inséré dans la fonction.
+- Le chaînage est bien plus lisible que l'imbrication au delà de deux niveaux. En effet, si vous lisez l'instruction chaîne à voix haute en disant "ensuite" pour `%>.%` cela donne : "je prend la moyenne de `x` ensuite le logarithme, ensuite j'arrondi à trois chiffres derrière la virgule". C'est parfaitement clair, non ?
+
+Un petit exercice, maintenant :
+
+- Créez un vecteur `x` qui contient `13`, `19`, `NA` et `21`,
+
+- Calculez le logarithme de `x`,
+
+- **Ensuite** calculez en la moyenne, en écartant les valeurs manquantes,
+
+- **Ensuite** arrondissez le nombre obtenu à deux décimales
+
+```{r chain, exercise=TRUE, exercise.lines=8}
+SciViews::R
+# Assignation des valeurs à x
+x <- c()
+# Chaînez vos calculs de moyenne du log(x) arrondie à 2 décimales
+
+```
+
+```{r chain-solution}
+SciViews::R
+# Assignation des valeurs à x
+x <- c(13, 19, NA, 21)
+# Chaînez vos calculs de moyenne du log arroundie à 2 décimale
+log(x) %>.%
+  mean(., na.rm = TRUE) %>.%
+  round(., digits = 2)
+```
+
+```{r chain-check}
+# Not yet...
+```
+
 
 ## Conclusion
 
@@ -260,12 +442,13 @@ Durant cette séance, vous avez appris à :
 - Effectuer des calculs dans R
 - Créer des vecteurs et vectoriser vos calculs
 - Assigner les résultats à un nom 
-- Employer des fonctions, et accéder à leurs pages d'aide 
+- Employer des fonctions, préciser leurs arguments et accéder à leurs pages d'aide 
 - Manipuler les valeurs manquantes, et les calculs en leur présence
+- Imbriquer et chaîner des instructions
 
-Laissez nous vos impressions sur cet outil pédagogique. Rappelez-vous que pour placer un commentaire dans une zone de réponse, vous devez utilisez un dièse (`#`) devant vos phrases.
+Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
 
-```{r comm, exercise=TRUE, exercise.lines = 6}
+```{r comm, exercise=TRUE, exercise.lines = 8}
 # Ajout de commentaires 
 # ...
 ```
@@ -276,4 +459,4 @@ Laissez nous vos impressions sur cet outil pédagogique. Rappelez-vous que pour 
 
 **Pour aller plus loin...**
 
-- [Ce tutorial](https://tutorials.shinyapps.io/04-Programming-Basics/#section-lists) (en anglais), explique avec plus de détails les fonctions, les arguments et les vecteurs dans R.
+- [Ce tutoriel](https://tutorials.shinyapps.io/04-Programming-Basics/#section-lists) (en anglais), explique avec plus de détails les fonctions, les arguments et les vecteurs dans R.

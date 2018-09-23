@@ -1,7 +1,12 @@
-= BioDataScience To Do list
+# BioDataScience To Do list
 
-* Integrate learnr documents.
+- Integrate learnr documents.
 
-* Datasets for the course.
+- Datasets for the course.
 
-* Create an RStudio addin to run tutorial and monitor progression.
+- Create an RStudio addin to run tutorial and monitor progression (and check if
+  data is pending, and if so, propose to send it by email).
+
+- Explanation about how to use the tutorial interface.
+
+- Translate buttons (.js file).
