@@ -12,7 +12,7 @@
 
 
 <meta name="progressive" content="true" />
-<meta name="allow-skip" content="true" />
+<meta name="allow-skip" content="false" />
 
 <title>Module 2: Découverte de R</title>
 
@@ -45,9 +45,37 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div class="topics">
 
+<p><div class="row">
+<div class="col-sm-9">
+<div>
+<img src="images/BioDataScience-128.png" align="left"/>
+<h1>Science des données biologiques</h1>
+Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)
+</div>
+</div>
+<div class="col-sm-3">
+<div>
+<div class="form-group shiny-input-container">
+<label for="user">Utilisateur :</label>
+<input id="user" type="text" class="form-control" value=""/>
+</div>
+<div class="form-group shiny-input-container">
+<label for="email">Email :</label>
+<input id="email" type="text" class="form-control" value=""/>
+</div>
+</div>
+</div>
+</div><div id="user" class="shiny-text-output"></div><div id="email" class="shiny-text-output"></div></p>
+<div id="section-preambule" class="section level2">
+<h2>Préambule</h2>
+<p>Si vous n’avez jamais utilisé de tutoriel “learnr”, familiarisez-vous d’abord avec son interface <a href="http://biodatascience-course.sciviews.org/sdd-umons/learnr.html">ici</a>.</p>
 <div class="figure">
-<img src="images/intro.png" />
+<img src="images/attention.jpg" />
 
+</div>
+<blockquote>
+<p>Conformément au RGPD (<a href="https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr">Règlement Général sur la Protection des Données</a>), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. <strong>Les données seront enregistrées au nom de l’utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !</strong> En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.</p>
+</blockquote>
 </div>
 <div id="section-objectif" class="section level2">
 <h2>Objectif</h2>
@@ -56,239 +84,242 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <li>utilisation de programme R afin de résoudre une question sur l’obésité</li>
 </ul>
 <p><img src="images/Rlogo.png" width="50%" /></p>
-<p>Il est important de préciser que l’ensemble de vos résultats est collecté afin de suivre votre progression. Ce test n’est cependant pas certificatif.</p>
 </div>
 <div id="section-introduction" class="section level2">
 <h2>Introduction</h2>
 <p>R est un programme <strong>Open Source</strong> qui permet la manipulation, la visualisation et l’application de calculs statistiques sur des données.</p>
-<ul>
-<li>Manipuler</li>
-</ul>
+<div id="section-manipuler" class="section level3">
+<h3>Manipuler</h3>
 <p>En partant d’un tableau de données relatif à la biométrie humaine de 395 observations.</p>
 <table>
+<caption>Premières lignes du tableau de données portant sur la biométrie humaine.</caption>
 <thead>
 <tr class="header">
-<th align="center">genre</th>
-<th align="center">ddn</th>
-<th align="center">masse</th>
-<th align="center">taille</th>
-<th align="center">poignet</th>
+<th align="left">Genre</th>
+<th align="left">Date de naissance</th>
+<th align="right">Masse</th>
+<th align="right">Taille</th>
+<th align="right">Tour de poignet</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">H</td>
-<td align="center">1998-04-03</td>
-<td align="center">74</td>
-<td align="center">190</td>
-<td align="center">16.0</td>
+<td align="left">H</td>
+<td align="left">1998-04-03</td>
+<td align="right">74</td>
+<td align="right">190</td>
+<td align="right">16.0</td>
 </tr>
 <tr class="even">
-<td align="center">H</td>
-<td align="center">1967-04-04</td>
-<td align="center">83</td>
-<td align="center">185</td>
-<td align="center">17.5</td>
+<td align="left">H</td>
+<td align="left">1967-04-04</td>
+<td align="right">83</td>
+<td align="right">185</td>
+<td align="right">17.5</td>
 </tr>
 <tr class="odd">
-<td align="center">H</td>
-<td align="center">1994-02-10</td>
-<td align="center">60</td>
-<td align="center">175</td>
-<td align="center">15.0</td>
+<td align="left">H</td>
+<td align="left">1994-02-10</td>
+<td align="right">60</td>
+<td align="right">175</td>
+<td align="right">15.0</td>
 </tr>
 <tr class="even">
-<td align="center">F</td>
-<td align="center">1990-12-02</td>
-<td align="center">48</td>
-<td align="center">167</td>
-<td align="center">14.0</td>
+<td align="left">F</td>
+<td align="left">1990-12-02</td>
+<td align="right">48</td>
+<td align="right">167</td>
+<td align="right">14.0</td>
 </tr>
 <tr class="odd">
-<td align="center">F</td>
-<td align="center">1994-07-15</td>
-<td align="center">52</td>
-<td align="center">179</td>
-<td align="center">14.0</td>
+<td align="left">F</td>
+<td align="left">1994-07-15</td>
+<td align="right">52</td>
+<td align="right">179</td>
+<td align="right">14.0</td>
 </tr>
 <tr class="even">
-<td align="center">F</td>
-<td align="center">1971-03-03</td>
-<td align="center">72</td>
-<td align="center">167</td>
-<td align="center">15.5</td>
+<td align="left">F</td>
+<td align="left">1971-03-03</td>
+<td align="right">72</td>
+<td align="right">167</td>
+<td align="right">15.5</td>
 </tr>
 <tr class="odd">
-<td align="center">F</td>
-<td align="center">1997-06-24</td>
-<td align="center">74</td>
-<td align="center">180</td>
-<td align="center">16.0</td>
+<td align="left">F</td>
+<td align="left">1997-06-24</td>
+<td align="right">74</td>
+<td align="right">180</td>
+<td align="right">16.0</td>
 </tr>
 </tbody>
 </table>
 <p>On peut filtrer simplement les lignes d’un tableau de données afin de ne garder que les femmes dans le tableau de données.</p>
 <table>
+<caption>Premières lignes du tableau de données portant sur la biométrie humaine ne comportant que les femmes.</caption>
 <thead>
 <tr class="header">
-<th align="center">genre</th>
-<th align="center">ddn</th>
-<th align="center">masse</th>
-<th align="center">taille</th>
-<th align="center">poignet</th>
+<th align="left">Genre</th>
+<th align="left">Date de naissance</th>
+<th align="right">Masse</th>
+<th align="right">Taille</th>
+<th align="right">Tour de poignet</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">F</td>
-<td align="center">1990-12-02</td>
-<td align="center">48</td>
-<td align="center">167</td>
-<td align="center">14.0</td>
+<td align="left">F</td>
+<td align="left">1990-12-02</td>
+<td align="right">48</td>
+<td align="right">167</td>
+<td align="right">14.0</td>
 </tr>
 <tr class="even">
-<td align="center">F</td>
-<td align="center">1994-07-15</td>
-<td align="center">52</td>
-<td align="center">179</td>
-<td align="center">14.0</td>
+<td align="left">F</td>
+<td align="left">1994-07-15</td>
+<td align="right">52</td>
+<td align="right">179</td>
+<td align="right">14.0</td>
 </tr>
 <tr class="odd">
-<td align="center">F</td>
-<td align="center">1971-03-03</td>
-<td align="center">72</td>
-<td align="center">167</td>
-<td align="center">15.5</td>
+<td align="left">F</td>
+<td align="left">1971-03-03</td>
+<td align="right">72</td>
+<td align="right">167</td>
+<td align="right">15.5</td>
 </tr>
 <tr class="even">
-<td align="center">F</td>
-<td align="center">1997-06-24</td>
-<td align="center">74</td>
-<td align="center">180</td>
-<td align="center">16.0</td>
+<td align="left">F</td>
+<td align="left">1997-06-24</td>
+<td align="right">74</td>
+<td align="right">180</td>
+<td align="right">16.0</td>
 </tr>
 <tr class="odd">
-<td align="center">F</td>
-<td align="center">1966-11-26</td>
-<td align="center">61</td>
-<td align="center">154</td>
-<td align="center">15.4</td>
+<td align="left">F</td>
+<td align="left">1966-11-26</td>
+<td align="right">61</td>
+<td align="right">154</td>
+<td align="right">15.4</td>
 </tr>
 <tr class="even">
-<td align="center">F</td>
-<td align="center">1964-07-31</td>
-<td align="center">57</td>
-<td align="center">164</td>
-<td align="center">15.0</td>
+<td align="left">F</td>
+<td align="left">1964-07-31</td>
+<td align="right">57</td>
+<td align="right">164</td>
+<td align="right">15.0</td>
 </tr>
 </tbody>
 </table>
 <p>On peut sélectionner simplement les colonnes d’un tableau de données.</p>
 <table>
+<caption>Premières lignes du tableau de données portant sur la biométrie humaine supprimant les colonnes portant sur le tour de taille de poignet et la date de naissance.</caption>
 <thead>
 <tr class="header">
-<th align="center">genre</th>
-<th align="center">masse</th>
-<th align="center">taille</th>
+<th align="left">Genre</th>
+<th align="right">Masse</th>
+<th align="right">Taille</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">H</td>
-<td align="center">74</td>
-<td align="center">190</td>
+<td align="left">H</td>
+<td align="right">74</td>
+<td align="right">190</td>
 </tr>
 <tr class="even">
-<td align="center">H</td>
-<td align="center">83</td>
-<td align="center">185</td>
+<td align="left">H</td>
+<td align="right">83</td>
+<td align="right">185</td>
 </tr>
 <tr class="odd">
-<td align="center">H</td>
-<td align="center">60</td>
-<td align="center">175</td>
+<td align="left">H</td>
+<td align="right">60</td>
+<td align="right">175</td>
 </tr>
 <tr class="even">
-<td align="center">F</td>
-<td align="center">48</td>
-<td align="center">167</td>
+<td align="left">F</td>
+<td align="right">48</td>
+<td align="right">167</td>
 </tr>
 <tr class="odd">
-<td align="center">F</td>
-<td align="center">52</td>
-<td align="center">179</td>
+<td align="left">F</td>
+<td align="right">52</td>
+<td align="right">179</td>
 </tr>
 <tr class="even">
-<td align="center">F</td>
-<td align="center">72</td>
-<td align="center">167</td>
+<td align="left">F</td>
+<td align="right">72</td>
+<td align="right">167</td>
 </tr>
 </tbody>
 </table>
 <p>On peut filter les lignes et sélectionner les colonnes simplement d’un tableau de données.</p>
 <table>
+<caption>Premières lignes du tableau de données portant sur la biométrie humaine ne comportant que les femmes et en supprimant les colonnes portant sur le tour de taille de poignet et la date de naissance.</caption>
 <thead>
 <tr class="header">
-<th align="center">genre</th>
-<th align="center">masse</th>
-<th align="center">taille</th>
+<th align="left">Genre</th>
+<th align="right">Masse</th>
+<th align="right">Taille</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">F</td>
-<td align="center">48</td>
-<td align="center">167</td>
+<td align="left">F</td>
+<td align="right">48</td>
+<td align="right">167</td>
 </tr>
 <tr class="even">
-<td align="center">F</td>
-<td align="center">52</td>
-<td align="center">179</td>
+<td align="left">F</td>
+<td align="right">52</td>
+<td align="right">179</td>
 </tr>
 <tr class="odd">
-<td align="center">F</td>
-<td align="center">72</td>
-<td align="center">167</td>
+<td align="left">F</td>
+<td align="right">72</td>
+<td align="right">167</td>
 </tr>
 <tr class="even">
-<td align="center">F</td>
-<td align="center">74</td>
-<td align="center">180</td>
+<td align="left">F</td>
+<td align="right">74</td>
+<td align="right">180</td>
 </tr>
 <tr class="odd">
-<td align="center">F</td>
-<td align="center">61</td>
-<td align="center">154</td>
+<td align="left">F</td>
+<td align="right">61</td>
+<td align="right">154</td>
 </tr>
 <tr class="even">
-<td align="center">F</td>
-<td align="center">57</td>
-<td align="center">164</td>
+<td align="left">F</td>
+<td align="right">57</td>
+<td align="right">164</td>
 </tr>
 </tbody>
 </table>
-<ul>
-<li>Visualiser</li>
-</ul>
+</div>
+<div id="section-visualiser" class="section level3">
+<h3>Visualiser</h3>
 <div class="figure">
-<img src="decouverte_files/figure-html/unnamed-chunk-7-1.png" alt="Variation de la taille [mm] de 4 groupes d'organismes zooplanctoniques. A l'exception du phylum des Annelida, les Calanoida, Cyclopoida et Decapoda sont des ordres dans la classification moderne." width="624" />
+<img src="decouverte_files/figure-html/unnamed-chunk-9-1.png" alt="Variation de la taille [mm] de 4 groupes d'organismes zooplanctoniques. A l'exception du phylum des Annelida, les Calanoida, Cyclopoida et Decapoda sont des ordres dans la classification moderne." width="624" />
 <p class="caption">
 Variation de la taille [mm] de 4 groupes d’organismes zooplanctoniques. A l’exception du phylum des Annelida, les Calanoida, Cyclopoida et Decapoda sont des ordres dans la classification moderne.
 </p>
 </div>
 <div class="figure">
-<img src="decouverte_files/figure-html/unnamed-chunk-8-1.png" alt="Variation de la température (A) et de l'intensité lumineuse (B) dans la baie de Calvi(Corse,France) la température" width="624" />
+<img src="decouverte_files/figure-html/unnamed-chunk-10-1.png" alt="Variation de la température (A) et de l'intensité lumineuse (B) dans la baie de Calvi(Corse,France) la température" width="624" />
 <p class="caption">
 Variation de la température (A) et de l’intensité lumineuse (B) dans la baie de Calvi(Corse,France) la température
 </p>
 </div>
 <div class="figure">
-<img src="decouverte_files/figure-html/unnamed-chunk-9-1.png" alt="Croissance de la coquille d' *Achatina achatina* exprimée en radian par rapport au nombre de spire modélisé par une régression linaire durant pour la protochonque et une regression polynomiale pour la téléochonque." width="624" />
+<img src="decouverte_files/figure-html/unnamed-chunk-11-1.png" alt="Croissance de la coquille d' *Achatina achatina* exprimée en radian par rapport au nombre de spire modélisé par une régression linaire durant pour la protochonque et une regression polynomiale pour la téléochonque." width="624" />
 <p class="caption">
 Croissance de la coquille d’ <em>Achatina achatina</em> exprimée en radian par rapport au nombre de spire modélisé par une régression linaire durant pour la protochonque et une regression polynomiale pour la téléochonque.
 </p>
 </div>
 <p><strong>Ceci n’est qu’un bref aperçu de possibilité que propose R, vous en découvrirez une partie lors des cours de la science de données.</strong></p>
+</div>
 </div>
 <div id="section-lobesite" class="section level2">
 <h2>L’obésité</h2>
@@ -372,7 +403,7 @@ Croissance de la coquille d’ <em>Achatina achatina</em> exprimée en radian pa
 </table>
 <p>On va traduire la formule mathématique en une suite d’instructions.</p>
 <pre class="r"><code>50 / 1.70^2</code></pre>
-<pre><code>## [1] 17.30104</code></pre>
+<pre><code>[1] 17.30104</code></pre>
 <p>Son IMC indique que cette femme est dans la catégorie <code>sous-poids</code> selon l’échelle de l’OMS</p>
 <p>Réalisez la même opération mathématique sur notre deuxième individu :</p>
 <ul>
@@ -382,11 +413,14 @@ Croissance de la coquille d’ <em>Achatina achatina</em> exprimée en radian pa
 <li>taille : 1.91 m</li>
 </ul>
 <p>L’espace ci-dessous est une zone de code R. Tu peux y ajouter tes réponses et cliquer sur <code>Run Code</code>.</p>
-<div class="tutorial-exercise" data-label="id2_imc" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<div class="tutorial-exercise" data-label="id2_imc" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
-<div class="tutorial-exercise-support" data-label="id2_imc-hint" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="id2_imc-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>93 / 1.91^2</code></pre>
+</div>
+<div class="tutorial-exercise-support" data-label="id2_imc-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Not yet...</code></pre>
 </div>
 <p>Son IMC indique que cet homme est par contre dans la catégorie <code>surpoids</code> selon l’échelle de l’OMS.</p>
 </div>
@@ -406,7 +440,7 @@ w1 &lt;- c(63, 49, 75, 66, 54)
 h1 &lt;- c(1.74, 1.55, 1.69, 1.79, 1.68)
 # formule de IMC
 w1 / h1^2</code></pre>
-<pre><code>## [1] 20.80856 20.39542 26.25958 20.59861 19.13265</code></pre>
+<pre><code>[1] 20.80856 20.39542 26.25958 20.59861 19.13265</code></pre>
 <p>Réalisez les mêmes opérations sur les individus de 8 à 12</p>
 <ul>
 <li>identifiant: 8, 9, 10, 11, 12</li>
@@ -414,22 +448,25 @@ w1 / h1^2</code></pre>
 <li>masse : 82, 73, 105, 61, 95 kg</li>
 <li>taille : 1.74, 1.86, 2.03, 1.72, 1.90 m</li>
 </ul>
-<div class="tutorial-exercise" data-label="vec_imc" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise" data-label="vec_imc" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># assignation des valeurs de masse dans un vecteur au symbole masse 
 w2 &lt;- c( )
 # assignation des valeurs dans un vecteur au symbole taille
 h2 &lt;- 
 # formule de IMC</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <p>Vous obtenez les 5 valeurs d’IMC d’une seule fois avec l’utilisation de vecteurs.</p>
-<div class="tutorial-exercise-support" data-label="vec_imc-hint" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="vec_imc-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># assignation des valeurs de masse dans un vecteur au symbole masse 
 w2 &lt;- c(82, 73, 105, 61, 95)
 # assignation des valeurs dans un vecteur au symbole taille
 h2 &lt;- c(1.74, 1.86, 2.03, 1.72, 1.90)
 # formule de IMC
 w2/h2^2</code></pre>
+</div>
+<div class="tutorial-exercise-support" data-label="vec_imc-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Not yet...</code></pre>
 </div>
 </div>
 <div id="section-ecriture-dun-tableau-de-donnees" class="section level2">
@@ -456,22 +493,22 @@ head(woman1) # head() permet d&#39;afficher les premiers résultats d&#39;un tab
 <li>masse : 82, 73, 105, 61, 95 kg</li>
 <li>taille : 1.74, 1.86, 2.03, 1.72, 1.90 m</li>
 </ul>
-<div class="tutorial-exercise-support" data-label="prepare" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="prepare" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># assignation des valeurs de masse dans un vecteur au symbole masse 
 w2 &lt;- c(82, 73, 105, 61, 95)
 # assignation des valeurs dans un vecteur au symbole taille
 h2 &lt;- c(1.74, 1.86, 2.03, 1.72, 1.90)</code></pre>
 </div>
-<div class="tutorial-exercise" data-label="data_homme" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise" data-label="data_man" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># formation du jeu de données
 man1 &lt;- data_frame(id = ,
                    sex = ,
                    weight = ,
                    height = )
 # afficher le tableau de données avec la fonction head()</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"prepare","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
-<div class="tutorial-exercise-support" data-label="data_homme-hint" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="data_man-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># formation du jeu de données
 man1 &lt;- data_frame(id = c(8, 9, 10, 11, 12),
                     sex = c(&quot;h&quot;, &quot;h&quot;, &quot;h&quot;, &quot;h&quot;, &quot;h&quot;), 
@@ -491,23 +528,26 @@ head(woman1)</code></pre>
   </script>
 </div>
 <p>Vous pouvez observer que vous obtenez une nouvelle colonne au sein de votre tableau de données. Réalisez les mêmes opérations sur le jeu de données <code>man1</code>.</p>
-<div class="tutorial-exercise-support" data-label="prepare1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="prepare1" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>man1 &lt;- data_frame(id = c(8, 9, 10, 11, 12),
                     sex = c(&quot;h&quot;, &quot;h&quot;, &quot;h&quot;, &quot;h&quot;, &quot;h&quot;), 
                     weight = c(82, 73, 105, 61, 95), 
                     height = c(1.74, 1.86, 2.03, 1.72, 1.90)) </code></pre>
 </div>
-<div class="tutorial-exercise" data-label="imc_mutate" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise" data-label="imc_mutate" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># calculer l&#39;IMC
 man1 &lt;- mutate(man1, bmi = )
 # afficher le tableau de données avec la fonction head()</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"prepare1","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare1","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
-<div class="tutorial-exercise-support" data-label="imc_mutate-hint" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="imc_mutate-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># calculer l&#39;IMC
 man1 &lt;- mutate(man1, bmi = weight/height^2)
 # afficher le tableau de données avec la fonction head()
 head(man1)</code></pre>
+</div>
+<div class="tutorial-exercise-support" data-label="imc_mutate-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Not yet...</code></pre>
 </div>
 <p>Vous pouvez observer que tout comme le tableau de données portant sur les femmes, vous obtenez une nouvelle colonne au sein de votre tableau de données portant le nom de BMI soit l’IMC en français.</p>
 </div>
@@ -533,17 +573,20 @@ head(bio_ex, n = 5)</code></pre>
   </script>
 </div>
 <p>Calculez l’IMC sur le jeu de données <code>bio</code>.</p>
-<div class="tutorial-exercise" data-label="bio_imc" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise" data-label="bio_imc" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># calculer le IMC (BMI en anglais)
 
 # afficher les premières lignes du tableau de données avec la fonction head()</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
-<div class="tutorial-exercise-support" data-label="bio_imc-hint" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="bio_imc-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># calculer le IMC (BMI en anglais)
 bio &lt;- mutate(bio, bmi = weight/(height/100)^2)
 # afficher les premières lignes du tableau de données
 head(bio, n = 5)</code></pre>
+</div>
+<div class="tutorial-exercise-support" data-label="bio_imc-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Not yet...</code></pre>
 </div>
 </div>
 <div id="section-signification-de-limc-selon-lechelle" class="section level2">
@@ -634,13 +677,13 @@ head(bio_ex)</code></pre>
   </script>
 </div>
 <p>Ajoutez une nouvelle variable au jeu de données <code>bio</code> en complétant les informations manquantes.</p>
-<div class="tutorial-exercise-support" data-label="prepare2" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="prepare2" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>bio &lt;- read(&quot;biometrie&quot;, package = &quot;BioDataScience&quot;)
 bio &lt;- bio[ , c(&quot;genre&quot;, &quot;masse&quot;, &quot;taille&quot;)]
 bio &lt;- rename(bio, sex = genre, weight = masse, height = taille)
 bio$bmi &lt;- bio$weight/(bio$height/100)^2</code></pre>
 </div>
-<div class="tutorial-exercise" data-label="case_when" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise" data-label="case_when" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>#ajouter la nouvelles variable
    &lt;- mutate(   , bmi_signif = 
                    case_when(
@@ -650,9 +693,9 @@ bio$bmi &lt;- bio$weight/(bio$height/100)^2</code></pre>
                      bmi  ~ &quot;obese&quot;))
 # afficher le tableau 
 head()</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"prepare2","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare2","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
-<div class="tutorial-exercise-support" data-label="case_when-hint" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="case_when-hint" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>#ajouter la nouvelles variable
 bio &lt;- mutate(bio, bmi_signif = 
                    case_when(
@@ -663,10 +706,24 @@ bio &lt;- mutate(bio, bmi_signif =
 # afficher le tableau 
 head()</code></pre>
 </div>
+<div class="tutorial-exercise-support" data-label="case_when-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>#ajouter la nouvelles variable
+bio &lt;- mutate(bio, bmi_signif = 
+                   case_when(
+                     bmi &lt; 18.5 ~ &quot;underweight&quot;,
+                     bmi &gt; 18.5 &amp; bmi &lt; 25 ~ &quot;normal weight&quot;,
+                     bmi &gt;= 25 &amp; bmi &lt; 30 ~ &quot;overweight&quot;,
+                     bmi &gt;= 30 ~ &quot;obese&quot;))
+# afficher le tableau 
+head()</code></pre>
+</div>
+<div class="tutorial-exercise-support" data-label="case_when-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Not yet...</code></pre>
+</div>
 <p>Votre nouvelle variable comprend une succession de lignes complétée par des chaines de caractères. Organisez cette variable de votre tableau de données avec la fonction <code>factor()</code>. Observez la nouvelle structuration de la suite d’instructions. Vous observez pour la première fois l’opérateur <code>$</code>. Dans l’exemple ci-dessous, vous pouvez l’interpréter comme dans le tableau de données <code>bio_ex</code>, je m’intéresse à la colonne/variable <code>bmi_signif</code>. La fonction <code>factor()</code> s’appliqe donc sur cette colonne. Avec l’argument <code>levels</code>, vous spécifiez les différents niveaux de votre variable à classer.</p>
 <p>Classer votre nouvelle variable avec le jeu de données <code>bio_ex</code>.</p>
 <p>Classer votre nouvelle variable avec le jeu de données <code>bio</code>.</p>
-<div class="tutorial-exercise-support" data-label="prepare3" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="prepare3" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>bio &lt;- read(&quot;biometrie&quot;, package = &quot;BioDataScience&quot;)
 bio &lt;- bio[ , c(&quot;genre&quot;, &quot;masse&quot;, &quot;taille&quot;)]
 bio &lt;- rename(bio, sex = genre, weight = masse, height = taille)
@@ -679,33 +736,36 @@ bio &lt;- mutate(bio, bmi_signif =
                      bmi &gt;= 25 &amp; bmi &lt; 30 ~ &quot;overweight&quot;,
                      bmi &gt;= 30 ~ &quot;obese&quot;))</code></pre>
 </div>
-<div class="tutorial-exercise" data-label="factor" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise" data-label="factor" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>bio$   &lt;- factor(bio_ex$bmi_signif, levels = )</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"prepare3","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare3","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
-<div class="tutorial-exercise-support" data-label="factor-hint" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="factor-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>bio$bmi_signif &lt;- factor(bio_ex$bmi_signif, levels = c(&quot;underweight&quot;, &quot;normal weight&quot;, &quot;overweight&quot;, &quot;obese&quot;))</code></pre>
+</div>
+<div class="tutorial-exercise-support" data-label="factor-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Not yet...</code></pre>
 </div>
 </div>
 <div id="section-verification-de-laffirmation-du-journal-le-monde" class="section level2">
 <h2>Vérification de l’affirmation du journal le monde</h2>
 <p>La fonction <code>summary()</code> permet d’obtenir un résumé complet d’un tableau de données.</p>
-<pre><code>##  sex        weight           height           bmi       
-##  H:52   Min.   : 43.00   Min.   :149.0   Min.   :16.23  
-##  F:48   1st Qu.: 57.95   1st Qu.:162.0   1st Qu.:20.49  
-##         Median : 69.15   Median :170.0   Median :24.02  
-##         Mean   : 70.59   Mean   :170.2   Mean   :24.31  
-##         3rd Qu.: 82.00   3rd Qu.:178.2   3rd Qu.:26.68  
-##         Max.   :122.00   Max.   :192.0   Max.   :41.24  
-##          bmi_signif
-##  underweight  : 7  
-##  normal weight:50  
-##  overweight   :31  
-##  obese        :12  
-##                    
-## </code></pre>
-<pre><code>## [1] 0.12</code></pre>
-<div class="tutorial-exercise-support" data-label="prepare4" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre><code> sex        weight           height           bmi       
+ H:52   Min.   : 43.00   Min.   :149.0   Min.   :16.23  
+ F:48   1st Qu.: 57.95   1st Qu.:162.0   1st Qu.:20.49  
+        Median : 69.15   Median :170.0   Median :24.02  
+        Mean   : 70.59   Mean   :170.2   Mean   :24.31  
+        3rd Qu.: 82.00   3rd Qu.:178.2   3rd Qu.:26.68  
+        Max.   :122.00   Max.   :192.0   Max.   :41.24  
+         bmi_signif
+ underweight  : 7  
+ normal weight:50  
+ overweight   :31  
+ obese        :12  
+                   
+                   </code></pre>
+<pre><code>[1] 0.12</code></pre>
+<div class="tutorial-exercise-support" data-label="prepare4" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>bio &lt;- read(&quot;biometrie&quot;, package = &quot;BioDataScience&quot;)
 bio &lt;- bio[ , c(&quot;genre&quot;, &quot;masse&quot;, &quot;taille&quot;)]
 bio &lt;- rename(bio, sex = genre, weight = masse, height = taille)
@@ -720,39 +780,70 @@ bio &lt;- mutate(bio, bmi_signif =
 bio$bmi_signif &lt;- factor(bio$bmi_signif, levels = c(&quot;underweight&quot;, &quot;normal weight&quot;, &quot;overweight&quot;, &quot;obese&quot;))</code></pre>
 </div>
 <p>Utilisez la fonction <code>summary()</code> pour obtenir une description du tableau de données.</p>
-<div class="tutorial-exercise" data-label="obese" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise" data-label="obese" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># résumé des données
 summary()</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"prepare4","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare4","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
-<div class="tutorial-exercise" data-label="obese1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<div class="tutorial-exercise-support" data-label="obese-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Not yet...</code></pre>
+</div>
+<div class="tutorial-exercise" data-label="obese1" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># calculer le pourcentage d&#39;obèse dans notre tableau de données
  / 395</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="obese1-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Not yet...</code></pre>
 </div>
 </div>
 <div id="section-conclusion" class="section level2">
 <h2>Conclusion</h2>
 <p>Le nombre d’obèse sur notre jeu de données est 12.6% ce qui est très proche des 13% annoncé par le monde.</p>
-<p>Vous venez de finir votre premier tutoriel interractif. Ce dernier vous a proposé une première découverte des inombrables possibilités de R.</p>
-<p>Laissez nous vos impressions sur cet outil pédagogique. Afin de placer un commentaire dans une zone de réponse utilisez la dièse (<code>#</code>) devant vos phrases.</p>
-<div class="tutorial-exercise" data-label="comm" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># ajout de commentaires 
-# </code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+<p>Bravo! Vous venez de terminez cette séance d’exercices dans un tutoriel “learnr”.</p>
+<p>Durant cette séance, vous avez appris à :</p>
+<ul>
+<li>Effectuer des calculs dans R</li>
+<li>Créer des vecteurs et vectoriser vos calculs</li>
+<li>Assigner les résultats à un nom</li>
+<li>Employer des fonctions, préciser leurs arguments et accéder à leurs pages d’aide</li>
+</ul>
+<p>Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (<code>#</code>) devant vos phrases.</p>
+<div class="tutorial-exercise" data-label="comm" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
+<pre class="text"><code># Ajout de commentaires 
+# ...</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="comm-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Not yet...</code></pre>
 </div>
 
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
-knitr::opts_chunk$set(echo = FALSE)
 library(knitr)
 SciViews::R()
+
+options(tutorial.event_recorder = BioDataScience::record_sdd)
+tutorial_options(exercise.checker = BioDataScience::checker_sdd)
+tutorial_options(exercise.timelimit = 60)
+tutorial_options(exercise.cap = "Code R")
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
+
+library(knitr)
 library(BioDataScience)
-library(skimr)
+
+
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::register_http_handlers(session, metadata = list(version = 0.12))
+learnr:::register_http_handlers(session, metadata = list(id = "sdd1.02b", version = "0.0.1"))
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+output$user <- renderText({BioDataScience::user_name(input$user);""})
+output$email <- renderText({BioDataScience::user_email(input$email);""})
+updateTextInput(session, "user", value = BioDataScience::user_name())
+updateTextInput(session, "email", value = BioDataScience::user_email())
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
@@ -770,9 +861,9 @@ output$`tutorial-exercise-vec_imc-output` <- renderUI({
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-`tutorial-exercise-data_homme-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-data_homme-code-editor`)), session)
-output$`tutorial-exercise-data_homme-output` <- renderUI({
-  `tutorial-exercise-data_homme-result`()
+`tutorial-exercise-data_man-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-data_man-code-editor`)), session)
+output$`tutorial-exercise-data_man-output` <- renderUI({
+  `tutorial-exercise-data_man-result`()
 })
 </script>
  

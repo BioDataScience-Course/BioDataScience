@@ -5,23 +5,62 @@ author : "Guyliann Engels & Philippe Grosjean"
 output:
   learnr::tutorial:
     progressive: true
-    allow_skip: true
     fig_caption: yes
 tutorial:
-  version: 0.12
+  id: "sdd1.02b"
+  version: 0.0.1
 runtime: shiny_prerendered
 ---
 
-![](images/intro.png)
-
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = FALSE)
 library(knitr)
 SciViews::R()
+
+options(tutorial.event_recorder = BioDataScience::record_sdd)
+tutorial_options(exercise.checker = BioDataScience::checker_sdd)
+tutorial_options(exercise.timelimit = 60)
+tutorial_options(exercise.cap = "Code R")
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
+
+library(knitr)
 library(BioDataScience)
-library(skimr)
+
+
 ```
+
+```{r, echo=FALSE}
+fixedRow(
+  column(9, div(
+    img(src = 'images/BioDataScience-128.png', align = "left"),
+    h1("Science des données biologiques"),
+    "Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)"
+  )),
+  column(3, div(
+    textInput("user", "Utilisateur :", ""),
+    textInput("email", "Email :", "")
+  ))
+)
+textOutput("user") # This is newer shown, but required to trigger an event!
+textOutput("email") # Idem!
+```
+
+```{r, context="server"}
+output$user <- renderText({BioDataScience::user_name(input$user);""})
+output$email <- renderText({BioDataScience::user_email(input$email);""})
+updateTextInput(session, "user", value = BioDataScience::user_name())
+updateTextInput(session, "email", value = BioDataScience::user_email())
+```
+
+
+## Préambule
+
+Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord avec son interface [ici](http://biodatascience-course.sciviews.org/sdd-umons/learnr.html).
+
+![](images/attention.jpg)
+
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
+
 
 
 ## Objectif
@@ -34,13 +73,12 @@ Ce tutoriel a pour objectif de vous permettre de :
 include_graphics(path = "images/Rlogo.png")
 ```
 
-Il est important de préciser que l'ensemble de vos résultats est collecté afin de suivre votre progression. Ce test n'est cependant pas certificatif.
 
 ## Introduction
 
 R est un programme **Open Source** qui permet la manipulation, la visualisation et l'application de calculs statistiques sur des données. 
 
-- Manipuler
+### Manipuler
 
 En partant d'un tableau de données relatif à la biométrie humaine de 395 observations.
 
@@ -81,7 +119,7 @@ bio%>.%
 c
 ```
 
-- Visualiser
+### Visualiser
 
 ```{r, echo = FALSE, message= FALSE, warning= FALSE}
 lux <- read("../../../data-raw/Lux_hobo.csv")
@@ -202,8 +240,13 @@ L'espace ci-dessous est une zone de code R. Tu peux y ajouter tes réponses et c
 
 ```
 
-```{r id2_imc-hint}
+```{r id2_imc-solution}
 93 / 1.91^2
+```
+
+
+```{r id2_imc-check}
+# Not yet...
 ```
 
 Son IMC indique que cet homme est par contre dans la catégorie `surpoids` selon l'échelle de l'OMS.
@@ -246,13 +289,17 @@ h2 <-
 
 Vous obtenez les 5 valeurs d'IMC d'une seule fois avec l'utilisation de vecteurs.
 
-```{r vec_imc-hint}
+```{r vec_imc-solution}
 # assignation des valeurs de masse dans un vecteur au symbole masse 
 w2 <- c(82, 73, 105, 61, 95)
 # assignation des valeurs dans un vecteur au symbole taille
 h2 <- c(1.74, 1.86, 2.03, 1.72, 1.90)
 # formule de IMC
 w2/h2^2
+```
+
+```{r vec_imc-check}
+# Not yet...
 ```
 
 ## Ecriture d'un tableau de données 
@@ -287,7 +334,7 @@ w2 <- c(82, 73, 105, 61, 95)
 h2 <- c(1.74, 1.86, 2.03, 1.72, 1.90)
 ```
 
-```{r data_homme, exercise = TRUE, exercise.setup = "prepare"}
+```{r data_man, exercise = TRUE, exercise.setup = "prepare"}
 # formation du jeu de données
 man1 <- data_frame(id = ,
                    sex = ,
@@ -297,7 +344,7 @@ man1 <- data_frame(id = ,
 
 ```
 
-```{r data_homme-hint}
+```{r data_man-solution}
 # formation du jeu de données
 man1 <- data_frame(id = c(8, 9, 10, 11, 12),
                     sex = c("h", "h", "h", "h", "h"), 
@@ -306,6 +353,13 @@ man1 <- data_frame(id = c(8, 9, 10, 11, 12),
 # afficher le jeu de données
 man1
 ```
+
+
+```{r vec_man-check}
+# Not yet...
+```
+
+
 
 Calculez de nouveau l'IMC et ajoutez vos résultats dans le tableau de données. Vous avez à votre disposition la fonction `mutate()` qui requiert comme argument le jeu de données et le nom de la nouvelle variable suivi de la formule mathématique.
 
@@ -333,12 +387,18 @@ man1 <- mutate(man1, bmi = )
 
 ```
 
-```{r imc_mutate-hint}
+```{r imc_mutate-solution}
 # calculer l'IMC
 man1 <- mutate(man1, bmi = weight/height^2)
 # afficher le tableau de données avec la fonction head()
 head(man1)
 ```
+
+
+```{r imc_mutate-check}
+# Not yet...
+```
+
 
 Vous pouvez observer que tout comme le tableau de données portant sur les femmes, vous obtenez une nouvelle colonne au sein de votre tableau de données portant le nom de BMI soit l'IMC en français.
 
@@ -382,11 +442,15 @@ Calculez l'IMC sur le jeu de données `bio`.
 ```
 
 
-```{r bio_imc-hint}
+```{r bio_imc-solution}
 # calculer le IMC (BMI en anglais)
 bio <- mutate(bio, bmi = weight/(height/100)^2)
 # afficher les premières lignes du tableau de données
 head(bio, n = 5)
+```
+
+```{r bio_imc-check}
+# Not yet...
 ```
 
 ## Signification de l'IMC selon l'échelle 
@@ -462,6 +526,24 @@ bio <- mutate(bio, bmi_signif =
 head()
 ```
 
+```{r case_when-solution}
+#ajouter la nouvelles variable
+bio <- mutate(bio, bmi_signif = 
+                   case_when(
+                     bmi < 18.5 ~ "underweight",
+                     bmi > 18.5 & bmi < 25 ~ "normal weight",
+                     bmi >= 25 & bmi < 30 ~ "overweight",
+                     bmi >= 30 ~ "obese"))
+# afficher le tableau 
+head()
+```
+
+
+```{r case_when-check}
+# Not yet...
+```
+
+
 Votre nouvelle variable comprend une succession de lignes complétée par des chaines de caractères. Organisez cette variable de votre tableau de données avec la fonction `factor()`. Observez la nouvelle structuration de la suite d'instructions. Vous observez pour la première fois l'opérateur `$`. Dans l'exemple ci-dessous, vous pouvez l'interpréter comme dans le tableau de données `bio_ex`, je m'intéresse à la colonne/variable `bmi_signif`. La fonction `factor()` s'appliqe donc sur cette colonne. Avec l'argument `levels`, vous spécifiez les différents niveaux de votre variable à classer. 
 
 Classer votre nouvelle variable avec le jeu de données `bio_ex`.
@@ -491,8 +573,12 @@ bio <- mutate(bio, bmi_signif =
 bio$   <- factor(bio_ex$bmi_signif, levels = )
 ```
 
-```{r factor-hint}
+```{r factor-solution}
 bio$bmi_signif <- factor(bio_ex$bmi_signif, levels = c("underweight", "normal weight", "overweight", "obese"))
+```
+
+```{r factor-check}
+# Not yet...
 ```
 
 ## Vérification de l'affirmation du journal le monde
@@ -528,21 +614,41 @@ Utilisez la fonction `summary()` pour obtenir une description du tableau de donn
 summary()
 ```
 
+
+```{r obese-check}
+# Not yet...
+```
+
+
 ```{r obese1, exercise = TRUE}
 # calculer le pourcentage d'obèse dans notre tableau de données
  / 395
+```
+
+```{r obese1-check}
+# Not yet...
 ```
 
 ## Conclusion 
 
 Le nombre d'obèse sur notre jeu de données est 12.6% ce qui est très proche des 13% annoncé par le monde. 
 
-Vous venez de finir votre premier tutoriel interractif. Ce dernier vous a proposé une première découverte des inombrables possibilités de R. 
+Bravo! Vous venez de terminez cette séance d'exercices dans un  tutoriel "learnr". 
 
-Laissez nous vos impressions sur cet outil pédagogique. Afin de placer un commentaire dans une zone de réponse utilisez la dièse (`#`) devant vos phrases.
+Durant cette séance, vous avez appris à : 
 
-```{r comm, exercise = TRUE}
-# ajout de commentaires 
-# 
+- Effectuer des calculs dans R
+- Créer des vecteurs et vectoriser vos calculs
+- Assigner les résultats à un nom 
+- Employer des fonctions, préciser leurs arguments et accéder à leurs pages d'aide 
+
+Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
+
+```{r comm, exercise=TRUE, exercise.lines = 8}
+# Ajout de commentaires 
+# ...
 ```
 
+```{r comm-check}
+# Not yet...
+```
