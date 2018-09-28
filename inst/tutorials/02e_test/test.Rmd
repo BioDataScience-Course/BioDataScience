@@ -1,29 +1,70 @@
 ---
 title: "Module 2 : vérification des compétences"
-tutorial:
-  version: 0.11
+author: "Guyliann Engels & Philippe Grosjean"
 output:
   learnr::tutorial:
     progressive: true
-    allow_skip: true
+    fig_caption: yes
+tutorial:
+  id: "sdd1.02e"
+  version: 0.0.1
 runtime: shiny_prerendered
 ---
 
-![remplacer cette image par une sorte de banière reprennant les logo EcoNum, Umons, BioDataScience](images/EcoNum-logo_large.png)
-
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = FALSE)
-library(BioDataScience)
+library(knitr)
 SciViews::R()
-library(chart)
-data("biometrie")
+
+options(tutorial.event_recorder = BioDataScience::record_sdd)
+tutorial_options(exercise.checker = BioDataScience::checker_sdd)
+tutorial_options(exercise.timelimit = 60)
+tutorial_options(exercise.cap = "Code R")
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
+
+library(knitr)
+library(BioDataScience)
+
+# Dataset
+urchin <- read(file = "urchin_bio", package = "data.io", lang = "fr")
 ```
+
+```{r, echo=FALSE}
+fixedRow(
+  column(9, div(
+    img(src = 'images/BioDataScience-128.png', align = "left"),
+    h1("Science des données biologiques"),
+    "Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)"
+  )),
+  column(3, div(
+    textInput("user", "Utilisateur :", ""),
+    textInput("email", "Email :", "")
+  ))
+)
+textOutput("user") # This is newer shown, but required to trigger an event!
+textOutput("email") # Idem!
+```
+
+```{r, context="server"}
+output$user <- renderText({BioDataScience::user_name(input$user);""})
+output$email <- renderText({BioDataScience::user_email(input$email);""})
+updateTextInput(session, "user", value = BioDataScience::user_name())
+updateTextInput(session, "email", value = BioDataScience::user_email())
+```
+
+
+## Préambule
+
+Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord avec son interface [ici](http://biodatascience-course.sciviews.org/sdd-umons/learnr.html).
+
+![](images/attention.jpg)
+
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
 
 
 ## Objectifs
 
-Ce test a pour objectif d'évaluer l'acquisition des compétences de module 2.
+Ce test a pour objectif d'évaluer l'acquisition des compétences du module 2.
 
 Les compétences évaluées sont : 
 
@@ -143,15 +184,7 @@ quiz(
            answer("Axe y", correct = TRUE),
            answer("Je ne connais pas la réponse à cette question"),
            random_answer_order = TRUE, incorrect = " L'axe des ordonnées fait référence à l'axe y "
-           ),
-  question("Quels sont les éléments indispensables à la compréhension d'un nuage de points ?",
-           answer("L'axe x, l'axe y, un titre et les labels", message = "Les unités sont indispensables afin de pouvoir interpréter ton graphique"),
-           answer("L'axe y , l'axe x, un titre, une légende, les labels et les unités"),
-           answer("L'axe x, l'axe y"),
-           answer("L'axe x, l'axe y et les labels"),
-           answer("L'axe y, l'axe x, les labels et les unités", correct = TRUE),
-           answer("Je ne connais pas la réponse à cette question"),
-           random_answer_order = TRUE, incorrect = "Il faut différencier les élements faisant partie d'un graphique complet par rapport aux éléments indispensables de ce dernier. Les axes, les labels et les unités sont le minimum afin d'interpréter un graphique"), caption = "Quiz sur l'utilisation de graphique de type nuage de points")
+           ))
 ```
 
 ### Exercices pratiques
@@ -210,7 +243,27 @@ chart(biometrie, formula = masse ~ taille %color=% genre %alpha=% age) +
 
 blablabla
 
+## Conclusion 
 
-## Conclusion
+Bravo! Vous venez de terminez ce premier test sur le module 2 avec un "learnr". 
 
-Bravo! Vous venez de terminez votre séance d'exercice dans un learnr. 
+Durant cette séance, vous avez vérifié l'acquisation des compétences du module 2 :
+
+- Appréhender les premières notions du logiciel R
+
+- Effectuer des graphiques de type nuage de point avec la fonction `chart()`
+
+- Utiliser le format R markdown et la recherche reproductible 
+
+- Comparer un workflow `classique` et une approche R et R Markdown. 
+
+Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
+
+```{r comm, exercise=TRUE, exercise.lines = 8}
+# Ajout de commentaires 
+# ...
+```
+
+```{r comm-check}
+# Not yet...
+```

@@ -1,28 +1,66 @@
 ---
 title: "Le nuage de point : découverte de l'outils"
 author : "Guyliann Engels & Philippe Grosjean"
-output: 
+output:
   learnr::tutorial:
-  progressive: TRUE
-  fig_caption: yes
+    progressive: true
+    fig_caption: yes
 tutorial:
-  version: 0.001
+  id: "sdd1.02c"
+  version: 0.0.1
 runtime: shiny_prerendered
 ---
 
-![](images/intro.png)
 
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = FALSE)
-# Load package 
-#This does not seems to work?! SciViews::R()
-library(data.io)
-library(chart)
+library(knitr)
+SciViews::R()
+
+options(tutorial.event_recorder = BioDataScience::record_sdd)
+tutorial_options(exercise.checker = BioDataScience::checker_sdd)
+tutorial_options(exercise.timelimit = 60)
+tutorial_options(exercise.cap = "Code R")
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
+
+library(knitr)
 library(BioDataScience)
+
 # Dataset
-urchin <- read(file = "urchin_bio", package = "data.io", lang = "en")
+urchin <- read(file = "urchin_bio", package = "data.io", lang = "fr")
 ```
+
+```{r, echo=FALSE}
+fixedRow(
+  column(9, div(
+    img(src = 'images/BioDataScience-128.png', align = "left"),
+    h1("Science des données biologiques"),
+    "Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)"
+  )),
+  column(3, div(
+    textInput("user", "Utilisateur :", ""),
+    textInput("email", "Email :", "")
+  ))
+)
+textOutput("user") # This is newer shown, but required to trigger an event!
+textOutput("email") # Idem!
+```
+
+```{r, context="server"}
+output$user <- renderText({BioDataScience::user_name(input$user);""})
+output$email <- renderText({BioDataScience::user_email(input$email);""})
+updateTextInput(session, "user", value = BioDataScience::user_name())
+updateTextInput(session, "email", value = BioDataScience::user_email())
+```
+
+
+## Préambule
+
+Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord avec son interface [ici](http://biodatascience-course.sciviews.org/sdd-umons/learnr.html).
+
+![](images/attention.jpg)
+
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
 
 ## Objectifs
 
@@ -34,7 +72,6 @@ chart(urchin, formula = skeleton ~ weight) +
   labs( y = "Masse du squelette [g]", x ="Masse totale [g]")
 ```
 
-Il est important de préciser que l'ensemble de vos résultats est collecté afin de suivre votre progression. Ce test n'est cependant pas certificatif.
 
 ## Introduction
 
@@ -95,6 +132,12 @@ chart(urchin, formula = skeleton ~ weight) +
   geom_point()
 ```
 
+
+```{r first_graph-check}
+# Not yet...
+```
+
+
 #### Exercice 2
 
 Le jeu de données assigné à `urchin` contient des valeurs manquantes comme le précise le message suivant lors de la réalisation du graphique précédent.
@@ -115,7 +158,11 @@ chart(urchin, formula = skeleton ~ weight) +
 #Dans la fonction `geom_point()`, il est possible d'employer l'argument `na.rm =` afin de préciser qu'il y a des valeurs manquantes (`na.rm = TRUE`). 
 ```
 
-### Exercice 3
+```{r na_graph-check}
+# Not yet...
+```
+
+#### Exercice 3
 
 Vous souhaitez visualiser la différence d'origine des oursins mesurés. Ces informations se situent dans la variable sur l'origine (`origin`). L'utilisation de la couleur peut permettre de différencier ces derniers. La formule de la fonction `chart()` peut être complétée avec l'argument faisant référence à la couleur (`%col=%`). 
 
@@ -136,6 +183,9 @@ chart(urchin, formula = skeleton ~ weight %col=% origin) +
   geom_point(na.rm = TRUE)
 ```
 
+```{r col_graph-check}
+# Not yet...
+```
 
 ## Exercices sur le nuage de points  
 
@@ -179,6 +229,12 @@ chart(urchin, formula = lantern ~ test %alpha=% origin) +
   geom_point(na.rm = TRUE)
 ```
 
+
+```{r alpha_graph-check}
+# Not yet...
+```
+
+
 ### Exercice 2
 
 Intéressez-vous maintenant à la masse (`weight`) des individus en fonction de leur masse immergée (`buoyant_weight`). 
@@ -219,6 +275,11 @@ chart(urchin, formula = weight ~ buoyant_weight %col=% origin %shape=% sex) +
   geom_point(na.rm = TRUE)
 ```
 
+
+```{r 2factor_graph-check}
+# Not yet...
+```
+
 ### Exercice 3
 
 Intéressez-vous maintenant à la hauteur (`height`) en fonction de la masse (`weight`) des individus.
@@ -254,92 +315,25 @@ chart(urchin, formula = log(height) ~ log(weight) %col=% origin) +
   geom_point(na.rm = TRUE)
 ```
 
-
-## Challenge
-
-Cette partie du learnr requiert d'appliquer les concepts vus précédement mais d'y ajouter de nouvelles que vous devez appréhender par vous-même via entre autres la section `Pour en savoir plus...` du livre. 
-
-Employez le graphique que vous avez déjà réalisé précédement.
-
-```{r challenge1_intro}
-chart(urchin, formula = skeleton ~ weight) +
-  geom_point(na.rm = TRUE)
+```{r log_log-check}
+# Not yet...
 ```
 
-Vous souhaitez changer le nom des axes pour rendre le graphique présentable en francais. 
+## Conclusion 
 
-Réalisez un nuage de points montrant la masse du squelette en ordonnée et la masse totale en abscisse et précisez qu'il y a des valeurs manquantes. De plus, changez le nom des variables `Weight of skeleton [g]` par `Masse du squelette [g]` et `Total weight [g]` par `Masse totale [g]`.
+Bravo! Vous venez de terminer cette séance d'exercices dans un  tutoriel "learnr". 
 
-```{r challenge1, exercise = TRUE}
+Durant cette séance, vous avez appris à : 
 
+- Effectuer des graphiques de type nuage de point
+
+Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
+
+```{r comm, exercise=TRUE, exercise.lines = 8}
+# Ajout de commentaires 
+# ...
 ```
 
-```{r challenge1-hint-1}
-chart(urchin, formula = skeleton ~ weight) +
-  geom_point(na.rm = TRUE) +
-  labs(x = " ", y = " ") 
-```
-
-```{r challenge1-hint-2}
-chart(urchin, formula = skeleton ~ weight) +
-  geom_point(na.rm = TRUE) +
-  labs(x = "Masse totale [g]", y = "Masse du squelette [g]") 
-```
-
-Employez le graphique que vous avez déjà réalisé précédement utilisant la couleur comme variable facteur différenciant les oursins mesurés en élevage et en milieu naturel. 
-
-```{r}
-chart(urchin, formula = skeleton ~ weight %col=% origin) +
-  geom_point(na.rm = TRUE)
-```
-
-
-Vous souhaitez continuer la personalisation du graphique en changeant le nom des axes, le nom de la légende pour rendre le graphique présentable en francais. 
-
-
-```{r challenge2_intro}
-chart(urchin, formula = skeleton ~ weight %col=% origin) +
-  geom_point(na.rm = TRUE) +
-  labs( x = "Masse totale [g]", y = "Masse du squelette [g]")+
-  scale_color_manual(values=c('#999999','#E69F00'), name = "Origine", labels = c("Elevage", "Milieu naturel"))
-```
-
-Réalisez un nuage de point montrant la masse du squelette en ordonnée et la masse en abscisse et précisez qu'il y a des valeurs manquantes. De plus, 
-* changez le nom des variables `Weight of skeleton [g]` par `Masse du squelette [g]` et `Total weight [g]` par `Masse totale [g]`
-
-* Changez le nom des légendes  `Origin` par `Origine`, `Farm` par `Elevage` et `Fishery` par `Milieu naturel`
-
-* Changez les deux couleurs par les couleurs de votre choix. Nous avons employé du jaune et du gris pour notre part.
-
-
-```{r challenge2, exercise = TRUE}
-
-```
-
-```{r challenge2-hint-1}
-chart(urchin, formula = skeleton ~ weight %col=% origin) +
-  geom_point(na.rm = TRUE) +
-  labs( x = " ", y = " ")+
-  scale_color_manual(values=c(" "," "), name = " ", labels = c(" ", " "))
-```
-
-
-```{r challenge2-hint-2}
-chart(urchin, formula = skeleton ~ weight %col=% origin) +
-  geom_point(na.rm = TRUE) +
-  labs( x = "Masse totale [g]", y = "Masse du squelette [g]")+
-  scale_color_manual(values=c('#999999','#E69F00'), name = "Origine", labels = c("Elevage", "Milieu naturel"))
-```
-
-
-## Conclusion
-
-Bravo! Vous venez de terminez votre séance d'exercice dans un learnr. Ce dernier vous a proposé d'apprendre à employer le graphique de type nuage de point.
-
-
-Laissez nous vos impressions sur cet outil pédagogique. Afin de placer un commentaire dans une zone de réponse utilisez la dièse (`#`) devant vos phrases.
-
-```{r comm, exercise = TRUE}
-# ajout de commentaires 
-# 
+```{r comm-check}
+# Not yet...
 ```
