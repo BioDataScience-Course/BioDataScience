@@ -10,3 +10,6 @@
 - Explanation about how to use the tutorial interface.
 
 - Translate buttons (.js file).
+
+- Check if it would be possible to use a common /images folder for all the
+  redundant images.
