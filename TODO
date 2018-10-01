@@ -7,7 +7,7 @@
 - Create an RStudio addin to run tutorial and monitor progression (and check if
   data is pending, and if so, propose to send it by email).
 
-- Explanation about how to use the tutorial interface.
+- Explanation about how to use the tutorial interface (vignette).
 
 - Translate buttons (.js file).
 

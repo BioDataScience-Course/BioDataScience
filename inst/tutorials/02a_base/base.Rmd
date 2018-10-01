@@ -3,10 +3,10 @@ title: "Les bases de R : découverte de l'outil"
 author : "Guyliann Engels & Philippe Grosjean"
 tutorial:
   id: "sdd1.02a"
-  version: 0.1.0
+  version: 1.0.0
 output: 
   learnr::tutorial:
-    progressive: TRUE
+    progressive: true
 runtime: shiny_prerendered
 ---
 
@@ -406,7 +406,7 @@ Un petit exercice, maintenant :
 
 - Calculez le logarithme de `x`,
 
-- **Ensuite** calculez en la moyenne, en écartant les valeurs manquantes,
+- **Ensuite** calculez-en la moyenne, en écartant les valeurs manquantes,
 
 - **Ensuite** arrondissez le nombre obtenu à deux décimales
 
@@ -450,7 +450,7 @@ Durant cette séance, vous avez appris à :
 
 Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
 
-```{r comm, exercise=TRUE, exercise.lines = 8}
+```{r comm, exercise=TRUE, exercise.lines=8}
 # Ajout de commentaires 
 # ...
 ```

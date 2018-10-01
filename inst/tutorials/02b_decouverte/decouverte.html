@@ -79,20 +79,37 @@ Réalisé par le service d'Écologie numérique des Milieux aquatiques, Universi
 </div>
 <div id="section-objectif" class="section level2">
 <h2>Objectif</h2>
-<p>Ce tutoriel a pour objectif de vous permettre de :</p>
 <ul>
-<li>utilisation de programme R afin de résoudre une question sur l’obésité</li>
+<li>Première utilisation guidée du logiciel R afin de résoudre une question sur l’obésité</li>
 </ul>
 <p><img src="images/Rlogo.png" width="50%" /></p>
 </div>
 <div id="section-introduction" class="section level2">
 <h2>Introduction</h2>
-<p>R est un programme <strong>Open Source</strong> qui permet la manipulation, la visualisation et l’application de calculs statistiques sur des données.</p>
+<p>R est un programme <strong>Open Source</strong> qui permet la manipulation, la visualisation et les calculs (statistiques) sur des données.</p>
 <div id="section-manipuler" class="section level3">
 <h3>Manipuler</h3>
-<p>En partant d’un tableau de données relatif à la biométrie humaine de 395 observations.</p>
+<p>En partant d’un tableau de données relatif à de la biométrie humaine contenant 395 observations.</p>
+<pre class="r"><code>SciViews::R
+bio &lt;- read(&quot;biometrie&quot;, package = &quot;BioDataScience&quot;)
+bio %&gt;.%
+  select(., -c(3, 7, 8)) -&gt; bio</code></pre>
+<p><strong>Notez ceci :</strong></p>
+<ul>
+<li><p>Les encadrés gris dénotent des instructions entrées dans R. Si ce dernier renvoie des résultats, ils sont présentés dans des encadrés blancs juste en dessous (pas le cas ici).</p></li>
+<li><p>Toujours commencer par l’instruction <code>SciViews::R</code> pour installer les différents outils (rassemblés dans des “packages” R) dont nous aurons besoin.</p></li>
+<li><p>Le jeu de données est disponible dans un package R : <code>BioDataScience</code>, spécialement préparé pour ce cours.</p></li>
+<li><p>Nous utilisons ici le chaînage et une sélection en éliminant des colonnes du tableau que nous n’utiliserons pas (la 3<sup>ème</sup>, la 7<sup>ème</sup>et la 8<sup>ème</sup>).</p></li>
+<li><p>L’assignation du résultat est plus lisible quand elle est réalisée à la fin (<code>-&gt; bio</code>) lorsqu’on utilise un chaînage d’instructions.</p></li>
+</ul>
+<p>La fonction <code>kable()</code> du package <code>knitr</code> peut être appelée directement sans charger le package à l’aide de l’instruction <code>knitr::kable()</code>. Elle permet de formatter correctement un tableau dans Markdown. Utilisons-là maintenant pour présenter les huit premières lignes de notre jeu de données.</p>
+<pre class="r"><code>bio %&gt;.%
+  head(., n = 8) %&gt;.% # Garde les huit premières lignes
+  knitr::kable(., col.names = c(&quot;Genre&quot;, &quot;Date de naissance&quot;, &quot;Masse&quot;,
+                                &quot;Taille&quot;, &quot;Tour de poignet&quot;),
+    caption = &quot;Premières lignes du jeu de données biométrie humaine.&quot;)</code></pre>
 <table>
-<caption>Premières lignes du tableau de données portant sur la biométrie humaine.</caption>
+<caption>Premières lignes du jeu de données biométrie humaine.</caption>
 <thead>
 <tr class="header">
 <th align="left">Genre</th>
@@ -104,69 +121,33 @@ Réalisé par le service d'Écologie numérique des Milieux aquatiques, Universi
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">H</td>
+<td align="left">1995-03-11</td>
+<td align="right">69</td>
+<td align="right">182</td>
+<td align="right">15.0</td>
+</tr>
+<tr class="even">
 <td align="left">H</td>
 <td align="left">1998-04-03</td>
 <td align="right">74</td>
 <td align="right">190</td>
 <td align="right">16.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">H</td>
 <td align="left">1967-04-04</td>
 <td align="right">83</td>
 <td align="right">185</td>
 <td align="right">17.5</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">H</td>
 <td align="left">1994-02-10</td>
 <td align="right">60</td>
 <td align="right">175</td>
 <td align="right">15.0</td>
 </tr>
-<tr class="even">
-<td align="left">F</td>
-<td align="left">1990-12-02</td>
-<td align="right">48</td>
-<td align="right">167</td>
-<td align="right">14.0</td>
-</tr>
-<tr class="odd">
-<td align="left">F</td>
-<td align="left">1994-07-15</td>
-<td align="right">52</td>
-<td align="right">179</td>
-<td align="right">14.0</td>
-</tr>
-<tr class="even">
-<td align="left">F</td>
-<td align="left">1971-03-03</td>
-<td align="right">72</td>
-<td align="right">167</td>
-<td align="right">15.5</td>
-</tr>
-<tr class="odd">
-<td align="left">F</td>
-<td align="left">1997-06-24</td>
-<td align="right">74</td>
-<td align="right">180</td>
-<td align="right">16.0</td>
-</tr>
-</tbody>
-</table>
-<p>On peut filtrer simplement les lignes d’un tableau de données afin de ne garder que les femmes dans le tableau de données.</p>
-<table>
-<caption>Premières lignes du tableau de données portant sur la biométrie humaine ne comportant que les femmes.</caption>
-<thead>
-<tr class="header">
-<th align="left">Genre</th>
-<th align="left">Date de naissance</th>
-<th align="right">Masse</th>
-<th align="right">Taille</th>
-<th align="right">Tour de poignet</th>
-</tr>
-</thead>
-<tbody>
 <tr class="odd">
 <td align="left">F</td>
 <td align="left">1990-12-02</td>
@@ -195,224 +176,147 @@ Réalisé par le service d'Écologie numérique des Milieux aquatiques, Universi
 <td align="right">180</td>
 <td align="right">16.0</td>
 </tr>
-<tr class="odd">
-<td align="left">F</td>
-<td align="left">1966-11-26</td>
-<td align="right">61</td>
-<td align="right">154</td>
-<td align="right">15.4</td>
-</tr>
-<tr class="even">
-<td align="left">F</td>
-<td align="left">1964-07-31</td>
-<td align="right">57</td>
-<td align="right">164</td>
-<td align="right">15.0</td>
-</tr>
 </tbody>
 </table>
-<p>On peut sélectionner simplement les colonnes d’un tableau de données.</p>
-<table>
-<caption>Premières lignes du tableau de données portant sur la biométrie humaine supprimant les colonnes portant sur le tour de taille de poignet et la date de naissance.</caption>
-<thead>
-<tr class="header">
-<th align="left">Genre</th>
-<th align="right">Masse</th>
-<th align="right">Taille</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">H</td>
-<td align="right">74</td>
-<td align="right">190</td>
-</tr>
-<tr class="even">
-<td align="left">H</td>
-<td align="right">83</td>
-<td align="right">185</td>
-</tr>
-<tr class="odd">
-<td align="left">H</td>
-<td align="right">60</td>
-<td align="right">175</td>
-</tr>
-<tr class="even">
-<td align="left">F</td>
-<td align="right">48</td>
-<td align="right">167</td>
-</tr>
-<tr class="odd">
-<td align="left">F</td>
-<td align="right">52</td>
-<td align="right">179</td>
-</tr>
-<tr class="even">
-<td align="left">F</td>
-<td align="right">72</td>
-<td align="right">167</td>
-</tr>
-</tbody>
-</table>
-<p>On peut filter les lignes et sélectionner les colonnes simplement d’un tableau de données.</p>
-<table>
-<caption>Premières lignes du tableau de données portant sur la biométrie humaine ne comportant que les femmes et en supprimant les colonnes portant sur le tour de taille de poignet et la date de naissance.</caption>
-<thead>
-<tr class="header">
-<th align="left">Genre</th>
-<th align="right">Masse</th>
-<th align="right">Taille</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">F</td>
-<td align="right">48</td>
-<td align="right">167</td>
-</tr>
-<tr class="even">
-<td align="left">F</td>
-<td align="right">52</td>
-<td align="right">179</td>
-</tr>
-<tr class="odd">
-<td align="left">F</td>
-<td align="right">72</td>
-<td align="right">167</td>
-</tr>
-<tr class="even">
-<td align="left">F</td>
-<td align="right">74</td>
-<td align="right">180</td>
-</tr>
-<tr class="odd">
-<td align="left">F</td>
-<td align="right">61</td>
-<td align="right">154</td>
-</tr>
-<tr class="even">
-<td align="left">F</td>
-<td align="right">57</td>
-<td align="right">164</td>
-</tr>
-</tbody>
-</table>
+<p>Considérons maintenant uniquement les femmes. On peut filtrer simplement les lignes d’un tableau de données en utilisant comme critère <code>genre == &quot;F&quot;</code> (<strong>attention :</strong> notez bien que dans un <em>test de condition</em>, l’égalité s’écrit avec <strong>deux</strong> signes égaux dans R). Les autres options sont : <code>!=</code> pour différent de, <code>&gt;</code> pour plus grand que, <code>&lt;</code> pour plus petit que, ainsi que <code>&gt;=</code> ou <code>&lt;=</code> pour plus grand ou égale et plus petit ou égal.</p>
+<pre class="r"><code>bio %&gt;.%
+  filter(., genre == &quot;F&quot;) -&gt; bio_f
+bio_f</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["genre"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["ddn"],"name":[2],"type":["date"],"align":["right"]},{"label":["masse"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["taille"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["poignet"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"F","2":"1990-12-02","3":"48.0","4":"167.0","5":"14.0"},{"1":"F","2":"1994-07-15","3":"52.0","4":"179.0","5":"14.0"},{"1":"F","2":"1971-03-03","3":"72.0","4":"167.0","5":"15.5"},{"1":"F","2":"1997-06-24","3":"74.0","4":"180.0","5":"16.0"},{"1":"F","2":"1966-11-26","3":"61.0","4":"154.0","5":"15.4"},{"1":"F","2":"1964-07-31","3":"57.0","4":"164.0","5":"15.0"},{"1":"F","2":"1937-07-31","3":"58.0","4":"162.0","5":"15.0"},{"1":"F","2":"1960-05-10","3":"61.0","4":"168.0","5":"15.5"},{"1":"F","2":"1996-06-24","3":"59.0","4":"172.0","5":"16.0"},{"1":"F","2":"1989-12-22","3":"76.0","4":"167.0","5":"16.0"},{"1":"F","2":"1996-05-24","3":"57.0","4":"162.0","5":"15.0"},{"1":"F","2":"1993-03-27","3":"49.0","4":"164.0","5":"14.5"},{"1":"F","2":"1974-07-25","3":"51.0","4":"162.0","5":"15.5"},{"1":"F","2":"1963-11-18","3":"83.0","4":"175.0","5":"17.0"},{"1":"F","2":"1966-10-02","3":"70.0","4":"162.0","5":"16.4"},{"1":"F","2":"1993-11-14","3":"66.0","4":"168.0","5":"16.2"},{"1":"F","2":"1994-07-28","3":"55.0","4":"167.0","5":"15.5"},{"1":"F","2":"1989-10-13","3":"56.0","4":"161.0","5":"15.5"},{"1":"F","2":"1993-06-01","3":"62.0","4":"165.0","5":"16.0"},{"1":"F","2":"1994-07-10","3":"69.0","4":"165.0","5":"17.0"},{"1":"F","2":"1964-05-08","3":"76.0","4":"161.0","5":"17.0"},{"1":"F","2":"1990-03-22","3":"74.0","4":"160.0","5":"16.0"},{"1":"F","2":"1963-07-11","3":"67.0","4":"159.0","5":"15.0"},{"1":"F","2":"1992-02-20","3":"52.5","4":"165.0","5":"10.0"},{"1":"F","2":"1968-03-18","3":"65.0","4":"172.0","5":"NA"},{"1":"F","2":"1990-06-21","3":"68.0","4":"168.0","5":"18.0"},{"1":"F","2":"1994-07-12","3":"66.0","4":"173.0","5":"16.5"},{"1":"F","2":"1997-03-03","3":"56.0","4":"166.0","5":"16.0"},{"1":"F","2":"1966-03-19","3":"59.0","4":"173.0","5":"16.5"},{"1":"F","2":"1988-10-05","3":"105.0","4":"170.0","5":"17.5"},{"1":"F","2":"1960-04-06","3":"112.0","4":"162.0","5":"18.0"},{"1":"F","2":"1994-08-02","3":"77.0","4":"158.0","5":"17.0"},{"1":"F","2":"1959-04-16","3":"60.0","4":"160.0","5":"16.5"},{"1":"F","2":"1994-08-28","3":"52.0","4":"162.0","5":"16.5"},{"1":"F","2":"1993-01-02","3":"51.0","4":"165.0","5":"13.5"},{"1":"F","2":"1960-04-17","3":"81.0","4":"165.0","5":"17.0"},{"1":"F","2":"1966-04-08","3":"67.0","4":"164.0","5":"16.0"},{"1":"F","2":"1987-09-10","3":"59.0","4":"169.0","5":"14.0"},{"1":"F","2":"1995-11-05","3":"50.0","4":"167.0","5":"15.5"},{"1":"F","2":"1996-06-09","3":"51.5","4":"163.0","5":"14.0"},{"1":"F","2":"1960-08-20","3":"66.0","4":"170.0","5":"16.0"},{"1":"F","2":"1995-10-27","3":"55.0","4":"167.0","5":"14.5"},{"1":"F","2":"1995-10-01","3":"61.0","4":"163.0","5":"17.0"},{"1":"F","2":"1966-01-16","3":"63.0","4":"155.0","5":"16.0"},{"1":"F","2":"1967-11-09","3":"87.5","4":"164.0","5":"16.0"},{"1":"F","2":"1972-06-25","3":"76.5","4":"171.0","5":"17.0"},{"1":"F","2":"1997-05-23","3":"59.0","4":"168.0","5":"15.0"},{"1":"F","2":"1946-05-06","3":"77.0","4":"162.0","5":"17.0"},{"1":"F","2":"1968-01-30","3":"78.0","4":"168.0","5":"16.0"},{"1":"F","2":"1993-02-07","3":"56.0","4":"167.0","5":"14.0"},{"1":"F","2":"1979-03-21","3":"96.0","4":"165.0","5":"16.0"},{"1":"F","2":"1934-04-24","3":"109.0","4":"155.0","5":"17.0"},{"1":"F","2":"1994-01-29","3":"65.0","4":"170.0","5":"14.0"},{"1":"F","2":"1966-07-02","3":"55.0","4":"164.0","5":"14.0"},{"1":"F","2":"1967-02-10","3":"58.0","4":"171.0","5":"14.0"},{"1":"F","2":"1965-01-21","3":"69.0","4":"164.0","5":"17.0"},{"1":"F","2":"1960-09-21","3":"53.5","4":"159.0","5":"16.0"},{"1":"F","2":"1994-06-06","3":"54.0","4":"158.0","5":"15.0"},{"1":"F","2":"1990-09-03","3":"55.0","4":"157.0","5":"15.0"},{"1":"F","2":"1953-05-21","3":"67.5","4":"164.0","5":"15.0"},{"1":"F","2":"1994-03-02","3":"56.0","4":"169.0","5":"15.0"},{"1":"F","2":"1969-05-25","3":"70.1","4":"164.0","5":"16.0"},{"1":"F","2":"1993-08-16","3":"59.1","4":"167.0","5":"15.0"},{"1":"F","2":"1991-03-20","3":"72.0","4":"160.0","5":"15.5"},{"1":"F","2":"1963-04-27","3":"89.0","4":"156.0","5":"17.0"},{"1":"F","2":"1966-08-10","3":"61.5","4":"161.0","5":"17.0"},{"1":"F","2":"1939-09-30","3":"50.5","4":"146.0","5":"17.0"},{"1":"F","2":"1968-03-02","3":"63.0","4":"162.0","5":"15.0"},{"1":"F","2":"1945-03-23","3":"69.0","4":"158.0","5":"16.0"},{"1":"F","2":"1934-06-03","3":"49.0","4":"157.0","5":"14.5"},{"1":"F","2":"1955-03-29","3":"101.0","4":"169.0","5":"17.0"},{"1":"F","2":"1967-08-21","3":"70.0","4":"170.0","5":"16.0"},{"1":"F","2":"1961-08-20","3":"66.8","4":"160.0","5":"16.0"},{"1":"F","2":"1997-08-12","3":"65.8","4":"164.0","5":"15.0"},{"1":"F","2":"1954-08-22","3":"60.0","4":"160.0","5":"14.0"},{"1":"F","2":"1998-08-12","3":"54.1","4":"168.0","5":"14.4"},{"1":"F","2":"1968-08-18","3":"82.4","4":"169.0","5":"16.2"},{"1":"F","2":"1942-08-26","3":"68.8","4":"162.0","5":"17.0"},{"1":"F","2":"1994-08-13","3":"65.0","4":"173.5","5":"16.0"},{"1":"F","2":"1991-08-14","3":"55.3","4":"163.0","5":"14.5"},{"1":"F","2":"1962-08-20","3":"54.0","4":"160.0","5":"15.4"},{"1":"F","2":"1993-08-13","3":"54.0","4":"165.0","5":"14.2"},{"1":"F","2":"1995-08-13","3":"57.5","4":"169.0","5":"15.5"},{"1":"F","2":"1966-08-19","3":"83.0","4":"164.0","5":"16.0"},{"1":"F","2":"1943-08-26","3":"62.8","4":"158.0","5":"16.5"},{"1":"F","2":"1965-08-19","3":"65.0","4":"168.0","5":"16.0"},{"1":"F","2":"1997-08-12","3":"52.0","4":"163.0","5":"15.0"},{"1":"F","2":"1997-08-12","3":"55.0","4":"173.0","5":"14.0"},{"1":"F","2":"1965-08-19","3":"69.0","4":"164.0","5":"17.0"},{"1":"F","2":"1933-08-27","3":"80.0","4":"162.0","5":"17.0"},{"1":"F","2":"1960-08-20","3":"63.2","4":"160.0","5":"14.0"},{"1":"F","2":"1963-08-20","3":"63.7","4":"163.0","5":"15.0"},{"1":"F","2":"1996-08-12","3":"55.8","4":"165.0","5":"15.0"},{"1":"F","2":"1997-08-12","3":"60.4","4":"173.3","5":"16.5"},{"1":"F","2":"1998-08-12","3":"57.8","4":"170.5","5":"16.0"},{"1":"F","2":"1962-08-20","3":"84.9","4":"166.5","5":"17.0"},{"1":"F","2":"1998-08-12","3":"54.5","4":"169.0","5":"15.0"},{"1":"F","2":"1996-08-12","3":"58.0","4":"159.0","5":"14.0"},{"1":"F","2":"1968-08-18","3":"69.3","4":"156.0","5":"16.5"},{"1":"F","2":"1965-08-19","3":"65.6","4":"152.2","5":"16.2"},{"1":"F","2":"1998-08-12","3":"41.5","4":"161.0","5":"13.2"},{"1":"F","2":"2000-08-11","3":"52.0","4":"162.0","5":"15.0"},{"1":"F","2":"1964-08-19","3":"94.0","4":"162.0","5":"19.0"},{"1":"F","2":"1997-08-12","3":"47.0","4":"162.0","5":"15.0"},{"1":"F","2":"1967-08-19","3":"75.0","4":"173.0","5":"17.0"},{"1":"F","2":"1940-08-26","3":"69.0","4":"162.0","5":"17.0"},{"1":"F","2":"1994-08-13","3":"56.0","4":"170.0","5":"16.0"},{"1":"F","2":"1982-08-16","3":"61.9","4":"150.0","5":"22.4"},{"1":"F","2":"1993-08-13","3":"93.0","4":"176.0","5":"18.0"},{"1":"F","2":"1993-08-13","3":"56.1","4":"159.0","5":"13.7"},{"1":"F","2":"1982-08-16","3":"73.1","4":"164.0","5":"17.0"},{"1":"F","2":"1968-08-18","3":"59.3","4":"149.0","5":"15.0"},{"1":"F","2":"1995-08-13","3":"48.1","4":"153.0","5":"14.0"},{"1":"F","2":"1997-08-12","3":"48.8","4":"167.0","5":"14.0"},{"1":"F","2":"1999-08-12","3":"56.4","4":"159.0","5":"16.0"},{"1":"F","2":"1948-08-23","3":"59.8","4":"172.0","5":"16.0"},{"1":"F","2":"1999-08-12","3":"49.0","4":"164.0","5":"15.5"},{"1":"F","2":"1964-08-19","3":"58.5","4":"156.0","5":"14.5"},{"1":"F","2":"1964-08-19","3":"72.0","4":"164.0","5":"16.0"},{"1":"F","2":"1968-08-18","3":"73.0","4":"160.0","5":"18.0"},{"1":"F","2":"1955-08-22","3":"72.0","4":"156.0","5":"17.0"},{"1":"F","2":"1970-08-18","3":"50.0","4":"162.0","5":"15.0"},{"1":"F","2":"1952-08-22","3":"58.0","4":"161.0","5":"17.0"},{"1":"F","2":"1997-08-12","3":"63.0","4":"171.0","5":"15.0"},{"1":"F","2":"1965-08-19","3":"43.0","4":"154.0","5":"14.0"},{"1":"F","2":"1964-08-19","3":"59.0","4":"162.0","5":"15.0"},{"1":"F","2":"1995-08-13","3":"76.0","4":"165.0","5":"15.0"},{"1":"F","2":"1991-08-14","3":"73.0","4":"170.0","5":"15.0"},{"1":"F","2":"1970-08-18","3":"87.0","4":"160.0","5":"18.0"},{"1":"F","2":"1965-08-19","3":"62.0","4":"158.0","5":"16.0"},{"1":"F","2":"1998-08-12","3":"55.0","4":"153.0","5":"15.0"},{"1":"F","2":"1966-08-19","3":"96.0","4":"178.0","5":"17.0"},{"1":"F","2":"1998-08-12","3":"83.0","4":"166.0","5":"16.0"},{"1":"F","2":"1998-08-12","3":"69.0","4":"166.0","5":"16.0"},{"1":"F","2":"1998-08-12","3":"67.0","4":"175.0","5":"16.0"},{"1":"F","2":"1994-08-13","3":"77.0","4":"180.0","5":"16.0"},{"1":"F","2":"2000-08-11","3":"80.0","4":"187.0","5":"17.0"},{"1":"F","2":"1976-08-16","3":"79.0","4":"175.0","5":"17.0"},{"1":"F","2":"1997-08-12","3":"77.0","4":"160.0","5":"16.0"},{"1":"F","2":"1967-08-19","3":"56.0","4":"165.0","5":"14.0"},{"1":"F","2":"1998-08-12","3":"50.0","4":"170.0","5":"14.0"},{"1":"F","2":"1999-08-12","3":"63.0","4":"175.0","5":"12.0"},{"1":"F","2":"1998-08-12","3":"55.0","4":"166.0","5":"14.0"},{"1":"F","2":"1997-08-12","3":"49.0","4":"156.0","5":"14.0"},{"1":"F","2":"1999-08-12","3":"57.0","4":"159.0","5":"15.0"},{"1":"F","2":"1999-08-12","3":"58.0","4":"154.0","5":"15.0"},{"1":"F","2":"1969-08-18","3":"65.0","4":"159.0","5":"15.0"},{"1":"F","2":"1994-08-13","3":"55.0","4":"171.0","5":"16.0"},{"1":"F","2":"1967-08-19","3":"56.0","4":"172.0","5":"15.0"},{"1":"F","2":"1996-08-12","3":"68.0","4":"173.0","5":"16.0"},{"1":"F","2":"1971-08-18","3":"58.0","4":"161.0","5":"15.0"},{"1":"F","2":"1998-08-12","3":"43.0","4":"155.0","5":"15.0"},{"1":"F","2":"1973-08-17","3":"67.0","4":"162.0","5":"17.0"},{"1":"F","2":"1998-08-12","3":"45.0","4":"161.0","5":"16.0"},{"1":"F","2":"1972-08-17","3":"55.0","4":"158.0","5":"15.0"},{"1":"F","2":"1963-08-20","3":"50.0","4":"158.0","5":"15.0"},{"1":"F","2":"1969-08-18","3":"80.0","4":"162.0","5":"16.0"},{"1":"F","2":"1992-08-13","3":"61.0","4":"159.0","5":"16.0"},{"1":"F","2":"1996-08-12","3":"53.0","4":"170.0","5":"15.0"},{"1":"F","2":"1986-08-15","3":"67.0","4":"164.0","5":"16.0"},{"1":"F","2":"1965-08-19","3":"57.0","4":"161.0","5":"15.0"},{"1":"F","2":"1967-08-19","3":"68.0","4":"163.0","5":"17.0"},{"1":"F","2":"1999-08-12","3":"59.0","4":"167.0","5":"15.0"},{"1":"F","2":"1953-08-22","3":"87.0","4":"164.0","5":"19.0"},{"1":"F","2":"1976-08-16","3":"82.0","4":"165.0","5":"17.0"},{"1":"F","2":"1973-08-17","3":"77.0","4":"163.0","5":"16.0"},{"1":"F","2":"1977-08-17","3":"85.0","4":"173.0","5":"17.0"},{"1":"F","2":"1971-08-18","3":"52.0","4":"166.0","5":"15.0"},{"1":"F","2":"1990-08-14","3":"53.0","4":"153.0","5":"17.0"},{"1":"F","2":"1985-08-15","3":"52.0","4":"161.0","5":"15.0"},{"1":"F","2":"1966-08-19","3":"57.0","4":"160.0","5":"15.0"},{"1":"F","2":"1989-08-14","3":"67.0","4":"176.0","5":"16.0"},{"1":"F","2":"1998-08-12","3":"55.0","4":"165.0","5":"15.0"},{"1":"F","2":"1998-08-12","3":"71.0","4":"165.0","5":"15.0"},{"1":"F","2":"1997-08-12","3":"54.0","4":"166.0","5":"16.0"},{"1":"F","2":"1967-08-19","3":"67.0","4":"169.0","5":"15.0"},{"1":"F","2":"1998-08-12","3":"47.0","4":"163.0","5":"14.0"},{"1":"F","2":"1967-08-19","3":"62.0","4":"162.0","5":"16.0"},{"1":"F","2":"1996-08-12","3":"50.0","4":"164.0","5":"15.0"},{"1":"F","2":"1998-08-12","3":"68.0","4":"169.0","5":"15.0"},{"1":"F","2":"1965-08-19","3":"77.0","4":"164.0","5":"17.0"},{"1":"F","2":"1992-08-13","3":"69.0","4":"171.0","5":"18.0"},{"1":"F","2":"1998-08-12","3":"61.0","4":"173.0","5":"16.0"},{"1":"F","2":"1974-08-17","3":"51.5","4":"160.0","5":"14.0"},{"1":"F","2":"1995-08-13","3":"50.0","4":"160.0","5":"14.0"},{"1":"F","2":"1962-08-20","3":"63.0","4":"166.0","5":"16.0"},{"1":"F","2":"1996-08-12","3":"68.0","4":"165.0","5":"16.0"},{"1":"F","2":"1997-08-12","3":"57.0","4":"171.0","5":"17.0"},{"1":"F","2":"1968-08-18","3":"62.0","4":"158.0","5":"15.0"},{"1":"F","2":"1993-08-13","3":"72.0","4":"170.0","5":"18.0"},{"1":"F","2":"1996-08-12","3":"62.0","4":"161.0","5":"16.0"},{"1":"F","2":"1998-08-12","3":"63.0","4":"166.0","5":"15.0"},{"1":"F","2":"1968-08-18","3":"63.0","4":"168.0","5":"17.0"},{"1":"F","2":"1972-08-17","3":"81.0","4":"167.0","5":"17.0"},{"1":"F","2":"1999-08-12","3":"78.0","4":"174.0","5":"16.0"},{"1":"F","2":"1999-08-12","3":"67.3","4":"173.0","5":"15.0"},{"1":"F","2":"1971-08-18","3":"64.9","4":"166.0","5":"15.0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Ici, nous avons juste imprimé le contenu du tableau. Donc, la présentation est un peu différente de ce qu’il est possible de faire avec <code>knitr::kable()</code>, mais nous voyons directement apparaître le nom des variables telles que nous les utiliserons dans le code (<code>genre</code>, <code>ddn</code>, <code>masse</code>, <code>taille</code> et <code>poignet</code>).</p>
+<p>Continuons à manipuler notre tableau en sélectionnant des colonnes et enf filtrant les lignes en une seule opération. Pour garder la masse et la taille des femmes uniquement en partant du jeu de données complet <code>bio</code>, nous utiliserons :</p>
+<pre class="r"><code>bio %&gt;.%
+  filter(., genre == &quot;F&quot;) %&gt;.%
+  select(., c(&quot;masse&quot;, &quot;taille&quot;)) -&gt; bio_f2
+bio_f2</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["masse"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["taille"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"48.0","2":"167.0"},{"1":"52.0","2":"179.0"},{"1":"72.0","2":"167.0"},{"1":"74.0","2":"180.0"},{"1":"61.0","2":"154.0"},{"1":"57.0","2":"164.0"},{"1":"58.0","2":"162.0"},{"1":"61.0","2":"168.0"},{"1":"59.0","2":"172.0"},{"1":"76.0","2":"167.0"},{"1":"57.0","2":"162.0"},{"1":"49.0","2":"164.0"},{"1":"51.0","2":"162.0"},{"1":"83.0","2":"175.0"},{"1":"70.0","2":"162.0"},{"1":"66.0","2":"168.0"},{"1":"55.0","2":"167.0"},{"1":"56.0","2":"161.0"},{"1":"62.0","2":"165.0"},{"1":"69.0","2":"165.0"},{"1":"76.0","2":"161.0"},{"1":"74.0","2":"160.0"},{"1":"67.0","2":"159.0"},{"1":"52.5","2":"165.0"},{"1":"65.0","2":"172.0"},{"1":"68.0","2":"168.0"},{"1":"66.0","2":"173.0"},{"1":"56.0","2":"166.0"},{"1":"59.0","2":"173.0"},{"1":"105.0","2":"170.0"},{"1":"112.0","2":"162.0"},{"1":"77.0","2":"158.0"},{"1":"60.0","2":"160.0"},{"1":"52.0","2":"162.0"},{"1":"51.0","2":"165.0"},{"1":"81.0","2":"165.0"},{"1":"67.0","2":"164.0"},{"1":"59.0","2":"169.0"},{"1":"50.0","2":"167.0"},{"1":"51.5","2":"163.0"},{"1":"66.0","2":"170.0"},{"1":"55.0","2":"167.0"},{"1":"61.0","2":"163.0"},{"1":"63.0","2":"155.0"},{"1":"87.5","2":"164.0"},{"1":"76.5","2":"171.0"},{"1":"59.0","2":"168.0"},{"1":"77.0","2":"162.0"},{"1":"78.0","2":"168.0"},{"1":"56.0","2":"167.0"},{"1":"96.0","2":"165.0"},{"1":"109.0","2":"155.0"},{"1":"65.0","2":"170.0"},{"1":"55.0","2":"164.0"},{"1":"58.0","2":"171.0"},{"1":"69.0","2":"164.0"},{"1":"53.5","2":"159.0"},{"1":"54.0","2":"158.0"},{"1":"55.0","2":"157.0"},{"1":"67.5","2":"164.0"},{"1":"56.0","2":"169.0"},{"1":"70.1","2":"164.0"},{"1":"59.1","2":"167.0"},{"1":"72.0","2":"160.0"},{"1":"89.0","2":"156.0"},{"1":"61.5","2":"161.0"},{"1":"50.5","2":"146.0"},{"1":"63.0","2":"162.0"},{"1":"69.0","2":"158.0"},{"1":"49.0","2":"157.0"},{"1":"101.0","2":"169.0"},{"1":"70.0","2":"170.0"},{"1":"66.8","2":"160.0"},{"1":"65.8","2":"164.0"},{"1":"60.0","2":"160.0"},{"1":"54.1","2":"168.0"},{"1":"82.4","2":"169.0"},{"1":"68.8","2":"162.0"},{"1":"65.0","2":"173.5"},{"1":"55.3","2":"163.0"},{"1":"54.0","2":"160.0"},{"1":"54.0","2":"165.0"},{"1":"57.5","2":"169.0"},{"1":"83.0","2":"164.0"},{"1":"62.8","2":"158.0"},{"1":"65.0","2":"168.0"},{"1":"52.0","2":"163.0"},{"1":"55.0","2":"173.0"},{"1":"69.0","2":"164.0"},{"1":"80.0","2":"162.0"},{"1":"63.2","2":"160.0"},{"1":"63.7","2":"163.0"},{"1":"55.8","2":"165.0"},{"1":"60.4","2":"173.3"},{"1":"57.8","2":"170.5"},{"1":"84.9","2":"166.5"},{"1":"54.5","2":"169.0"},{"1":"58.0","2":"159.0"},{"1":"69.3","2":"156.0"},{"1":"65.6","2":"152.2"},{"1":"41.5","2":"161.0"},{"1":"52.0","2":"162.0"},{"1":"94.0","2":"162.0"},{"1":"47.0","2":"162.0"},{"1":"75.0","2":"173.0"},{"1":"69.0","2":"162.0"},{"1":"56.0","2":"170.0"},{"1":"61.9","2":"150.0"},{"1":"93.0","2":"176.0"},{"1":"56.1","2":"159.0"},{"1":"73.1","2":"164.0"},{"1":"59.3","2":"149.0"},{"1":"48.1","2":"153.0"},{"1":"48.8","2":"167.0"},{"1":"56.4","2":"159.0"},{"1":"59.8","2":"172.0"},{"1":"49.0","2":"164.0"},{"1":"58.5","2":"156.0"},{"1":"72.0","2":"164.0"},{"1":"73.0","2":"160.0"},{"1":"72.0","2":"156.0"},{"1":"50.0","2":"162.0"},{"1":"58.0","2":"161.0"},{"1":"63.0","2":"171.0"},{"1":"43.0","2":"154.0"},{"1":"59.0","2":"162.0"},{"1":"76.0","2":"165.0"},{"1":"73.0","2":"170.0"},{"1":"87.0","2":"160.0"},{"1":"62.0","2":"158.0"},{"1":"55.0","2":"153.0"},{"1":"96.0","2":"178.0"},{"1":"83.0","2":"166.0"},{"1":"69.0","2":"166.0"},{"1":"67.0","2":"175.0"},{"1":"77.0","2":"180.0"},{"1":"80.0","2":"187.0"},{"1":"79.0","2":"175.0"},{"1":"77.0","2":"160.0"},{"1":"56.0","2":"165.0"},{"1":"50.0","2":"170.0"},{"1":"63.0","2":"175.0"},{"1":"55.0","2":"166.0"},{"1":"49.0","2":"156.0"},{"1":"57.0","2":"159.0"},{"1":"58.0","2":"154.0"},{"1":"65.0","2":"159.0"},{"1":"55.0","2":"171.0"},{"1":"56.0","2":"172.0"},{"1":"68.0","2":"173.0"},{"1":"58.0","2":"161.0"},{"1":"43.0","2":"155.0"},{"1":"67.0","2":"162.0"},{"1":"45.0","2":"161.0"},{"1":"55.0","2":"158.0"},{"1":"50.0","2":"158.0"},{"1":"80.0","2":"162.0"},{"1":"61.0","2":"159.0"},{"1":"53.0","2":"170.0"},{"1":"67.0","2":"164.0"},{"1":"57.0","2":"161.0"},{"1":"68.0","2":"163.0"},{"1":"59.0","2":"167.0"},{"1":"87.0","2":"164.0"},{"1":"82.0","2":"165.0"},{"1":"77.0","2":"163.0"},{"1":"85.0","2":"173.0"},{"1":"52.0","2":"166.0"},{"1":"53.0","2":"153.0"},{"1":"52.0","2":"161.0"},{"1":"57.0","2":"160.0"},{"1":"67.0","2":"176.0"},{"1":"55.0","2":"165.0"},{"1":"71.0","2":"165.0"},{"1":"54.0","2":"166.0"},{"1":"67.0","2":"169.0"},{"1":"47.0","2":"163.0"},{"1":"62.0","2":"162.0"},{"1":"50.0","2":"164.0"},{"1":"68.0","2":"169.0"},{"1":"77.0","2":"164.0"},{"1":"69.0","2":"171.0"},{"1":"61.0","2":"173.0"},{"1":"51.5","2":"160.0"},{"1":"50.0","2":"160.0"},{"1":"63.0","2":"166.0"},{"1":"68.0","2":"165.0"},{"1":"57.0","2":"171.0"},{"1":"62.0","2":"158.0"},{"1":"72.0","2":"170.0"},{"1":"62.0","2":"161.0"},{"1":"63.0","2":"166.0"},{"1":"63.0","2":"168.0"},{"1":"81.0","2":"167.0"},{"1":"78.0","2":"174.0"},{"1":"67.3","2":"173.0"},{"1":"64.9","2":"166.0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Maintenant que nous avons vu comment lire, remanier et présenter des tableaux de données dans R (nous reviendrons sur ces notions plus tard), nous pouvons explorter ses potentialités pour réaliser des graphiques à la section suivante…</p>
 </div>
 <div id="section-visualiser" class="section level3">
 <h3>Visualiser</h3>
+<p>Voic quelques exemples de graphiques réalisés avec R, à partir de divers jeux de données :</p>
 <div class="figure">
-<img src="decouverte_files/figure-html/unnamed-chunk-9-1.png" alt="Variation de la taille [mm] de 4 groupes d'organismes zooplanctoniques. A l'exception du phylum des Annelida, les Calanoida, Cyclopoida et Decapoda sont des ordres dans la classification moderne." width="624" />
+<img src="decouverte_files/figure-html/unnamed-chunk-9-1.png" alt="Taille de 4 groupes d'organismes zooplanctoniques." width="624" />
 <p class="caption">
-Variation de la taille [mm] de 4 groupes d’organismes zooplanctoniques. A l’exception du phylum des Annelida, les Calanoida, Cyclopoida et Decapoda sont des ordres dans la classification moderne.
+Taille de 4 groupes d’organismes zooplanctoniques.
 </p>
 </div>
 <div class="figure">
-<img src="decouverte_files/figure-html/unnamed-chunk-10-1.png" alt="Variation de la température (A) et de l'intensité lumineuse (B) dans la baie de Calvi(Corse,France) la température" width="624" />
+<img src="decouverte_files/figure-html/unnamed-chunk-10-1.png" alt="Température (A) et Intensité lumineuse (B) dans la baie de Calvi (Corse, France)" width="624" />
 <p class="caption">
-Variation de la température (A) et de l’intensité lumineuse (B) dans la baie de Calvi(Corse,France) la température
+Température (A) et Intensité lumineuse (B) dans la baie de Calvi (Corse, France)
 </p>
 </div>
 <div class="figure">
-<img src="decouverte_files/figure-html/unnamed-chunk-11-1.png" alt="Croissance de la coquille d' *Achatina achatina* exprimée en radian par rapport au nombre de spire modélisé par une régression linaire durant pour la protochonque et une regression polynomiale pour la téléochonque." width="624" />
+<img src="decouverte_files/figure-html/unnamed-chunk-11-1.png" alt="Croissance de la coquille d' *Achatina achatina* en radian (nombre d'enroulements de la coquille)." width="624" />
 <p class="caption">
-Croissance de la coquille d’ <em>Achatina achatina</em> exprimée en radian par rapport au nombre de spire modélisé par une régression linaire durant pour la protochonque et une regression polynomiale pour la téléochonque.
+Croissance de la coquille d’ <em>Achatina achatina</em> en radian (nombre d’enroulements de la coquille).
 </p>
 </div>
-<p><strong>Ceci n’est qu’un bref aperçu de possibilité que propose R, vous en découvrirez une partie lors des cours de la science de données.</strong></p>
+<p><strong>Ceci n’est qu’un bref aperçu des possibilités que propose R, vous en découvrirez une partie lors des cours de science de données.</strong></p>
 </div>
 </div>
 <div id="section-lobesite" class="section level2">
 <h2>L’obésité</h2>
-<p>Plusieurs médias publient ou ont publié récement des articles avec des titres accrocheurs comme <a href="https://www.lesechos.fr/idees-debats/cercle/cercle-166670-obesite-le-mal-du-siecle-2067263.php">Obésité, le mal du siècle</a>, <a href="https://www.lemonde.fr/sante/article/2016/04/01/13-de-la-population-adulte-mondiale-est-obese-20-pourrait-bientot-l-etre_4893671_1651302.html">13 % de la population adulte mondiale est obèse, 20 % pourrait l’être en 2025</a> ou encore <a href="http://www.natura-sciences.com/sante/obesite-malnutrition.html">Obésité et malnutrition, fléaux du XXIe siècle</a>. Ils se basent sur plusieurs déclarations de l’Organisation Mondial de la Santé indiquant que la lutte contre l’obésité sera l’un des défis majeurs pour la santé publique au 21ième siècle. L’OMS estime que 1.5 milliards de personnes sont en surpoids actuellement et ce chiffre va augmenter si rien ne change.</p>
+<p>Plusieurs médias publient ou ont publié récemment des articles avec des titres accrocheurs comme <a href="https://www.lesechos.fr/idees-debats/cercle/cercle-166670-obesite-le-mal-du-siecle-2067263.php">obésité, le mal du siècle</a>, <a href="https://www.lemonde.fr/sante/article/2016/04/01/13-de-la-population-adulte-mondiale-est-obese-20-pourrait-bientot-l-etre_4893671_1651302.html">13% de la population adulte mondiale est obèse, 20% pourrait l’être en 2025</a> ou encore <a href="http://www.natura-sciences.com/sante/obesite-malnutrition.html">obésité et malnutrition, fléaux du XXI<sup>e</sup> siècle</a>. Ils se basent sur plusieurs déclarations de l’Organisation Mondiale de la Santé (OMS) indiquant que la lutte contre l’obésité sera l’un des défis majeurs pour la santé publique au 21<sup>ième</sup> siècle. L’OMS estime que 1.5 milliards de personnes sont en surpoids actuellement et ce chiffre va augmenter si rien ne change.</p>
 <div class="figure">
 <img src="images/belly.jpg" style="width:50.0%" />
 
 </div>
-<p>Une multitude d’indicateur pour quantifier l’excédent de poids ont été employé au cours du temps (formule de Lorentz, formule de Creff ou encore la formule de Broca). Actuellement, c’est l’indice de masse corporelle (IMC ou encore <strong>BMI</strong> en anglais) qui est l’indicateur le plus employé. La formule est la suivant :</p>
+<p>Une multitude d’indicateurs pour quantifier l’excédent de poids ont été employés au cours du temps (<a href="https://www.calculersonimc.fr/autres-calculs/poids-ideal-lorentz.html">formule de Lorentz</a>, <a href="https://www.calculersonimc.fr/autres-calculs/poids-ideal-creff.html">formule de Creff</a> ou encore <a href="https://www.calculersonimc.fr/autres-calculs/poids-ideal-broca.html">formule de Broca</a>). Actuellement, c’est l’indice de masse corporelle (IMC, ou encore <strong>BMI</strong> en anglais) qui est l’indicateur le plus employé. La formule est la suivante :</p>
 <p><span class="math display">\[IMC (kg/m^2) = \frac{masse(kg)}{taille(m)^2}\]</span></p>
 <p>Une fois la valeur obtenue de l’IMC, il faut la comparer au tableau ci-dessous pour connaitre son état de santé.</p>
 <table>
 <thead>
 <tr class="header">
-<th>IMC (kg/m2)</th>
-<th>Interprétation (selon l’OMS)</th>
+<th align="left">IMC (kg/m<sup>2</sup>)</th>
+<th align="center">Interprétation (selon l’OMS)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>inférieur 18.5</td>
-<td>sous-poids</td>
+<td align="left">Inférieur 18.5</td>
+<td align="center">Sous-poids</td>
 </tr>
 <tr class="even">
-<td>Entre 18.5 et 25</td>
-<td>Corpulence normale</td>
+<td align="left">Entre 18.5 et 25</td>
+<td align="center">Corpulence normale</td>
 </tr>
 <tr class="odd">
-<td>Entre 25 et 30</td>
-<td>Surpoids</td>
+<td align="left">Entre 25 et 30</td>
+<td align="center">Surpoids</td>
 </tr>
 <tr class="even">
-<td>supérieur à 30</td>
-<td>Obésité</td>
+<td align="left">Supérieur à 30</td>
+<td align="center">Obésité</td>
 </tr>
 </tbody>
 </table>
-<p>Avancez pas à pas en toute simplicité dans cette première analyse avec R.</p>
+<p>Nous allons maintenant avancez pas à pas dans cette première analyse avec R. Le but est de calculer l’IMC, et puis de visualiser comment cet indice se répartit dans la population étudiée.</p>
 </div>
 <div id="section-calcul-de-limc" class="section level2">
 <h2>Calcul de l’IMC</h2>
-<p>Les premières personnes dont vous avez les résultats sont les suivants:</p>
+<p>Les premières personnes dont vous avez les résultats sont les suivantes :</p>
 <ul>
-<li>identifiant: 1</li>
-<li>sexe : Femme</li>
+<li>identifiant : 1</li>
+<li>sexe : femme</li>
 <li>masse : 50 kg</li>
 <li>taille : 1.70 m</li>
 </ul>
-<p>Rappelez vous de la formule qui est :</p>
+<p>Rappelez-vous de la formule qui est :</p>
 <p><span class="math display">\[IMC (kg/m^2) = \frac{masse(kg)}{taille(m)^2}\]</span></p>
-<p>On peut employer les opérations mathématiques de base avec R, qui respecte également l’ordre des priorités mathématiques.</p>
+<p>On peut employer les opérations mathématiques de base avec R. elles respectent l’ordre de priorité des opérateurs mathématiques. Au besoin, il est possible d’indiquer explicitement, ou de modifier les priorités avec des parenthèses comme <code>3 * (2 + 1)</code>.</p>
 <table>
 <thead>
 <tr class="header">
-<th>Opérations de base</th>
-<th>Symboles</th>
+<th align="left">Opérations de base</th>
+<th align="center">Symboles</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>additions</td>
-<td><code>+</code></td>
+<td align="left">addition</td>
+<td align="center"><code>+</code></td>
 </tr>
 <tr class="even">
-<td>soustractions</td>
-<td><code>-</code></td>
+<td align="left">soustraction</td>
+<td align="center"><code>-</code></td>
 </tr>
 <tr class="odd">
-<td>divisions</td>
-<td><code>/</code></td>
+<td align="left">division</td>
+<td align="center"><code>/</code></td>
 </tr>
 <tr class="even">
-<td>multiplications</td>
-<td><code>*</code></td>
+<td align="left">multiplication</td>
+<td align="center"><code>*</code></td>
 </tr>
 <tr class="odd">
-<td>exponentiations</td>
-<td><code>^</code></td>
+<td align="left">puissance</td>
+<td align="center"><code>^</code></td>
 </tr>
 </tbody>
 </table>
-<p>On va traduire la formule mathématique en une suite d’instructions.</p>
+<p>La formule mathématique se traduit donc comme suit en une instruction que R peut utiliser :</p>
 <pre class="r"><code>50 / 1.70^2</code></pre>
 <pre><code>[1] 17.30104</code></pre>
-<p>Son IMC indique que cette femme est dans la catégorie <code>sous-poids</code> selon l’échelle de l’OMS</p>
-<p>Réalisez la même opération mathématique sur notre deuxième individu :</p>
+<p><strong>Notez ceci :</strong> R indique un <code>[1]</code> devant la réponse. En fait, R travaille avec des vecteurs (même si ici, le vecteur ne contient qu’un seul élément). Ainsi, le nombre entre crochets devant indique la position dans le vecteur. Ce calcul sur vecteurs nous sera très utile lorsque nous traoterons l’ensemble du tableau. En effet, le même calcul sera <em>automatiquement distribué</em> sur tous les individus !</p>
+<p>L’IMC de cette femme indique qu’elle est en <code>sous-poids</code> selon l’échelle de l’OMS.</p>
+<p>Réalisez maintenant par vous-mêmes le calcul sur notre deuxième individu :</p>
 <ul>
 <li>identifiant: 2</li>
-<li>sexe : Homme</li>
+<li>sexe : homme</li>
 <li>masse : 93 kg</li>
 <li>taille : 1.91 m</li>
 </ul>
-<p>L’espace ci-dessous est une zone de code R. Tu peux y ajouter tes réponses et cliquer sur <code>Run Code</code>.</p>
+<p>L’espace ci-dessous est une zône où vous pouvez entrer du code R. Le bouton <code>Run Code</code> permet ensuite de l’exécuter et de visualiser le résultat. Vous pouvez modifier autant de fois qu’il faut l’expression, et utiliser plusieurs fois <code>Run Code</code>. Lorsque vous êtes satisfait du résultat, cliquez sur <code>Submit Answer</code>. Dans les tutoriaux, la <code>Solution</code> est également accessible, mais faites l’exercice par vous-même d’abord ! Dans les tests, vous n’y aurez pas accès, évidemment.</p>
 <div class="tutorial-exercise" data-label="id2_imc" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
@@ -422,326 +326,376 @@ Croissance de la coquille d’ <em>Achatina achatina</em> exprimée en radian pa
 <div class="tutorial-exercise-support" data-label="id2_imc-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Not yet...</code></pre>
 </div>
-<p>Son IMC indique que cet homme est par contre dans la catégorie <code>surpoids</code> selon l’échelle de l’OMS.</p>
+<p>L’IMC de cet homme indique qu’e cet homme est par contre’il est en <code>surpoids</code> selon l’échelle de l’OMS.</p>
 </div>
 <div id="section-calcul-de-limc-sur-plusieurs-individus" class="section level2">
 <h2>Calcul de l’IMC sur plusieurs individus</h2>
-<p>Vous vous retrouvez rapidement avec 5 nouveaux individus femme et homme.</p>
+<p>Vous vous retrouvez rapidement avec 5 nouveaux individus femmes et hommes.</p>
 <ul>
-<li>identifiant: 3, 4, 5, 6, 7</li>
+<li>identifiant : 3, 4, 5, 6, 7</li>
 <li>sexe : femme, femme, femme, femme, femme</li>
 <li>masse : 63, 49, 75, 66, 54 kg</li>
 <li>taille : 1.74, 1.55, 1.69, 1.79, 1.68 m</li>
 </ul>
-<p>Le calcul un à un de l’IMC de chaque individu va très rapidement devenir fastidueux. R permet de créer des vecteurs que l’on peut affecter à des symboles avec la flèche <code>&lt;-</code> comme le montre l’exemple ci-dessous.</p>
-<pre class="r"><code># affectation des valeurs de masse dans un vecteur au symbole w1
-w1 &lt;- c(63, 49, 75, 66, 54)
-# affectation des valeurs dans un vecteur au symbole h1
-h1 &lt;- c(1.74, 1.55, 1.69, 1.79, 1.68)
-# formule de IMC
-w1 / h1^2</code></pre>
+<p>Le calcul un à un de l’IMC de chaque individu va très rapidement devenir fastidueux. R permet de créer des vecteurs que l’on peut affecter à des symboles avec la flèche <code>&lt;-</code> (constituée du signe plus petit que immédiatemment suivi du signe moins) comme le montre l’exemple ci-dessous. Pour rassembler plusieurs valeurs dans un vecteur on les “concatène”s avec la fonction <code>c()</code> :</p>
+<pre class="r"><code># Assignation des valeurs de masses dans un vecteur nommé `masse`
+masse1 &lt;- c(63, 49, 75, 66, 54)
+# Assignation des valeurs de tailles dans un vecteurnommé `taille`
+taille1 &lt;- c(1.74, 1.55, 1.69, 1.79, 1.68)
+# Calcul de l&#39;IMC
+masse1 / taille1^2</code></pre>
 <pre><code>[1] 20.80856 20.39542 26.25958 20.59861 19.13265</code></pre>
-<p>Réalisez les mêmes opérations sur les individus de 8 à 12</p>
+<p><strong>Important :</strong></p>
 <ul>
-<li>identifiant: 8, 9, 10, 11, 12</li>
-<li>sexe : homme, homme, homme, homme</li>
+<li><p>Choisissez bien les noms de vos objets. Ces noms doivent être courts, mais informatifs concernant leur contenu.</p></li>
+<li><p>Rappelez-vous que noms acceptables commencent par une lettre, et comportent ensuite des lettres, chiffres, le trait souligné <code>_</code> ou le point <code>.</code>.</p></li>
+<li><p>Comme il est difficile de mémoriser la casse d’un nom, il est conseillé d’utiliser uniquement des lettres minuscules.</p></li>
+<li>Si le nom est constitué de plusieurs mots, il est préférable de séparer ces mots par un trait souligné. Pour rappel, l’espace n’est pas utilisable. Par exemple, <code>diametre_poignet</code>.</li>
+<li>Eviter d’utiliser des caractères accentués.</li>
+<li><p>Si possible, utilisez des noms en anglais. Certainement si votre travail sera échangé avec d’autres scientifiques en international, … mais c’est une bonne habitude à prendre même sur votre propre code.</p></li>
+</ul>
+<p><em>Jusqu’ici, nous avons utilisé des noms de vecteurs en français pour vous faciliter la tâche. Dans la section suivante, nous prendrons de meilleures habitudes et passerons à l’anglais !</em></p>
+<p>Réalisez les mêmes opérations sur les individus de 8 à 12.</p>
+<ul>
+<li>identifiant : 8, 9, 10, 11, 12</li>
+<li>sexe : homme, homme, homme, homme, homme</li>
 <li>masse : 82, 73, 105, 61, 95 kg</li>
 <li>taille : 1.74, 1.86, 2.03, 1.72, 1.90 m</li>
 </ul>
 <div class="tutorial-exercise" data-label="vec_imc" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># assignation des valeurs de masse dans un vecteur au symbole masse 
-w2 &lt;- c( )
-# assignation des valeurs dans un vecteur au symbole taille
-h2 &lt;- 
-# formule de IMC</code></pre>
+<pre class="text"><code># Assignation des valeurs de masses dans un vecteur nommé `masse2`
+masse2 &lt;- c()
+# Assignation des valeurs de tailles dans un vecteur nommé `taille2`
+taille2 &lt;- 
+# Calcul de IMC</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <p>Vous obtenez les 5 valeurs d’IMC d’une seule fois avec l’utilisation de vecteurs.</p>
 <div class="tutorial-exercise-support" data-label="vec_imc-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># assignation des valeurs de masse dans un vecteur au symbole masse 
-w2 &lt;- c(82, 73, 105, 61, 95)
-# assignation des valeurs dans un vecteur au symbole taille
-h2 &lt;- c(1.74, 1.86, 2.03, 1.72, 1.90)
-# formule de IMC
-w2/h2^2</code></pre>
+<pre class="text"><code># Assignation des valeurs de masses dans un vecteur nommé `masse2`
+masse2 &lt;- c(82, 73, 105, 61, 95)
+# Assignation des valeurs de tailles dans un vecteur nommé `taille2`
+taille2 &lt;- c(1.74, 1.86, 2.03, 1.72, 1.90)
+# Calcul de IMC
+masse2 / taille2^2</code></pre>
 </div>
 <div class="tutorial-exercise-support" data-label="vec_imc-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Not yet...</code></pre>
 </div>
 </div>
-<div id="section-ecriture-dun-tableau-de-donnees" class="section level2">
-<h2>Ecriture d’un tableau de données</h2>
-<p>Il devient évident qu’il est plus simple que nos observations de terrain soient rassemblées en un jeu de données structurées pour cela vous allez employer votre première fonction <code>data_frame()</code>. Cette dernière va permettre de combiner vos différents vecteurs en un jeu de données.</p>
-<p>R utilise un ensemble de fonction afin de réaliser des opérations comme <code>data_frame()</code> qui permet de créer un tableau de données. Vous pouvez observer que la fonction comprend plusieurs arguments séparés par une <code>,</code>. Analysez avec attention l’exemple ci-dessous.</p>
-<pre class="r"><code># formation du jeu de données
-woman1 &lt;- data_frame(id = c(3, 4, 5, 6, 7), # ensemble de valeurs numériques
-                    sex = c(&quot;w&quot;, &quot;w&quot;, &quot;w&quot;, &quot;w&quot;, &quot;w&quot;), # ensemble de chaines de caracères specifié par l&#39;utilisation des guillemets.
-                    weight = w1, # le vecteur masse fait précédement
-                    height = h1) # le vecteur taille fait précédement
-# afficher le jeu de données
-head(woman1) # head() permet d&#39;afficher les premiers résultats d&#39;un tableau</code></pre>
+<div id="section-encodage-dun-tableau-de-donnees" class="section level2">
+<h2>Encodage d’un tableau de données</h2>
+<p>Il devient rapidement évident qu’il est plus simple que nos observations de terrain soient rassemblées en un jeu de données structuré. Pour cela vous allez créer ce qu’on appelle un <strong>“data frame”</strong> (qui se traduit en français par “tableau de données”) dans R. La fonction qui permet de le créer est <code>data_frame()</code>. Cette dernière va permettre de combiner vos différents vecteurs colonne par colonne dans un tableau.</p>
+<p>Dans <code>data_frame()</code>, vous entrerez vos différents vecteurs comme autant d’<strong>arguments</strong> de la fonction, séparés par une <code>,</code>. De plus, vous pouvez nommer vos colonnes en donnant des noms aux arguments de type <code>nom = valeur</code>. Analysez avec attention l’exemple ci-dessous.</p>
+<pre class="r"><code># Création du tableau de données (data frame)
+woman1 &lt;- data_frame(
+  id     = c(3, 4, 5, 6, 7),           # Valeurs numériques
+  sex    = c(&quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;), # Chaines de caractères (! guillemets)
+  weight = masse1,                     # Vecteur de masses fait précédemment
+  height = taille1                     # Vecteur de tailles fait précédemment
+)
+# Afficher le tableau
+woman1</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sex"],"name":[2],"type":["chr"],"align":["left"]},{"label":["weight"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["height"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"w","3":"63","4":"1.74"},{"1":"4","2":"w","3":"49","4":"1.55"},{"1":"5","2":"w","3":"75","4":"1.69"},{"1":"6","2":"w","3":"66","4":"1.79"},{"1":"7","2":"w","3":"54","4":"1.68"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sex"],"name":[2],"type":["chr"],"align":["left"]},{"label":["weight"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["height"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"F","3":"63","4":"1.74"},{"1":"4","2":"F","3":"49","4":"1.55"},{"1":"5","2":"F","3":"75","4":"1.69"},{"1":"6","2":"F","3":"66","4":"1.79"},{"1":"7","2":"F","3":"54","4":"1.68"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>Avez-vous remarquez la différence entre des valeurs numériques et des chaines de caractères ?</p>
-<p>Réalisez les mêmes opérations sur les individus de 8 à 12 :</p>
+<p>Avez-vous remarqué la différence dans la façon d’encoder des valeurs numériques et des chaines de caractères ?</p>
+<p>Réalisez-les mêmes opérations sur les individus de 8 à 12 :</p>
 <ul>
 <li>identifiant: 8, 9, 10, 11, 12</li>
-<li>sexe : homme, homme, homme, homme</li>
+<li>sexe : homme, homme, homme, homme (indiquez simplement <code>M</code> pour “male”)</li>
 <li>masse : 82, 73, 105, 61, 95 kg</li>
 <li>taille : 1.74, 1.86, 2.03, 1.72, 1.90 m</li>
 </ul>
 <div class="tutorial-exercise-support" data-label="prepare" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># assignation des valeurs de masse dans un vecteur au symbole masse 
-w2 &lt;- c(82, 73, 105, 61, 95)
-# assignation des valeurs dans un vecteur au symbole taille
-h2 &lt;- c(1.74, 1.86, 2.03, 1.72, 1.90)</code></pre>
+<pre class="text"><code># Assignation des valeurs de masses dans un vecteur `masse2`
+masse2 &lt;- c(82, 73, 105, 61, 95)
+# Assignation des valeurs de tailles dans un vecteur `taille2`
+taille2 &lt;- c(1.74, 1.86, 2.03, 1.72, 1.90)</code></pre>
 </div>
 <div class="tutorial-exercise" data-label="data_man" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># formation du jeu de données
-man1 &lt;- data_frame(id = ,
-                   sex = ,
-                   weight = ,
-                   height = )
-# afficher le tableau de données avec la fonction head()</code></pre>
+<pre class="text"><code># Encodage du jeu de données
+man1 &lt;- data_frame(
+  id     = ,
+  sex    = ,
+  weight = ,
+  height = 
+)
+# Afficher le tableau</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="data_man-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># formation du jeu de données
-man1 &lt;- data_frame(id = c(8, 9, 10, 11, 12),
-                    sex = c(&quot;h&quot;, &quot;h&quot;, &quot;h&quot;, &quot;h&quot;, &quot;h&quot;), 
-                    weight = w2, 
-                    height = h2) 
-# afficher le jeu de données
+<pre class="text"><code># Encodage du jeu de données
+man1 &lt;- data_frame(
+  id     = c(8, 9, 10, 11, 12),
+  sex    = c(&quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;),
+  weight = masse2,
+  height = taille2
+)
+# Afficher le tableau
 man1</code></pre>
 </div>
-<p>Calculez de nouveau l’IMC et ajoutez vos résultats dans le tableau de données. Vous avez à votre disposition la fonction <code>mutate()</code> qui requiert comme argument le jeu de données et le nom de la nouvelle variable suivi de la formule mathématique.</p>
-<pre class="r"><code># calculer l&#39;IMC
-woman1 &lt;- mutate(woman1, bmi = weight/height^2)
-# afficher le tableau de données avec la fonction head()
-head(woman1)</code></pre>
+<p>Calculez de nouveau l’IMC et ajoutez vos résultats dans le tableau de données. Vous avez à votre disposition la fonction <code>mutate()</code> qui requiert comme argument le jeu de données et le nom de la nouvelle variable comme nom d’argument suivi de la formule mathématique qui calcule son contenu.</p>
+<pre class="r"><code># Calculer l&#39;IMC pour les femmes
+woman1 &lt;- mutate(woman1, bmi = weight / height^2)
+# Afficher le tableau de données
+woman1</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sex"],"name":[2],"type":["chr"],"align":["left"]},{"label":["weight"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["height"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["bmi"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"w","3":"63","4":"1.74","5":"20.80856"},{"1":"4","2":"w","3":"49","4":"1.55","5":"20.39542"},{"1":"5","2":"w","3":"75","4":"1.69","5":"26.25958"},{"1":"6","2":"w","3":"66","4":"1.79","5":"20.59861"},{"1":"7","2":"w","3":"54","4":"1.68","5":"19.13265"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sex"],"name":[2],"type":["chr"],"align":["left"]},{"label":["weight"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["height"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["bmi"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"F","3":"63","4":"1.74","5":"20.80856"},{"1":"4","2":"F","3":"49","4":"1.55","5":"20.39542"},{"1":"5","2":"F","3":"75","4":"1.69","5":"26.25958"},{"1":"6","2":"F","3":"66","4":"1.79","5":"20.59861"},{"1":"7","2":"F","3":"54","4":"1.68","5":"19.13265"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>Vous pouvez observer que vous obtenez une nouvelle colonne au sein de votre tableau de données. Réalisez les mêmes opérations sur le jeu de données <code>man1</code>.</p>
+<p><strong>A retenir :</strong></p>
+<ul>
+<li><p>Vous pouvez vous référer à d’autres colonnes du tableau (= autres variables) en utilisant leurs noms directement dans la formule,</p></li>
+<li><p>La ou les nouvelles colonnes sont ajoutées à la fin du tableau et sont directement utilisables.</p></li>
+</ul>
+<p>Réalisez par vous-mêmes les mêmes opérations sur le jeu de données <code>man1</code>.</p>
 <div class="tutorial-exercise-support" data-label="prepare1" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>man1 &lt;- data_frame(id = c(8, 9, 10, 11, 12),
-                    sex = c(&quot;h&quot;, &quot;h&quot;, &quot;h&quot;, &quot;h&quot;, &quot;h&quot;), 
-                    weight = c(82, 73, 105, 61, 95), 
-                    height = c(1.74, 1.86, 2.03, 1.72, 1.90)) </code></pre>
+<pre class="text"><code>man1 &lt;- data_frame(
+  id     = c(8, 9, 10, 11, 12),
+  sex    = c(&quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;), 
+  weight = c(82, 73, 105, 61, 95), 
+  height = c(1.74, 1.86, 2.03, 1.72, 1.90)
+)</code></pre>
 </div>
 <div class="tutorial-exercise" data-label="imc_mutate" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># calculer l&#39;IMC
+<pre class="text"><code># Calculer l&#39;IMC pour les hommes
 man1 &lt;- mutate(man1, bmi = )
-# afficher le tableau de données avec la fonction head()</code></pre>
+# Afficher le tableau de données</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare1","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="imc_mutate-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># calculer l&#39;IMC
-man1 &lt;- mutate(man1, bmi = weight/height^2)
-# afficher le tableau de données avec la fonction head()
-head(man1)</code></pre>
+<pre class="text"><code># Calculer l&#39;IMC pour les hommes
+man1 &lt;- mutate(man1, bmi = weight / height^2)
+# Afficher le tableau de données
+man1</code></pre>
 </div>
 <div class="tutorial-exercise-support" data-label="imc_mutate-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Not yet...</code></pre>
 </div>
-<p>Vous pouvez observer que tout comme le tableau de données portant sur les femmes, vous obtenez une nouvelle colonne au sein de votre tableau de données portant le nom de BMI soit l’IMC en français.</p>
+<p>Vous pouvez observer que tout comme le tableau de données portant sur les femmes, vous obtenez une nouvelle colonne au sein de votre tableau de données portant le nom de <code>bmi</code> (pour “Body Mass Index”, soit l’IMC en français).</p>
 </div>
 <div id="section-de-la-population-adulte-mondiale-est-obese" class="section level2">
 <h2>13% de la population adulte mondiale est obèse</h2>
-<p>Le monde titre que 13% de la populaton mondiale est obèse. Vérifiez cette affirmation avec le jeu de données <code>bio</code> qui regroupe les masses et les tailles de 395 personnes adulte vivant sur le territoire belge.</p>
-<pre class="r"><code>head(bio) </code></pre>
+<p>Le monde titre que 13% de la populaton mondiale est obèse. Vérifiez cette affirmation avec le jeu de données <code>bio</code> qui regroupe les masses et les tailles de 395 personnes adulte vivant sur le territoire belge. Nous ne garderons que les colonnes <code>genre</code>, <code>masse</code> et <code>taille</code>. Nous allons également tirer au hasard 100 individus comme sous-échantillon de ce tableau (à titre d’illustration d’autres traitements possibles sur le tableau). La fonction qui réalise cela est <code>sample_n()</code>. La fonction <code>set.seed)</code> prend un nombre et initialise le générateur de nombres dit “pseudo-aléatoires” pour que tout le monde ait le même sous-ensemble. En pratique, cette instruction est facultative, mais elle est utile pour générer des résultats <strong>reproductibles</strong>. Indiquez naturellement un nombre différent, à chaque fois que vous l’utiliser !</p>
+<pre class="r"><code>bio &lt;- read(&quot;biometrie&quot;, package = &quot;BioDataScience&quot;)
+set.seed(50) # Initialisation du générateur de nombres pseudo-aléatoires
+bio %&gt;.%
+  select(., genre, masse, taille) %&gt;.%
+  sample_n(., size = 100, replace = FALSE) -&gt; bio_100
+# Echantillonnage au hasard de 100 individus
+bio_100</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["sex"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["height"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"H","2":"69","3":"182"},{"1":"H","2":"74","3":"190"},{"1":"H","2":"83","3":"185"},{"1":"H","2":"60","3":"175"},{"1":"F","2":"48","3":"167"},{"1":"F","2":"52","3":"179"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["genre"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["masse"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["taille"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"F","2":"62.00","3":"158.0"},{"1":"F","2":"68.80","3":"162.0"},{"1":"F","2":"52.00","3":"162.0"},{"1":"F","2":"49.00","3":"156.0"},{"1":"F","2":"57.80","3":"170.5"},{"1":"H","2":"90.00","3":"164.0"},{"1":"F","2":"59.00","3":"162.0"},{"1":"H","2":"86.50","3":"187.0"},{"1":"F","2":"57.00","3":"164.0"},{"1":"H","2":"79.00","3":"173.0"},{"1":"H","2":"78.50","3":"185.0"},{"1":"F","2":"76.50","3":"171.0"},{"1":"H","2":"95.23","3":"185.0"},{"1":"H","2":"105.00","3":"175.0"},{"1":"H","2":"116.00","3":"192.0"},{"1":"H","2":"63.00","3":"177.0"},{"1":"F","2":"45.00","3":"161.0"},{"1":"F","2":"70.10","3":"164.0"},{"1":"H","2":"70.00","3":"185.0"},{"1":"H","2":"70.00","3":"168.0"},{"1":"F","2":"61.90","3":"150.0"},{"1":"F","2":"105.00","3":"170.0"},{"1":"H","2":"70.00","3":"170.0"},{"1":"F","2":"43.00","3":"155.0"},{"1":"H","2":"122.00","3":"172.0"},{"1":"F","2":"59.30","3":"149.0"},{"1":"H","2":"53.00","3":"168.5"},{"1":"F","2":"55.00","3":"167.0"},{"1":"H","2":"85.00","3":"183.0"},{"1":"H","2":"89.00","3":"175.0"},{"1":"H","2":"82.00","3":"173.0"},{"1":"H","2":"80.00","3":"172.0"},{"1":"F","2":"49.00","3":"157.0"},{"1":"H","2":"82.00","3":"179.0"},{"1":"H","2":"72.00","3":"179.0"},{"1":"F","2":"47.00","3":"162.0"},{"1":"H","2":"74.00","3":"172.0"},{"1":"F","2":"56.40","3":"159.0"},{"1":"F","2":"67.50","3":"164.0"},{"1":"H","2":"69.00","3":"189.0"},{"1":"H","2":"78.00","3":"172.0"},{"1":"F","2":"56.00","3":"165.0"},{"1":"H","2":"73.50","3":"181.0"},{"1":"F","2":"57.00","3":"162.0"},{"1":"H","2":"59.00","3":"185.0"},{"1":"F","2":"63.00","3":"168.0"},{"1":"H","2":"83.00","3":"181.0"},{"1":"H","2":"86.00","3":"180.0"},{"1":"H","2":"87.63","3":"167.0"},{"1":"H","2":"79.00","3":"185.0"},{"1":"F","2":"57.00","3":"160.0"},{"1":"F","2":"72.00","3":"156.0"},{"1":"H","2":"65.00","3":"175.0"},{"1":"F","2":"87.50","3":"164.0"},{"1":"H","2":"75.00","3":"166.0"},{"1":"H","2":"62.00","3":"173.0"},{"1":"H","2":"85.00","3":"164.0"},{"1":"H","2":"92.00","3":"171.0"},{"1":"F","2":"64.90","3":"166.0"},{"1":"F","2":"51.50","3":"163.0"},{"1":"H","2":"82.00","3":"162.0"},{"1":"F","2":"52.00","3":"161.0"},{"1":"H","2":"89.00","3":"183.0"},{"1":"H","2":"86.60","3":"186.0"},{"1":"H","2":"70.00","3":"161.0"},{"1":"H","2":"86.00","3":"175.0"},{"1":"H","2":"79.20","3":"182.0"},{"1":"H","2":"60.00","3":"181.0"},{"1":"F","2":"70.00","3":"162.0"},{"1":"F","2":"68.00","3":"173.0"},{"1":"F","2":"66.80","3":"160.0"},{"1":"F","2":"61.00","3":"159.0"},{"1":"F","2":"50.00","3":"160.0"},{"1":"F","2":"59.00","3":"172.0"},{"1":"H","2":"71.00","3":"185.0"},{"1":"F","2":"55.00","3":"167.0"},{"1":"F","2":"69.30","3":"156.0"},{"1":"F","2":"65.00","3":"159.0"},{"1":"F","2":"54.50","3":"169.0"},{"1":"F","2":"58.00","3":"154.0"},{"1":"H","2":"73.50","3":"180.0"},{"1":"F","2":"52.00","3":"179.0"},{"1":"F","2":"77.00","3":"162.0"},{"1":"F","2":"89.00","3":"156.0"},{"1":"F","2":"54.10","3":"168.0"},{"1":"F","2":"63.00","3":"166.0"},{"1":"H","2":"69.00","3":"182.0"},{"1":"H","2":"77.00","3":"170.0"},{"1":"H","2":"83.00","3":"183.0"},{"1":"F","2":"55.80","3":"165.0"},{"1":"H","2":"66.10","3":"176.0"},{"1":"H","2":"63.00","3":"174.0"},{"1":"H","2":"112.00","3":"190.0"},{"1":"F","2":"56.00","3":"170.0"},{"1":"H","2":"64.00","3":"165.0"},{"1":"F","2":"50.00","3":"167.0"},{"1":"H","2":"76.00","3":"183.0"},{"1":"H","2":"82.50","3":"178.0"},{"1":"H","2":"82.00","3":"175.0"},{"1":"F","2":"55.00","3":"171.0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>Vous pouvez observer que la taille est exprimée en centimètres, il faut en tenir compte lors du calcul de l’IMC.</p>
-<p>Un jeu de données réduit est employé pour expliciter les suites d’instructions <code>bio_ex</code> qui comprend uniquement 100 observations.</p>
-<p>Calculez l’IMC sur le jeu de données <code>bio_ex</code>. Employez à nouveau la fonction <code>mutate()</code>.</p>
-<pre class="r"><code># calculer le IMC (BMI en anglais) avec la fonction mutate()
-bio_ex &lt;- mutate(bio_ex, bmi = weight/(height/100)^2)
-# afficher les premières lignes du tableau de données 
-head(bio_ex, n = 5)</code></pre>
+<p>Vous pouvez observer que la taille est ici exprimée en centimètres, il faut en tenir compte lors du calcul de l’IMC qui attend la taille exprimée en m. Un jeu de données réduit est employé pour expliciter les suites d’instructions <code>bio_100</code> qui comprend uniquement 100 observations.</p>
+<p>Pour calculer l’IMC sur le jeu de données <code>bio_100</code>, nous employons à nouveau la fonction <code>mutate()</code>.</p>
+<pre class="r"><code>bio_100 &lt;- mutate(bio_100, imc = masse / (taille / 100)^2)
+# Afficher les premières lignes du tableau de données 
+head(bio_100, n = 5)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["sex"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["height"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["bmi"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"F","2":"62.0","3":"158.0","4":"24.83576"},{"1":"F","2":"68.8","3":"162.0","4":"26.21552"},{"1":"F","2":"52.0","3":"162.0","4":"19.81405"},{"1":"F","2":"49.0","3":"156.0","4":"20.13478"},{"1":"F","2":"57.8","3":"170.5","4":"19.88287"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["genre"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["masse"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["taille"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["imc"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"F","2":"62.0","3":"158.0","4":"24.83576"},{"1":"F","2":"68.8","3":"162.0","4":"26.21552"},{"1":"F","2":"52.0","3":"162.0","4":"19.81405"},{"1":"F","2":"49.0","3":"156.0","4":"20.13478"},{"1":"F","2":"57.8","3":"170.5","4":"19.88287"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>Calculez l’IMC sur le jeu de données <code>bio</code>.</p>
+<p>Calculez l’IMC sur le jeu de données <code>bio</code> tout entier.</p>
 <div class="tutorial-exercise" data-label="bio_imc" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># calculer le IMC (BMI en anglais)
+<pre class="text"><code># Calcul de l&#39;IMC
 
-# afficher les premières lignes du tableau de données avec la fonction head()</code></pre>
+# Affichage des premières lignes du tableau de données</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="bio_imc-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># calculer le IMC (BMI en anglais)
-bio &lt;- mutate(bio, bmi = weight/(height/100)^2)
-# afficher les premières lignes du tableau de données
+<pre class="text"><code># Calcul de l&#39;IMC
+bio &lt;- mutate(bio, imc = masse / (taille / 100)^2)
+# Affichage des premières lignes du tableau de données
 head(bio, n = 5)</code></pre>
 </div>
 <div class="tutorial-exercise-support" data-label="bio_imc-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Not yet...</code></pre>
 </div>
 </div>
-<div id="section-signification-de-limc-selon-lechelle" class="section level2">
-<h2>Signification de l’IMC selon l’échelle</h2>
+<div id="section-signification-de-limc-selon-lechelle-de-loms" class="section level2">
+<h2>Signification de l’IMC selon l’échelle de l’OMS</h2>
 <p>Une fois la valeur obtenue de l’IMC, il faut lui attribuer son interprétation pour connaitre son état de santé.</p>
 <table>
 <thead>
 <tr class="header">
-<th>IMC (kg/m2)</th>
-<th>Interprétation (selon l’OMS)</th>
+<th align="left">IMC (kg/m2)</th>
+<th align="center">Interprétation (selon l’OMS)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Inférieur 18.5</td>
-<td>Sous-poids (en anglais underweight)</td>
+<td align="left">Inférieur 18.5</td>
+<td align="center">Sous-poids (en anglais <code>underweight</code>)</td>
 </tr>
 <tr class="even">
-<td>Entre 18.5 et 25</td>
-<td>Corpulence normale (en anglais normal weight)</td>
+<td align="left">Entre 18.5 et 25</td>
+<td align="center">Corpulence normale (en anglais <code>normal weight</code>)</td>
 </tr>
 <tr class="odd">
-<td>Entre 25 et 30</td>
-<td>Surpoids (en anglais overweight)</td>
+<td align="left">Entre 25 et 30</td>
+<td align="center">Surpoids (en anglais <code>overweight</code>)</td>
 </tr>
 <tr class="even">
-<td>Supérieur à 30</td>
-<td>Obésité (en anglais obese)</td>
+<td align="left">Supérieur à 30</td>
+<td align="center">Obésité (en anglais <code>obese</code>)</td>
 </tr>
 </tbody>
 </table>
-<p>Vous avez à votre disposition la fonction <code>case_when()</code> qui permet d’attribuer l’interprétation de l’OMS à la valeur d’IMC. Vous devez lui indiquer d’une part la condition (ex = BMI &lt; 18.5) et d’autre part son interprétation (ex : sous-poids), le tout séparé par un <code>~</code>. Vous pouvez retrouver les conditions ci-dessous.</p>
+<p>Vous avez à votre disposition la fonction <code>case_when()</code> qui permet d’attribuer l’interprétation de l’OMS à la valeur d’IMC. Vous devez lui indiquer d’une part la condition (ex. : <code>bmi &lt; 18.5</code>), et d’autre part son interprétation (ex. : <code>underweight</code>), le tout séparé par un <code>~</code>. Vous pouvez retrouver les conditions ci-dessous.</p>
 <table>
 <thead>
 <tr class="header">
-<th>Condition</th>
-<th>Représentation</th>
+<th align="left">Condition</th>
+<th align="center">Représentation</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Egal à</td>
-<td><code>==</code></td>
+<td align="left">Egal à</td>
+<td align="center"><code>==</code></td>
 </tr>
 <tr class="even">
-<td>Tout sauf</td>
-<td><code>!=</code></td>
+<td align="left">Différent de</td>
+<td align="center"><code>!=</code></td>
 </tr>
 <tr class="odd">
-<td>Supérieur à</td>
-<td><code>&gt;</code></td>
+<td align="left">Supérieur à</td>
+<td align="center"><code>&gt;</code></td>
 </tr>
 <tr class="even">
-<td>Inférieur à</td>
-<td><code>&lt;</code></td>
+<td align="left">Inférieur à</td>
+<td align="center"><code>&lt;</code></td>
 </tr>
 <tr class="odd">
-<td>Supérieur ou égal à</td>
-<td><code>&gt;=</code></td>
+<td align="left">Supérieur ou égal à</td>
+<td align="center"><code>&gt;=</code></td>
 </tr>
 <tr class="even">
-<td>Inférieur ou égal à</td>
-<td><code>&lt;=</code></td>
+<td align="left">Inférieur ou égal à</td>
+<td align="center"><code>&lt;=</code></td>
 </tr>
 <tr class="odd">
-<td>et</td>
-<td><code>&amp;</code></td>
+<td align="left">Et (combinaison de tests)</td>
+<td align="center"><code>&amp;</code></td>
 </tr>
 <tr class="even">
-<td>ou</td>
-<td><code>|</code></td>
+<td align="left">Ou (idem)</td>
+<td align="center"><code>|</code></td>
 </tr>
 </tbody>
 </table>
-<p>Ajoutez une nouvelle variable qui tient compte de l’échelle de l’OMS avec le jeu de données <code>bio_ex</code>. Analysez la structuration de la suite d’instructions, les conditions employées, la position des guillemets,…</p>
-<pre class="r"><code>#ajouter la nouvelles variable
-bio_ex &lt;- mutate(bio_ex, bmi_signif = 
-                   case_when(
-                     bmi &lt; 18.5 ~ &quot;underweight&quot;,
-                     bmi &gt;= 18.5 &amp; bmi &lt; 25 ~ &quot;normal weight&quot;,
-                     bmi &gt;= 25 &amp; bmi &lt; 30 ~ &quot;overweight&quot;,
-                     bmi &gt;= 30 ~ &quot;obese&quot;))
-# afficher le tableau 
-head(bio_ex)</code></pre>
+<p>Ajoutez une nouvelle variable qui tient compte de l’échelle de l’OMS avec le jeu de données <code>bio_100</code>. Analysez la structuration de la suite d’instructions, les conditions employées, la position des guillemets, …</p>
+<pre class="r"><code># Ajouter la nouvelles variable
+bio_100 &lt;- mutate(bio_100,
+  echelle_imc = case_when(
+    imc &lt; 18.5 ~ &quot;underweight&quot;,
+    imc &gt;= 18.5 &amp; imc &lt; 25 ~ &quot;normal weight&quot;,
+    imc &gt;= 25 &amp; imc &lt; 30 ~ &quot;overweight&quot;,
+    imc &gt;= 30 ~ &quot;obese&quot;
+))
+# Afficher le tableau 
+bio_100</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["sex"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["weight"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["height"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["bmi"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["bmi_signif"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"F","2":"62.0","3":"158.0","4":"24.83576","5":"normal weight"},{"1":"F","2":"68.8","3":"162.0","4":"26.21552","5":"overweight"},{"1":"F","2":"52.0","3":"162.0","4":"19.81405","5":"normal weight"},{"1":"F","2":"49.0","3":"156.0","4":"20.13478","5":"normal weight"},{"1":"F","2":"57.8","3":"170.5","4":"19.88287","5":"normal weight"},{"1":"H","2":"90.0","3":"164.0","4":"33.46222","5":"obese"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["genre"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["masse"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["taille"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["imc"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["echelle_imc"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"F","2":"62.00","3":"158.0","4":"24.83576","5":"normal weight"},{"1":"F","2":"68.80","3":"162.0","4":"26.21552","5":"overweight"},{"1":"F","2":"52.00","3":"162.0","4":"19.81405","5":"normal weight"},{"1":"F","2":"49.00","3":"156.0","4":"20.13478","5":"normal weight"},{"1":"F","2":"57.80","3":"170.5","4":"19.88287","5":"normal weight"},{"1":"H","2":"90.00","3":"164.0","4":"33.46222","5":"obese"},{"1":"F","2":"59.00","3":"162.0","4":"22.48133","5":"normal weight"},{"1":"H","2":"86.50","3":"187.0","4":"24.73619","5":"normal weight"},{"1":"F","2":"57.00","3":"164.0","4":"21.19274","5":"normal weight"},{"1":"H","2":"79.00","3":"173.0","4":"26.39580","5":"overweight"},{"1":"H","2":"78.50","3":"185.0","4":"22.93645","5":"normal weight"},{"1":"F","2":"76.50","3":"171.0","4":"26.16190","5":"overweight"},{"1":"H","2":"95.23","3":"185.0","4":"27.82469","5":"overweight"},{"1":"H","2":"105.00","3":"175.0","4":"34.28571","5":"obese"},{"1":"H","2":"116.00","3":"192.0","4":"31.46701","5":"obese"},{"1":"H","2":"63.00","3":"177.0","4":"20.10916","5":"normal weight"},{"1":"F","2":"45.00","3":"161.0","4":"17.36044","5":"underweight"},{"1":"F","2":"70.10","3":"164.0","4":"26.06336","5":"overweight"},{"1":"H","2":"70.00","3":"185.0","4":"20.45289","5":"normal weight"},{"1":"H","2":"70.00","3":"168.0","4":"24.80159","5":"normal weight"},{"1":"F","2":"61.90","3":"150.0","4":"27.51111","5":"overweight"},{"1":"F","2":"105.00","3":"170.0","4":"36.33218","5":"obese"},{"1":"H","2":"70.00","3":"170.0","4":"24.22145","5":"normal weight"},{"1":"F","2":"43.00","3":"155.0","4":"17.89802","5":"underweight"},{"1":"H","2":"122.00","3":"172.0","4":"41.23851","5":"obese"},{"1":"F","2":"59.30","3":"149.0","4":"26.71051","5":"overweight"},{"1":"H","2":"53.00","3":"168.5","4":"18.66707","5":"normal weight"},{"1":"F","2":"55.00","3":"167.0","4":"19.72104","5":"normal weight"},{"1":"H","2":"85.00","3":"183.0","4":"25.38147","5":"overweight"},{"1":"H","2":"89.00","3":"175.0","4":"29.06122","5":"overweight"},{"1":"H","2":"82.00","3":"173.0","4":"27.39818","5":"overweight"},{"1":"H","2":"80.00","3":"172.0","4":"27.04164","5":"overweight"},{"1":"F","2":"49.00","3":"157.0","4":"19.87910","5":"normal weight"},{"1":"H","2":"82.00","3":"179.0","4":"25.59221","5":"overweight"},{"1":"H","2":"72.00","3":"179.0","4":"22.47121","5":"normal weight"},{"1":"F","2":"47.00","3":"162.0","4":"17.90886","5":"underweight"},{"1":"H","2":"74.00","3":"172.0","4":"25.01352","5":"overweight"},{"1":"F","2":"56.40","3":"159.0","4":"22.30924","5":"normal weight"},{"1":"F","2":"67.50","3":"164.0","4":"25.09667","5":"overweight"},{"1":"H","2":"69.00","3":"189.0","4":"19.31637","5":"normal weight"},{"1":"H","2":"78.00","3":"172.0","4":"26.36560","5":"overweight"},{"1":"F","2":"56.00","3":"165.0","4":"20.56933","5":"normal weight"},{"1":"H","2":"73.50","3":"181.0","4":"22.43521","5":"normal weight"},{"1":"F","2":"57.00","3":"162.0","4":"21.71925","5":"normal weight"},{"1":"H","2":"59.00","3":"185.0","4":"17.23886","5":"underweight"},{"1":"F","2":"63.00","3":"168.0","4":"22.32143","5":"normal weight"},{"1":"H","2":"83.00","3":"181.0","4":"25.33500","5":"overweight"},{"1":"H","2":"86.00","3":"180.0","4":"26.54321","5":"overweight"},{"1":"H","2":"87.63","3":"167.0","4":"31.42099","5":"obese"},{"1":"H","2":"79.00","3":"185.0","4":"23.08254","5":"normal weight"},{"1":"F","2":"57.00","3":"160.0","4":"22.26562","5":"normal weight"},{"1":"F","2":"72.00","3":"156.0","4":"29.58580","5":"overweight"},{"1":"H","2":"65.00","3":"175.0","4":"21.22449","5":"normal weight"},{"1":"F","2":"87.50","3":"164.0","4":"32.53272","5":"obese"},{"1":"H","2":"75.00","3":"166.0","4":"27.21730","5":"overweight"},{"1":"H","2":"62.00","3":"173.0","4":"20.71569","5":"normal weight"},{"1":"H","2":"85.00","3":"164.0","4":"31.60321","5":"obese"},{"1":"H","2":"92.00","3":"171.0","4":"31.46267","5":"obese"},{"1":"F","2":"64.90","3":"166.0","4":"23.55204","5":"normal weight"},{"1":"F","2":"51.50","3":"163.0","4":"19.38349","5":"normal weight"},{"1":"H","2":"82.00","3":"162.0","4":"31.24524","5":"obese"},{"1":"F","2":"52.00","3":"161.0","4":"20.06095","5":"normal weight"},{"1":"H","2":"89.00","3":"183.0","4":"26.57589","5":"overweight"},{"1":"H","2":"86.60","3":"186.0","4":"25.03180","5":"overweight"},{"1":"H","2":"70.00","3":"161.0","4":"27.00513","5":"overweight"},{"1":"H","2":"86.00","3":"175.0","4":"28.08163","5":"overweight"},{"1":"H","2":"79.20","3":"182.0","4":"23.91016","5":"normal weight"},{"1":"H","2":"60.00","3":"181.0","4":"18.31446","5":"underweight"},{"1":"F","2":"70.00","3":"162.0","4":"26.67276","5":"overweight"},{"1":"F","2":"68.00","3":"173.0","4":"22.72044","5":"normal weight"},{"1":"F","2":"66.80","3":"160.0","4":"26.09375","5":"overweight"},{"1":"F","2":"61.00","3":"159.0","4":"24.12879","5":"normal weight"},{"1":"F","2":"50.00","3":"160.0","4":"19.53125","5":"normal weight"},{"1":"F","2":"59.00","3":"172.0","4":"19.94321","5":"normal weight"},{"1":"H","2":"71.00","3":"185.0","4":"20.74507","5":"normal weight"},{"1":"F","2":"55.00","3":"167.0","4":"19.72104","5":"normal weight"},{"1":"F","2":"69.30","3":"156.0","4":"28.47633","5":"overweight"},{"1":"F","2":"65.00","3":"159.0","4":"25.71101","5":"overweight"},{"1":"F","2":"54.50","3":"169.0","4":"19.08196","5":"normal weight"},{"1":"F","2":"58.00","3":"154.0","4":"24.45606","5":"normal weight"},{"1":"H","2":"73.50","3":"180.0","4":"22.68519","5":"normal weight"},{"1":"F","2":"52.00","3":"179.0","4":"16.22921","5":"underweight"},{"1":"F","2":"77.00","3":"162.0","4":"29.34004","5":"overweight"},{"1":"F","2":"89.00","3":"156.0","4":"36.57133","5":"obese"},{"1":"F","2":"54.10","3":"168.0","4":"19.16808","5":"normal weight"},{"1":"F","2":"63.00","3":"166.0","4":"22.86253","5":"normal weight"},{"1":"H","2":"69.00","3":"182.0","4":"20.83082","5":"normal weight"},{"1":"H","2":"77.00","3":"170.0","4":"26.64360","5":"overweight"},{"1":"H","2":"83.00","3":"183.0","4":"24.78426","5":"normal weight"},{"1":"F","2":"55.80","3":"165.0","4":"20.49587","5":"normal weight"},{"1":"H","2":"66.10","3":"176.0","4":"21.33910","5":"normal weight"},{"1":"H","2":"63.00","3":"174.0","4":"20.80856","5":"normal weight"},{"1":"H","2":"112.00","3":"190.0","4":"31.02493","5":"obese"},{"1":"F","2":"56.00","3":"170.0","4":"19.37716","5":"normal weight"},{"1":"H","2":"64.00","3":"165.0","4":"23.50781","5":"normal weight"},{"1":"F","2":"50.00","3":"167.0","4":"17.92822","5":"underweight"},{"1":"H","2":"76.00","3":"183.0","4":"22.69402","5":"normal weight"},{"1":"H","2":"82.50","3":"178.0","4":"26.03838","5":"overweight"},{"1":"H","2":"82.00","3":"175.0","4":"26.77551","5":"overweight"},{"1":"F","2":"55.00","3":"171.0","4":"18.80921","5":"normal weight"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>Ajoutez une nouvelle variable au jeu de données <code>bio</code> en complétant les informations manquantes.</p>
 <div class="tutorial-exercise-support" data-label="prepare2" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>bio &lt;- read(&quot;biometrie&quot;, package = &quot;BioDataScience&quot;)
 bio &lt;- bio[ , c(&quot;genre&quot;, &quot;masse&quot;, &quot;taille&quot;)]
-bio &lt;- rename(bio, sex = genre, weight = masse, height = taille)
-bio$bmi &lt;- bio$weight/(bio$height/100)^2</code></pre>
+#bio &lt;- rename(bio, sex = genre, weight = masse, height = taille)
+bio$imc &lt;- bio$masse / (bio$taille / 100)^2</code></pre>
 </div>
 <div class="tutorial-exercise" data-label="case_when" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>#ajouter la nouvelles variable
-   &lt;- mutate(   , bmi_signif = 
-                   case_when(
-                     bmi  ~ &quot;underweight&quot;,
-                     bmi  ~ &quot;normal weight&quot;,
-                     bmi  ~&quot;overweight&quot;,
-                     bmi  ~ &quot;obese&quot;))
-# afficher le tableau 
-head()</code></pre>
+<pre class="text"><code># Ajouter la nouvelles variable
+   &lt;- mutate(   ,
+  echelle_imc = case_when(
+    imc  ~ &quot;underweight&quot;,
+    imc  ~ &quot;normal weight&quot;,
+    imc  ~&quot;overweight&quot;,
+    imc  ~ &quot;obese&quot;
+))
+# Afficher le début du  tableau 
+head(   )</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare2","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="case_when-hint" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>#ajouter la nouvelles variable
-bio &lt;- mutate(bio, bmi_signif = 
-                   case_when(
-                     bmi &lt; 18.5 ~ &quot;underweight&quot;,
-                     bmi &gt; 18.5 &amp; bmi &lt; 25 ~ &quot;normal weight&quot;,
-                     bmi &gt;= 25 &amp; bmi &lt; 30 ~ &quot;overweight&quot;,
-                     bmi &gt;= 30 ~ &quot;obese&quot;))
-# afficher le tableau 
+<pre class="text"><code># Ajouter la nouvelles variable
+bio &lt;- mutate(bio,
+  echelle_imc = case_when(
+    imc  ~ &quot;underweight&quot;,
+    imc  ~ &quot;normal weight&quot;,
+    imc  ~&quot;overweight&quot;,
+    imc  ~ &quot;obese&quot;
+))
+# Afficher le début du  tableau 
 head()</code></pre>
 </div>
 <div class="tutorial-exercise-support" data-label="case_when-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>#ajouter la nouvelles variable
-bio &lt;- mutate(bio, bmi_signif = 
-                   case_when(
-                     bmi &lt; 18.5 ~ &quot;underweight&quot;,
-                     bmi &gt; 18.5 &amp; bmi &lt; 25 ~ &quot;normal weight&quot;,
-                     bmi &gt;= 25 &amp; bmi &lt; 30 ~ &quot;overweight&quot;,
-                     bmi &gt;= 30 ~ &quot;obese&quot;))
-# afficher le tableau 
-head()</code></pre>
+<pre class="text"><code># Ajouter la nouvelles variable
+bio &lt;- mutate(bio,
+  echelle_imc = case_when(
+    imc &lt; 18.5 ~ &quot;underweight&quot;,
+    imc &gt;= 18.5 &amp; imc &lt; 25 ~ &quot;normal weight&quot;,
+    imc &gt;= 25 &amp; imc &lt; 30 ~&quot;overweight&quot;,
+    imc &gt;= 30 ~ &quot;obese&quot;
+))
+# Afficher le début du  tableau  
+head(bio)</code></pre>
 </div>
 <div class="tutorial-exercise-support" data-label="case_when-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Not yet...</code></pre>
 </div>
-<p>Votre nouvelle variable comprend une succession de lignes complétée par des chaines de caractères. Organisez cette variable de votre tableau de données avec la fonction <code>factor()</code>. Observez la nouvelle structuration de la suite d’instructions. Vous observez pour la première fois l’opérateur <code>$</code>. Dans l’exemple ci-dessous, vous pouvez l’interpréter comme dans le tableau de données <code>bio_ex</code>, je m’intéresse à la colonne/variable <code>bmi_signif</code>. La fonction <code>factor()</code> s’appliqe donc sur cette colonne. Avec l’argument <code>levels</code>, vous spécifiez les différents niveaux de votre variable à classer.</p>
-<p>Classer votre nouvelle variable avec le jeu de données <code>bio_ex</code>.</p>
-<p>Classer votre nouvelle variable avec le jeu de données <code>bio</code>.</p>
+<p>Votre nouvelle variable comprend une succession de lignes complétées par des chaines de caractères. Organisez cette variable de votre tableau de données avec la fonction <code>factor()</code>. Observez la nouvelle structuration de la suite d’instructions. Vous observez pour la première fois l’opérateur <code>$</code>. Dans l’exemple ci-dessous, lorsque vous utilisez <code>bio_100$echelle_imc</code>, vous pouvez l’interprétez comme : “dans le tableau de données <code>bio_100</code>, je prend la colonne/variable <code>echell_imc</code>. La fonction <code>factor()</code> s’applique donc sur cette colonne (dont le vecteur est extrait). Avec l’argument <code>levels</code>, vous spécifiez l’ordre des différents niveaux de votre variable à classer.</p>
+<p>Classer votre nouvelle variable avec le jeu de données <code>bio_100</code>.</p>
+<pre class="r"><code>bio_100$echelle_imc &lt;- factor(bio_100$echelle_imc,
+  levels = c(&quot;underweight&quot;, &quot;normal weight&quot;, &quot;overweight&quot;, &quot;obese&quot;))
+bio_100</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["genre"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["masse"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["taille"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["imc"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["echelle_imc"],"name":[5],"type":["fctr"],"align":["left"]}],"data":[{"1":"F","2":"62.00","3":"158.0","4":"24.83576","5":"normal weight"},{"1":"F","2":"68.80","3":"162.0","4":"26.21552","5":"overweight"},{"1":"F","2":"52.00","3":"162.0","4":"19.81405","5":"normal weight"},{"1":"F","2":"49.00","3":"156.0","4":"20.13478","5":"normal weight"},{"1":"F","2":"57.80","3":"170.5","4":"19.88287","5":"normal weight"},{"1":"H","2":"90.00","3":"164.0","4":"33.46222","5":"obese"},{"1":"F","2":"59.00","3":"162.0","4":"22.48133","5":"normal weight"},{"1":"H","2":"86.50","3":"187.0","4":"24.73619","5":"normal weight"},{"1":"F","2":"57.00","3":"164.0","4":"21.19274","5":"normal weight"},{"1":"H","2":"79.00","3":"173.0","4":"26.39580","5":"overweight"},{"1":"H","2":"78.50","3":"185.0","4":"22.93645","5":"normal weight"},{"1":"F","2":"76.50","3":"171.0","4":"26.16190","5":"overweight"},{"1":"H","2":"95.23","3":"185.0","4":"27.82469","5":"overweight"},{"1":"H","2":"105.00","3":"175.0","4":"34.28571","5":"obese"},{"1":"H","2":"116.00","3":"192.0","4":"31.46701","5":"obese"},{"1":"H","2":"63.00","3":"177.0","4":"20.10916","5":"normal weight"},{"1":"F","2":"45.00","3":"161.0","4":"17.36044","5":"underweight"},{"1":"F","2":"70.10","3":"164.0","4":"26.06336","5":"overweight"},{"1":"H","2":"70.00","3":"185.0","4":"20.45289","5":"normal weight"},{"1":"H","2":"70.00","3":"168.0","4":"24.80159","5":"normal weight"},{"1":"F","2":"61.90","3":"150.0","4":"27.51111","5":"overweight"},{"1":"F","2":"105.00","3":"170.0","4":"36.33218","5":"obese"},{"1":"H","2":"70.00","3":"170.0","4":"24.22145","5":"normal weight"},{"1":"F","2":"43.00","3":"155.0","4":"17.89802","5":"underweight"},{"1":"H","2":"122.00","3":"172.0","4":"41.23851","5":"obese"},{"1":"F","2":"59.30","3":"149.0","4":"26.71051","5":"overweight"},{"1":"H","2":"53.00","3":"168.5","4":"18.66707","5":"normal weight"},{"1":"F","2":"55.00","3":"167.0","4":"19.72104","5":"normal weight"},{"1":"H","2":"85.00","3":"183.0","4":"25.38147","5":"overweight"},{"1":"H","2":"89.00","3":"175.0","4":"29.06122","5":"overweight"},{"1":"H","2":"82.00","3":"173.0","4":"27.39818","5":"overweight"},{"1":"H","2":"80.00","3":"172.0","4":"27.04164","5":"overweight"},{"1":"F","2":"49.00","3":"157.0","4":"19.87910","5":"normal weight"},{"1":"H","2":"82.00","3":"179.0","4":"25.59221","5":"overweight"},{"1":"H","2":"72.00","3":"179.0","4":"22.47121","5":"normal weight"},{"1":"F","2":"47.00","3":"162.0","4":"17.90886","5":"underweight"},{"1":"H","2":"74.00","3":"172.0","4":"25.01352","5":"overweight"},{"1":"F","2":"56.40","3":"159.0","4":"22.30924","5":"normal weight"},{"1":"F","2":"67.50","3":"164.0","4":"25.09667","5":"overweight"},{"1":"H","2":"69.00","3":"189.0","4":"19.31637","5":"normal weight"},{"1":"H","2":"78.00","3":"172.0","4":"26.36560","5":"overweight"},{"1":"F","2":"56.00","3":"165.0","4":"20.56933","5":"normal weight"},{"1":"H","2":"73.50","3":"181.0","4":"22.43521","5":"normal weight"},{"1":"F","2":"57.00","3":"162.0","4":"21.71925","5":"normal weight"},{"1":"H","2":"59.00","3":"185.0","4":"17.23886","5":"underweight"},{"1":"F","2":"63.00","3":"168.0","4":"22.32143","5":"normal weight"},{"1":"H","2":"83.00","3":"181.0","4":"25.33500","5":"overweight"},{"1":"H","2":"86.00","3":"180.0","4":"26.54321","5":"overweight"},{"1":"H","2":"87.63","3":"167.0","4":"31.42099","5":"obese"},{"1":"H","2":"79.00","3":"185.0","4":"23.08254","5":"normal weight"},{"1":"F","2":"57.00","3":"160.0","4":"22.26562","5":"normal weight"},{"1":"F","2":"72.00","3":"156.0","4":"29.58580","5":"overweight"},{"1":"H","2":"65.00","3":"175.0","4":"21.22449","5":"normal weight"},{"1":"F","2":"87.50","3":"164.0","4":"32.53272","5":"obese"},{"1":"H","2":"75.00","3":"166.0","4":"27.21730","5":"overweight"},{"1":"H","2":"62.00","3":"173.0","4":"20.71569","5":"normal weight"},{"1":"H","2":"85.00","3":"164.0","4":"31.60321","5":"obese"},{"1":"H","2":"92.00","3":"171.0","4":"31.46267","5":"obese"},{"1":"F","2":"64.90","3":"166.0","4":"23.55204","5":"normal weight"},{"1":"F","2":"51.50","3":"163.0","4":"19.38349","5":"normal weight"},{"1":"H","2":"82.00","3":"162.0","4":"31.24524","5":"obese"},{"1":"F","2":"52.00","3":"161.0","4":"20.06095","5":"normal weight"},{"1":"H","2":"89.00","3":"183.0","4":"26.57589","5":"overweight"},{"1":"H","2":"86.60","3":"186.0","4":"25.03180","5":"overweight"},{"1":"H","2":"70.00","3":"161.0","4":"27.00513","5":"overweight"},{"1":"H","2":"86.00","3":"175.0","4":"28.08163","5":"overweight"},{"1":"H","2":"79.20","3":"182.0","4":"23.91016","5":"normal weight"},{"1":"H","2":"60.00","3":"181.0","4":"18.31446","5":"underweight"},{"1":"F","2":"70.00","3":"162.0","4":"26.67276","5":"overweight"},{"1":"F","2":"68.00","3":"173.0","4":"22.72044","5":"normal weight"},{"1":"F","2":"66.80","3":"160.0","4":"26.09375","5":"overweight"},{"1":"F","2":"61.00","3":"159.0","4":"24.12879","5":"normal weight"},{"1":"F","2":"50.00","3":"160.0","4":"19.53125","5":"normal weight"},{"1":"F","2":"59.00","3":"172.0","4":"19.94321","5":"normal weight"},{"1":"H","2":"71.00","3":"185.0","4":"20.74507","5":"normal weight"},{"1":"F","2":"55.00","3":"167.0","4":"19.72104","5":"normal weight"},{"1":"F","2":"69.30","3":"156.0","4":"28.47633","5":"overweight"},{"1":"F","2":"65.00","3":"159.0","4":"25.71101","5":"overweight"},{"1":"F","2":"54.50","3":"169.0","4":"19.08196","5":"normal weight"},{"1":"F","2":"58.00","3":"154.0","4":"24.45606","5":"normal weight"},{"1":"H","2":"73.50","3":"180.0","4":"22.68519","5":"normal weight"},{"1":"F","2":"52.00","3":"179.0","4":"16.22921","5":"underweight"},{"1":"F","2":"77.00","3":"162.0","4":"29.34004","5":"overweight"},{"1":"F","2":"89.00","3":"156.0","4":"36.57133","5":"obese"},{"1":"F","2":"54.10","3":"168.0","4":"19.16808","5":"normal weight"},{"1":"F","2":"63.00","3":"166.0","4":"22.86253","5":"normal weight"},{"1":"H","2":"69.00","3":"182.0","4":"20.83082","5":"normal weight"},{"1":"H","2":"77.00","3":"170.0","4":"26.64360","5":"overweight"},{"1":"H","2":"83.00","3":"183.0","4":"24.78426","5":"normal weight"},{"1":"F","2":"55.80","3":"165.0","4":"20.49587","5":"normal weight"},{"1":"H","2":"66.10","3":"176.0","4":"21.33910","5":"normal weight"},{"1":"H","2":"63.00","3":"174.0","4":"20.80856","5":"normal weight"},{"1":"H","2":"112.00","3":"190.0","4":"31.02493","5":"obese"},{"1":"F","2":"56.00","3":"170.0","4":"19.37716","5":"normal weight"},{"1":"H","2":"64.00","3":"165.0","4":"23.50781","5":"normal weight"},{"1":"F","2":"50.00","3":"167.0","4":"17.92822","5":"underweight"},{"1":"H","2":"76.00","3":"183.0","4":"22.69402","5":"normal weight"},{"1":"H","2":"82.50","3":"178.0","4":"26.03838","5":"overweight"},{"1":"H","2":"82.00","3":"175.0","4":"26.77551","5":"overweight"},{"1":"F","2":"55.00","3":"171.0","4":"18.80921","5":"normal weight"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>En apparence, pas grand changement, mais maintenant, nous avons indiqué un ordre logique de progression dans les différents <strong>niveaux</strong> (<code>levels</code>) de la variable. Ici, nous pourrions faire encore mieux. Si nous utilisons la fonction <code>ordered()</code> à la place de <code>factor()</code>, avec les mêmes arguments, nous indiquons à R qu’en plus, les différents niveaux sont classés du plus petit au plus grand (<code>underweight</code> &lt; <code>normal weight</code>&lt; <code>overweight</code>&lt; <code>obese</code>). Nous pouvons voir la façon dans les différents niveaux sont encodés à l’aide de la fonction <code>levels()</code>.</p>
+<p>Classer votre nouvelle variable avec le jeu de données <code>bio</code> tout entier, et en utilisant <code>ordered()</code> ici.</p>
 <div class="tutorial-exercise-support" data-label="prepare3" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>bio &lt;- read(&quot;biometrie&quot;, package = &quot;BioDataScience&quot;)
 bio &lt;- bio[ , c(&quot;genre&quot;, &quot;masse&quot;, &quot;taille&quot;)]
-bio &lt;- rename(bio, sex = genre, weight = masse, height = taille)
-bio$bmi &lt;- bio$weight/(bio$height/100)^2
-
-bio &lt;- mutate(bio, bmi_signif = 
-                   case_when(
-                     bmi &lt; 18.5 ~ &quot;underweight&quot;,
-                     bmi &gt; 18.5 &amp; bmi &lt; 25 ~ &quot;normal weight&quot;,
-                     bmi &gt;= 25 &amp; bmi &lt; 30 ~ &quot;overweight&quot;,
-                     bmi &gt;= 30 ~ &quot;obese&quot;))</code></pre>
+#bio &lt;- rename(bio, sex = genre, weight = masse, height = taille)
+bio$imc &lt;- bio$masse / (bio$taille / 100)^2
+bio &lt;- mutate(bio,
+  echelle_imc = case_when(
+    imc &lt; 18.5 ~ &quot;underweight&quot;,
+    imc &gt;= 18.5 &amp; imc &lt; 25 ~ &quot;normal weight&quot;,
+    imc &gt;= 25 &amp; imc &lt; 30 ~ &quot;overweight&quot;,
+    imc &gt;= 30 ~ &quot;obese&quot;
+))</code></pre>
 </div>
 <div class="tutorial-exercise" data-label="factor" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>bio$   &lt;- factor(bio_ex$bmi_signif, levels = )</code></pre>
+<pre class="text"><code>bio$   &lt;- ordered(bio_ex$echelle_imc,
+  levels = )
+# Visualiser le vacteur
+bio$echelle_imc
+# Extraire les niveaux d&#39;encodage des niveaux
+levels(bio$echelle_imc)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare3","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="factor-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code>bio$bmi_signif &lt;- factor(bio_ex$bmi_signif, levels = c(&quot;underweight&quot;, &quot;normal weight&quot;, &quot;overweight&quot;, &quot;obese&quot;))</code></pre>
+<pre class="text"><code>bio$echelle_imc &lt;- ordered(bio$echelle_imc,
+  levels = c(&quot;underweight&quot;, &quot;normal weight&quot;, &quot;overweight&quot;, &quot;obese&quot;))
+# Visualiser le vacteur
+bio$echelle_imc
+# Extraire les niveaux d&#39;encodage des niveaux
+levels(bio$echelle_imc)</code></pre>
 </div>
 <div class="tutorial-exercise-support" data-label="factor-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Not yet...</code></pre>
@@ -750,48 +704,64 @@ bio &lt;- mutate(bio, bmi_signif =
 <div id="section-verification-de-laffirmation-du-journal-le-monde" class="section level2">
 <h2>Vérification de l’affirmation du journal le monde</h2>
 <p>La fonction <code>summary()</code> permet d’obtenir un résumé complet d’un tableau de données.</p>
-<pre><code> sex        weight           height           bmi       
+<pre class="r"><code># Résumé des données
+summary(bio_100)</code></pre>
+<pre><code> genre      masse            taille           imc       
  H:52   Min.   : 43.00   Min.   :149.0   Min.   :16.23  
  F:48   1st Qu.: 57.95   1st Qu.:162.0   1st Qu.:20.49  
         Median : 69.15   Median :170.0   Median :24.02  
         Mean   : 70.59   Mean   :170.2   Mean   :24.31  
         3rd Qu.: 82.00   3rd Qu.:178.2   3rd Qu.:26.68  
         Max.   :122.00   Max.   :192.0   Max.   :41.24  
-         bmi_signif
+        echelle_imc
  underweight  : 7  
  normal weight:50  
  overweight   :31  
  obese        :12  
                    
                    </code></pre>
-<pre><code>[1] 0.12</code></pre>
+<pre class="r"><code># Nombre d&#39;obèses : 12 /100 = 12%</code></pre>
 <div class="tutorial-exercise-support" data-label="prepare4" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>bio &lt;- read(&quot;biometrie&quot;, package = &quot;BioDataScience&quot;)
 bio &lt;- bio[ , c(&quot;genre&quot;, &quot;masse&quot;, &quot;taille&quot;)]
-bio &lt;- rename(bio, sex = genre, weight = masse, height = taille)
+#bio &lt;- rename(bio, sex = genre, weight = masse, height = taille)
 bio$bmi &lt;- bio$weight/(bio$height/100)^2
-
-bio &lt;- mutate(bio, bmi_signif = 
-                   case_when(
-                     bmi &lt; 18.5 ~ &quot;underweight&quot;,
-                     bmi &gt; 18.5 &amp; bmi &lt; 25 ~ &quot;normal weight&quot;,
-                     bmi &gt;= 25 &amp; bmi &lt; 30 ~ &quot;overweight&quot;,
-                     bmi &gt;= 30 ~ &quot;obese&quot;))
-bio$bmi_signif &lt;- factor(bio$bmi_signif, levels = c(&quot;underweight&quot;, &quot;normal weight&quot;, &quot;overweight&quot;, &quot;obese&quot;))</code></pre>
+bio$imc &lt;- bio$masse / (bio$taille / 100)^2
+bio &lt;- mutate(bio,
+  echelle_imc = case_when(
+    imc &lt; 18.5 ~ &quot;underweight&quot;,
+    imc &gt;= 18.5 &amp; imc &lt; 25 ~ &quot;normal weight&quot;,
+    imc &gt;= 25 &amp; imc &lt; 30 ~ &quot;overweight&quot;,
+    imc &gt;= 30 ~ &quot;obese&quot;
+))
+bio$echelle_imc &lt;- ordered(bio$echelle_imc,
+  levels = c(&quot;underweight&quot;, &quot;normal weight&quot;, &quot;overweight&quot;, &quot;obese&quot;))</code></pre>
 </div>
-<p>Utilisez la fonction <code>summary()</code> pour obtenir une description du tableau de données.</p>
+<p>Utilisez la fonction <code>summary()</code> pour obtenir une description du tableau de données complet <code>bio</code>.</p>
 <div class="tutorial-exercise" data-label="obese" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># résumé des données
 summary()</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare4","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
+<div class="tutorial-exercise-support" data-label="obese-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>summary(bio)</code></pre>
+</div>
 <div class="tutorial-exercise-support" data-label="obese-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Not yet...</code></pre>
 </div>
+<p>Pour calculer le pourcentage d’obèses, nous pouvons filtrer le tableau et ensuite utiliser la fonction <code>nrow()</code> pour compter le nombre de lignes retenues… à diviser par le nombre de lignes du tableau de départ. Faites-le par vous-mêmes :</p>
 <div class="tutorial-exercise" data-label="obese1" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># calculer le pourcentage d&#39;obèse dans notre tableau de données
- / 395</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
+<pre class="text"><code># Calculer le pourcentage d&#39;obèse dans notre tableau de données
+bio %&gt;.%
+  filter(.,   ) %&gt;.%
+  nrow(.) / nrow(bio) * 100 # Nbre lignes filtrées / nbre total * 100</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare4","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="obese1-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Calculer le pourcentage d&#39;obèse dans notre tableau de données
+bio %&gt;.%
+  filter(., echelle_imc == &quot;obese&quot;) %&gt;.%
+  nrow(.) / nrow(bio) * 100 # Nbre lignes filtrées / nbre total * 100</code></pre>
 </div>
 <div class="tutorial-exercise-support" data-label="obese1-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Not yet...</code></pre>
@@ -799,14 +769,15 @@ summary()</code></pre>
 </div>
 <div id="section-conclusion" class="section level2">
 <h2>Conclusion</h2>
-<p>Le nombre d’obèse sur notre jeu de données est 12.6% ce qui est très proche des 13% annoncé par le monde.</p>
-<p>Bravo! Vous venez de terminez cette séance d’exercices dans un tutoriel “learnr”.</p>
+<p>La fraction d’obèses dans notre jeu de données est de 12,7%, ce qui est très proche des 13% annoncé par le monde.</p>
+<p>Bravo! Vous venez de terminez cette petite analyse dans un tutoriel “learnr”.</p>
 <p>Durant cette séance, vous avez appris à :</p>
 <ul>
 <li>Effectuer des calculs dans R</li>
 <li>Créer des vecteurs et vectoriser vos calculs</li>
 <li>Assigner les résultats à un nom</li>
-<li>Employer des fonctions, préciser leurs arguments et accéder à leurs pages d’aide</li>
+<li>Rassembler des données dans un tableau “data frame”</li>
+<li>Remanier un tableau de données</li>
 </ul>
 <p>Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (<code>#</code>) devant vos phrases.</p>
 <div class="tutorial-exercise" data-label="comm" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
@@ -820,23 +791,19 @@ summary()</code></pre>
 
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
-library(knitr)
-SciViews::R()
-
 options(tutorial.event_recorder = BioDataScience::record_sdd)
 tutorial_options(exercise.checker = BioDataScience::checker_sdd)
 tutorial_options(exercise.timelimit = 60)
 tutorial_options(exercise.cap = "Code R")
 knitr::opts_chunk$set(echo = FALSE, comment = NA)
 
-library(knitr)
-library(BioDataScience)
-
-
+SciViews::R()
+#library(knitr)
+#library(BioDataScience)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::register_http_handlers(session, metadata = list(id = "sdd1.02b", version = "0.0.1"))
+learnr:::register_http_handlers(session, metadata = list(id = "sdd1.02b", version = "1.0.0"))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
