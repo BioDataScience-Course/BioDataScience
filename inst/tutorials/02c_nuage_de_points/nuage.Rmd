@@ -7,7 +7,7 @@ output:
     fig_caption: yes
 tutorial:
   id: "sdd1.02c"
-  version: 0.0.1
+  version: 0.0.0.1
 runtime: shiny_prerendered
 ---
 
@@ -94,11 +94,11 @@ chart(urchin,formula = height ~  weight) +
 
 Les instructions de base afin de produire un nuage de points sont :
 
-```{r, eval=FALSE}
+```{r, eval=FALSE, echo = TRUE}
 # Importation du jeu de données
-ub <- read("urchin_bio", package = "data.io")
+urchin <- read("urchin_bio", package = "data.io")
 # Réalisation du graphique 
-chart(ub, formula = height ~ weight) +
+chart(urchin, formula = height ~ weight) +
   geom_point()
 ```
 
@@ -111,11 +111,16 @@ Commencez par réaliser rapidement les graphiques vus durant la capsule vidéo.
 Le jeu de données `urchin_bio` portant sur la biométrie d'oursins est assigné à `urchin`. Les variables employées pour ce premier graphique sont la masse du squelette (`skeleton`) et le masse totale (`weight`).
 
 ```{r first_graph_intro}
+# Importation du jeu de données
+urchin <- read("urchin_bio", package = "data.io")
+# Réalisation du graphique 
 chart(urchin, formula = skeleton ~ weight) +
   geom_point()
 ```
 
-Réalisez un nuage de points montrant la masse du squelette en ordonnée et la masse totale en abscisse afin d'obtenir le graphique ci-dessus.
+Réalisez un nuage de points montrant la masse du squelette en ordonnée et la masse totale en abscisse afin d'obtenir le graphique ci-dessus (un encadré **Code R** est une zone où vous pouvez vous-même entrer des instructions R et/ou les modifier. Les numéros à gauche sont les numéros de lignes. Ils ne font pas partie des instructions. Utilisez le bouton **Run Code** pour tester, et ensuite **Submit Answer** quand vous êtes satisfait de ce votre réponse).
+
+Complétez la zone de code R en remplaçant `DF`, `YNUM` et `XNUM` par les variables demandées.
 
 ```{r first_graph, exercise=TRUE}
 chart(DF, formula = YNUM ~ XNUM) +
@@ -144,7 +149,11 @@ Le jeu de données assigné à `urchin` contient des valeurs manquantes comme le
 
 **Warning message: Removed 163 rows containing missing values (geom_point).**
 
-Ajoutez l'argument `na.rm = TRUE` dans la fonction `geom_point()` afin de préciser que les variables du jeu de données contiennent des valeurs manquantes. Réalisez un nuage de points montrant le masse du squelette en ordonnée et le masse totale en abscisse. Précisez qu'il y a des valeurs manquantes.
+Ajoutez l'argument `na.rm = TRUE` dans la fonction `geom_point()` afin de préciser que les variables du jeu de données contiennent des valeurs manquantes. 
+
+Réalisez un nuage de points montrant le masse du squelette (`skeleton`) en ordonnée et le masse totale (`weight`) en abscisse. 
+
+Complétez la zone de code R en remplaçant `DF`, `YNUM` et `XNUM` par les variables demandées. Précisez qu'il y a des valeurs manquantes (`na.rm = TRUE`).
 
 ```{r na_graph, exercise=TRUE}
 chart(DF, formula = YNUM ~ XNUM) +
@@ -164,7 +173,9 @@ chart(urchin, formula = skeleton ~ weight) +
 
 #### Exercice 3
 
-Vous souhaitez visualiser la différence d'origine des oursins mesurés. Ces informations se situent dans la variable sur l'origine (`origin`). L'utilisation de la couleur peut permettre de différencier ces derniers. La formule de la fonction `chart()` peut être complétée avec l'argument faisant référence à la couleur (`%col=%`). 
+Vous souhaitez visualiser la différence d'origine des oursins mesurés. Ces informations se situent dans la variable sur l'origine (`origin`). L'utilisation de la couleur peut permettre de différencier ces derniers. 
+
+La formule de la fonction `chart()` peut être complétée avec l'argument faisant référence à la couleur (`%col=%`). 
 
 ```{r col_graph_intro}
 chart(urchin, formula = skeleton ~ weight %col=% origin) +
@@ -172,6 +183,8 @@ chart(urchin, formula = skeleton ~ weight %col=% origin) +
 ```
 
 Réalisez un nuage de points montrant la masse du squelette en ordonnée et la masse en abscisse. Utilisez la couleur afin de différencier l'origine des individus et précisez à nouveau qu'il y a des valeurs manquantes.
+
+Complétez la zone de code R en remplaçant `DF`, `YNUM`, `XNUM` et `FACTOR` par les variables demandées. Précisez qu'il y a des valeurs manquantes. Précisez qu'il y a des valeurs manquantes (`na.rm = TRUE`).
 
 ```{r col_graph, exercise=TRUE}
 chart(DF, formula = YNUM ~ XNUM %col=% FACTOR) +
@@ -189,7 +202,7 @@ chart(urchin, formula = skeleton ~ weight %col=% origin) +
 
 ## Exercices sur le nuage de points  
 
-Maintenant que vous avez rapidement réalisé les graphiques vus durant la vidéo, expérimentez d'autres fonctions et arguments liés au nuage de points.
+Maintenant que vous avez rapidement réalisé les graphiques vus durant la vidéo, expérimentez d'autres fonctions et arguments liés à la réalisation d'un nuage de points.
 
 ### Exercice 1
 
@@ -205,11 +218,13 @@ b <- chart(urchin, formula = lantern ~ test %shape=% origin) +
 ggpubr::ggarrange(a,b)
 ```
 
+**A noter :**
+
 Nous pouvons observer que l'utilisation de la forme n'est pas forcément l'argument le plus judicieux dans cet exemple. 
 
 Intéressez-vous à la masse de la lanterne d'aristote (`lantern`) en fonction de la masse du test (`test`). 
 
-Réalisez un nuage de points montrant le masse de la lanterne d'Aristote (`lantern`) en ordonnée et la masse du test (`test`) en abscisse. Utilisez les nuances de gris afin de différencier l'origine des individus. Précisez à nouveau qu'il y a des valeurs manquantes.  
+Réalisez un nuage de points montrant le masse de la lanterne d'Aristote (`lantern`) en ordonnée et la masse du test (`test`) en abscisse. Utilisez l‘opacité (`%alpha=%`) afin de différencier l'origine des individus (`origin`). Précisez à nouveau qu'il y a des valeurs manquantes (`na.rm = TRUE`).  
 
 
 ```{r alpha_graph, exercise=TRUE}
@@ -293,7 +308,7 @@ ggpubr::ggarrange(a,b, common.legend = TRUE, legend = "right")
 ```
 
 
-Réalisez un nuage de points montrant le logarithme de la masse en ordonnée et le logarithme de la masse immergée en abscisse. Utilisez la couleur afin de différencier l'origine des individus et précisez à nouveau qu'il y a des valeurs manquantes.
+Réalisez un nuage de points montrant le **logarithme de la masse**  en ordonnée et le **logarithme de la masse immergée** en abscisse. Utilisez la couleur afin de différencier l'origine des individus et précisez à nouveau qu'il y a des valeurs manquantes.
 
 ```{r log_log, exercise = TRUE}
 chart(DF, formula = YNUM ~ XNUM) +

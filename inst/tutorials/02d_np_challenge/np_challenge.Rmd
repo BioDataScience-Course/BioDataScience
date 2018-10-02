@@ -72,7 +72,7 @@ chart(urchin, formula = skeleton ~ weight) +
   geom_point(na.rm = TRUE)
 ```
 
-Le jeu de données sur les oursins comprend eux populations l'une provenant du milieu naturel et l'autre d'élevage.  Vous pouvez donc employer la variable origine (`origin`) afin de rendre votre graphique plus informatif. Vous pouvez cependant aller encore plus loin. 
+Le jeu de données `urchin_bio` portant sur la biométrie d'oursins est assigné à `urchin`.  Les variables employées pour ce premier graphique sont la masse du squelette (`skeleton`) et le masse totale (`weight`). Ce jeu de données sur les oursins comprend deux populations l'une provenant du milieu naturel et l'autre d'élevage.  Vous pouvez donc employer la variable origine (`origin`) afin de rendre votre graphique plus informatif. Vous pouvez cependant aller encore plus loin. 
 
 ```{r, fig.cap= "Variation de la masse du squelette en fonction de la masse totale de *Paracentrotus lividus* Lamarck 1816"}
 
@@ -90,14 +90,13 @@ ggpubr::ggarrange(a,b, legend = "bottom")
 
 ## Challenge 1
 
-En partant du graphique ci-dessous, sur 
-
 ```{r, echo = TRUE}
 chart(urchin, formula = skeleton ~ weight %col=% origin) +
   geom_point(na.rm = TRUE)
 ```
 
-Tentez de modifier les couleurs employées pour différencier les oursins du milieu naturel et d'élevage. Utilisez la couleur rouge et la couleur bleue. 
+ 
+En partant du graphique ci-dessus, tentez de modifier les couleurs employées pour différencier les oursins du milieu naturel et d'élevage. Utilisez la couleur rouge (`red`) et la couleur bleue (`blue`). 
 
 ```{r}
 chart(urchin, formula = skeleton ~ weight %col=% origin) +
