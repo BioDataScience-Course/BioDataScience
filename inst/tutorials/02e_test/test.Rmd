@@ -76,33 +76,28 @@ Les compétences évaluées sont :
 
 - Comparer de manière critique un workflow ‘classique’ en biologie utilisant Microsoft Excel et Word avec une approche utilisant R et R Markdown
 
-Ce dernier comporte des questions théoriques ainsi que des questions pratiques.
-
-
-Il est important de préciser que l'ensemble de vos résultats est collecté afin de suivre votre progression. Ce test est **certificatif**. 
+**Ce test comporte des questions théoriques ainsi que des questions pratiques. Ce test est certificatif.**
 
 ## Base de R 
 
 ### Assignation
 
-Assignez la valeur `43` au symbole  `vec1`. 
+- Assignez la valeur `43` au symbole  `vec1`. 
 
-Afficher les résultat de la `vec1`.
+- Afficher les résultat de la `vec1`.
 
 ```{r assignation, exercise = TRUE, exercise.lines = 2, exercise.startover = FALSE}
 
 ```
 
-```{r assignation-solution}
-vec1 <- 43
-vec1
+
+```{r assignation-check}
+# Not yet...
 ```
 
-Assignez la chaine de caractère `aaaa` au symbole  `vec2`. 
+- Assignez la chaine de caractère `aaaa` au symbole  `vec2`. 
 
-Afficher les résultat de la `var1`.
-
-Assignez la chaine de caractères `a` à la variable `var3`. Terminez par appeler `var3`.
+- Afficher les résultat de la `var2`.
 
 ```{r assignation_carac, exercise = TRUE}
 
@@ -113,8 +108,12 @@ vec2 <- "a"
 vec2
 ```
 
+```{r assignation-check}
+# Not yet...
+```
 
 ### Utilisation de fonction mathématique
+
 
 Appliquez le logarithme(fonction `log()`) sur la somme de la `var1` et 48. Assignez cette valeur à la chaine de caractères "var2". Terminez par appeler `var2`.
 
