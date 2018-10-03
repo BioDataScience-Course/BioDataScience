@@ -14,7 +14,7 @@
 <meta name="progressive" content="true" />
 <meta name="allow-skip" content="false" />
 
-<title>Le nuage de point : découverte de l’outils</title>
+<title>Le nuage de point : faire un graphique dans R</title>
 
 
 <!-- highlightjs -->
@@ -249,8 +249,7 @@ chart(urchin, formula = weight ~ buoyant_weight %col=% origin %shape=% sex) +
 </div>
 <div id="section-conclusion" class="section level2">
 <h2>Conclusion</h2>
-<p>Le nombre d’obèse sur notre jeu de données est 12.6% ce qui est très proche des 13% annoncé par le monde.</p>
-<p>Bravo! Vous venez de terminez cette séance d’exercices dans un tutoriel “learnr”.</p>
+<p>Bravo! Vous venez de terminer cette séance d’exercices dans un tutoriel “learnr”.</p>
 <p>Durant cette séance, vous avez appris à :</p>
 <ul>
 <li>Effectuer des graphiques de type nuage de point</li>
@@ -267,9 +266,6 @@ chart(urchin, formula = weight ~ buoyant_weight %col=% origin %shape=% sex) +
 
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
-library(knitr)
-SciViews::R()
-
 options(tutorial.event_recorder = BioDataScience::record_sdd)
 tutorial_options(exercise.checker = BioDataScience::checker_sdd)
 tutorial_options(exercise.timelimit = 60)
@@ -278,6 +274,7 @@ knitr::opts_chunk$set(echo = FALSE, comment = NA)
 
 library(knitr)
 library(BioDataScience)
+SciViews::R()
 
 # Dataset
 urchin <- read(file = "urchin_bio", package = "data.io", lang = "fr")
@@ -358,7 +355,7 @@ output$`tutorial-exercise-comm-output` <- renderUI({
 
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
-<h2 class="title toc-ignore" style="display:none;">Le nuage de point : découverte de l’outils</h2>
+<h2 class="title toc-ignore" style="display:none;">Le nuage de point : faire un graphique dans R</h2>
 <h4 class="author"><em>Guyliann Engels &amp; Philippe Grosjean</em></h4>
 </div>
 <!-- end doc-metadata -->

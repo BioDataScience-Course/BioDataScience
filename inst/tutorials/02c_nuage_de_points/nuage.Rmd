@@ -1,22 +1,19 @@
 ---
-title: "Le nuage de point : découverte de l'outils"
+title: "Le nuage de point : faire un graphique dans R"
 author : "Guyliann Engels & Philippe Grosjean"
+tutorial:
+  id: "sdd1.02c"
+  version: 0.0.1
 output:
   learnr::tutorial:
     progressive: true
     fig_caption: yes
-tutorial:
-  id: "sdd1.02c"
-  version: 0.0.1
 runtime: shiny_prerendered
 ---
 
 
 ```{r setup, include=FALSE}
 library(learnr)
-library(knitr)
-SciViews::R()
-
 options(tutorial.event_recorder = BioDataScience::record_sdd)
 tutorial_options(exercise.checker = BioDataScience::checker_sdd)
 tutorial_options(exercise.timelimit = 60)
@@ -25,6 +22,7 @@ knitr::opts_chunk$set(echo = FALSE, comment = NA)
 
 library(knitr)
 library(BioDataScience)
+SciViews::R()
 
 # Dataset
 urchin <- read(file = "urchin_bio", package = "data.io", lang = "fr")

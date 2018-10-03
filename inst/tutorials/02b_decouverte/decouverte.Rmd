@@ -368,7 +368,7 @@ masse2 <- c(82, 73, 105, 61, 95)
 taille2 <- c(1.74, 1.86, 2.03, 1.72, 1.90)
 ```
 
-```{r data_man, exercise=TRUE, exercise.setup="prepare"}
+```{r vec_man, exercise=TRUE, exercise.setup="prepare"}
 # Encodage du jeu de données
 man1 <- data_frame(
   id     = ,
@@ -380,7 +380,7 @@ man1 <- data_frame(
 
 ```
 
-```{r data_man-solution}
+```{r vec_man-solution}
 # Encodage du jeu de données
 man1 <- data_frame(
   id     = c(8, 9, 10, 11, 12),
