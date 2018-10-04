@@ -4,7 +4,17 @@
 \name{biometrie}
 \alias{biometrie}
 \title{Mesure de biometrie humaine}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 395 rows and 7 columns.}
+\format{Un tableau de données de 7 variables:
+\describe{
+\item{\code{genre}}{une variable facteur à deux niveaux :
+Homme (H) et Femme (F).}
+\item{\code{ddn}}{Date de naissance (YYYY-MM-DD).}
+\item{\code{masse}}{Masse des individus (en kg).}
+\item{\code{taille}}{Taille des individus (en cm).}
+\item{\code{poignet}}{Circomférence du poignet (en mm).}
+\item{\code{ddm}}{Date des mesures.}
+\item{\code{age}}{Age des individus lors de la prise des mesures.}
+}}
 \usage{
 biometrie
 }

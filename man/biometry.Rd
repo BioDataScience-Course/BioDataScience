@@ -4,7 +4,16 @@
 \name{biometry}
 \alias{biometry}
 \title{Measure of human biometry at Hainaut, Belgium}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 395 rows and 7 columns.}
+\format{A data frame with 7 variables and 395 observations:
+\describe{
+\item{\code{gender}}{A \strong{factor} with two levels: \code{"Men"}, and \code{"Women"}.}
+\item{\code{day_birth}}{Day of birth (YYYY-MM-DD).}
+\item{\code{weight}}{Weight (in kg).}
+\item{\code{height}}{Height (in cm).}
+\item{\code{wrist}}{Wrist circumfernce (in mm).}
+\item{\code{year_measure}}{Year of the biometric measure.}
+\item{\code{age}}{Age of people.}
+}}
 \usage{
 biometry
 }
