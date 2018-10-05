@@ -7,7 +7,7 @@ output:
     fig_caption: yes
 tutorial:
   id: "sdd1.02d"
-  version: 1.0.0
+  version: 1.1.0
 runtime: shiny_prerendered
 ---
 
@@ -87,10 +87,16 @@ b <- chart(urchin, formula = skeleton ~ weight %col=% origin) +
 ggpubr::ggarrange(a,b, legend = "bottom")
 ```
 
+## Challenge
 
-## Challenge 1
+### Challenge 1
 
 ```{r, echo = TRUE}
+# Importation des outils pour réaliser nos analyses
+SciViews::R()
+# Importation des données 
+urchin <- read(file = "urchin_bio", package = "data.io", lang =  "fr")
+# Réalisation d'un graphique de type nuage de points
 chart(urchin, formula = skeleton ~ weight %col=% origin) +
   geom_point(na.rm = TRUE)
 ```
@@ -100,7 +106,7 @@ En partant du graphique ci-dessus, tentez de modifier les couleurs employées po
 
 ```{r}
 chart(urchin, formula = skeleton ~ weight %col=% origin) +
-  geom_point(na.rm = TRUE)+
+  geom_point(na.rm = TRUE) +
   scale_color_manual(values = c("red", "blue"))
 ```
 
@@ -114,7 +120,7 @@ Reproduisez le graphique ci-dessus
 # Not yet...
 ```
 
-## Challenge 2
+### Challenge 2
 
 Tentez de modifier les couleurs employées pour différencier les oursins du milieu naturel et d'élevage. Utilisez la couleur jaune (dont le code est `#999999`) et la couleur grise (dont le code est `#E69F00`). 
 
@@ -134,7 +140,7 @@ Reproduisez le graphique ci-dessus
 # Not yet...
 ```
 
-## Challenge 3 
+### Challenge 3 
 
 
 ```{r}
@@ -155,13 +161,21 @@ Reproduisez le graphique ci-dessus
 
 
 ```{r challenge3-check}
-
+# Not yet...
 ```
 
 ## Conclusion 
 
 
 Bravo! Vous venez de terminer votre premier challenge dans un  tutoriel "learnr". 
+
+Voici ci-dessous les instructions pour  réaliser le graphique de challenge 3. La fonction à employer est `scale_color_manual()`
+
+```{r, echo = TRUE}
+chart(urchin, formula = skeleton ~ weight %col=% origin) +
+  geom_point(na.rm = TRUE) +
+  scale_color_manual(values = c('#999999','#E69F00'), labels = c("Elevage", "Milieu naturel"))
+```
 
 Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
 

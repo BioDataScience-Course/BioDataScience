@@ -87,7 +87,7 @@ Réalisé par le service d'Écologie numérique des Milieux aquatiques, Universi
 Variation de la masse du squelette en fonction de la masse totale de <em>Paracentrotus lividus</em> Lamarck 1816
 </p>
 </div>
-<p>Le jeu de données sur les oursins comprend eux populations l’une provenant du milieu naturel et l’autre d’élevage. Vous pouvez donc employer la variable origine (<code>origin</code>) afin de rendre votre graphique plus informatif. Vous pouvez cependant aller encore plus loin.</p>
+<p>Le jeu de données <code>urchin_bio</code> portant sur la biométrie d’oursins est assigné à <code>urchin</code>. Les variables employées pour ce premier graphique sont la masse du squelette (<code>skeleton</code>) et le masse totale (<code>weight</code>). Ce jeu de données sur les oursins comprend deux populations l’une provenant du milieu naturel et l’autre d’élevage. Vous pouvez donc employer la variable origine (<code>origin</code>) afin de rendre votre graphique plus informatif. Vous pouvez cependant aller encore plus loin.</p>
 <div class="figure">
 <img src="np_challenge_files/figure-html/unnamed-chunk-4-1.png" alt="Variation de la masse du squelette en fonction de la masse totale de *Paracentrotus lividus* Lamarck 1816" width="624" />
 <p class="caption">
@@ -95,13 +95,19 @@ Variation de la masse du squelette en fonction de la masse totale de <em>Paracen
 </p>
 </div>
 </div>
-<div id="section-challenge-1" class="section level2">
-<h2>Challenge 1</h2>
-<p>En partant du graphique ci-dessous, sur</p>
-<pre class="r"><code>chart(urchin, formula = skeleton ~ weight %col=% origin) +
+<div id="section-challenge" class="section level2">
+<h2>Challenge</h2>
+<div id="section-challenge-1" class="section level3">
+<h3>Challenge 1</h3>
+<pre class="r"><code># Importation des outils pour réaliser nos analyses
+SciViews::R()
+# Importation des données 
+urchin &lt;- read(file = &quot;urchin_bio&quot;, package = &quot;data.io&quot;, lang =  &quot;fr&quot;)
+# Réalisation d&#39;un graphique de type nuage de points
+chart(urchin, formula = skeleton ~ weight %col=% origin) +
   geom_point(na.rm = TRUE)</code></pre>
 <p><img src="np_challenge_files/figure-html/unnamed-chunk-5-1.png" width="624" /></p>
-<p>Tentez de modifier les couleurs employées pour différencier les oursins du milieu naturel et d’élevage. Utilisez la couleur rouge et la couleur bleue.</p>
+<p>En partant du graphique ci-dessus, tentez de modifier les couleurs employées pour différencier les oursins du milieu naturel et d’élevage. Utilisez la couleur rouge (<code>red</code>) et la couleur bleue (<code>blue</code>).</p>
 <p><img src="np_challenge_files/figure-html/unnamed-chunk-6-1.png" width="624" /></p>
 <p>Reproduisez le graphique ci-dessus</p>
 <div class="tutorial-exercise" data-label="challenge1" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
@@ -111,8 +117,8 @@ Variation de la masse du squelette en fonction de la masse totale de <em>Paracen
 <pre class="text"><code># Not yet...</code></pre>
 </div>
 </div>
-<div id="section-challenge-2" class="section level2">
-<h2>Challenge 2</h2>
+<div id="section-challenge-2" class="section level3">
+<h3>Challenge 2</h3>
 <p>Tentez de modifier les couleurs employées pour différencier les oursins du milieu naturel et d’élevage. Utilisez la couleur jaune (dont le code est <code>#999999</code>) et la couleur grise (dont le code est <code>#E69F00</code>).</p>
 <p><img src="np_challenge_files/figure-html/unnamed-chunk-7-1.png" width="624" /></p>
 <p>Reproduisez le graphique ci-dessus</p>
@@ -123,8 +129,8 @@ Variation de la masse du squelette en fonction de la masse totale de <em>Paracen
 <pre class="text"><code># Not yet...</code></pre>
 </div>
 </div>
-<div id="section-challenge-3" class="section level2">
-<h2>Challenge 3</h2>
+<div id="section-challenge-3" class="section level3">
+<h3>Challenge 3</h3>
 <p><img src="np_challenge_files/figure-html/unnamed-chunk-8-1.png" width="624" /></p>
 <p>Reproduisez le graphique ci-dessus</p>
 <ul>
@@ -135,12 +141,18 @@ Variation de la masse du squelette en fonction de la masse totale de <em>Paracen
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="challenge3-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-
+<pre class="text"><code># Not yet...</code></pre>
+</div>
 </div>
 </div>
 <div id="section-conclusion" class="section level2">
 <h2>Conclusion</h2>
 <p>Bravo! Vous venez de terminer votre premier challenge dans un tutoriel “learnr”.</p>
+<p>Voici ci-dessous les instructions pour réaliser le graphique de challenge 3. La fonction à employer est <code>scale_color_manual()</code></p>
+<pre class="r"><code>chart(urchin, formula = skeleton ~ weight %col=% origin) +
+  geom_point(na.rm = TRUE) +
+  scale_color_manual(values = c(&#39;#999999&#39;,&#39;#E69F00&#39;), labels = c(&quot;Elevage&quot;, &quot;Milieu naturel&quot;))</code></pre>
+<p><img src="np_challenge_files/figure-html/unnamed-chunk-9-1.png" width="624" /></p>
 <p>Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (<code>#</code>) devant vos phrases.</p>
 <div class="tutorial-exercise" data-label="comm" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <pre class="text"><code># Ajout de commentaires 
@@ -170,7 +182,7 @@ urchin <- read(file = "urchin_bio", package = "data.io", lang =  "fr")
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::register_http_handlers(session, metadata = list(id = "sdd1.02d", version = "0.0.1"))
+learnr:::register_http_handlers(session, metadata = list(id = "sdd1.02d", version = "1.1.0"))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
