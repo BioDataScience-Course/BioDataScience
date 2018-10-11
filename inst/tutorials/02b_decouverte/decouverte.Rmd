@@ -575,7 +575,7 @@ head(   )
 
 ```{r case_when-hint}
 # Ajouter la nouvelles variable
-bio <- mutate(bio,
+bio <- mutate(biometry,
   bmi_schedule = case_when(
     bmi  ~ "underweight",
     bmi  ~ "normal weight",
@@ -596,7 +596,7 @@ biometry <- mutate(biometry,
     bmi >= 30 ~ "obese"
 ))
 # Afficher le début du  tableau  
-head(bio)
+head(biometry)
 ```
 
 ```{r case_when-check}
