@@ -4,7 +4,7 @@ sutitle: "L'obésité"
 author : "Guyliann Engels & Philippe Grosjean"
 tutorial:
   id: "sdd1.02b"
-  version: 1.0.0
+  version: 1.1.0
 output:
   learnr::tutorial:
     progressive: true
@@ -18,7 +18,7 @@ options(tutorial.event_recorder = BioDataScience::record_sdd)
 tutorial_options(exercise.checker = BioDataScience::checker_sdd)
 tutorial_options(exercise.timelimit = 60)
 tutorial_options(exercise.cap = "Code R")
-knitr::opts_chunk$set(echo = FALSE, comment = NA)
+knitr::opts_chunk$set(echo = FALSE, comment = NA, warning = FALSE)
 
 SciViews::R()
 #library(knitr)
@@ -60,7 +60,7 @@ Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord a
 
 ## Objectif
 
-- Première utilisation guidée du logiciel R afin de résoudre une question sur l'obésité
+- Utilisation guidée du logiciel R afin de résoudre une question sur l'obésité
 
 ```{r, out.width = "50%"}
 knitr::include_graphics(path = "images/Rlogo.png")
@@ -71,16 +71,16 @@ knitr::include_graphics(path = "images/Rlogo.png")
 
 R est un programme **Open Source** qui permet la manipulation, la visualisation et les calculs (statistiques) sur des données. 
 
-
 ### Manipuler
 
-En partant d'un tableau de données relatif à de la biométrie humaine contenant 395 observations.
+En partant d'un tableau de données relatif à de la biométrie humaine contenant 395 observations. Ce jeu de données comprend 7 variables : 
 
 ```{r, echo=TRUE}
+# Chargement de SciViews::R
 SciViews::R
-bio <- read("biometrie", package = "BioDataScience")
-bio %>.%
-  select(., -c(3, 7, 8)) -> bio
+# Importation du jeu de données
+(biometry <- read("biometry", package = "BioDataScience", lang = "fr"))
+
 ```
 
 **Notez ceci :**
@@ -91,37 +91,56 @@ bio %>.%
 
 - Le jeu de données est disponible dans un package R : `BioDataScience`, spécialement préparé pour ce cours.
 
-- Nous utilisons ici le chaînage et une sélection en éliminant des colonnes du tableau que nous n'utiliserons pas (la 3^ème^, la 7^ème^et la 8^ème^).
+- L'anglais est la langue la plus employé en science des données. Les jeux de données employées seront encodé en anglais. 
 
-- L'assignation du résultat est plus lisible quand elle est réalisée à la fin (`-> bio`) lorsqu'on utilise un chaînage d'instructions.
+Le point d'interrogation devant notre jeu de données renvoit vers une page d'aide.
+
+```{r, eval = FALSE, echo = TRUE}
+?biometry
+```
+
+![](images/biometry_help.png)
+
+```{r, echo = TRUE}
+biometry %>.%
+  select(., -c("day_birth","wrist", "year_measure")) -> bio
+```
+
+  
+**Notez ceci :**
+
+Nous utilisons ici le chaînage (%>.%) et une sélection en éliminant des colonnes du tableau que nous n’utiliserons pas (la 3ème, la 7èmeet la 8ème).
+
+L’assignation du résultat est plus lisible quand elle est réalisée à la fin (-> bio) lorsqu’on utilise un chaînage d’instructions.
+
 
 La fonction `kable()` du package `knitr` peut être appelée directement sans charger le package à l'aide de l'instruction `knitr::kable()`. Elle permet de formatter correctement un tableau dans Markdown. Utilisons-là maintenant pour présenter les huit premières lignes de notre jeu de données.
 
 ```{r, echo=TRUE}
 bio %>.%
   head(., n = 8) %>.% # Garde les huit premières lignes
-  knitr::kable(., col.names = c("Genre", "Date de naissance", "Masse",
-                                "Taille", "Tour de poignet"),
-    caption = "Premières lignes du jeu de données biométrie humaine.")
+  knitr::kable(., align = "c")
 ```
 
-Considérons maintenant uniquement les femmes. On peut filtrer simplement les lignes d'un tableau de données en utilisant comme critère `genre == "F"` (**attention :** notez bien que dans un _test de condition_, l'égalité s'écrit avec **deux** signes égaux dans R). Les autres options sont : `!=` pour différent de, `>` pour plus grand que, `<` pour plus petit que, ainsi que `>=` ou `<=` pour plus grand ou égale et plus petit ou égal.
+
+Considérons maintenant uniquement les femmes. On peut filtrer simplement les lignes d'un tableau de données en utilisant comme critère `gender == "W"` (**attention :** notez bien que dans un _test de condition_, l'égalité s'écrit avec **deux** signes égaux dans R). Les autres options sont : `!=` pour différent de, `>` pour plus grand que, `<` pour plus petit que, ainsi que `>=` ou `<=` pour plus grand ou égale et plus petit ou égal.
 
 ```{r, echo=TRUE}
 bio %>.%
-  filter(., genre == "F") -> bio_f
-bio_f
+  filter(., gender == "W") %>.%
+  head(., n = 8) %>.% # Garde les huit premières lignes
+  knitr::kable(., align = "c")
 ```
 
-Ici, nous avons juste imprimé le contenu du tableau. Donc, la présentation est un peu différente de ce qu'il est possible de faire avec `knitr::kable()`, mais nous voyons directement apparaître le nom des variables telles que nous les utiliserons dans le code (`genre`, `ddn`, `masse`, `taille` et `poignet`).
 
-Continuons à manipuler notre tableau en sélectionnant des colonnes et enf filtrant les lignes en une seule opération. Pour garder la masse et la taille des femmes uniquement en partant du jeu de données complet `bio`, nous utiliserons :
+Continuons à manipuler notre tableau en sélectionnant des colonnes et en filtrant les lignes en une seule opération. Pour sélectionner les femmes `gender == "W"`  et retirer la colonnes `age`, nous utiliserons :
 
 ```{r, echo=TRUE}
 bio %>.%
-  filter(., genre == "F") %>.%
-  select(., c("masse", "taille")) -> bio_f2
-bio_f2
+  filter(., gender == "W") %>.% # sélectionne les femmes
+  select(., - c("age")) %>.% # retire la colonne age
+  head(., n = 8) %>.% # Garde les huit premières lignes
+  knitr::kable(., align = "c")
 ```
 
 Maintenant que nous avons vu comment lire, remanier et présenter des tableaux de données dans R (nous reviendrons sur ces notions plus tard), nous pouvons explorter ses potentialités pour réaliser des graphiques à la section suivante...
@@ -129,60 +148,48 @@ Maintenant que nous avons vu comment lire, remanier et présenter des tableaux d
 
 ### Visualiser
 
-Voic quelques exemples de graphiques réalisés avec R, à partir de divers jeux de données :
+Voici quelques exemples de graphiques réalisés avec R, sur notre jeu de données portant sur la biométrie humaine :
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-lux <- read(system_file("extdata", "lux_hobo.csv", package = "BioDataScience"))
-achatina <- read(system_file("extdata", "achatina.csv", package = "BioDataScience"))
-achatina$shell <- factor(x = achatina$shell,
-  levels = c("protoconch", "teleoconch"),
-  labels = c("protochonque", "téléochonque"))
-zp <- read("zooplankton", package = "data.io", lang = "fr")
-zp <- filter(zp,
-  class %in% c("Annelid", "Calanoid", "Cyclopoid", "Decapod") & size < 2)
-zp$class <- factor(as.character(zp$class),
-  levels = c("Annelid", "Calanoid", "Cyclopoid", "Decapod"),
-  labels = c("Annelida", "Calanoida", "Cyclopoida", "Decapoda"))
-tg <- read("ToothGrowth", package = "datasets", lang = "fr")
-tg$dose <- as.factor(tg$dose)
+- Le graphique en barre nous montre que le nombre d'homme et de femme est similaire.
 
-a <- chart(lux, formula = avg_Temperature ~ Date) +
-  geom_line() +
-  labs( y = "Température [C°]", x = "Temps")
+```{r, echo=TRUE}
+chart(biometry, ~ gender %fill=% gender) +
+  geom_bar(show.legend = FALSE) +
+  scale_fill_viridis_d()
+```
 
-b <- chart(lux, formula = avg_Lux ~ Date) +
-  geom_line() +
-  labs( y = "Intensité lumineuse [lux]", x = "Temps")
+- Les histogrammes nous montrent que les personnes intérogées forment deux groupes. l'un proche de la vingtaine et le second proche de la cinquantaine.
 
-c <- chart(zp, formula = size ~ class %fill=% class) +
+```{r, echo=TRUE}
+chart(biometry, ~ age %fill=% gender | gender)+
+  geom_histogram(bins = 25) +
+  scale_fill_viridis_d()
+```
+
+- Les graphiques en violon couplée avec des boites de dispersion montre que les hommes sont plus grands et plus lourds que les femmes dans notre jeu de données. 
+
+```{r, echo=TRUE}
+a <- chart(biometry, formula = height ~ gender %fill=% gender) +
   geom_violin(show.legend = FALSE, alpha = 0.4)  +
   geom_boxplot(width = 0.1, show.legend = FALSE) +
-  labs( y = "Taille [mm]", x = "Organismes zooplanctoniques") +
-  annotate(geom = "text", x = c(1:4), y = 2,
-    label = as.character(table(zp$class))) +
-  theme(plot.caption = element_text(hjust = 0.5))
+  scale_fill_viridis_d()
 
-d <- chart(achatina, formula = radius ~ coils) +
-  geom_point(mapping = aes(color = shell)) +
-  geom_smooth(data = filter(achatina, shell == "protochonque"),
-    method = "lm", formula = y ~ x, se = FALSE) +
-  geom_smooth(data = filter(achatina, shell == "téléochonque"),
-    method = "lm", formula = y ~ x+I(x^2), se = FALSE) +
-  labs( y = "Radian", x = "Nombre de spire", color = "Coquille") +
-  theme(legend.position= "bottom")
+b <- chart(biometry, formula = weight ~ gender %fill=% gender) +
+  geom_violin(show.legend = FALSE, alpha = 0.4)  +
+  geom_boxplot(width = 0.1, show.legend = FALSE) +
+  scale_fill_viridis_d()
+
+ggpubr::ggarrange(a,b)
 ```
 
-```{r, fig.cap= "Taille de 4 groupes d'organismes zooplanctoniques.", fig.center = "center"}
-c
+- Le nuage de points nous montre la variation de la taille en fonction de la masse.
+
+```{r, echo=TRUE}
+chart(biometry, height ~ weight %col=% gender) +
+  geom_point() +
+  scale_color_viridis_d()
 ```
 
-```{r, fig.cap= "Température (A) et Intensité lumineuse (B) dans la baie de Calvi (Corse, France)", fig.center = "center"}
-ggarrange(a, b, nrow = 2, labels = "AUTO",font.label = list(size = 12))
-```
-
-```{r, fig.cap= "Croissance de la coquille d' *Achatina achatina* en radian (nombre d'enroulements de la coquille).", fig.center = "center"}
-d
-```
 
 **Ceci n'est qu'un bref aperçu des possibilités que propose R, vous en découvrirez une partie lors des cours de science de données.** 
 
@@ -198,30 +205,33 @@ Une multitude d'indicateurs pour quantifier l'excédent de poids ont été emplo
 
 $$IMC (kg/m^2) = \frac{masse(kg)}{taille(m)^2}$$
 
+ou encore en anglais : 
+
+$$BMI (kg/m^2) = \frac{weight(kg)}{height(m)^2}$$
+
 Une fois la valeur obtenue de l'IMC, il faut la comparer au tableau ci-dessous pour connaitre son état de santé.
 
-|IMC (kg/m^2^)     | Interprétation (selon l’OMS) |
-|:-----------------|:----------------------------:|
-| Inférieur 18.5   |      Sous-poids              |
-| Entre 18.5 et 25 |   Corpulence normale         |
-| Entre 25 et 30   |      Surpoids                |
-| Supérieur à 30   |      Obésité                 |
+|IMC (kg/m2) | Interprétation (selon l’OMS)                         |
+|:----------------|:-----------------------------------------------:|
+|Inférieur 18.5   | Sous-poids (en anglais `underweight`)           |
+|Entre 18.5 et 25 | Corpulence normale (en anglais `normal weight`) |
+|Entre 25 et 30   | Surpoids (en anglais `overweight`)              |
+|Supérieur à 30   | Obésité (en anglais `obese`)                    |
 
-Nous allons maintenant avancez pas à pas dans cette première analyse avec R. Le but est de calculer l'IMC, et puis de visualiser comment cet indice se répartit dans la population étudiée.
 
+Nous allons maintenant avancez pas à pas dans cette première analyse avec R. Le but est de calculer l'IMC (`BMI`), et puis de visualiser comment cet indice se répartit dans la population étudiée.
 
 ## Calcul de l'IMC
 
 Les premières personnes dont vous avez les résultats sont les suivantes : 
 
-- identifiant : 1
-- sexe : femme
-- masse : 50 kg
-- taille : 1.70 m
+| id | gender | weight [kg] | height [cm] |
+|:--:|:------:|:-----------:|:-----------:|
+|  1 |    W   |      50     |     170     |
 
 Rappelez-vous de la formule qui est : 
 
-$$IMC (kg/m^2) = \frac{masse(kg)}{taille(m)^2}$$
+$$BMI (kg/m^2) = \frac{weight(kg)}{height(m)^2}$$
 
 On peut employer les opérations mathématiques de base avec R. elles respectent l'ordre de priorité des opérateurs mathématiques. Au besoin, il est possible d'indiquer explicitement, ou de modifier les priorités avec des parenthèses comme `3 * (2 + 1)`.
 
@@ -235,7 +245,7 @@ On peut employer les opérations mathématiques de base avec R. elles respectent
 
 La formule mathématique se traduit donc comme suit en une instruction que R peut utiliser :
 
-```{r id1_imc, , echo=TRUE}
+```{r id1_imc, echo=TRUE}
 50 / 1.70^2
 ```
 
@@ -245,10 +255,9 @@ L'IMC de cette femme indique qu'elle est en `sous-poids` selon l'échelle de l'O
 
 Réalisez maintenant par vous-mêmes le calcul sur notre deuxième individu : 
 
-- identifiant: 2
-- sexe : homme
-- masse : 93 kg
-- taille : 1.91 m
+| id | gender | weight [kg] | height [cm] |
+|:--:|:------:|:-----------:|:-----------:|
+|  2 |    M   |      93     |     191     |
 
 L'espace ci-dessous est une zône où vous pouvez entrer du code R. Le bouton `Run Code` permet ensuite de l'exécuter et de visualiser le résultat. Vous pouvez modifier autant de fois qu'il faut l'expression, et utiliser plusieurs fois `Run Code`. Lorsque vous êtes satisfait du résultat, cliquez sur `Submit Answer`. Dans les tutoriaux, la `Solution` est également accessible, mais faites l'exercice par vous-même d'abord ! Dans les tests, vous n'y aurez pas accès, évidemment.
 
@@ -260,32 +269,35 @@ L'espace ci-dessous est une zône où vous pouvez entrer du code R. Le bouton `R
 93 / 1.91^2
 ```
 
-
 ```{r id2_imc-check}
 # Not yet...
 ```
 
-L'IMC de cet homme indique qu'e cet homme est par contre'il est en `surpoids` selon l'échelle de l'OMS.
-
+L'IMC de cet homme indique que cet homme est par contre en `surpoids` selon l'échelle de l'OMS.
 
 ## Calcul de l'IMC sur plusieurs individus
 
 Vous vous retrouvez rapidement avec 5 nouveaux individus femmes et hommes.
 
-- identifiant :  3, 4, 5, 6, 7
-- sexe : femme, femme, femme, femme, femme 
-- masse : 63, 49, 75, 66, 54 kg 
-- taille : 1.74, 1.55, 1.69, 1.79, 1.68 m
+| id | gender | weight [kg] | height [cm] |
+|:--:|:------:|:-----------:|:-----------:|
+|  3 |    W   |      69     |     174     |
+|  4 |    W   |      49     |     155     |
+|  5 |    W   |      75     |     169     |
+|  6 |    W   |      66     |     179     |
+|  7 |    W   |      54     |     168     |
 
 Le calcul un à un de l'IMC de chaque individu va très rapidement devenir fastidueux. R permet de créer des vecteurs que l'on peut affecter à des symboles avec la flèche `<-` (constituée du signe plus petit que immédiatemment suivi du signe moins) comme le montre l'exemple ci-dessous. Pour rassembler plusieurs valeurs dans un vecteur on les "concatène"s avec la fonction `c()` : 
 
 ```{r, echo=TRUE}
-# Assignation des valeurs de masses dans un vecteur nommé `masse`
-masse1 <- c(63, 49, 75, 66, 54)
-# Assignation des valeurs de tailles dans un vecteurnommé `taille`
-taille1 <- c(1.74, 1.55, 1.69, 1.79, 1.68)
-# Calcul de l'IMC
-masse1 / taille1^2
+# Assignation des valeurs de masses dans un vecteur nommé `weight`
+weight_w <- c(69, 49, 75, 66, 54)
+# Assignation des valeurs de tailles dans un vecteur nommé `height`
+height_w <- c(174, 155, 169, 179, 168)
+# Transformation du vecteur `height_w` de centimètre en mètre 
+height_w <- height_w/100
+# Calcul de l'IMC/ BMI
+weight_w / height_w^2
 ```
 
 **Important :**
@@ -296,24 +308,29 @@ masse1 / taille1^2
 
 - Comme il est difficile de mémoriser la casse d'un nom, il est conseillé d'utiliser uniquement des lettres minuscules.
 
-- Si le nom est constitué de plusieurs mots, il est préférable de séparer ces mots par un trait souligné. Pour rappel, l'espace n'est pas utilisable. Par exemple, `diametre_poignet`.
-- Eviter d'utiliser des caractères accentués.
-- Si possible, utilisez des noms en anglais. Certainement si votre travail sera échangé avec d'autres scientifiques en international, ... mais c'est une bonne habitude à prendre même sur votre propre code.
+- Si le nom est constitué de plusieurs mots, il est préférable de séparer ces mots par un trait souligné. Pour rappel, l'espace n'est pas utilisable. Par exemple, `circomference_poignet`.
 
-_Jusqu'ici, nous avons utilisé des noms de vecteurs en français pour vous faciliter la tâche. Dans la section suivante, nous prendrons de meilleures habitudes et passerons à l'anglais !_
+- Eviter d'utiliser des caractères accentués.
+
+- Si possible, utilisez des noms en anglais. Certainement si votre travail sera échangé avec d'autres scientifiques en international, ... mais c'est une bonne habitude à prendre même sur votre propre code. Pour reprendre l'exemple précendet `wrist_circumference`
 
 Réalisez les mêmes opérations sur les individus de 8 à 12.
 
-- identifiant :  8, 9, 10, 11, 12
-- sexe : homme, homme, homme, homme, homme 
-- masse : 82, 73, 105, 61, 95 kg
-- taille : 1.74, 1.86, 2.03, 1.72, 1.90 m
+| id | gender | weight [kg] | height [cm] |
+|:--:|:------:|:-----------:|:-----------:|
+|  8 |    M   |      82     |     174     |
+|  9 |    M   |      73     |     186     |
+| 10 |    M   |     105     |     203     |
+| 11 |    M   |      61     |     172     |
+| 12 |    M   |      95     |     190     |
 
 ```{r vec_imc, exercise=TRUE}
-# Assignation des valeurs de masses dans un vecteur nommé `masse2`
-masse2 <- c()
-# Assignation des valeurs de tailles dans un vecteur nommé `taille2`
-taille2 <- 
+# Assignation des valeurs de masses dans un vecteur nommé `weight_m`
+weight_m <- c()
+# Assignation des valeurs de tailles dans un vecteur nommé `height_m`
+height_m <- 
+# Transformation du vecteur `height` de centimètre en mètre 
+height_m <- height_m/100
 # Calcul de IMC
 
 ```
@@ -322,11 +339,13 @@ Vous obtenez les 5 valeurs d'IMC d'une seule fois avec l'utilisation de vecteurs
 
 ```{r vec_imc-solution}
 # Assignation des valeurs de masses dans un vecteur nommé `masse2`
-masse2 <- c(82, 73, 105, 61, 95)
+weight_m <- c(82, 73, 105, 61, 95)
 # Assignation des valeurs de tailles dans un vecteur nommé `taille2`
-taille2 <- c(1.74, 1.86, 2.03, 1.72, 1.90)
+height_m <- c(174, 186, 203, 172, 190)
+# Transformation du vecteur `height` de centimètre en mètre 
+height_m <- height_m/100
 # Calcul de IMC
-masse2 / taille2^2
+weight_m / height_m^2
 ```
 
 ```{r vec_imc-check}
@@ -342,35 +361,38 @@ Dans `data_frame()`, vous entrerez vos différents vecteurs comme autant d'**arg
 
 ```{r, echo=TRUE}
 # Création du tableau de données (data frame)
-woman1 <- data_frame(
-  id     = c(3, 4, 5, 6, 7),           # Valeurs numériques
-  sex    = c("F", "F", "F", "F", "F"), # Chaines de caractères (! guillemets)
-  weight = masse1,                     # Vecteur de masses fait précédemment
-  height = taille1                     # Vecteur de tailles fait précédemment
+woman <- data_frame(
+  id     = 3:7,           # Valeurs numériques
+  sex    = rep("W", times = 5), # Chaines de caractères (! guillemets)
+  weight = weight_w,                     # Vecteur de masses fait précédemment
+  height = height_w                     # Vecteur de tailles fait précédemment
 )
 # Afficher le tableau
-woman1
+woman
 ```
 
 Avez-vous remarqué la différence dans la façon d'encoder des valeurs numériques et des chaines de caractères ?
 
 Réalisez-les mêmes opérations sur les individus de 8 à 12 : 
 
-- identifiant:  8, 9, 10, 11, 12
-- sexe : homme, homme, homme, homme (indiquez simplement `M` pour "male")
-- masse : 82, 73, 105, 61, 95 kg
-- taille : 1.74, 1.86, 2.03, 1.72, 1.90 m
+| id | gender | weight [kg] | height [cm] |
+|:--:|:------:|:-----------:|:-----------:|
+|  8 |    M   |      82     |     174     |
+|  9 |    M   |      73     |     186     |
+| 10 |    M   |     105     |     203     |
+| 11 |    M   |      61     |     172     |
+| 12 |    M   |      95     |     190     |
 
 ```{r prepare}
 # Assignation des valeurs de masses dans un vecteur `masse2`
-masse2 <- c(82, 73, 105, 61, 95)
+weight_m <- c(82, 73, 105, 61, 95)
 # Assignation des valeurs de tailles dans un vecteur `taille2`
-taille2 <- c(1.74, 1.86, 2.03, 1.72, 1.90)
+height_m <- c(1.74, 1.86, 2.03, 1.72, 1.90)
 ```
 
 ```{r vec_man, exercise=TRUE, exercise.setup="prepare"}
 # Encodage du jeu de données
-man1 <- data_frame(
+man <- data_frame(
   id     = ,
   sex    = ,
   weight = ,
@@ -382,14 +404,14 @@ man1 <- data_frame(
 
 ```{r vec_man-solution}
 # Encodage du jeu de données
-man1 <- data_frame(
-  id     = c(8, 9, 10, 11, 12),
-  sex    = c("M", "M", "M", "M", "M"),
-  weight = masse2,
-  height = taille2
+man <- data_frame(
+  id     = 8:12,
+  sex    = rep("M", times = 5),
+  weight = weight_m,
+  height = height_m
 )
 # Afficher le tableau
-man1
+man
 ```
 
 
@@ -401,9 +423,9 @@ Calculez de nouveau l'IMC et ajoutez vos résultats dans le tableau de données.
 
 ```{r, echo=TRUE}
 # Calculer l'IMC pour les femmes
-woman1 <- mutate(woman1, bmi = weight / height^2)
+woman <- mutate(woman, bmi = weight / height^2)
 # Afficher le tableau de données
-woman1
+woman
 ```
 
 **A retenir :**
@@ -412,29 +434,34 @@ woman1
 
 - La ou les nouvelles colonnes sont ajoutées à la fin du tableau et sont directement utilisables.
 
-Réalisez par vous-mêmes les mêmes opérations sur le jeu de données `man1`.
+Réalisez par vous-mêmes les mêmes opérations sur le jeu de données `man`.
 
 ```{r prepare1}
-man1 <- data_frame(
-  id     = c(8, 9, 10, 11, 12),
-  sex    = c("M", "M", "M", "M", "M"), 
-  weight = c(82, 73, 105, 61, 95), 
-  height = c(1.74, 1.86, 2.03, 1.72, 1.90)
+# Assignation des valeurs de masses dans un vecteur `masse2`
+weight_m <- c(82, 73, 105, 61, 95)
+# Assignation des valeurs de tailles dans un vecteur `taille2`
+height_m <- c(1.74, 1.86, 2.03, 1.72, 1.90)
+# Dataset
+man <- data_frame(
+  id     = 8:12,
+  sex    = rep("M", times = 5),
+  weight = weight_m,
+  height = height_m
 )
 ```
 
 ```{r imc_mutate, exercise=TRUE, exercise.setup="prepare1"}
 # Calculer l'IMC pour les hommes
-man1 <- mutate(man1, bmi = )
+man <- mutate(man, bmi = )
 # Afficher le tableau de données
 
 ```
 
 ```{r imc_mutate-solution}
 # Calculer l'IMC pour les hommes
-man1 <- mutate(man1, bmi = weight / height^2)
+man <- mutate(man, bmi = weight / height^2)
 # Afficher le tableau de données
-man1
+man
 ```
 
 ```{r imc_mutate-check}
@@ -445,13 +472,12 @@ Vous pouvez observer que tout comme le tableau de données portant sur les femme
 
 ## 13% de la population adulte mondiale est obèse
 
-Le monde titre que 13% de la populaton mondiale est obèse. Vérifiez cette affirmation avec le jeu de données `bio` qui regroupe les masses et les tailles de 395 personnes adulte vivant sur le territoire belge. Nous ne garderons que les colonnes `genre`, `masse` et `taille`. Nous allons également tirer au hasard 100 individus comme sous-échantillon de ce tableau (à titre d'illustration d'autres traitements possibles sur le tableau). La fonction qui réalise cela est `sample_n()`. La fonction `set.seed)` prend un nombre et initialise le générateur de nombres dit "pseudo-aléatoires" pour que tout le monde ait le même sous-ensemble. En pratique, cette instruction est facultative, mais elle est utile pour générer des résultats **reproductibles**. Indiquez naturellement un nombre différent, à chaque fois que vous l'utiliser !
+Le monde titre que 13% de la populaton mondiale est obèse. Vérifiez cette affirmation avec le jeu de données `biometry` qui regroupe les masses et les tailles de 395 personnes adultes vivant sur le territoire belge (Hainaut, Belgique). Nous allons également tirer au hasard 100 individus comme sous-échantillon de ce tableau (à titre d'illustration d'autres traitements possibles sur le tableau). La fonction qui réalise cela est `sample_n()`. La fonction `set.seed()` prend un nombre et initialise le générateur de nombres dit "pseudo-aléatoires" pour que tout le monde ait le même sous-ensemble. En pratique, cette instruction est facultative, mais elle est utile pour générer des résultats **reproductibles**. Indiquez naturellement un nombre différent, à chaque fois que vous l'utiliser !
 
 ```{r, echo=TRUE}
-bio <- read("biometrie", package = "BioDataScience")
+biometry <- read("biometry", package = "BioDataScience")
 set.seed(50) # Initialisation du générateur de nombres pseudo-aléatoires
-bio %>.%
-  select(., genre, masse, taille) %>.%
+biometry %>.%
   sample_n(., size = 100, replace = FALSE) -> bio_100
 # Echantillonnage au hasard de 100 individus
 bio_100
@@ -462,15 +488,15 @@ Vous pouvez observer que la taille est ici exprimée en centimètres, il faut en
 Pour calculer l'IMC sur le jeu de données `bio_100`, nous employons à nouveau la fonction `mutate()`. 
 
 ```{r, echo=TRUE}
-bio_100 <- mutate(bio_100, imc = masse / (taille / 100)^2)
+bio_100 <- mutate(bio_100, bmi = weight / (height / 100)^2)
 # Afficher les premières lignes du tableau de données 
 head(bio_100, n = 5)
 ```
 
-Calculez l'IMC sur le jeu de données `bio` tout entier.
+Calculez l'IMC sur le jeu de données `biometry` tout entier.
 
 ```{r bio_imc, exercise=TRUE}
-# Calcul de l'IMC
+# Calcul de le BMI
 
 # Affichage des premières lignes du tableau de données
 
@@ -478,9 +504,9 @@ Calculez l'IMC sur le jeu de données `bio` tout entier.
 
 ```{r bio_imc-solution}
 # Calcul de l'IMC
-bio <- mutate(bio, imc = masse / (taille / 100)^2)
+biometry <- mutate(biometry, bmi = weight / (height / 100)^2)
 # Affichage des premières lignes du tableau de données
-head(bio, n = 5)
+head(biometry, n = 5)
 ```
 
 ```{r bio_imc-check}
@@ -517,33 +543,31 @@ Ajoutez une nouvelle variable qui tient compte de l'échelle de l'OMS avec le je
 ```{r, echo=TRUE}
 # Ajouter la nouvelles variable
 bio_100 <- mutate(bio_100,
-  echelle_imc = case_when(
-    imc < 18.5 ~ "underweight",
-    imc >= 18.5 & imc < 25 ~ "normal weight",
-    imc >= 25 & imc < 30 ~ "overweight",
-    imc >= 30 ~ "obese"
+  bmi_schedule = case_when(
+    bmi < 18.5 ~ "underweight",
+    bmi >= 18.5 & bmi < 25 ~ "normal weight",
+    bmi >= 25 & bmi < 30 ~ "overweight",
+    bmi >= 30 ~ "obese"
 ))
 # Afficher le tableau 
 bio_100
 ```
 
-Ajoutez une nouvelle variable au jeu de données `bio` en complétant les informations manquantes.
+Ajoutez une nouvelle variable au jeu de données `biometry` en complétant les informations manquantes.
 
 ```{r prepare2}
-bio <- read("biometrie", package = "BioDataScience")
-bio <- bio[ , c("genre", "masse", "taille")]
-#bio <- rename(bio, sex = genre, weight = masse, height = taille)
-bio$imc <- bio$masse / (bio$taille / 100)^2
+biometry <- read("biometry", package = "BioDataScience")
+biometry <- mutate(biometry, bmi = weight / (height / 100)^2)
 ```
 
 ```{r case_when, exercise=TRUE, exercise.setup="prepare2"}
 # Ajouter la nouvelles variable
    <- mutate(   ,
-  echelle_imc = case_when(
-    imc  ~ "underweight",
-    imc  ~ "normal weight",
-    imc  ~"overweight",
-    imc  ~ "obese"
+  bm_schedule = case_when(
+    bmi  ~ "underweight",
+    bmi  ~ "normal weight",
+    bmi  ~"overweight",
+    bmi  ~ "obese"
 ))
 # Afficher le début du  tableau 
 head(   )
@@ -552,11 +576,11 @@ head(   )
 ```{r case_when-hint}
 # Ajouter la nouvelles variable
 bio <- mutate(bio,
-  echelle_imc = case_when(
-    imc  ~ "underweight",
-    imc  ~ "normal weight",
-    imc  ~"overweight",
-    imc  ~ "obese"
+  bmi_schedule = case_when(
+    bmi  ~ "underweight",
+    bmi  ~ "normal weight",
+    bmi  ~"overweight",
+    bmi  ~ "obese"
 ))
 # Afficher le début du  tableau 
 head()
@@ -564,12 +588,12 @@ head()
 
 ```{r case_when-solution}
 # Ajouter la nouvelles variable
-bio <- mutate(bio,
-  echelle_imc = case_when(
-    imc < 18.5 ~ "underweight",
-    imc >= 18.5 & imc < 25 ~ "normal weight",
-    imc >= 25 & imc < 30 ~"overweight",
-    imc >= 30 ~ "obese"
+biometry <- mutate(biometry,
+  bmi_schedule = case_when(
+    bmi < 18.5 ~ "underweight",
+    bmi >= 18.5 & bmi < 25 ~ "normal weight",
+    bmi>= 25 & bmi < 30 ~"overweight",
+    bmi >= 30 ~ "obese"
 ))
 # Afficher le début du  tableau  
 head(bio)
@@ -584,7 +608,7 @@ Votre nouvelle variable comprend une succession de lignes complétées par des c
 Classer votre nouvelle variable avec le jeu de données `bio_100`.
 
 ```{r, echo=TRUE}
-bio_100$echelle_imc <- factor(bio_100$echelle_imc,
+bio_100$bmi_schedule <- factor(bio_100$bmi_schedule,
   levels = c("underweight", "normal weight", "overweight", "obese"))
 bio_100
 ```
@@ -594,35 +618,33 @@ En apparence, pas grand changement, mais maintenant, nous avons indiqué un ordr
 Classer votre nouvelle variable  avec le jeu de données `bio` tout entier, et en utilisant `ordered()` ici.
 
 ```{r prepare3}
-bio <- read("biometrie", package = "BioDataScience")
-bio <- bio[ , c("genre", "masse", "taille")]
-#bio <- rename(bio, sex = genre, weight = masse, height = taille)
-bio$imc <- bio$masse / (bio$taille / 100)^2
-bio <- mutate(bio,
-  echelle_imc = case_when(
-    imc < 18.5 ~ "underweight",
-    imc >= 18.5 & imc < 25 ~ "normal weight",
-    imc >= 25 & imc < 30 ~ "overweight",
-    imc >= 30 ~ "obese"
+biometry <- read("biometry", package = "BioDataScience", lang="fr")
+biometry$bmi <- biometry$weight / (biometry$height / 100)^2
+biometry <- mutate(biometry,
+  bmi_schedule = case_when(
+    bmi < 18.5 ~ "underweight",
+    bmi >= 18.5 & bmi < 25 ~ "normal weight",
+    bmi >= 25 & bmi < 30 ~ "overweight",
+    bmi >= 30 ~ "obese"
 ))
 ```
 
 ```{r factor, exercise=TRUE, exercise.setup="prepare3"}
-bio$   <- ordered(bio_ex$echelle_imc,
+biometry$   <- ordered(biometry$bmi_schedule,
   levels = )
-# Visualiser le vacteur
-bio$echelle_imc
+# Visualiser le vecteur
+biometry$bmi_schedule
 # Extraire les niveaux d'encodage des niveaux
-levels(bio$echelle_imc)
+levels(biometry$bmi_schedule)
 ```
 
 ```{r factor-solution}
-bio$echelle_imc <- ordered(bio$echelle_imc,
+biometry$bmi_schedule <- ordered(biometry$bmi_schedule,
   levels = c("underweight", "normal weight", "overweight", "obese"))
 # Visualiser le vacteur
-bio$echelle_imc
+biometry$bmi_schedule
 # Extraire les niveaux d'encodage des niveaux
-levels(bio$echelle_imc)
+levels(biometry$bmi_schedule)
 ```
 
 ```{r factor-check}
@@ -641,23 +663,22 @@ summary(bio_100)
 ```
 
 ```{r prepare4}
-bio <- read("biometrie", package = "BioDataScience")
-bio <- bio[ , c("genre", "masse", "taille")]
-#bio <- rename(bio, sex = genre, weight = masse, height = taille)
-bio$bmi <- bio$weight/(bio$height/100)^2
-bio$imc <- bio$masse / (bio$taille / 100)^2
-bio <- mutate(bio,
-  echelle_imc = case_when(
-    imc < 18.5 ~ "underweight",
-    imc >= 18.5 & imc < 25 ~ "normal weight",
-    imc >= 25 & imc < 30 ~ "overweight",
-    imc >= 30 ~ "obese"
+biometry <- read("biometry", package = "BioDataScience", lang = "fr")
+biometry$bmi <- biometry$weight/(biometry$height/100)^2
+biometry <- mutate(biometry,
+  bmi_schedule = case_when(
+    bmi < 18.5 ~ "underweight",
+    bmi >= 18.5 & bmi < 25 ~ "normal weight",
+    bmi >= 25 & bmi < 30 ~ "overweight",
+    bmi >= 30 ~ "obese"
 ))
-bio$echelle_imc <- ordered(bio$echelle_imc,
+biometry$bmi_schedule <- ordered(biometry$bmi_schedule,
   levels = c("underweight", "normal weight", "overweight", "obese"))
+label(biometry$bmi) <- "Indice de masse corporelle"
+units(biometry$bmi) <- NA
 ```
 
-Utilisez la fonction `summary()` pour obtenir une description du tableau de données complet `bio`.
+Utilisez la fonction `summary()` pour obtenir une description du tableau de données complet `biometry`.
 
 ```{r obese, exercise=TRUE, exercise.setup = "prepare4"}
 # résumé des données
@@ -665,7 +686,7 @@ summary()
 ```
 
 ```{r obese-solution}
-summary(bio)
+summary(biometry)
 ```
 
 ```{r obese-check}
@@ -676,19 +697,49 @@ Pour calculer le pourcentage d'obèses, nous pouvons filtrer le tableau et ensui
 
 ```{r obese1, exercise=TRUE, exercise.setup = "prepare4"}
 # Calculer le pourcentage d'obèse dans notre tableau de données
-bio %>.%
+biometry %>.%
   filter(.,   ) %>.%
-  nrow(.) / nrow(bio) * 100 # Nbre lignes filtrées / nbre total * 100
+  nrow(.) / nrow(biometry) * 100 # Nbre lignes filtrées / nbre total * 100
 ```
 
 ```{r obese1-solution}
 # Calculer le pourcentage d'obèse dans notre tableau de données
-bio %>.%
-  filter(., echelle_imc == "obese") %>.%
-  nrow(.) / nrow(bio) * 100 # Nbre lignes filtrées / nbre total * 100
+biometry %>.%
+  filter(., bmi_schedule == "obese") %>.%
+  nrow(.) / nrow(biometry) * 100 # Nbre lignes filtrées / nbre total * 100
 ```
 
 ```{r obese1-check}
+# Not yet...
+```
+
+Vos résultats concorde t'il avec les valeurs avancées dans les médias ? Représentons la distribution du bmi de nos individus sondés.
+
+```{r, echo = TRUE}
+chart(bio_100, ~ bmi %fill=% gender) +
+  geom_histogram( bins = 25) +
+  geom_vline(xintercept = 30, color = "red") +
+  scale_fill_viridis_d()
+```
+
+
+Utilisez la fonction `chart()` pour représenter graphiquement la distribution des données par rapport au bmi des individus.
+
+```{r histo, exercise = TRUE, exercise.setup = "prepare4"}
+chart(   , ~  %fill=% gender) + # instruction du graphique
+  geom_histogram( bins = 25) + # réaliser un histogramme
+  geom_vline(xintercept = 30, color = "red") + # ajouter une ligne à 30 de bmi
+  scale_fill_viridis_d() 
+```
+
+```{r histo-solution}
+chart(biometry, ~ bmi %fill=% gender) + # instruction du graphique
+  geom_histogram( bins = 25) + # réaliser un histogramme
+  geom_vline(xintercept = 30, color = "red") + # ajouter une ligne à 30 de bmi
+  scale_fill_viridis_d() 
+```
+
+```{r histo-check}
 # Not yet...
 ```
 
