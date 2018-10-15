@@ -22,14 +22,14 @@ tutorial_options(exercise.timelimit = 60)
 tutorial_options(exercise.cap = "Code R")
 knitr::opts_chunk$set(echo = FALSE, comment = NA)
 
-library(knitr)
 library(BioDataScience)
 
 # Dataset
 urchin <- read("urchin_bio", package = "data.io", lang = "fr")
 zooplankton <- read("zooplankton", package = "data.io", lang = "fr")
-biometry <- read("biometry", package = "BioDataScience")
-copepoda <- filter(zooplankton, class %in% c("Calanoid", "Cyclopoid", "Harpacticoid", "Poecilostomatoid"))
+copepoda <- filter(zooplankton, class %in%
+  c("Calanoid", "Cyclopoid", "Harpacticoid", "Poecilostomatoid"))
+biometry <- read("biometry", package = "BioDataScience", lang = "fr")
 ```
 
 ```{r, echo=FALSE}
