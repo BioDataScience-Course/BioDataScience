@@ -1,5 +1,9 @@
 # BioDataScience News
 
+## Changes in version 0.6.0
+
+- Tutorial 03a_test finalized
+
 ## Changes in version 0.5.0
 
 - add new datasest biometry

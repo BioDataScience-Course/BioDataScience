@@ -1,6 +1,6 @@
 Package: BioDataScience
 Type: Package
-Version: 0.5.0
+Version: 0.6.0
 Title: A Series of Learnr Documents for Biological Data Science
 Description: Interactive documents using learnr for studying biological data science.
 Authors@R: c(
