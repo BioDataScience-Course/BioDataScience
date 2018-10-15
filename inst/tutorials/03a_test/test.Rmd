@@ -7,7 +7,7 @@ output:
     progressive: true
 tutorial:
   id: "sdd1.03a"
-  version: 0.6
+  version: 0.7
 runtime: shiny_prerendered
 ---
 
