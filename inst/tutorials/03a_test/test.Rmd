@@ -7,7 +7,7 @@ output:
     progressive: true
 tutorial:
   id: "sdd1.03a"
-  version: 0.0.2
+  version: 0.6
 runtime: shiny_prerendered
 ---
 
@@ -29,6 +29,7 @@ library(BioDataScience)
 urchin <- read("urchin_bio", package = "data.io", lang = "fr")
 zooplankton <- read("zooplankton", package = "data.io", lang = "fr")
 biometry <- read("biometry", package = "BioDataScience")
+copepoda <- filter(zooplankton, class %in% c("Calanoid", "Cyclopoid", "Harpacticoid", "Poecilostomatoid"))
 ```
 
 ```{r, echo=FALSE}
