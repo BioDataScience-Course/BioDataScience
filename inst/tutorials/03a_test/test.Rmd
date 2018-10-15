@@ -291,6 +291,8 @@ chart(urchin, formula = height ~ weight %col=% origin %shape=% sex) +
 ```
 
 
+## Conclusion 
+
 Bravo! Vous venez de terminer votre séance d'exercie dans un  tutoriel "learnr". 
 
 Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
