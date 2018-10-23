@@ -157,7 +157,7 @@ chart(data = echinoderma, ~ factor(0) %fill=% e_mathaei) +
 # Not yet...
 ```
 
-Les chercheurs souhaitent générer un graphique entierement en français. 
+Les chercheurs souhaitent en plus générer un graphique entierement en français. 
 
 ```{r}
 echinoderma$e_mathaei <- factor(echinoderma$e_mathaei, levels = c("black", "brown", "green", "purple"), labels = c("Noir", "Brun", "Vert", "Mauve"))
