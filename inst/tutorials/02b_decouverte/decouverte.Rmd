@@ -722,7 +722,6 @@ chart(bio_100, ~ bmi %fill=% gender) +
   scale_fill_viridis_d()
 ```
 
-
 Utilisez la fonction `chart()` pour représenter graphiquement la distribution des données par rapport au bmi des individus.
 
 ```{r histo, exercise = TRUE, exercise.setup = "prepare4"}

@@ -467,7 +467,7 @@ ggpubr::ggarrange(a,b)</code></pre>
 </table>
 <p>L’espace ci-dessous est une zône où vous pouvez entrer du code R. Le bouton <code>Run Code</code> permet ensuite de l’exécuter et de visualiser le résultat. Vous pouvez modifier autant de fois qu’il faut l’expression, et utiliser plusieurs fois <code>Run Code</code>. Lorsque vous êtes satisfait du résultat, cliquez sur <code>Submit Answer</code>. Dans les tutoriaux, la <code>Solution</code> est également accessible, mais faites l’exercice par vous-même d’abord ! Dans les tests, vous n’y aurez pas accès, évidemment.</p>
 <div class="tutorial-exercise" data-label="id2_imc" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":false,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="id2_imc-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>93 / 1.91^2</code></pre>
@@ -592,7 +592,7 @@ height_m &lt;-
 # Transformation du vecteur `height` de centimètre en mètre 
 height_m &lt;- height_m/100
 # Calcul de IMC</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":false,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <p>Vous obtenez les 5 valeurs d’IMC d’une seule fois avec l’utilisation de vecteurs.</p>
 <div class="tutorial-exercise-support" data-label="vec_imc-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
@@ -686,13 +686,13 @@ man &lt;- data_frame(
   height = 
 )
 # Afficher le tableau</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":false,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="vec_man-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Encodage du jeu de données
 man &lt;- data_frame(
   id     = 8:12,
-  sex    = rep(&quot;M&quot;, times = 8),
+  sex    = rep(&quot;M&quot;, times = 5),
   weight = weight_m,
   height = height_m
 )
@@ -735,7 +735,7 @@ man &lt;- data_frame(
 <pre class="text"><code># Calculer l&#39;IMC pour les hommes
 man &lt;- mutate(man, bmi = )
 # Afficher le tableau de données</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare1","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":false,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare1","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="imc_mutate-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Calculer l&#39;IMC pour les hommes
@@ -777,7 +777,7 @@ head(bio_100, n = 5)</code></pre>
 <pre class="text"><code># Calcul de le BMI
 
 # Affichage des premières lignes du tableau de données</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":false,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="bio_imc-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Calcul de l&#39;IMC
@@ -893,11 +893,11 @@ biometry &lt;- mutate(biometry, bmi = weight / (height / 100)^2)</code></pre>
 ))
 # Afficher le début du  tableau 
 head(   )</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare2","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":false,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare2","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="case_when-hint" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Ajouter la nouvelles variable
-bio &lt;- mutate(bio,
+bio &lt;- mutate(biometry,
   bmi_schedule = case_when(
     bmi  ~ &quot;underweight&quot;,
     bmi  ~ &quot;normal weight&quot;,
@@ -917,7 +917,7 @@ biometry &lt;- mutate(biometry,
     bmi &gt;= 30 ~ &quot;obese&quot;
 ))
 # Afficher le début du  tableau  
-head(bio)</code></pre>
+head(biometry)</code></pre>
 </div>
 <div class="tutorial-exercise-support" data-label="case_when-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Not yet...</code></pre>
@@ -952,15 +952,15 @@ biometry &lt;- mutate(biometry,
 biometry$bmi_schedule
 # Extraire les niveaux d&#39;encodage des niveaux
 levels(biometry$bmi_schedule)</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare3","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":false,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare3","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="factor-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>biometry$bmi_schedule &lt;- ordered(biometry$bmi_schedule,
   levels = c(&quot;underweight&quot;, &quot;normal weight&quot;, &quot;overweight&quot;, &quot;obese&quot;))
 # Visualiser le vacteur
-biometry$schedule_bmi
+biometry$bmi_schedule
 # Extraire les niveaux d&#39;encodage des niveaux
-levels(biometry$schedule_bmi)</code></pre>
+levels(biometry$bmi_schedule)</code></pre>
 </div>
 <div class="tutorial-exercise-support" data-label="factor-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Not yet...</code></pre>
@@ -1015,7 +1015,7 @@ units(biometry$bmi) &lt;- NA</code></pre>
 <div class="tutorial-exercise" data-label="obese" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># résumé des données
 summary()</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare4","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":false,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare4","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="obese-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>summary(biometry)</code></pre>
@@ -1029,7 +1029,7 @@ summary()</code></pre>
 biometry %&gt;.%
   filter(.,   ) %&gt;.%
   nrow(.) / nrow(biometry) * 100 # Nbre lignes filtrées / nbre total * 100</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare4","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":false,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare4","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="obese1-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Calculer le pourcentage d&#39;obèse dans notre tableau de données
@@ -1041,14 +1041,18 @@ biometry %&gt;.%
 <pre class="text"><code># Not yet...</code></pre>
 </div>
 <p>Vos résultats concorde t’il avec les valeurs avancées dans les médias ? Représentons la distribution du bmi de nos individus sondés.</p>
+<pre class="r"><code>chart(bio_100, ~ bmi %fill=% gender) +
+  geom_histogram( bins = 25) +
+  geom_vline(xintercept = 30, color = &quot;red&quot;) +
+  scale_fill_viridis_d()</code></pre>
 <p><img src="decouverte_files/figure-html/unnamed-chunk-22-1.png" width="624" /></p>
-<p>Utilisez la fonction <code>chart()</code> pour représenter graphiquement la distribution des données par rapport au bmi des individus</p>
+<p>Utilisez la fonction <code>chart()</code> pour représenter graphiquement la distribution des données par rapport au bmi des individus.</p>
 <div class="tutorial-exercise" data-label="histo" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>chart(   , ~  %fill=% gender) + # instruction du graphique
   geom_histogram( bins = 25) + # réaliser un histogramme
   geom_vline(xintercept = 30, color = &quot;red&quot;) + # ajouter une ligne à 30 de bmi
   scale_fill_viridis_d() </code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare4","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":false,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"prepare4","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="histo-solution" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>chart(biometry, ~ bmi %fill=% gender) + # instruction du graphique
@@ -1076,7 +1080,7 @@ biometry %&gt;.%
 <div class="tutorial-exercise" data-label="comm" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="8">
 <pre class="text"><code># Ajout de commentaires 
 # ...</code></pre>
-<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":false,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 <div class="tutorial-exercise-support" data-label="comm-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code># Not yet...</code></pre>
@@ -1088,7 +1092,7 @@ options(tutorial.event_recorder = BioDataScience::record_sdd)
 tutorial_options(exercise.checker = BioDataScience::checker_sdd)
 tutorial_options(exercise.timelimit = 60)
 tutorial_options(exercise.cap = "Code R")
-knitr::opts_chunk$set(echo = FALSE, comment = NA)
+knitr::opts_chunk$set(echo = FALSE, comment = NA, warning = FALSE)
 
 SciViews::R()
 #library(knitr)
