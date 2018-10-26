@@ -45,6 +45,7 @@ record_sdd <- function(tutorial_id, tutorial_version, user_id, event, data) {
   #}
   # Once http request with stitch will be available, we could do something like
   #https://stitch.mongodb.com/api/client/v2.0/app/sdd-relay-aizkd/service/sdd-http/incoming_webhook/webhook0
+  db_injected <- FALSE
   m <- try(mongo("sdd",
     #url = "mongodb://sdd:sdd@ds125388.mlab.com:25388/sdd-test")$insert(entry)
     url = "mongodb://sdd:sdd@sdd-umons-shard-00-00-umnnw.mongodb.net:27017,sdd-umons-shard-00-01-umnnw.mongodb.net:27017,sdd-umons-shard-00-02-umnnw.mongodb.net:27017/test?ssl=true&replicaSet=sdd-umons-shard-0&authSource=admin"),
@@ -53,18 +54,24 @@ record_sdd <- function(tutorial_id, tutorial_version, user_id, event, data) {
       # No run() methods in mongolite 1.5
       #m$run(command = "{\"ping\": 1}", simplify = TRUE)$ok == 1) {
       m$count() > -1) {
-    m$insert(entry)
+    res <- try(m$insert(entry), silent = TRUE)
     # If there is something in the biodatascience file, inject it also now
-    if (file.exists(bds_file)) {
-      dat <- readLines(bds_file)
-      unlink(bds_file)
-      if (length(dat))
-        for (i in 1:length(dat))
-          m$insert(unserialize(base64_dec(dat[i])))
+    if (!inherits(res, "try-error")) {
+      db_injected <- TRUE
+      # Check if we also need to inject pending records
+      if (file.exists(bds_file)) {
+        dat <- readLines(bds_file)
+        unlink(bds_file)
+        if (length(dat))
+          for (i in 1:length(dat))
+            m$insert(unserialize(base64_dec(dat[i])))
+      }
     }
     # No disconnect() method in mongolite 1.5
     #m$disconnect()
-  } else {# MongoDB database not available... save locally
+  }
+  # Only get rid of the entry if it was actually injected in the database
+  if (!isTRUE(db_injected)) {# MongoDB database not available, or error... save locally
     add_file_base64(entry, file = bds_file)
   }
 }

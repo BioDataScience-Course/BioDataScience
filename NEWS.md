@@ -1,12 +1,23 @@
 # BioDataScience News
 
+## Changes in version 0.7.0
+
+- Tutorial 04a_test finalized
+
+
+## Changes in version 0.6.1
+
+- More robust code for record_sdd()
+
+
 ## Changes in version 0.6.0
 
 - Tutorial 03a_test finalized
 
+
 ## Changes in version 0.5.0
 
-- add new datasest biometry
+- Add new dataset biometry
 
 
 ## Changes in version 0.4.0

@@ -7,7 +7,7 @@ output:
     progressive: true
 tutorial:
   id: "sdd1.04a"
-  version: 0.0.0.900
+  version: 1.0.0
 runtime: shiny_prerendered
 ---
 
@@ -26,7 +26,7 @@ library(BioDataScience)
 library(ggridges)
 
 # Dataset
-echinoderma <- data_frame(id = 1:345, e_mathaei = c(rep("black", times = 236), rep("purple" , times = 40), rep("brown", times = 35), rep("green", times = 34)))
+e_mathaei <- data_frame(id = 1:345, variety = c(rep("black", times = 236), rep("purple" , times = 40), rep("brown", times = 35), rep("green", times = 34)))
 marphy <- read("marphy", package = "pastecs", lang = "fr")
 marphy$Station <- 1:68
 crabs <- read("crabs", package = "MASS", lang = "fr")
@@ -69,27 +69,29 @@ Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord a
 
 - Vérifier l'acquisition des notions relatives à la réalisation de graphiques variés.
 
+
 ## Visualisation graphique
 
-La visualisation graphique est le point de base dans l'analyse de données. 
+La visualisation graphique est le point de départ dans l'analyse de données. 
+
 
 ### Dénombrement d'oursins perforant dans la baie de Tuléar (Madagascar)
 
-La jeu de données nommé echinoderma est un recensement de différentes variétés d' *Echinoderma mathaei*. 
+La jeu de données nommé `e_mathaei` est un recensement de différentes variétés de l'oursin *Echinometra mathaei*. 
 
-```{r echinoderma_data, echo = TRUE}
-echinoderma <- data_frame(id = 1:345, e_mathaei = c(rep("black", times = 236), 
-                                                    rep("purple" , times = 40), 
-                                                    rep("brown", times = 35), 
-                                                    rep("green", times = 34)))
-# Visualisation partielle du tableau de données
-head(echinoderma[c(200, 250, 300, 340), ])
+```{r echino_data, echo = TRUE}
+e_mathaei <- data_frame(id = 1:345, variety = c(rep("black",  times = 236), 
+                                                rep("purple", times = 40), 
+                                                rep("brown",  times = 35), 
+                                                rep("green",  times = 34)))
+# Visualisation de quelques lignes du tableau de données
+e_mathaei[c(200, 250, 300, 340), ]
 ```
 
 Les scientifiques produisent le graphique suivant :
 
 ```{r}
-chart(echinoderma, formula = ~ e_mathaei) +
+chart(e_mathaei, formula = ~ variety) +
   geom_bar() +
   coord_flip()
 ```
@@ -99,7 +101,7 @@ Reproduisez le graphique ci-dessus.
 **Nom du jeu de données et des variables importantes** 
 
 ```{r}
-variable <- c("echinoderma", "e_mathaei")
+variable <- c("variety", "e_mathaei")
 sample(variable)
 ```
 
@@ -109,7 +111,7 @@ sample(variable)
 ```
 
 ```{r bar1-solution}
-chart(echinoderma, formula = ~ e_mathaei) +
+chart(e_mathaei, formula = ~ variety) +
   geom_bar() +
   coord_flip()
 ```
@@ -118,25 +120,23 @@ chart(echinoderma, formula = ~ e_mathaei) +
 # Not yet...
 ```
 
-
 Les chercheurs hésitent à proposer un graphique en cammembert dans l'article qu'ils écrivent.
 
 ```{r}
-chart(data = echinoderma, ~ factor(0) %fill=% e_mathaei) +
+chart(data = e_mathaei, ~ factor(0) %fill=% variety) +
   geom_bar(width = 1) + 
   coord_polar("y", start = 0) +
   theme_void() +
   scale_fill_viridis_d() +
-  labs( fill = expression(italic("Echinoderma mathaei")))
+  labs(fill = "Variety")
 ```
-
 
 Reproduisez ce graphique 
 
 **Nom du jeu de données et des variables importantes** 
 
 ```{r}
-variable <- c("echinoderma", "e_mathaei")
+variable <- c("variety", "e_mathaei")
 sample(variable)
 ```
 
@@ -145,34 +145,34 @@ sample(variable)
 ```
 
 ```{r pie1-solution}
-chart(data = echinoderma, ~ factor(0) %fill=% e_mathaei) +
+chart(data = e_mathaei, ~ factor(0) %fill=% variety) +
   geom_bar(width = 1) + 
   coord_polar("y", start = 0) +
   theme_void() +
   scale_fill_viridis_d() +
-  labs( fill = expression(italic("Echinoderma mathaei")))
+  labs(fill = "Variety")
 ```
 
 ```{r pie1-check}
 # Not yet...
 ```
 
-Les chercheurs souhaitent en plus générer un graphique entierement en français. 
+Les chercheurs souhaitent en plus générer un graphique entièrement en français. 
 
 ```{r}
-echinoderma$e_mathaei <- factor(echinoderma$e_mathaei, levels = c("black", "brown", "green", "purple"), labels = c("Noir", "Brun", "Vert", "Mauve"))
+e_mathaei$variety <- factor(e_mathaei$variety, levels = c("black", "brown", "green", "purple"), labels = c("Noir", "Brun", "Vert", "Mauve"))
 
-chart(echinoderma, formula = ~ e_mathaei) +
+chart(e_mathaei, formula = ~ variety) +
   geom_bar() +
-  labs(x = expression(italic("Echinoderma mathaei")), y  = "Dénombrement")
+  labs(x = "Variété", y  = "Dénombrement")
 ```
 
-Reproduisez ce graphique
+Reproduisez ce graphique.
 
 **Nom du jeu de données et des variables importantes** 
 
 ```{r}
-variable <- c("echinoderma", "e_mathaei")
+variable <- c("variety", "e_mathaei")
 sample(variable)
 ```
 
@@ -181,18 +181,19 @@ sample(variable)
 ```
 
 ```{r bar2-solution}
-echinoderma$e_mathaei <- factor(echinoderma$e_mathaei, levels = c("black", "brown", "green", "purple"), labels = c("Noir", "Brun", "Vert", "Mauve"))
+e_mathaei$variety <- factor(e_mathaei$variety, levels = c("black", "brown", "green", "purple"), labels = c("Noir", "Brun", "Vert", "Mauve"))
 
-chart(echinoderma, formula = ~ e_mathaei) +
+chart(e_mathaei, formula = ~ variety) +
   geom_bar() +
-  labs(x = expression(italic("Echinoderma mathaei")), y  = "Dénombrement")
+  labs(x = "Variété", y  = "Dénombrement")
 ```
 
 ```{r bar2-check}
 # Not yet...
 ```
 
-### Biométrie de crabe
+
+### Biométrie de crabes
 
 Des scientifiques étudient la biométrie de *Leptograpsus variegatus* et ont obtenu le tableau ci-dessous.
 
@@ -207,7 +208,7 @@ chart(crabs, length ~ width %color=% sex | species) +
   geom_point()
 ```
 
-Reproduisez le graphique ci-dessus. 
+Reproduisez le graphique ci-dessus.
 
 **Nom du jeu de données et des variables importantes** 
 
@@ -244,7 +245,7 @@ chart(data = crabs, length ~ species %fill=% sex) +
     position = position_dodge(0.75))
 ```
 
-Reproduisez le graphique ci-dessus. 
+Reproduisez le graphique ci-dessus.
 
 **Nom du jeu de données et des variables importantes** 
 
@@ -253,11 +254,10 @@ variable <- c("crabs", "length", "fill", "width", "sex", "species")
 sample(variable)
 ```
 
-```{r boxplot1, exercise=TRUE}
-# fonction du dénombrement 
+```{r boxplot1, exercise=TRUE, exercise.lines=7}
 give_n <- function(x)
   c(y = max(x) * 1.1, label = length(x)) 
-#réalisation du graphique
+
 
 ```
 
@@ -275,12 +275,22 @@ chart(data = crabs, length ~ species %fill=% sex) +
 # Not yet...
 ```
 
-Les chercheurs proposent ce second graphique pour décire les données
+Les chercheurs proposent ensuite ce graphique pour décrire les données.
 
 ```{r}
 chart(crabs, formula = ~ front | species) +
   geom_histogram()
 ```
+
+Reproduisez le graphique ci-dessus. 
+
+**Nom du jeu de données et des variables importantes** 
+
+```{r}
+variable <- c("crabs", "length", "fill", "width", "sex", "species")
+sample(variable)
+```
+
 
 ```{r histo1, exercise=TRUE}
 
@@ -295,7 +305,7 @@ chart(crabs, formula = ~ front | species) +
 # Not yet...
 ```
 
-Les chercheurs ne sont cependant pas satisfait de ce graphique et réalisent la version suivante :
+Les chercheurs ne sont cependant pas satisfaits de ce graphique et réalisent la version suivante :
 
 ```{r}
 chart(data = crabs, ~ front %fill=% species | species) +
@@ -334,10 +344,9 @@ chart(data = crabs, ~ front %fill=% species | species) +
 ```
 
 
+### Transect entre Nice et la Corse
 
-### Transect entre Nice et Calvi
-
-Les chercheurs réalisent un transect de la ville de Nice à la ville de Calvi. Ils vont donc réaliser des prélèvements en 68 stations entre ces deux villes.
+Les chercheurs réalisent un transect dans la Mer Méditerranée depuis le port de Nice jusqu'à la baie de Calvi en Corse. Ils vont donc réaliser des prélèvements en 68 stations entre ces deux extrêmes.
 
 ```{r marphy_data, echo=TRUE}
 (marphy <- read("marphy", package = "pastecs"))
@@ -347,7 +356,7 @@ marphy$Station <- 1:68
 Les chercheurs souhaitent tout d'abord représenter la température en fonction des stations.
 
 ```{r}
-chart(marphy, Temperature ~ Station ) +
+chart(marphy, Temperature ~ Station) +
   geom_line() +
   geom_point() +
   labs(y = "Temperature [C°]")
@@ -368,7 +377,7 @@ sample(variable)
 ```
 
 ```{r line1-solution}
-chart(marphy, Temperature ~ Station ) +
+chart(marphy, Temperature ~ Station) +
   geom_line() +
   geom_point() +
   labs(y = "Temperature [C°]")
@@ -381,7 +390,7 @@ chart(marphy, Temperature ~ Station ) +
 Les chercheurs souhaitent ensuite représenter la salinté en fonction des stations.
 
 ```{r}
-chart(marphy, Salinity ~ Station ) +
+chart(marphy, Salinity ~ Station) +
   geom_line() +
   geom_point() +
   labs(y = "Salinité")
@@ -403,7 +412,7 @@ sample(variable)
 ```
 
 ```{r line2-solution}
-chart(marphy, Salinity ~ Station ) +
+chart(marphy, Salinity ~ Station) +
   geom_line() +
   geom_point() +
   labs(y = "Salinité")
@@ -414,20 +423,20 @@ chart(marphy, Salinity ~ Station ) +
 ```
 
 
-Ils decident pour finir de représenter les deux graphiques ensembles.
+Ils decident pour finir de représenter les deux graphiques ensembles dans une figure composite.
 
 ```{r}
-a <- chart(marphy, Temperature ~ Station ) +
+a <- chart(marphy, Temperature ~ Station) +
   geom_line() +
   geom_point() +
   labs(y = "Temperature [C°]")
 
-b <- chart(marphy, Salinity ~ Station ) +
+b <- chart(marphy, Salinity ~ Station) +
   geom_line() +
   geom_point() +
   labs(y = "Salinité")
 
-combine_charts(list(a,b))
+combine_charts(list(a, b))
 ```
 
 Reproduisez le graphique ci-dessus. 
@@ -446,17 +455,17 @@ sample(variable)
 ```
 
 ```{r comb1-solution}
-a <- chart(marphy, Temperature ~ Station ) +
+a <- chart(marphy, Temperature ~ Station) +
   geom_line() +
   geom_point() +
   labs(y = "Temperature [C°]")
 
-b <- chart(marphy, Salinity ~ Station ) +
+b <- chart(marphy, Salinity ~ Station) +
   geom_line() +
   geom_point() +
   labs(y = "Salinité")
 
-combine_charts(list(a,b))
+combine_charts(list(a, b))
 ```
 
 ```{r comb1-check}
@@ -468,7 +477,7 @@ combine_charts(list(a,b))
 
 ### Choix du graphiques le plus adéquats
 
-Répondez aux questions à choix multiples ci-dessous. 
+Répondez aux questions à choix multiples ci-dessous.
 
 ```{r quiz}
 quiz(
@@ -489,6 +498,7 @@ quiz(
 
 ```
 
+
 ### La boite de dispersion
 
 ```{r quiz1}
@@ -497,8 +507,8 @@ quiz(
            answer("la médiane", correct = TRUE),
            answer("la moyenne"),
            answer("l'espace inter-quartile", correct = TRUE),
-           answer("La valeur maximale et la valeur minimale", correct = TRUE),
-           answer("écart-type"),
+           answer("la valeur maximale et la valeur minimale", correct = TRUE),
+           answer("l'écart-type"),
   random_answer_order = TRUE,
   allow_retry = TRUE),
   question("Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que veut la médiane ?",
@@ -528,9 +538,10 @@ quiz(
 )
 ```
 
-## Conclusion 
 
-Bravo! Vous venez de terminer votre séance d'exercie dans un  tutoriel "learnr". 
+## Conclusion
+
+Bravo! Vous venez de terminer votre séance d'exercices dans un tutoriel "learnr". 
 
 Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
 
