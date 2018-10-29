@@ -68,9 +68,9 @@ Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord a
 - Vérifier l'acquisition des données relatives aux chainages des intructions
 
 
-## Remaniement des donnés & chainage 
+## Remaniement des données & chainage 
 
-Le remaniement des données est indispensable lors d'une analyse de données. Pour ce faire, le jeu de données sur la biométrie des crabes est employé.
+Le remaniement des données est indispensable lors d'une analyse de données. Pour vérifier l'acquisition de ces compétences, le jeu de données sur la biométrie des crabes est employée.
 
 ```{r}
 # Importation des principaux packages 
@@ -81,7 +81,7 @@ SciViews::R
 
 ### Calcule de nouvelles variables
 
-Calculez  
+Calculez : 
 
 - le logarithme de la longueur de la carapace des crabes et nommez cette nouvelle variables **length_log**
 - la racine carrée de la largueur de la carapace et nommez cette nouvelle variable **width_sqrt**
@@ -92,14 +92,13 @@ Affichez ensuite les 6 premières lignes du tableau.
 **Nom du jeu de données et des variables importantes** 
 
 ```{r, echo = TRUE}
-variable <- c("crabs", names(crabs), "log()", "sqrt()", "*", "head()" )
+variable <- c("crabs", names(crabs), "log()", "sqrt()", "*", "head()")
 sample(variable)
 ```
 
-remarques : l'ensemble des variables ci-dessus ne sont pas à employer dans cet exercice.
+remarque : l'ensemble des variables ci-dessus ne sont pas à employer dans cet exercice.
 
-Vous devez obtenir le tableau ci-dessous
-
+Vous devez obtenir le tableau ci-dessous : 
 
 ```{r}
 # Mutate
@@ -153,7 +152,7 @@ variable <- c("crabs", names(crabs), "filter", "select", "head" )
 sample(variable)
 ```
 
-remarques : l'ensemble des variables ci-dessus ne sont pas à employer dans cet exercice.
+remarque : l'ensemble des variables ci-dessus ne sont pas à employer dans cet exercice.
 
 Vous devez obtenir le tableau ci-dessous
 
@@ -206,7 +205,7 @@ variable <- c("crabs", names(crabs), "n()", "mean()", "kable()", "group_by()", "
 sample(variable)
 ```
 
-remarques : l'ensemble des variables ci-dessus ne sont pas à employer dans cet exercice.
+remarque : l'ensemble des variables ci-dessus ne sont pas à employer dans cet exercice.
 
 Vous devez obtenir le tableau ci-dessous
 
