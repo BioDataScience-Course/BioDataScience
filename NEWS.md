@@ -1,5 +1,9 @@
 # BioDataScience News
 
+## Changes in version 0.8.0
+
+- Tutorial 05a_test finalized
+
 ## Changes in version 0.7.0
 
 - Tutorial 04a_test finalized
