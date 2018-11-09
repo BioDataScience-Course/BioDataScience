@@ -167,8 +167,6 @@ quiz(caption = "Le stress et les revenus",
 )
 ```
 
-
-
 ### Question ouverte
 
 Un nouveau médicament contre une maladie permet de soigner 80% des individus atteints. 
@@ -192,7 +190,6 @@ Considérant un nouveau malade, quelle est la probabilité qu’il ne puisse pas
 #60 personnes sur 100 ne sont pas soignables
 0.6
 ```
-
 
 Un médecin a 3 patients atteint dans sa salle d’attente. Quelle est la probabilité que celui-ci puisse soigner l’ensemble de ses patients ?
 
