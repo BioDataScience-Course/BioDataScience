@@ -1,6 +1,10 @@
 # BioDataScience News
 
-## Changes in version 0.8.0
+## Changes in version 0.10.0
+
+- Tutorial 07b_distri finalized
+
+## Changes in version 0.9.0
 
 - Tutorial 07a_proba finalized
 - Tutorial 06a_test finalized
