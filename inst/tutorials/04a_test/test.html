@@ -11,7 +11,7 @@
 <meta name="author" content="Guyliann Engels &amp; Philippe Grosjean" />
 
 
-<meta name="progressive" content="true" />
+<meta name="progressive" content="false" />
 <meta name="allow-skip" content="false" />
 
 <title>Module 4 : vérification des compétences</title>
@@ -104,7 +104,7 @@ e_mathaei[c(200, 250, 300, 340), ]</code></pre>
 <p><img src="test_files/figure-html/unnamed-chunk-3-1.png" width="624" /></p>
 <p>Reproduisez le graphique ci-dessus.</p>
 <p><strong>Nom du jeu de données et des variables importantes</strong></p>
-<pre><code>[1] &quot;variety&quot;   &quot;e_mathaei&quot;</code></pre>
+<pre><code>[1] &quot;e_mathaei&quot; &quot;variety&quot;  </code></pre>
 <div class="tutorial-exercise" data-label="bar1" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
@@ -139,7 +139,7 @@ e_mathaei[c(200, 250, 300, 340), ]</code></pre>
 <p><img src="test_files/figure-html/unnamed-chunk-7-1.png" width="624" /></p>
 <p>Reproduisez ce graphique.</p>
 <p><strong>Nom du jeu de données et des variables importantes</strong></p>
-<pre><code>[1] &quot;variety&quot;   &quot;e_mathaei&quot;</code></pre>
+<pre><code>[1] &quot;e_mathaei&quot; &quot;variety&quot;  </code></pre>
 <div class="tutorial-exercise" data-label="bar2" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
@@ -167,7 +167,7 @@ chart(e_mathaei, formula = ~ variety) +
 <p><img src="test_files/figure-html/unnamed-chunk-9-1.png" width="624" /></p>
 <p>Reproduisez le graphique ci-dessus.</p>
 <p><strong>Nom du jeu de données et des variables importantes</strong></p>
-<pre><code>[1] &quot;crabs&quot;   &quot;length&quot;  &quot;color&quot;   &quot;species&quot; &quot;shape&quot;   &quot;width&quot;   &quot;sex&quot;    </code></pre>
+<pre><code>[1] &quot;width&quot;   &quot;species&quot; &quot;length&quot;  &quot;sex&quot;     &quot;color&quot;   &quot;shape&quot;   &quot;crabs&quot;  </code></pre>
 <div class="tutorial-exercise" data-label="point1" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
@@ -182,7 +182,7 @@ chart(e_mathaei, formula = ~ variety) +
 <p><img src="test_files/figure-html/unnamed-chunk-11-1.png" width="624" /></p>
 <p>Reproduisez le graphique ci-dessus.</p>
 <p><strong>Nom du jeu de données et des variables importantes</strong></p>
-<pre><code>[1] &quot;species&quot; &quot;fill&quot;    &quot;length&quot;  &quot;width&quot;   &quot;sex&quot;     &quot;crabs&quot;  </code></pre>
+<pre><code>[1] &quot;fill&quot;    &quot;species&quot; &quot;width&quot;   &quot;crabs&quot;   &quot;length&quot;  &quot;sex&quot;    </code></pre>
 <div class="tutorial-exercise" data-label="boxplot1" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="7">
 <pre class="text"><code>give_n &lt;- function(x)
   c(y = max(x) * 1.1, label = length(x)) </code></pre>
@@ -205,7 +205,7 @@ chart(data = crabs, length ~ species %fill=% sex) +
 <p><img src="test_files/figure-html/unnamed-chunk-13-1.png" width="624" /></p>
 <p>Reproduisez le graphique ci-dessus.</p>
 <p><strong>Nom du jeu de données et des variables importantes</strong></p>
-<pre><code>[1] &quot;width&quot;   &quot;fill&quot;    &quot;length&quot;  &quot;crabs&quot;   &quot;sex&quot;     &quot;species&quot;</code></pre>
+<pre><code>[1] &quot;width&quot;   &quot;length&quot;  &quot;fill&quot;    &quot;species&quot; &quot;crabs&quot;   &quot;sex&quot;    </code></pre>
 <div class="tutorial-exercise" data-label="histo1" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
@@ -222,7 +222,7 @@ chart(data = crabs, length ~ species %fill=% sex) +
 <p><img src="test_files/figure-html/unnamed-chunk-15-1.png" width="624" /></p>
 <p>Reproduisez le graphique ci-dessus.</p>
 <p><strong>Nom du jeu de données et des variables importantes</strong></p>
-<pre><code>[1] &quot;crabs&quot;   &quot;species&quot; &quot;length&quot;  &quot;sex&quot;     &quot;fill&quot;    &quot;width&quot;  </code></pre>
+<pre><code>[1] &quot;length&quot;  &quot;species&quot; &quot;crabs&quot;   &quot;width&quot;   &quot;fill&quot;    &quot;sex&quot;    </code></pre>
 <div class="tutorial-exercise" data-label="histo2" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
@@ -252,7 +252,7 @@ chart(data = crabs, length ~ species %fill=% sex) +
 <p><img src="test_files/figure-html/unnamed-chunk-17-1.png" width="624" /></p>
 <p>Reproduisez le graphique ci-dessus.</p>
 <p><strong>Nom du jeu de données et des variables importantes</strong></p>
-<pre><code>[1] &quot;Station&quot;     &quot;marphy&quot;      &quot;Temperature&quot;</code></pre>
+<pre><code>[1] &quot;marphy&quot;      &quot;Temperature&quot; &quot;Station&quot;    </code></pre>
 <div class="tutorial-exercise" data-label="line1" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
@@ -269,7 +269,7 @@ chart(data = crabs, length ~ species %fill=% sex) +
 <p><img src="test_files/figure-html/unnamed-chunk-19-1.png" width="624" /></p>
 <p>Reproduisez le graphique ci-dessus.</p>
 <p><strong>Nom du jeu de données et des variables importantes</strong></p>
-<pre><code>[1] &quot;Station&quot;  &quot;Salinity&quot; &quot;marphy&quot;  </code></pre>
+<pre><code>[1] &quot;Salinity&quot; &quot;marphy&quot;   &quot;Station&quot; </code></pre>
 <div class="tutorial-exercise" data-label="line2" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
@@ -286,7 +286,7 @@ chart(data = crabs, length ~ species %fill=% sex) +
 <p><img src="test_files/figure-html/unnamed-chunk-21-1.png" width="624" /></p>
 <p>Reproduisez le graphique ci-dessus.</p>
 <p><strong>Nom du jeu de données et des variables importantes</strong></p>
-<pre><code>[1] &quot;Station&quot;     &quot;marphy&quot;      &quot;Salinity&quot;    &quot;Temperature&quot;</code></pre>
+<pre><code>[1] &quot;Salinity&quot;    &quot;Station&quot;     &quot;marphy&quot;      &quot;Temperature&quot;</code></pre>
 <div class="tutorial-exercise" data-label="comb1" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
@@ -319,27 +319,27 @@ combine_charts(list(a, b))</code></pre>
 <tr>
 <td>
 
-<div id="htmlwidget-39c81113f2ab594ff89e" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-10a994e0b19329f0a5ab" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-39c81113f2ab594ff89e">{"x":{"question":"Lorsque je souhaite représenter une variable numérique en fonction d&#39;une seconde variable numérique, j&#39;utilise","answers":[{"option":"un nuage de de points","correct":true,"message":null},{"option":"une boite de dispersion","correct":false,"message":null},{"option":"un diagramme en violon","correct":false,"message":null},{"option":"un graphique de densité","correct":false,"message":null}],"label":"quiz-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":true,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Lorsque je souhaite représenter une variable numérique en fonction d&#39;une seconde variable numérique, j&#39;utilise","a":[{"option":"un nuage de de points","correct":true,"message":null},{"option":"une boite de dispersion","correct":false,"message":null},{"option":"un diagramme en violon","correct":false,"message":null},{"option":"un graphique de densité","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-10a994e0b19329f0a5ab">{"x":{"question":"Lorsque je souhaite représenter une variable numérique en fonction d&#39;une seconde variable numérique, j&#39;utilise","answers":[{"option":"un nuage de de points","correct":true,"message":null},{"option":"une boite de dispersion","correct":false,"message":null},{"option":"un diagramme en violon","correct":false,"message":null},{"option":"un graphique de densité","correct":false,"message":null}],"label":"quiz-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":true,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Lorsque je souhaite représenter une variable numérique en fonction d&#39;une seconde variable numérique, j&#39;utilise","a":[{"option":"un nuage de de points","correct":true,"message":null},{"option":"une boite de dispersion","correct":false,"message":null},{"option":"un diagramme en violon","correct":false,"message":null},{"option":"un graphique de densité","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 <tr>
 <td>
 
-<div id="htmlwidget-9b9254304e1f6f5b88b7" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-8f1d92a445c87a034e7f" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-9b9254304e1f6f5b88b7">{"x":{"question":"Lorsque je souhaite représenter une variable facteur et donc d&#39;en faire son dénombrement j&#39;utilise","answers":[{"option":"un graphique en barres","correct":true,"message":null},{"option":"un graphique en violon","correct":false,"message":null},{"option":"un graphique en camembert","correct":true,"message":null},{"option":"un graphique en nuage de points","correct":false,"message":null}],"label":"quiz-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":true,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Lorsque je souhaite représenter une variable facteur et donc d&#39;en faire son dénombrement j&#39;utilise","a":[{"option":"un graphique en barres","correct":true,"message":null},{"option":"un graphique en violon","correct":false,"message":null},{"option":"un graphique en camembert","correct":true,"message":null},{"option":"un graphique en nuage de points","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-8f1d92a445c87a034e7f">{"x":{"question":"Lorsque je souhaite représenter une variable facteur et donc d&#39;en faire son dénombrement j&#39;utilise","answers":[{"option":"un graphique en barres","correct":true,"message":null},{"option":"un graphique en violon","correct":false,"message":null},{"option":"un graphique en camembert","correct":true,"message":null},{"option":"un graphique en nuage de points","correct":false,"message":null}],"label":"quiz-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":true,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Lorsque je souhaite représenter une variable facteur et donc d&#39;en faire son dénombrement j&#39;utilise","a":[{"option":"un graphique en barres","correct":true,"message":null},{"option":"un graphique en violon","correct":false,"message":null},{"option":"un graphique en camembert","correct":true,"message":null},{"option":"un graphique en nuage de points","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 </table>
@@ -353,53 +353,53 @@ combine_charts(list(a, b))</code></pre>
 <tr>
 <td>
 
-<div id="htmlwidget-2039b37df373735ef416" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-0043a133759c515b4fdd" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-2039b37df373735ef416">{"x":{"question":"La boite de dispersion permet de résumer les données d&#39;une variable numérique, quels sont les descripteurs employés ?","answers":[{"option":"la médiane","correct":true,"message":null},{"option":"la moyenne","correct":false,"message":null},{"option":"l&#39;espace inter-quartile","correct":true,"message":null},{"option":"la valeur maximale et la valeur minimale","correct":true,"message":null},{"option":"l&#39;écart-type","correct":false,"message":null}],"label":"quiz1-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":true,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"La boite de dispersion permet de résumer les données d&#39;une variable numérique, quels sont les descripteurs employés ?","a":[{"option":"la médiane","correct":true,"message":null},{"option":"la moyenne","correct":false,"message":null},{"option":"l&#39;espace inter-quartile","correct":true,"message":null},{"option":"la valeur maximale et la valeur minimale","correct":true,"message":null},{"option":"l&#39;écart-type","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-0043a133759c515b4fdd">{"x":{"question":"La boite de dispersion permet de résumer les données d&#39;une variable numérique, quels sont les descripteurs employés ?","answers":[{"option":"la médiane","correct":true,"message":null},{"option":"la moyenne","correct":false,"message":null},{"option":"l&#39;espace inter-quartile","correct":true,"message":null},{"option":"la valeur maximale et la valeur minimale","correct":true,"message":null},{"option":"l&#39;écart-type","correct":false,"message":null}],"label":"quiz1-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":true,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"La boite de dispersion permet de résumer les données d&#39;une variable numérique, quels sont les descripteurs employés ?","a":[{"option":"la médiane","correct":true,"message":null},{"option":"la moyenne","correct":false,"message":null},{"option":"l&#39;espace inter-quartile","correct":true,"message":null},{"option":"la valeur maximale et la valeur minimale","correct":true,"message":null},{"option":"l&#39;écart-type","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 <tr>
 <td>
 
-<div id="htmlwidget-2f530a66acefcde75dcb" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-fdb2a5fd44e8ce1a1418" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-2f530a66acefcde75dcb">{"x":{"question":"Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que veut la médiane ?","answers":[{"option":"4.25","correct":true,"message":null},{"option":"3.35","correct":false,"message":null},{"option":"4.95","correct":false,"message":null},{"option":"4.2","correct":false,"message":null},{"option":"4.3","correct":false,"message":null}],"label":"quiz1-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":true,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que veut la médiane ?","a":[{"option":"4.25","correct":true,"message":null},{"option":"3.35","correct":false,"message":null},{"option":"4.95","correct":false,"message":null},{"option":"4.2","correct":false,"message":null},{"option":"4.3","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-fdb2a5fd44e8ce1a1418">{"x":{"question":"Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que veut la médiane ?","answers":[{"option":"4.25","correct":true,"message":null},{"option":"3.35","correct":false,"message":null},{"option":"4.95","correct":false,"message":null},{"option":"4.2","correct":false,"message":null},{"option":"4.3","correct":false,"message":null}],"label":"quiz1-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":true,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que veut la médiane ?","a":[{"option":"4.25","correct":true,"message":null},{"option":"3.35","correct":false,"message":null},{"option":"4.95","correct":false,"message":null},{"option":"4.2","correct":false,"message":null},{"option":"4.3","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 <tr>
 <td>
 
-<div id="htmlwidget-bfae3d1e877626f326c4" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-46acbd1846b7795a00cf" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-bfae3d1e877626f326c4">{"x":{"question":"Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que veut le premier quartile ?","answers":[{"option":"4.25","correct":false,"message":null},{"option":"3.35","correct":true,"message":null},{"option":"4.95","correct":false,"message":null},{"option":"3.8","correct":false,"message":null},{"option":"2.9","correct":false,"message":null}],"label":"quiz1-3","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":true,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que veut le premier quartile ?","a":[{"option":"4.25","correct":false,"message":null},{"option":"3.35","correct":true,"message":null},{"option":"4.95","correct":false,"message":null},{"option":"3.8","correct":false,"message":null},{"option":"2.9","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-46acbd1846b7795a00cf">{"x":{"question":"Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que veut le premier quartile ?","answers":[{"option":"4.25","correct":false,"message":null},{"option":"3.35","correct":true,"message":null},{"option":"4.95","correct":false,"message":null},{"option":"3.8","correct":false,"message":null},{"option":"2.9","correct":false,"message":null}],"label":"quiz1-3","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":true,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que veut le premier quartile ?","a":[{"option":"4.25","correct":false,"message":null},{"option":"3.35","correct":true,"message":null},{"option":"4.95","correct":false,"message":null},{"option":"3.8","correct":false,"message":null},{"option":"2.9","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 <tr>
 <td>
 
-<div id="htmlwidget-dd0ca3a5f8bba90207eb" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-4b0c0878c292f74ca433" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-dd0ca3a5f8bba90207eb">{"x":{"question":"Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que veut le troisième quartile ?","answers":[{"option":"4.95","correct":true,"message":null},{"option":"3.35","correct":false,"message":null},{"option":"4.95","correct":false,"message":null},{"option":"3.8","correct":false,"message":null},{"option":"2.9","correct":false,"message":null}],"label":"quiz1-4","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":true,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que veut le troisième quartile ?","a":[{"option":"4.95","correct":true,"message":null},{"option":"3.35","correct":false,"message":null},{"option":"4.95","correct":false,"message":null},{"option":"3.8","correct":false,"message":null},{"option":"2.9","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-4b0c0878c292f74ca433">{"x":{"question":"Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que veut le troisième quartile ?","answers":[{"option":"4.95","correct":true,"message":null},{"option":"3.35","correct":false,"message":null},{"option":"4.25","correct":false,"message":null},{"option":"3.8","correct":false,"message":null},{"option":"2.9","correct":false,"message":null}],"label":"quiz1-4","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":true,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que veut le troisième quartile ?","a":[{"option":"4.95","correct":true,"message":null},{"option":"3.35","correct":false,"message":null},{"option":"4.25","correct":false,"message":null},{"option":"3.8","correct":false,"message":null},{"option":"2.9","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 </table>

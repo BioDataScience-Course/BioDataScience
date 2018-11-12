@@ -3,8 +3,7 @@ title: "Module 4 : vérification des compétences"
 subtitle: "Visualisation III"
 author: "Guyliann Engels & Philippe Grosjean"
 output:
-  learnr::tutorial:
-    progressive: true
+  learnr::tutorial
 tutorial:
   id: "sdd1.04a"
   version: 1.0.0
@@ -530,7 +529,7 @@ quiz(
   question("Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que veut le troisième quartile ?",
            answer("4.95", correct = TRUE),
            answer("3.35"),
-           answer("4.95"),
+           answer("4.25"),
            answer("3.8"),
            answer("2.9"),
   random_answer_order = TRUE,

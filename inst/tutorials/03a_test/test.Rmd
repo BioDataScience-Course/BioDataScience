@@ -3,8 +3,7 @@ title: "Module 3 : vérification des compétences"
 subtitle: "Visualisation II"
 author: "Guyliann Engels & Philippe Grosjean"
 output:
-  learnr::tutorial:
-    progressive: true
+  learnr::tutorial
 tutorial:
   id: "sdd1.03a"
   version: 1.0.0

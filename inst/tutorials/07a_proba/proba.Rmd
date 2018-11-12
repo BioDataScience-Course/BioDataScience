@@ -3,8 +3,7 @@ title: "Module 7 : Calculs de probabilités"
 subtitle: "Traitement des données I"
 author: "Guyliann Engels & Philippe Grosjean"
 output:
-  learnr::tutorial:
-    progressive: true
+  learnr::tutorial
 tutorial:
   id: "sdd1.07a"
   version: 1.0.0
@@ -23,10 +22,7 @@ tutorial_options(exercise.cap = "Code R")
 knitr::opts_chunk$set(echo = FALSE, comment = NA)
 
 library(BioDataScience)
-library(ggridges)
 
-# Dataset
-crabs <- read("crabs", package = "MASS", lang = "fr")
 ```
 
 ```{r, echo=FALSE}
@@ -191,6 +187,9 @@ Considérant un nouveau malade, quelle est la probabilité qu’il ne puisse pas
 0.6
 ```
 
+```{r medoc-check}
+# Not yet...
+```
 Un médecin a 3 patients atteint dans sa salle d’attente. Quelle est la probabilité que celui-ci puisse soigner l’ensemble de ses patients ?
 
 ```{r medoc1, exercise=TRUE}
@@ -201,4 +200,23 @@ Un médecin a 3 patients atteint dans sa salle d’attente. Quelle est la probab
 0.4*0.4*0.4
 # ou sous la forme simplifié
 0.4^3
+```
+
+```{r medoc1-check}
+# Not yet...
+```
+
+## Conclusion
+
+Bravo! Vous venez de terminer votre séance d'exercices dans un tutoriel "learnr". 
+
+Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
+
+```{r comm, exercise=TRUE, exercise.lines = 8}
+# Ajout de commentaires 
+# ...
+```
+
+```{r comm-check}
+# Not yet...
 ```

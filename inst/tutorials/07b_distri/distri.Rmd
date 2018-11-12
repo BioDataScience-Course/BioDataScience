@@ -1,0 +1,476 @@
+---
+title: "Module 7 : Lois de distributions"
+subtitle: "Traitement des données I"
+author: "Guyliann Engels & Philippe Grosjean"
+output:
+  learnr::tutorial
+tutorial:
+  id: "sdd1.07b"
+  version: 1.0.0
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+SciViews::R()
+
+options(tutorial.event_recorder = BioDataScience::record_sdd)
+tutorial_options(exercise.checker = BioDataScience::checker_sdd)
+tutorial_options(exercise.timelimit = 60)
+tutorial_options(exercise.cap = "Code R")
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
+
+library(BioDataScience)
+
+# data
+
+urchin <- read("urchin_bio", package = "data.io", lang = "fr")
+crabs <- read("crabs", package = "MASS", lang = "fr")
+```
+
+```{r, echo=FALSE}
+fixedRow(
+  column(9, div(
+    img(src = 'images/BioDataScience-128.png', align = "left"),
+    h1("Science des données biologiques"),
+    "Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)"
+  )),
+  column(3, div(
+    textInput("user", "Utilisateur :", ""),
+    textInput("email", "Email :", "")
+  ))
+)
+textOutput("user") # This is newer shown, but required to trigger an event!
+textOutput("email") # Idem!
+```
+
+```{r, context="server"}
+output$user <- renderText({BioDataScience::user_name(input$user);""})
+output$email <- renderText({BioDataScience::user_email(input$email);""})
+updateTextInput(session, "user", value = BioDataScience::user_name())
+updateTextInput(session, "email", value = BioDataScience::user_email())
+```
+
+## Préambule
+
+Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord avec son interface [ici](http://biodatascience-course.sciviews.org/sdd-umons/learnr.html).
+
+![](images/attention.jpg)
+
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
+
+
+## Objectifs
+
+- Appréhender les lois de distributions 
+
+## Distribution binomiale
+
+Répondez aux questions suivantes avec une calculatrice.
+
+```{r binom}
+quiz(
+  question("Calculez la probabilité d'obtenir au maximum 3 fois pile lors de 10 lancés de pièce ?",
+           answer("0.117"),
+           answer("0.161"), 
+           answer("0.172", correct = TRUE),
+           answer("0.828"),
+           random_answer_order = TRUE,
+           allow_retry = TRUE,
+           incorrect = "Recommencez afin de trouver la bonne réponse",
+           correct = "Bravo, c'est correct"),
+  question("Calculez la probabilité d'obtenir au minimum 3 fois pile ?",
+           answer("0.117"),
+           answer("0.161"), 
+           answer("0.172"),
+           answer("0.828", correct = TRUE),
+           random_answer_order = TRUE,
+           allow_retry = TRUE,
+           incorrect = "Recommencez afin de trouver la bonne réponse",
+           correct = "Bravo, c'est correct")
+)
+```
+
+Employez les snippets pour produire la table qui retourne l'ensemble des valeurs possibles pour j allant de 1 à n. Le snippet est **.ibtable** et renvoit ces instructions.
+
+**Veuillez copier les instructions proposées ci-dessous, les snippets ne sont pas accessible dans les learnr**
+
+```{r, eval=FALSE, echo = TRUE}
+(.table <- data.frame(success = 0:N_TRIALS,
+    probability = dbinom(0:N_TRIALS, size = N_TRIALS, prob = SUCCESS_PROB)))
+```
+
+```{r binom1, exercise = TRUE}
+
+```
+
+```{r binom1-solution}
+(.table <- data.frame(success = 0:10,
+    probability = dbinom(0:10, size = 10, prob = 0.5)))
+```
+
+```{r binom1-check}
+#TODO
+```
+
+Employez les snippets afin de répondre à la question posée lors du quiz : "Calculer la probabilité d'obtenir au maximum 3 fois pile lors de 10 lancés de pièce ?"
+
+Le snippet est **.ibproba** et renvoit les instructions suivantes :
+
+```{r, eval=FALSE, echo=TRUE}
+pbinom(QUANTILES, size = N_TRIALS, prob = SUCCESS_PROB, lower.tail = TRUE)
+```
+
+```{r binom2, exercise = TRUE}
+
+```
+
+```{r binom2-solution}
+pbinom(3, size = 10, prob = 0.5, lower.tail = TRUE)
+```
+
+```{r binom2-check}
+#TODO
+```
+Employez les snippets afin de répondre à la question : Calculez la probabilité d’obtenir 4 fois pile lors de 10 lancés de pièce ? Attention, la pièce utilisée est légérement modifiée pour favoriser le côté pile. La probabilité d’obtenir pile n’est plus de 0.5 mais de 0.75
+
+Le snippet est **.ibproba** et renvoit les instructions suivantes :
+
+```{r, eval = FALSE, echo = TRUE}
+pbinom(QUANTILES, size = N_TRIALS, prob = SUCCESS_PROB, lower.tail = TRUE)
+```
+
+```{r binom3, exercise = TRUE}
+
+```
+
+```{r binom3-solution}
+pbinom(4, size = 10, prob = 0.75, lower.tail = TRUE) - pbinom(3, size = 10, prob = 0.75, lower.tail = TRUE)
+```
+
+```{r binom3-check}
+#TODO
+```
+
+Employez les snippets afin de représentez le graphique de densité  lié à l'exercice ci-dessus : 
+
+Le snippet est **.ibdens** et renvoit les instructions suivantes :
+
+```{r, eval =FALSE, echo = TRUE}
+plot(0:N_TRIALS, dbinom(0:N_TRIALS, size = N_TRIALS, prob = SUCCESS_PROB), type = "h",
+  col = "black", xlab = "Quantiles", ylab = "Probability mass")
+```
+
+```{r binom4, exercise = TRUE}
+
+```
+
+```{r binom4-solution}
+plot(0:10, dbinom(0:10, size = 10, prob = 0.75), type = "h",
+  col = "black", xlab = "Quantiles", ylab = "Probability mass")
+```
+
+```{r binom4-check}
+#TODO
+```
+
+## Distribution de poisson
+
+Répondez à la question suivante avec une calculatrice.
+
+```{r poisson}
+quiz(
+  question("Calculer le troisième terme d'une distribution de poisson dont le $\\lambda = 3$ ?",
+           answer("0.353"),
+           answer("0.647"), 
+           answer(" 0.224", correct = TRUE),
+           answer("0.828"),
+           random_answer_order = TRUE,
+           allow_retry = TRUE,
+           incorrect = "Recommencez afin de trouver la bonne réponse",
+           correct = "Bravo, c'est correct")
+)
+```
+
+Représentez la table de probabilités lié à l'exercice ci-dessus. Le snippet est **.iptable** et renvoit les instructions suivantes :
+
+```{r, echo=TRUE, eval=FALSE}
+(.table <- data.frame(occurences = 0:(MEAN_OCCURENCES+20), probability = dpois(0:(MEAN_OCCURENCES+20),
+  lambda = MEAN_OCCURENCES)))
+```
+
+```{r poisson1, exercise = TRUE}
+
+```
+
+```{r poisson1-solution}
+(.table <- data.frame(occurences = 0:(3+20), probability = dpois(0:(3+20),
+  lambda = 3)))
+```
+
+```{r poisson1-check}
+#TODO
+```
+
+Représentez le graphique de densité pour un $\lambda = 20$. Le snippet est **.ipdens** et renvoit les instructions suivantes :
+
+```{r, echo = TRUE, eval=FALSE}
+plot(0:(MEAN_OCCURENCES+20), dpois(0:(MEAN_OCCURENCES+20), lambda = MEAN_OCCURENCES)
+     , type = "h", col = "black", xlab = "Quantiles", ylab = "Probability mass")
+```
+
+```{r poisson2, exercise = TRUE}
+
+```
+
+```{r poisson2-solution}
+plot(0:(20+20), dpois(0:(20+20), lambda = 20)
+     , type = "h", col = "black", xlab = "Quantiles", ylab = "Probability mass")
+```
+
+```{r poisson2-check}
+# TODO
+```
+
+
+
+## Distribution normale
+
+Employez les snippets pour représenter $Y \sim N(10,3)$. Le snippet est **.indens** et renvoit les instructions suivantes :
+
+```{r, eval = FALSE, echo=TRUE}
+# Normal distribution (density probability) with parameters:
+.mu <- 0; .s <- 1 #  mu = .mu and sigma = .s
+.col <- 1; .add <- FALSE # Plot parameters
+.x <- seq(-3.5*.s+.mu, 3.5*.s+.mu, l = 1000)     # Quantiles
+.d <- function (x) dnorm(x, mean = .mu, sd = .s) # Distribution function
+.q <- function (p) qnorm(p, mean = .mu, sd = .s) # Quantile for lower-tail prob
+.label <- bquote(N(.(.mu), .(.s)))               # Curve parameters
+curve(.d(x), xlim = range(.x), xaxs = "i", n = 1000, col = .col,
+  add = .add, xlab = "Quantiles", ylab = "Probability density") # Curve
+abline(h = 0, col = "gray") # Baseline  
+```
+
+```{r normal, exercise = TRUE}
+
+```
+
+```{r normal-solution}
+# Normal distribution (density probability) with parameters:
+.mu <- 10; .s <- 3 #  mu = .mu and sigma = .s
+.col <- 1; .add <- FALSE # Plot parameters
+.x <- seq(-3.5*.s+.mu, 3.5*.s+.mu, l = 1000)     # Quantiles
+.d <- function (x) dnorm(x, mean = .mu, sd = .s) # Distribution function
+.q <- function (p) qnorm(p, mean = .mu, sd = .s) # Quantile for lower-tail prob
+.label <- bquote(N(.(.mu), .(.s)))               # Curve parameters
+curve(.d(x), xlim = range(.x), xaxs = "i", n = 1000, col = .col,
+  add = .add, xlab = "Quantiles", ylab = "Probability density") # Curve
+abline(h = 0, col = "gray") # Baseline  
+```
+
+```{r normal-check}
+# TODO
+```
+
+Ajoutez maintenant l'équation sur le graphique à l'aide du snippets. Le snippet est **.inllabel** et renvoit les instructions suivantes :
+
+```{r, echo=FALSE, eval=FALSE}
+text(.mu-.s, .d(.mu-.s), .label, pos = 2, col = .col) # Label at left
+```
+
+cette instruction doit être combinée avec le graphique comme le montre les instructions suivantes
+
+```{r, echo=TRUE}
+# Normal distribution (density probability) with parameters:
+.mu <- 0; .s <- 1 #  mu = .mu and sigma = .s
+.col <- 1; .add <- FALSE # Plot parameters
+.x <- seq(-3.5*.s+.mu, 3.5*.s+.mu, l = 1000)     # Quantiles
+.d <- function (x) dnorm(x, mean = .mu, sd = .s) # Distribution function
+.q <- function (p) qnorm(p, mean = .mu, sd = .s) # Quantile for lower-tail prob
+.label <- bquote(N(.(.mu), .(.s)))               # Curve parameters
+curve(.d(x), xlim = range(.x), xaxs = "i", n = 1000, col = .col,
+  add = .add, xlab = "Quantiles", ylab = "Probability density") # Curve
+abline(h = 0, col = "gray") # Baseline  
+# add text on the plot
+text(.mu-.s, .d(.mu-.s), .label, pos = 2, col = .col) # Label at left
+```
+
+Réalisez à nouveau le graphique demandé ci-dessus afin d'obtenir un graphique avec l'annotation. Représentez la distribution $Y \sim N(10,3)$
+
+```{r normal1, exercise = TRUE}
+
+```
+
+
+```{r normal1-solution}
+# Normal distribution (density probability) with parameters:
+.mu <- 10; .s <- 3 #  mu = .mu and sigma = .s
+.col <- 1; .add <- FALSE # Plot parameters
+.x <- seq(-3.5*.s+.mu, 3.5*.s+.mu, l = 1000)     # Quantiles
+.d <- function (x) dnorm(x, mean = .mu, sd = .s) # Distribution function
+.q <- function (p) qnorm(p, mean = .mu, sd = .s) # Quantile for lower-tail prob
+.label <- bquote(N(.(.mu), .(.s)))               # Curve parameters
+curve(.d(x), xlim = range(.x), xaxs = "i", n = 1000, col = .col,
+  add = .add, xlab = "Quantiles", ylab = "Probability density") # Curve
+abline(h = 0, col = "gray") # Baseline  
+# add text on the plot
+text(.mu-.s, .d(.mu-.s), .label, pos = 2, col = .col) # Label at left
+```
+
+
+```{r normal1-check}
+# TODO
+```
+
+Répondez aux questions suivantes, sur base de la situation : "Maïs dont la hauteur est de 145 cm en moyenne, avec un écart-type de 22 cm".
+
+Le snippet est **.inproba** et renvoit les instructions suivantes :
+
+```{r, echo=FALSE, eval=FALSE}
+pnorm(QUANTILES, mean = 0, sd = 1, lower.tail = TRUE)
+```
+
+Calculez la probabilités d'avoir un epis de maïs de moins de 100 cm 
+
+```{r normal2, exercise = TRUE}
+
+```
+
+```{r normal2-solution}
+pnorm(100, mean = 145, sd = 22, lower.tail = TRUE)
+```
+
+```{r noraml2-check}
+# TODO
+```
+
+Calculez la probabilités d'avoir un epis de maïs entre 120 et 150cm  ? 
+
+```{r normal3, exercise = TRUE}
+
+```
+
+```{r normal3-solution}
+pnorm(150, mean = 145, sd = 22, lower.tail = TRUE) - pnorm(120, mean = 145, sd = 22, lower.tail = TRUE)
+```
+
+```{r noraml3-check}
+# TODO
+```
+
+En partant de la distribution suivantes : $Y \sim N(10,2.5)$, calculez le quantile correspondant à la probabilités à gauche de 0.1
+
+```{r, echo = TRUE, eval=FALSE}
+qnorm(PROBABILITIES, mean = 0, sd = 1, lower.tail = TRUE)
+```
+
+```{r normal4, exercise = TRUE}
+
+```
+
+```{r normal4-solution}
+qnorm(0.1, mean = 10, sd = 2.5, lower.tail = FALSE)
+```
+
+```{r normal4-check}
+#TODO
+```
+
+```{r}
+
+```
+
+
+## Graphique quantile-quantile
+
+Utilisez les données provenant du jeu de données *urchin_bio* du package *data.io*.
+
+```{r, echo = TRUE}
+# importation d'un ensemble de package
+SciViews::R
+# importation des données
+(urchin <- read("urchin_bio", package = "data.io", lang = "fr"))
+```
+
+Réalisez un graphique quantile-quantile afin de mettre en avant, si la masse totale des oursins du jeu de données urchin_bio suit une distribution normale.
+
+**Nom du jeu de données et des variables importantes** 
+
+```{r, echo = TRUE}
+variable <- c("urchin", names(urchin))
+sample(variable)
+```
+
+Le snippet à votre disposition est **.cuqqnorm**
+
+```{r, echo = TRUE, eval = FALSE}
+car::qqPlot(DF[["XNUM"]], distribution = "norm",
+  envelope = 0.95, col = "Black", ylab = "XNUM")
+```
+
+```{r qqnorm, exercise = TRUE}
+
+```
+
+```{r qqnorm-solution}
+car::qqPlot(urchin[["weight"]], distribution = "norm",
+  envelope = 0.95, col = "Black", ylab = "Sepal.Length")
+```
+
+```{r qqnorm-check}
+#TODO
+```
+
+
+Est ce que le variable portant sur la masse totale des oursins suit une distribution normale ? 
+
+
+Utilisez les données provenant du jeu de données *crabs* du package *MASS*.
+
+```{r, echo = TRUE}
+# importation d'un ensemble de package
+SciViews::R
+# importation des données
+(crabs <- read("crabs", package = "MASS", lang = "fr"))
+```
+
+Réalisez un graphique quantile-quantile afin de mettre en avant, si la longueur de la carapace des crabes suit une distribution normale.
+
+**Nom du jeu de données et des variables importantes** 
+
+```{r, echo = TRUE}
+variable <- c("crabs", names(crabs))
+sample(variable)
+```
+
+```{r qqnorm1, exercise = TRUE}
+
+```
+
+
+```{r qqnorm1-solution}
+car::qqPlot(crabs[["length"]], distribution = "norm",
+  envelope = 0.95, col = "Black", ylab = "Sepal.Length")
+```
+
+```{r qqnorm1-check}
+
+```
+
+Est ce que le variable portant sur la masse totale des oursins suit une distribution normale ? 
+
+## Conclusion
+
+Bravo! Vous venez de terminer votre séance d'exercices dans un tutoriel "learnr". 
+
+Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
+
+```{r comm, exercise=TRUE, exercise.lines = 8}
+# Ajout de commentaires 
+# ...
+```
+
+```{r comm-check}
+# Not yet...
+```

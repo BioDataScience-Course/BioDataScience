@@ -3,7 +3,6 @@ title: "Le nuage de points : Challenge"
 author: "Guyliann Engels & Philippe Grosjean"
 output:
   learnr::tutorial:
-    progressive: true
     fig_caption: yes
 tutorial:
   id: "sdd1.02d"

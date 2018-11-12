@@ -3,8 +3,7 @@ title: "Module 5 : vérification des compétences"
 subtitle: "Traitement des données I"
 author: "Guyliann Engels & Philippe Grosjean"
 output:
-  learnr::tutorial:
-    progressive: true
+  learnr::tutorial
 tutorial:
   id: "sdd1.05a"
   version: 1.0.0
