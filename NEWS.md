@@ -2,6 +2,10 @@
 
 ## Changes in version 0.10.0
 
+- Tutorial 08a_chi2 finalized
+
+## Changes in version 0.10.0
+
 - Tutorial 07b_distri finalized
 
 ## Changes in version 0.9.0

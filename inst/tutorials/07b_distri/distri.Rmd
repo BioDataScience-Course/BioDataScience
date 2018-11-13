@@ -327,7 +327,7 @@ Répondez aux questions suivantes, sur base de la situation : "Maïs dont la hau
 
 Le snippet est **.inproba** et renvoit les instructions suivantes :
 
-```{r, echo=FALSE, eval=FALSE}
+```{r, echo= TRUE, eval=FALSE}
 pnorm(QUANTILES, mean = 0, sd = 1, lower.tail = TRUE)
 ```
 
@@ -341,7 +341,7 @@ Calculez la probabilités d'avoir un epis de maïs de moins de 100 cm
 pnorm(100, mean = 145, sd = 22, lower.tail = TRUE)
 ```
 
-```{r noraml2-check}
+```{r normal2-check}
 # TODO
 ```
 
@@ -355,11 +355,11 @@ Calculez la probabilités d'avoir un epis de maïs entre 120 et 150cm  ?
 pnorm(150, mean = 145, sd = 22, lower.tail = TRUE) - pnorm(120, mean = 145, sd = 22, lower.tail = TRUE)
 ```
 
-```{r noraml3-check}
+```{r normal3-check}
 # TODO
 ```
 
-En partant de la distribution suivantes : $Y \sim N(10,2.5)$, calculez le quantile correspondant à la probabilités à gauche de 0.1
+En partant de la distribution suivantes : $Y \sim N(10,2.5)$, calculez le quantile correspondant à la probabilités à droite de 0.1
 
 ```{r, echo = TRUE, eval=FALSE}
 qnorm(PROBABILITIES, mean = 0, sd = 1, lower.tail = TRUE)
