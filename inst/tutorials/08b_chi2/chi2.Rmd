@@ -1,0 +1,300 @@
+---
+title: "Module 8 : chi2 "
+subtitle: "Traitement des données I"
+author: "Guyliann Engels & Philippe Grosjean"
+output:
+  learnr::tutorial
+tutorial:
+  id: "sdd1.08b"
+  version: 1.0.0
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+SciViews::R()
+
+options(tutorial.event_recorder = BioDataScience::record_sdd)
+tutorial_options(exercise.checker = BioDataScience::checker_sdd)
+tutorial_options(exercise.timelimit = 60)
+tutorial_options(exercise.cap = "Code R")
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
+
+library(BioDataScience)
+library(ggpubr)
+
+#datasets
+
+tabac <- data.frame(sexe = c("filles", "garçons", "filles",
+                             "garçons"),
+                    comport = c("fumeurs", "fumeurs", "non fumeurs", "non fumeurs"),
+                    freq = c(12, 19, 26, 20))
+#tabac
+tabac_table <- xtabs(freq ~ sexe + comport, data = tabac)
+
+#sang
+sang <- data.frame(groupe = c("A", "B", "AB", "O", "A", "B", "AB", "O", "A", "B", "AB", "O"),
+                   etat = c("Floride", "Floride", "Floride", "Floride", "Iowa", "Iowa", "Iowa", "Iowa", "Missouri", "Missouri", "Missouri", "Missouri"),
+                   freq = c(122, 117, 19, 244, 1781, 1351, 289, 3301, 353, 269, 60, 713))
+
+sang_table <- xtabs(freq ~ groupe + etat, data = sang)
+```
+
+```{r, echo=FALSE}
+fixedRow(
+  column(9, div(
+    img(src = 'images/BioDataScience-128.png', align = "left"),
+    h1("Science des données biologiques"),
+    "Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)"
+  )),
+  column(3, div(
+    textInput("user", "Utilisateur :", ""),
+    textInput("email", "Email :", "")
+  ))
+)
+textOutput("user") # This is newer shown, but required to trigger an event!
+textOutput("email") # Idem!
+```
+
+```{r, context="server"}
+output$user <- renderText({BioDataScience::user_name(input$user);""})
+output$email <- renderText({BioDataScience::user_email(input$email);""})
+updateTextInput(session, "user", value = BioDataScience::user_name())
+updateTextInput(session, "email", value = BioDataScience::user_email())
+```
+
+## Préambule
+
+Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord avec son interface [ici](http://biodatascience-course.sciviews.org/sdd-umons/learnr.html).
+
+![](images/attention.jpg)
+
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
+
+
+## Objectifs
+
+- Appréhender la distribution du $\chi^2$
+
+- Appréhender les tests d'hypothèses
+
+
+## Les fumeurs
+
+```{r, echo = TRUE}
+tabac <- data.frame(sexe = c("filles", "garçons", "filles",
+                             "garçons"),
+                    comport = c("fumeurs", "fumeurs", "non fumeurs", "non fumeurs"),
+                    freq = c(12, 19, 26, 20))
+#tabac
+tabac_table <- xtabs(freq ~ sexe + comport, data = tabac)
+
+# affichage du tableau de données 
+
+knitr::kable(tabac_table)
+```
+
+Afin de calculer le $\chi^2$ vous devez au préalable calculer un second tableau comprennant $\alpha_i$
+
+```{r quiz1}
+question("Sélectionnez le tableau correspondant aux valeurs de $\\alpha_i$",
+         answer("A", correct = TRUE),
+         answer("B"),
+         answer("C"),
+         answer("D"),
+           allow_retry = TRUE,
+           incorrect = "Recommencez afin de trouver la bonne réponse",
+           correct = "Bravo, c'est correct")
+```
+
+```{r}
+a <- data_frame("genre" = c("fille", "garcon"), "fumeur" = c(15.29, 15.7), "non-fumeur" = c(22.70, 23.30))
+b <- data_frame("genre" = c("fille", "garcon"), "fumeur" = c(4.83, 7.65), "non-fumeur" = c(15.53, 11.94))
+c <- data_frame("genre" = c("fille", "garcon"), "fumeur" = c(5.92, 9.62), "non-fumeur" = c(12.83, 10.13))
+d <- data_frame("genre" = c("fille", "garcon"), "fumeur" = c(12.42, 15.95), "non-fumeur" = c(26.39, 21.51))
+aa <- ggtexttable(a, rows = NULL)
+bb <- ggtexttable(b, rows = NULL)
+cc <- ggtexttable(c, rows = NULL)
+dd <- ggtexttable(d, rows = NULL)
+combine_charts(chartlist = list(aa, bb, cc, dd))
+```
+
+Calculez le chi2 
+
+```{r quiz2}
+question("Calcul du $\\chi^2$",
+         answer("2.35", correct = TRUE),
+         answer("1.85"),
+         answer("1.42"),
+         answer("3.59"),
+           random_answer_order = TRUE,
+           allow_retry = TRUE,
+           incorrect = "Recommencez afin de trouver la bonne réponse",
+           correct = "Bravo, c'est correct")
+```
+
+Déterminez l'aire à droite délimité par la valeur du quantile calculé ci-dessus
+
+```{r,echo=TRUE, eval=FALSE}
+pchisq(QUANTILES, df = DEGREES_OF_FREEDOM, lower.tail = TRUE)
+```
+
+```{r chi1, exercise = TRUE}
+
+```
+
+```{r chi1-solution}
+pchisq(2.35, df = 1, lower.tail = FALSE)
+```
+
+```{r chi1-check}
+#TODO
+```
+
+```{r quiz3}
+quiz(
+  question("Si le seuil alpha de notre expérience est de 0.05, y a t'il dépendance ou indépendance des deux variables ?",
+           answer("Dépendance des deux varibles"),
+           answer("Indépendance des deux variables", correct = TRUE),
+           allow_retry = TRUE,
+           incorrect = "Recommencez afin de trouver la bonne réponse",
+           correct = "Bravo, c'est correct"),
+  question("Si le seuil alpha de notre expérience est de 0.05, rejettez vous $H_0$ ?",
+           answer("oui"),
+           answer("non", correct = TRUE),
+           allow_retry = TRUE,
+           incorrect = "Recommencez afin de trouver la bonne réponse",
+           correct = "Bravo, c'est correct")
+)
+```
+
+Calculez cette fois ci via R et les snippets le test de $\chi^2$ d'indépendance. Le snippet est **.icchi2bi** et renvoit ces instructions.
+
+```{r, echo = TRUE, eval = FALSE}
+(chi2. <- chisq.test(TABLE)); cat("Expected frequencies:\n"); chi2.[["expected"]]
+```
+
+```{r chi2, exercise = TRUE}
+
+```
+
+```{r chi2-solution}
+(chi2. <- chisq.test(tabac_table)); cat("Expected frequencies:\n"); chi2.[["expected"]]
+```
+
+```{r chi2-check}
+#TODO
+```
+
+Obtenez vous la même valeur que calculé à la main ? La réponse est non. En effet, une correction est réalisée via la correction de continuité de Yates. En ajoutant l'argument **correct = FALSE**, vous retrouvez la même valeur que celle que vous avez calculé à la main. 
+
+```{r chi3, exercise = TRUE}
+
+```
+
+```{r chi3-solution}
+(chi2. <- chisq.test(tabac_table, correct = FALSE)); cat("Expected frequencies:\n"); chi2.[["expected"]]
+```
+
+```{r chi3-check}
+#TODO
+```
+
+## Les groupes sanguins
+
+L’étude s’intéresse aux groupes sainguins dans l’Iowa, le Missouri et la Floride
+
+```{r, fig.align='center', echo=FALSE, message=FALSE, , out.width= '80%'}
+usa <-map_data("state")
+usa$region <- as.factor(usa$region)
+#usa$region
+#levels(usa$region)
+
+library(cowplot)
+chart(usa, aes(long, lat, group = group)) +
+  geom_polygon(fill = "white", colour = "black") +
+  geom_polygon(data = filter(usa, region== "florida"), aes(long, lat, group = group), fill = "red")+
+  geom_polygon(data = filter(usa, region== "missouri"), aes(long, lat, group = group), fill = "blue")+
+  geom_polygon(data = filter(usa, region== "iowa"), aes(long, lat, group = group), fill = "green")+
+  theme(axis.line = element_blank(), axis.title = element_blank(),axis.text = element_blank(), axis.ticks = element_blank()) +
+  coord_quickmap()
+
+```
+
+Les distributions des groupes sanguins sont-elles identiques dans les trois états étudiés ?
+
+```{r, echo=FALSE, message=FALSE}
+sang <- data.frame(groupe = c("A", "B", "AB", "O", "A", "B", "AB", "O", "A", "B", "AB", "O"),
+                   etat = c("Floride", "Floride", "Floride", "Floride", "Iowa", "Iowa", "Iowa", "Iowa", "Missouri", "Missouri", "Missouri", "Missouri"),
+                   freq = c(122, 117, 19, 244, 1781, 1351, 289, 3301, 353, 269, 60, 713))
+
+sang_table <- xtabs(freq ~ groupe + etat, data = sang)
+knitr::kable(sang_table)
+```
+
+Avant de réalisez votre $\chi^2$ d'indépendance avec R, déterminez le nombre de degré de liberte de votre $\chi^2$
+
+```{r quiz4}
+question("Sur base du tableau de données ci-dessus, déterminez le nombre de degré de liberté de la distribution du $\\chi^2$ correspondante ",
+         answer("1"),
+         answer("2"),
+         answer("3"),
+         answer("4"), 
+         answer("6", correct = TRUE),
+         answer("12"),
+           allow_retry = TRUE,
+           incorrect = "Recommencez afin de trouver la bonne réponse",
+           correct = "Bravo, c'est correct")
+```
+
+Calculez le $\chi^2_{obs}$ avec R et via le snippet **.icchi2bi** qui renvoit ces instructions.
+
+```{r, echo = TRUE, eval = FALSE}
+(chi2. <- chisq.test(TABLE)); cat("Expected frequencies:\n"); chi2.[["expected"]]
+```
+
+```{r chi4, exercise = TRUE}
+
+```
+
+```{r chi4-solution}
+(chi2. <- chisq.test(sang_table)); cat("Expected frequencies:\n"); chi2.[["expected"]]
+```
+
+```{r chi4-check}
+#TODO
+```
+
+```{r quiz5}
+quiz(
+  question("Si le seuil alpha de notre expérience est de 0.05, y a t'il dépendance ou indépendance des variables ?",
+           answer("Dépendance des varibles"),
+           answer("Indépendance des variables", correct = TRUE),
+           allow_retry = TRUE,
+           incorrect = "Recommencez afin de trouver la bonne réponse",
+           correct = "Bravo, c'est correct"),
+  question("Si le seuil alpha de notre expérience est de 0.05, rejettez vous $H_0$ ?",
+           answer("oui"),
+           answer("non", correct = TRUE),
+           allow_retry = TRUE,
+           incorrect = "Recommencez afin de trouver la bonne réponse",
+           correct = "Bravo, c'est correct")
+)
+```
+
+
+## Conclusion
+
+Bravo! Vous venez de terminer votre séance d'exercices dans un tutoriel "learnr". 
+
+Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
+
+```{r comm, exercise=TRUE, exercise.lines = 8}
+# Ajout de commentaires 
+# ...
+```
+
+```{r comm-check}
+# Not yet...
+```
