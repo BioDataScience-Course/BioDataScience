@@ -1,5 +1,10 @@
 # BioDataScience News
 
+## Changes in version 0.12.1
+
+- Tutorial 08b_chi2 finalized
+- add html file 08b_chi2
+
 ## Changes in version 0.12.0
 
 - Tutorial 08b_chi2 finalized
