@@ -224,7 +224,7 @@ chart(usa, aes(long, lat, group = group)) +
 
 Les distributions des groupes sanguins sont-elles identiques dans les trois états étudiés ?
 
-```{r, echo=FALSE, message=FALSE}
+```{r, echo=TRUE}
 sang <- data.frame(groupe = c("A", "B", "AB", "O", "A", "B", "AB", "O", "A", "B", "AB", "O"),
                    etat = c("Floride", "Floride", "Floride", "Floride", "Iowa", "Iowa", "Iowa", "Iowa", "Missouri", "Missouri", "Missouri", "Missouri"),
                    freq = c(122, 117, 19, 244, 1781, 1351, 289, 3301, 353, 269, 60, 713))
