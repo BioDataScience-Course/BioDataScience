@@ -1,5 +1,10 @@
 # BioDataScience News
 
+
+## Changes in version 0.13.0
+
+- Tutorial 09a_student finalized
+
 ## Changes in version 0.12.1
 
 - Tutorial 08b_chi2 finalized
