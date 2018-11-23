@@ -455,7 +455,7 @@ car::qqPlot(crabs[["length"]], distribution = "norm",
 ```
 
 ```{r qqnorm1-check}
-
+#TODO
 ```
 
 Est ce que le variable portant sur la masse totale des oursins suit une distribution normale ? 

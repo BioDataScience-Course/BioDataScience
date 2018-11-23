@@ -7,7 +7,6 @@ tutorial:
   version: 1.1.0
 output:
   learnr::tutorial:
-    progressive: true
     fig_caption: yes
 runtime: shiny_prerendered
 ---
@@ -23,6 +22,8 @@ knitr::opts_chunk$set(echo = FALSE, comment = NA, warning = FALSE)
 SciViews::R()
 #library(knitr)
 #library(BioDataScience)
+
+biometry <- read("biometry", package = "BioDataScience")
 ```
 
 ```{r, echo=FALSE}

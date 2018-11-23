@@ -506,6 +506,7 @@ quiz(
 )
 ```
 
+
 ## Conclusion
 
 Bravo! Vous venez de terminer votre séance d'exercices dans un tutoriel "learnr". 
