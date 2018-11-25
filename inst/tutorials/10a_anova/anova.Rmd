@@ -1,0 +1,345 @@
+---
+title: "Module 10 : Analyse de la variance (ANOVA)"
+subtitle: "Traitement des données I"
+author: "Guyliann Engels & Philippe Grosjean"
+output:
+  learnr::tutorial
+tutorial:
+  id: "sdd1.10a"
+  version: 0.0.1
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+SciViews::R()
+
+options(tutorial.event_recorder = BioDataScience::record_sdd)
+tutorial_options(exercise.checker = BioDataScience::checker_sdd)
+tutorial_options(exercise.timelimit = 60)
+tutorial_options(exercise.cap = "Code R")
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
+
+library(BioDataScience)
+```
+
+```{r, echo=FALSE}
+fixedRow(
+  column(9, div(
+    img(src = 'images/BioDataScience-128.png', align = "left"),
+    h1("Science des données biologiques"),
+    "Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)"
+  )),
+  column(3, div(
+    textInput("user", "Utilisateur :", ""),
+    textInput("email", "Email :", "")
+  ))
+)
+textOutput("user") # This is newer shown, but required to trigger an event!
+textOutput("email") # Idem!
+```
+
+```{r, context="server"}
+output$user <- renderText({BioDataScience::user_name(input$user);""})
+output$email <- renderText({BioDataScience::user_email(input$email);""})
+updateTextInput(session, "user", value = BioDataScience::user_name())
+updateTextInput(session, "email", value = BioDataScience::user_email())
+```
+
+## Préambule
+
+Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord avec son interface [ici](http://biodatascience-course.sciviews.org/sdd-umons/learnr.html).
+
+![](images/attention.jpg)
+
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
+
+## Objectifs
+
+- 
+
+
+## La croissance des dents de cochons d'Inde 
+
+Vous allez réaliser une analyse complète sur le jeu de données portant sur la croissance des dents de cochons d'Inde. La question est : y a t'il une différence de croissance des dents en fonction de la concentration en supplément administré.
+
+```{r, echo = TRUE}
+toothgrowth <- read("ToothGrowth", package = "datasets", lang = "fr")
+glimpse(toothgrowth)
+```
+
+Vous pouvez observer que la variable `dose` est encodée en variable numérique et non en variable facteur. Réencodez la variable `dose` afin d'avoir une variable facteur ordonnée. 
+
+```{r}
+variable <- c("toothgrowth", "glimpse()", "as.ordered()", "dose", "$")
+sample(variable)
+```
+
+```{r tg_prepare}
+toothgrowth <- read("ToothGrowth", package = "datasets", lang = "fr")
+```
+
+```{r toothgrowth1, exercise = TRUE, exercise.setup = "tg_prepare"}
+# réordonner la variable dose
+# 
+# visualiser le jeu de données
+# 
+```
+
+```{r toothgrowth1-solution}
+# réordonner la variable dose
+toothgrowth$dose <- as.ordered(toothgrowth$dose)
+# visualiser le jeu de données
+glimpse(toothgrowth)
+```
+
+```{r toothgrowth1-check}
+#TODO
+```
+
+Avant de réaliser un test d'hypothèse, vous devez visualiser vos données. Commencez par réaliser un résumé des données.
+
+### Visualisation des données
+
+Vous devez toujours débuter une analyse par visualiser vos données que ce soit sous la forme d'un tableau de données ou encore de graphiques.
+
+Pour réaliser un tableau de données, le snippet est **.hmanova1desc** et renvoit les instructions suivantes :
+
+```{r, echo=FALSE, eval=FALSE}
+DF %>.%
+  group_by(., XFACTOR) %>.%
+  summarise(., mean = mean(YNUM), sd = sd(YNUM), count = sum(!is.na(YNUM)))
+```
+
+```{r tg_prepare1}
+toothgrowth <- read("ToothGrowth", package = "datasets", lang = "fr")
+toothgrowth$dose <- as.ordered(toothgrowth$dose)
+```
+
+```{r toothgrowth2, exercise = TRUE, exercise.setup = "tg_prepare1"}
+
+```
+
+```{r toothgrowth2-solution}
+toothgrowth %>.%
+  group_by(., dose) %>.%
+  summarise(., mean = mean(len), sd = sd(len), count = sum(!is.na(len)))
+```
+
+```{r toothgrowth2-check}
+#TODO
+```
+
+Réalisez ensuite une boite de dispersion. Le snippet est **.cbbox** et renvoit les instructions suivantes :
+
+```{r, echo = TRUE, eval = FALSE}
+chart(data = DF, YNUM ~ XFACTOR) +
+  geom_boxplot()
+```
+
+```{r toothgrowth3, exercise = TRUE, exercise.setup = "tg_prepare1"}
+
+```
+
+```{r toothgrowth3-solution}
+chart(data = toothgrowth, len ~ dose) +
+  geom_boxplot()
+```
+
+```{r toothgrowth3-check}
+#TODO
+```
+
+Maintenant que vous avez pris connaissance de vos données, vous pouvez réaliser votre test d'hypothèse en ayant pris connaissance de vos données. 
+
+### Anova
+
+#### Vérification des conditions d'applications
+
+Attention, avant de réaliser une analyse de variance vous devez vérifier si la variance de vos différents groupes est homogène au sein de la variable facteur que vous étudiez.
+
+Le test de Bartlett est un outil mis à votre disposition. Le snippet est **.hvbartlett** et renvoit les instructions suivantes :
+
+```{r, echo = TRUE, eval=FALSE}
+bartlett.test(data = DF, YNUM ~ XFACTOR)
+```
+
+```{r toothgrowth4, exercise = TRUE, exercise.setup = "tg_prepare1"}
+
+```
+
+```{r toothgrowth4-solution}
+bartlett.test(data = toothgrowth, len ~ dose)
+```
+
+```{r toothgrowth4-check}
+#TODO
+```
+
+```{r quiz1}
+question("Y a t'il homoscédasticité des variances ?",
+         answer("oui", correct = TRUE),
+         answer("non"))
+```
+
+
+Vous devez également vérifier sur vos résidus suivent une distribution normale. 
+
+- Calculez vos résidus
+
+Le snippet est **.dvresid** et renvoit les instructions suivantes :
+
+```{r, echo = TRUE, eval = FALSE}
+DF %>.%
+  mutate(., VAR.res = VAR - ave(VAR, FACTOR)) -> DF2
+```
+
+```{r toothgrowth5, exercise = TRUE, exercise.setup = "tg_prepare1"}
+
+```
+
+```{r toothgrowth5-solution}
+tootgrowth %>.%
+  mutate(., len.res = len - ave(len, dose)) -> toothgrowth
+```
+
+```{r toothgrowth5-check}
+#TODO
+```
+
+- Réalisez un graphique quantile-quantile des résidus
+
+Le snippet est **.cuqqnorm** et renvoit les instructions suivantes :
+
+```{r, echo = TRUE, eval=FALSE}
+car::qqPlot(DF[["XNUM"]], distribution = "norm",
+  envelope = 0.95, col = "Black", ylab = "XNUM")
+```
+
+```{r tg_prepare2}
+toothgrowth <- read("ToothGrowth", package = "datasets", lang = "fr")
+toothgrowth$dose <- as.ordered(toothgrowth$dose)
+tootgrowth %>.%
+  mutate(., len.res = len - ave(len, dose)) -> toothgrowth
+```
+
+```{r toothgrowth6, exercise = TRUE, exercise.setup = "tg_prepare2"}
+
+```
+
+```{r toothgrowth6-solution}
+car::qqPlot(toothgrowth[["len.res"]], distribution = "norm",
+  envelope = 0.95, col = "Black", ylab = "len.res")
+```
+
+```{r toothgrowth6-check}
+#TODO
+```
+
+Vos résidus suivent une distribution normale et la variance de vos trois groupes est homogènes. Vous pouvez maintenant réalisez votre ANOVA.
+
+#### ANOVA
+
+Réalisez l'analyse de variances. Le snippet est **.hmanova1** et renvoit les instructions suivantes :
+
+```{r, echo = TRUE, eval=FALSE}
+anova(anova. <- lm(data = DF, YNUM ~ XFACTOR))
+```
+
+```{r toothgrowth7, exercise = TRUE, exercise.setup = "tg_prepare1"}
+
+```
+
+```{r toothgrowth7-solution}
+anova(anova. <- lm(data = toothgrowth, len ~ dose))
+```
+
+```{r toothgrowth7-check}
+#TODO
+```
+
+Une fois votre ANOVA réalisée, vous avez à votre dispositon un snippet qui vous permet de vérifier la distribution normale de vos résidus. Cette méthode est plus rapide que de calculer vos résidus et d'en faire un graphique quantile-quantile.
+
+```{r, echo = TRUE, eval=FALSE}
+#plot(anova., which = 2)
+anova. %>.%
+  chart(broom::augment(.), aes(sample = .std.resid)) +
+  geom_qq() +
+  #geom_qq_line(colour = "darkgray") +
+  labs(x = "Theoretical quantiles", y = "Standardized residuals") +
+  ggtitle("Normal Q-Q")
+```
+
+```{r tg_prepare3}
+toothgrowth <- read("ToothGrowth", package = "datasets", lang = "fr")
+toothgrowth$dose <- as.ordered(toothgrowth$dose)
+anova(anova. <- lm(data = toothgrowth, len ~ dose))
+```
+
+Vous observez que vous ne devez changer aucune instruction. Les snippets ont vraiment été conçu afin de vous simplifier vos analyses dans R.
+
+```{r toothgrowth8, exercise = TRUE, exercise.setup = "tg_prepare3"}
+
+```
+
+```{r toothgrowth8-solution}
+#plot(anova., which = 2)
+anova. %>.%
+  chart(broom::augment(.), aes(sample = .std.resid)) +
+  geom_qq() +
+  #geom_qq_line(colour = "darkgray") +
+  labs(x = "Theoretical quantiles", y = "Standardized residuals") +
+  ggtitle("Normal Q-Q")
+```
+
+```{r toothgrowth8-check}
+#TODO
+```
+
+Portez une attention toute particulière à la distribution de vos résidus, suivent-ils une distribution normale ? 
+
+Votre ANOVA indique qu'il y a au moins une des moyennes qui est significativement différente des autres. Afin de connaitre le niveau dont la moyenne (ou les niveaux) qui est significativement différent des autres moyennes, vous pouvez réaliser une analyses complémentaire de l'ANOVA 
+
+```{r, echo = TRUE, eval=FALSE}
+summary(anovaComp. <- confint(multcomp::glht(anova.,
+  linfct = multcomp::mcp(XFACTOR = "Tukey")))) # Add a second factor if you want
+.oma <- par(oma = c(0, 5.1, 0, 0)); plot(anovaComp.); par(.oma); rm(.oma)
+```
+
+```{r toothgrowth9, exercise = TRUE, exercise.setup = "tg_prepare3"}
+
+```
+
+```{r toothgrowth9-solution}
+summary(anovaComp. <- confint(multcomp::glht(anova.,
+  linfct = multcomp::mcp(dose = "Tukey")))) # Add a second factor if you want
+.oma <- par(oma = c(0, 5.1, 0, 0)); plot(anovaComp.); par(.oma); rm(.oma)
+```
+
+```{r toothgrowth9-check}
+#TODO
+```
+
+```{r quiz2}
+question("Y a t'il un effet significatif de la dose administrée sur la croissance des dents ?",
+         answer("oui"),
+         answer("non"))
+```
+
+**Ayez une véritable réfléxion sur l'ensemble de l'analyse que vous venez de réaliser.** Toutes les étapes de cette analyse sont importantes.
+
+## Conclusion
+
+Bravo! Vous venez de terminer votre séance d'exercices dans un tutoriel "learnr". 
+
+Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
+
+```{r comm, exercise=TRUE, exercise.lines = 8}
+# Ajout de commentaires 
+# ...
+```
+
+```{r comm-check}
+# Not yet...
+```
