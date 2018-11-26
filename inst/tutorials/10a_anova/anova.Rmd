@@ -6,7 +6,7 @@ output:
   learnr::tutorial
 tutorial:
   id: "sdd1.10a"
-  version: 0.0.1
+  version: 1.0.0
 runtime: shiny_prerendered
 ---
 
@@ -57,19 +57,232 @@ Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord a
 
 ## Objectifs
 
-- 
+- Pouvoir comparer plus de deux populations simultanément en utilisant des techniques de décomposition de la variance
+
+- Découvrir le modèle linéaire, anciennement analyse de variance (ANOVA)
+
+- Savoir effectuer des tests de comparaison multiples
+
+## Distribution F
+
+- Représentez graphiquement la distribution F dont : 
+    + les degrés de liberté inter groupe est de 4 
+    + les degrés de liberté intra-groupe est de 96
+
+```{r, echo = TRUE, eval=FALSE}
+# Fisher-Snedecor's F distribution (density probability) with parameter:
+.df1 <- NUMERATOR_DF; .df2 <- DENOMINATOR_DF # numerator (.df1) and denominator (.df2) df
+.col <- 1; .add <- FALSE # Plot parameters
+.x <- seq(0, qf(0.999, df1 = .df1, df2 = .df2), l = 1000)  # Quantiles
+.d <- function (x) df(x, df1 = .df1, df2 = .df2)           # Distribution function
+.q <- function (p) qf(p, df1 = .df1, df2 = .df2)           # Quantile for lower-tail prob
+.label <- bquote(F(.(.df1), .(.df2)))                      # Curve parameters
+curve(.d(x), xlim = range(.x), xaxs = "i", n = 1000, col = .col,
+  add = .add, xlab = "Quantiles", ylab = "Probability density") # Curve
+abline(h = 0, col = "gray") # Baseline
+```
+
+```{r distrif, exercise = TRUE}
+
+```
+
+```{r distrif-solution}
+# Fisher-Snedecor's F distribution (density probability) with parameter:
+.df1 <- 4; .df2 <- 96 # numerator (.df1) and denominator (.df2) df
+.col <- 1; .add <- FALSE # Plot parameters
+.x <- seq(0, qf(0.999, df1 = .df1, df2 = .df2), l = 1000)  # Quantiles
+.d <- function (x) df(x, df1 = .df1, df2 = .df2)           # Distribution function
+.q <- function (p) qf(p, df1 = .df1, df2 = .df2)           # Quantile for lower-tail prob
+.label <- bquote(F(.(.df1), .(.df2)))                      # Curve parameters
+curve(.d(x), xlim = range(.x), xaxs = "i", n = 1000, col = .col,
+  add = .add, xlab = "Quantiles", ylab = "Probability density") # Curve
+abline(h = 0, col = "gray") # Baseline
+```
+
+```{r distrif-check}
+#TODO
+```
+
+- Représentez graphiquement la distribution F correspondant à une étude ayant 50 observations et 5 groupes 
+
+```{r distrif1, exercise = TRUE}
+
+```
+
+```{r distrif1-solution}
+# Fisher-Snedecor's F distribution (density probability) with parameter:
+.df1 <- 4; .df2 <- 45 # numerator (.df1) and denominator (.df2) df
+.col <- 1; .add <- FALSE # Plot parameters
+.x <- seq(0, qf(0.999, df1 = .df1, df2 = .df2), l = 1000)  # Quantiles
+.d <- function (x) df(x, df1 = .df1, df2 = .df2)           # Distribution function
+.q <- function (p) qf(p, df1 = .df1, df2 = .df2)           # Quantile for lower-tail prob
+.label <- bquote(F(.(.df1), .(.df2)))                      # Curve parameters
+curve(.d(x), xlim = range(.x), xaxs = "i", n = 1000, col = .col,
+  add = .add, xlab = "Quantiles", ylab = "Probability density") # Curve
+abline(h = 0, col = "gray") # Baseline
+```
+
+```{r distrif1-check}
+#TODO
+```
+
+- Au seuil $\alpha$ de 5%, Faut il rejeter $H_0$ avec :
+    + F = 2.1
+    + 3 groupes
+    + 55 observations 
+
+Représentez la distribution de F
+
+```{r distrif2, exercise = TRUE}
+# représenter graphiquement la distribution F
+# 
+```
+
+```{r distrif2-solution}
+# représenter graphiquement la distribution F
+# Fisher-Snedecor's F distribution (density probability) with parameter:
+.df1 <- 2; .df2 <- 52 # numerator (.df1) and denominator (.df2) df
+.col <- 1; .add <- FALSE # Plot parameters
+.x <- seq(0, qf(0.999, df1 = .df1, df2 = .df2), l = 1000)  # Quantiles
+.d <- function (x) df(x, df1 = .df1, df2 = .df2)           # Distribution function
+.q <- function (p) qf(p, df1 = .df1, df2 = .df2)           # Quantile for lower-tail prob
+.label <- bquote(F(.(.df1), .(.df2)))                      # Curve parameters
+curve(.d(x), xlim = range(.x), xaxs = "i", n = 1000, col = .col,
+  add = .add, xlab = "Quantiles", ylab = "Probability density") # Curve
+abline(h = 0, col = "gray") # Baseline
+```
+
+```{r distrif2-check}
+#TODO
+```
+
+Calculez le quantile correspondant à une aire de 5% à droite via la fonction suivantes
+
+```{r, eval = FALSE, echo= TRUE}
+qf(PROBABILITES, df1 = NUMERATOR_DF, df2 =  DENOMINATOR_DF, lower.tail = TRUE)
+```
+
+```{r distrif3, exercise = TRUE}
+
+```
+
+```{r distrif3-solution}
+qf(0.05, df1 = 2, df2 = 52, lower.tail = FALSE)
+```
+
+```{r distrif3-check}
+#TODO
+```
+
+Ajoutez la valeur obtenue sur la graphique avec la fonction abline()
+
+```{r, echo = TRUE, eval=FALSE}
+# Fisher-Snedecor's F distribution (density probability) with parameter:
+.df1 <- NUMERATOR_DF; .df2 <- DENOMINATOR_DF # numerator (.df1) and denominator (.df2) df
+.col <- 1; .add <- FALSE # Plot parameters
+.x <- seq(0, qf(0.999, df1 = .df1, df2 = .df2), l = 1000)  # Quantiles
+.d <- function (x) df(x, df1 = .df1, df2 = .df2)           # Distribution function
+.q <- function (p) qf(p, df1 = .df1, df2 = .df2)           # Quantile for lower-tail prob
+.label <- bquote(F(.(.df1), .(.df2)))                      # Curve parameters
+curve(.d(x), xlim = range(.x), xaxs = "i", n = 1000, col = .col,
+  add = .add, xlab = "Quantiles", ylab = "Probability density") # Curve
+abline(h = 0, col = "gray") # Baseline
+#
+# ajout du quantile correspondant à une aire de 5%
+abline(v= QUANTILES, col = "red")
+```
+
+```{r distrif4, exercise = TRUE}
+# représenter graphiquement la distribution F
+# 
+# ajout du quantile correspondant à une aire de 5%
+# 
+```
+
+```{r, distrif4-solution}
+# représenter graphiquement la distribution F
+# Fisher-Snedecor's F distribution (density probability) with parameter:
+.df1 <- 2; .df2 <- 52 # numerator (.df1) and denominator (.df2) df
+.col <- 1; .add <- FALSE # Plot parameters
+.x <- seq(0, qf(0.999, df1 = .df1, df2 = .df2), l = 1000)  # Quantiles
+.d <- function (x) df(x, df1 = .df1, df2 = .df2)           # Distribution function
+.q <- function (p) qf(p, df1 = .df1, df2 = .df2)           # Quantile for lower-tail prob
+.label <- bquote(F(.(.df1), .(.df2)))                      # Curve parameters
+curve(.d(x), xlim = range(.x), xaxs = "i", n = 1000, col = .col,
+  add = .add, xlab = "Quantiles", ylab = "Probability density") # Curve
+abline(h = 0, col = "gray") # Baseline
+# ajout du quantile correspondant à une aire de 5%
+abline(v= 3.175, col = "red")
+```
+
+```{r distrif4-check}
+#TODO
+```
 
 
-## La croissance des dents de cochons d'Inde 
+```{r distri_quiz}
+question("Y a t'il rejet de H_0 ?",
+         answer("oui"),
+         answer("non", correct = TRUE))
+```
 
-Vous allez réaliser une analyse complète sur le jeu de données portant sur la croissance des dents de cochons d'Inde. La question est : y a t'il une différence de croissance des dents en fonction de la concentration en supplément administré.
+- Au seuil $\alpha$ de 5%, Faut il rejeter $H_0$ avec :
+    + F = 14.4
+    + 4 groupes
+    + 40 observations 
+
+Calculez l'aire à droite correspondant à un quantile de 14.4
+
+```{r, echo = TRUE, eval = FALSE}
+pf(QUANTILES, df1 = NUMERATOR_DF, df2 = DENOMINATOR_DF, lower.tail = TRUE)
+```
+
+```{r distrif5, exercise = TRUE}
+
+```
+
+```{r distrif5-solution}
+pf(14.4, df1 = 3, df2 = 36, lower.tail = FALSE)
+```
+
+```{r distrif5-check}
+#TODO
+```
+
+```{r distri_quiz1}
+question("Y a t'il rejet de H_0 ?",
+         answer("oui", correct = TRUE),
+         answer("non"))
+```
+
+## Cas d'étude : La croissance des dents de cochons d'Inde 
+
+Vous allez réaliser une analyse complète sur le jeu de données portant sur la croissance des dents de cochons d'Inde. La question est : **y a t'il une différence de croissance des dents en fonction de la concentration en supplément administré**. 
 
 ```{r, echo = TRUE}
-toothgrowth <- read("ToothGrowth", package = "datasets", lang = "fr")
+# importation
+(toothgrowth <- read("ToothGrowth", package = "datasets", lang = "fr"))
+```
+
+Ce jeu de données comprend 3 variables :
+
+- len : Longueur des dents 
+- supp : Supplément administré : OJ ou VC
+- dose : Dose administrée : 0.5 < 1 < 2
+
+### Vérification de l'encodage des variables 
+
+La première étape est de se demander si les variables sont convenablement encodées. La fonction glimpse() permet d'obtenir des informations sur le tableau de données.
+
+```{r, echo = TRUE}
 glimpse(toothgrowth)
 ```
 
-Vous pouvez observer que la variable `dose` est encodée en variable numérique et non en variable facteur. Réencodez la variable `dose` afin d'avoir une variable facteur ordonnée. 
+Vous pouvez observer que la variable `dose` est encodée en variable numérique et non en variable facteur. 
+
+- Réencodez la variable `dose` afin d'avoir une variable facteur **ordonnée**.
+
+- Visualisez à nouveau vos données avec la fonction glimpse().
 
 ```{r}
 variable <- c("toothgrowth", "glimpse()", "as.ordered()", "dose", "$")
@@ -98,15 +311,61 @@ glimpse(toothgrowth)
 #TODO
 ```
 
-Avant de réaliser un test d'hypothèse, vous devez visualiser vos données. Commencez par réaliser un résumé des données.
+Vous pouvez également ajouter les labels et les unités aux variables de votre jeu de données avec la fonction labelise(). 
+
+| Variable | label              | unité |
+|----------|--------------------|-------|
+| len      | Longueur des dents | mm    |
+| supp     | Supplémentation    | NA    |
+| dose     | Dose               | mg/J  |
+
+```{r tg_prepare_label}
+toothgrowth <- read("ToothGrowth", package = "datasets", lang = "fr")
+toothgrowth$dose <- as.ordered(toothgrowth$dose)
+```
+
+```{r toothgrowth1_label, exercise = TRUE, exercise.setup ="tg_prepare_label"}
+# Compléter la fonction
+toothgrowth <- labelise(toothgrowth, self = FALSE,
+  label = list(
+    
+  ),
+  units = list(
+    
+  )
+)
+```
+
+```{r toothgrowth1_label-solution}
+toothgrowth <- labelise(toothgrowth, self = FALSE,
+  label = list(
+    len = "Longueur des dents",
+    supp = "Supplémentation",
+    dose = "Dose"
+  ),
+  units = list(
+    len = "mm",
+    supp = NA,
+    dose = "mg/J"
+  )
+)
+```
+
+```{r toothgrowth1_label-check}
+#TODO
+```
+
+Vos données sont maintenant correctement encodées.
 
 ### Visualisation des données
 
 Vous devez toujours débuter une analyse par visualiser vos données que ce soit sous la forme d'un tableau de données ou encore de graphiques.
 
-Pour réaliser un tableau de données, le snippet est **.hmanova1desc** et renvoit les instructions suivantes :
+#### Réalisation d'un tableau résumé des données
 
-```{r, echo=FALSE, eval=FALSE}
+Pour réaliser un tableau résumé des données, vous avez à disposition le snippet **.hmanova1desc** qui renvoie les instructions suivantes :
+
+```{r, echo= TRUE, eval=FALSE}
 DF %>.%
   group_by(., XFACTOR) %>.%
   summarise(., mean = mean(YNUM), sd = sd(YNUM), count = sum(!is.na(YNUM)))
@@ -115,6 +374,18 @@ DF %>.%
 ```{r tg_prepare1}
 toothgrowth <- read("ToothGrowth", package = "datasets", lang = "fr")
 toothgrowth$dose <- as.ordered(toothgrowth$dose)
+toothgrowth <- labelise(toothgrowth, self = FALSE,
+  label = list(
+    len = "Longueur des dents",
+    supp = "Supplémentation",
+    dose = "Dose"
+  ),
+  units = list(
+    len = "mm",
+    supp = NA,
+    dose = "mg/J"
+  )
+)
 ```
 
 ```{r toothgrowth2, exercise = TRUE, exercise.setup = "tg_prepare1"}
@@ -131,35 +402,88 @@ toothgrowth %>.%
 #TODO
 ```
 
-Réalisez ensuite une boite de dispersion. Le snippet est **.cbbox** et renvoit les instructions suivantes :
+#### Réalisation de graphiques
+
+Vous trouverez dans la littérature plusieurs graphiques qui permettent de visualiser vos lorsque vous souhaitez réaliser une anova par la suite.
+
+
+- Réalisez une boite de dispersion. Le snippet est **.cbbox** et renvoie les instructions suivantes :
 
 ```{r, echo = TRUE, eval = FALSE}
 chart(data = DF, YNUM ~ XFACTOR) +
   geom_boxplot()
 ```
 
-```{r toothgrowth3, exercise = TRUE, exercise.setup = "tg_prepare1"}
+```{r toothgrowth_graph, exercise = TRUE, exercise.setup = "tg_prepare1"}
 
 ```
 
-```{r toothgrowth3-solution}
+```{r toothgrowth_graph-solution}
 chart(data = toothgrowth, len ~ dose) +
   geom_boxplot()
 ```
 
-```{r toothgrowth3-check}
+```{r toothgrowth_graph-check}
+#TODO
+```
+
+L'ANOVA a pour objectif de comparer des moyennes entre elles alors que la boîte de dispersion va vous représenter les 5 nombres qui sont des descripteurs non-paramétriques.
+
+
+- Réalisez un graphique en violon. Le snippet est **.cbviolin** et renvoit-e les instructions suivantes :
+
+```{r, echo = TRUE, eval = FALSE}
+chart(data = DF, YNUM ~ XFACTOR) +
+  geom_violin()
+```
+
+```{r toothgrowth_graph1, exercise = TRUE, exercise.setup = "tg_prepare1"}
+
+```
+
+```{r toothgrowth_graph1-solution}
+chart(data = toothgrowth, len ~ dose) +
+  geom_violin() 
+```
+
+```{r toothgrowth_graph1-check}
+#TODO
+```
+
+- Réalisez un graphique en violon en y ajoutant la moyenne de chaque groupe. Il n'existe pas de snippet réalisant directement ce graphique. Cependant, vous êtes capable de le réaliser par vous. Il s'agit d'une suite d'instructions.
+
+```{r, echo = TRUE, eval = FALSE}
+chart(data = DF, YNUM ~ XFACTOR) + # Je réalise un graphique 
+  geom_violin() + # Je réalise un graphique en violon
+  geom_jitter(width = 0.05, alpha = 0.5) + # J'ajoute les points sur le graphique 
+  stat_summary(geom = "point", fun.y = "mean", color = "red", size = 4) # J'ajoute la moyenne en rouge
+```
+
+```{r toothgrowth_graph2, exercise = TRUE, exercise.setup = "tg_prepare1"}
+
+```
+
+```{r toothgrowth_graph2-solution}
+chart(data = toothgrowth, len ~ dose) +
+  geom_violin() +
+  geom_jitter(width = 0.05, alpha = 0.5) +
+  stat_summary(geom = "point", fun.y = "mean", color = "red", size = 4)
+```
+
+```{r toothgrowth_graph2-check}
 #TODO
 ```
 
 Maintenant que vous avez pris connaissance de vos données, vous pouvez réaliser votre test d'hypothèse en ayant pris connaissance de vos données. 
 
-### Anova
 
-#### Vérification des conditions d'applications
+### Vérification des conditions d'applications
+
+#### Test de Bartlett
 
 Attention, avant de réaliser une analyse de variance vous devez vérifier si la variance de vos différents groupes est homogène au sein de la variable facteur que vous étudiez.
 
-Le test de Bartlett est un outil mis à votre disposition. Le snippet est **.hvbartlett** et renvoit les instructions suivantes :
+Le test de Bartlett est un outil mis à votre disposition. Le snippet est **.hvbartlett** et renvoie les instructions suivantes :
 
 ```{r, echo = TRUE, eval=FALSE}
 bartlett.test(data = DF, YNUM ~ XFACTOR)
@@ -183,12 +507,13 @@ question("Y a t'il homoscédasticité des variances ?",
          answer("non"))
 ```
 
+#### Distribution normale des résidus
 
 Vous devez également vérifier sur vos résidus suivent une distribution normale. 
 
 - Calculez vos résidus
 
-Le snippet est **.dvresid** et renvoit les instructions suivantes :
+Le snippet est **.dvresid** et renvoie les instructions suivantes :
 
 ```{r, echo = TRUE, eval = FALSE}
 DF %>.%
@@ -200,7 +525,7 @@ DF %>.%
 ```
 
 ```{r toothgrowth5-solution}
-tootgrowth %>.%
+toothgrowth %>.%
   mutate(., len.res = len - ave(len, dose)) -> toothgrowth
 ```
 
@@ -210,7 +535,7 @@ tootgrowth %>.%
 
 - Réalisez un graphique quantile-quantile des résidus
 
-Le snippet est **.cuqqnorm** et renvoit les instructions suivantes :
+Le snippet est **.cuqqnorm** et renvoie les instructions suivantes :
 
 ```{r, echo = TRUE, eval=FALSE}
 car::qqPlot(DF[["XNUM"]], distribution = "norm",
@@ -220,7 +545,7 @@ car::qqPlot(DF[["XNUM"]], distribution = "norm",
 ```{r tg_prepare2}
 toothgrowth <- read("ToothGrowth", package = "datasets", lang = "fr")
 toothgrowth$dose <- as.ordered(toothgrowth$dose)
-tootgrowth %>.%
+toothgrowth %>.%
   mutate(., len.res = len - ave(len, dose)) -> toothgrowth
 ```
 
@@ -239,9 +564,9 @@ car::qqPlot(toothgrowth[["len.res"]], distribution = "norm",
 
 Vos résidus suivent une distribution normale et la variance de vos trois groupes est homogènes. Vous pouvez maintenant réalisez votre ANOVA.
 
-#### ANOVA
+### ANOVA
 
-Réalisez l'analyse de variances. Le snippet est **.hmanova1** et renvoit les instructions suivantes :
+Réalisez l'analyse de variances. Le snippet est **.hmanova1** et renvoie les instructions suivantes :
 
 ```{r, echo = TRUE, eval=FALSE}
 anova(anova. <- lm(data = DF, YNUM ~ XFACTOR))
@@ -259,7 +584,7 @@ anova(anova. <- lm(data = toothgrowth, len ~ dose))
 #TODO
 ```
 
-Une fois votre ANOVA réalisée, vous avez à votre dispositon un snippet qui vous permet de vérifier la distribution normale de vos résidus. Cette méthode est plus rapide que de calculer vos résidus et d'en faire un graphique quantile-quantile.
+Une fois votre ANOVA réalisée, vous avez à votre disposition un snippet qui vous permet de vérifier la distribution normale de vos résidus. Cette méthode est plus rapide que de calculer vos résidus et d'en faire un graphique quantile-quantile. Cependant, il nécéssite de d'abord réaliser votre ANOVA et donc d'anticiper sur les conditions d'application. Néanmoins le test étant relativement robuste à de petites variations par rapport à la distribution normale, nous ne serons pas excessivement strict sur cette condition. On peut la vérifier après avoir réalisé l'anova. 
 
 ```{r, echo = TRUE, eval=FALSE}
 #plot(anova., which = 2)
@@ -274,10 +599,10 @@ anova. %>.%
 ```{r tg_prepare3}
 toothgrowth <- read("ToothGrowth", package = "datasets", lang = "fr")
 toothgrowth$dose <- as.ordered(toothgrowth$dose)
-anova(anova. <- lm(data = toothgrowth, len ~ dose))
+anova. <- lm(data = toothgrowth, len ~ dose)
 ```
 
-Vous observez que vous ne devez changer aucune instruction. Les snippets ont vraiment été conçu afin de vous simplifier vos analyses dans R.
+Vous observez que vous ne devez changer aucune instruction. Les snippets ont vraiment été conçu afin de simplifier vos analyses dans R.
 
 ```{r toothgrowth8, exercise = TRUE, exercise.setup = "tg_prepare3"}
 
@@ -297,9 +622,15 @@ anova. %>.%
 #TODO
 ```
 
-Portez une attention toute particulière à la distribution de vos résidus, suivent-ils une distribution normale ? 
+```{r quiz2}
+question("Y a t'il un effet significatif de la dose administrée sur la croissance des dents ?",
+         answer("oui"),
+         answer("non"))
+```
 
-Votre ANOVA indique qu'il y a au moins une des moyennes qui est significativement différente des autres. Afin de connaitre le niveau dont la moyenne (ou les niveaux) qui est significativement différent des autres moyennes, vous pouvez réaliser une analyses complémentaire de l'ANOVA 
+### Analyse Post Hoc
+
+Votre ANOVA indique qu'il y a au moins une des moyennes qui est significativement différente des autres. Afin de connaitre le niveau dont la moyenne (ou les niveaux) qui est significativement différent des autres moyennes, vous pouvez réaliser une analyse complémentaire de l'ANOVA, une analyse post hoc dont le snippet est le suivant : 
 
 ```{r, echo = TRUE, eval=FALSE}
 summary(anovaComp. <- confint(multcomp::glht(anova.,
@@ -321,10 +652,11 @@ summary(anovaComp. <- confint(multcomp::glht(anova.,
 #TODO
 ```
 
-```{r quiz2}
-question("Y a t'il un effet significatif de la dose administrée sur la croissance des dents ?",
-         answer("oui"),
-         answer("non"))
+```{r quiz3}
+question("Quels sont les niveaux significativement différents au seuil alpha de 5% ?",
+         answer("0.5 par rapport à 1", correct = TRUE),
+         answer("0.5 par rapport à 2", correct = TRUE),
+         answer("1 par rapport à 2", correct = TRUE))
 ```
 
 **Ayez une véritable réfléxion sur l'ensemble de l'analyse que vous venez de réaliser.** Toutes les étapes de cette analyse sont importantes.
