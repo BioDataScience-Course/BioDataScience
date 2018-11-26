@@ -1,0 +1,12 @@
+name: histogram
+title: histogram
+username:
+account: phgrosjean
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 590204
+bundleId: 1721275
+url: https://phgrosjean.shinyapps.io/histogram/
+when: 1543252660.5674
+asMultiple: FALSE
+asStatic: FALSE

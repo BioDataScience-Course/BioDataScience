@@ -1,7 +1,7 @@
 # Histogram with variable classes
 
 ui <- fluidPage(
-  titlePanel("Choix des classes pour un histogramme"),
+  titlePanel(""), #"Choix des classes pour un histogramme"),
   sidebarLayout(
     sidebarPanel(
       sliderInput(inputId = "bins", label = "Nombre de classes:",
