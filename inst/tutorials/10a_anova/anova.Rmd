@@ -624,7 +624,7 @@ anova. %>.%
 
 ```{r quiz2}
 question("Y a t'il un effet significatif de la dose administrée sur la croissance des dents ?",
-         answer("oui"),
+         answer("oui", correct = TRUE),
          answer("non"))
 ```
 
