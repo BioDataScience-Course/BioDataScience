@@ -1,0 +1,12 @@
+name: learnr
+title: learnr
+username:
+account: phgrosjean
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 590599
+bundleId: 1721660
+url: https://phgrosjean.shinyapps.io/learnr/
+when: 1543264138.79986
+asMultiple: FALSE
+asStatic: FALSE

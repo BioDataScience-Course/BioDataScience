@@ -7,6 +7,8 @@
 ## Changes in version 0.15.0
 
 - Tutorial 10a_anova finalized
+- Addition of a test shiny app (histogram.R)
+
 
 ## Changes in version 0.14.0
 
