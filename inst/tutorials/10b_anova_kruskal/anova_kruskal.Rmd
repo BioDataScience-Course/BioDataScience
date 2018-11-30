@@ -1,0 +1,320 @@
+---
+title: "Module 10 : Analyse de la variance (ANOVA) et Kruskal-Wallis"
+subtitle: "Traitement des données I"
+author: "Guyliann Engels & Philippe Grosjean"
+output:
+  learnr::tutorial
+tutorial:
+  id: "sdd1.10b"
+  version: 1.0.0
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+SciViews::R()
+
+options(tutorial.event_recorder = BioDataScience::record_sdd)
+tutorial_options(exercise.checker = BioDataScience::checker_sdd)
+tutorial_options(exercise.timelimit = 60)
+tutorial_options(exercise.cap = "Code R")
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
+
+library(BioDataScience)
+```
+
+```{r, echo=FALSE}
+fixedRow(
+  column(9, div(
+    img(src = 'images/BioDataScience-128.png', align = "left"),
+    h1("Science des données biologiques"),
+    "Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)"
+  )),
+  column(3, div(
+    textInput("user", "Utilisateur :", ""),
+    textInput("email", "Email :", "")
+  ))
+)
+textOutput("user") # This is newer shown, but required to trigger an event!
+textOutput("email") # Idem!
+```
+
+```{r, context="server"}
+output$user <- renderText({BioDataScience::user_name(input$user);""})
+output$email <- renderText({BioDataScience::user_email(input$email);""})
+updateTextInput(session, "user", value = BioDataScience::user_name())
+updateTextInput(session, "email", value = BioDataScience::user_email())
+```
+
+## Préambule
+
+Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord avec son interface [ici](http://biodatascience-course.sciviews.org/sdd-umons/learnr.html).
+
+![](images/attention.jpg)
+
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
+
+## Objectifs
+
+- Pouvoir comparer plus de deux populations simultanément en utilisant des techniques de décomposition de la variance
+
+- Savoir effectuer une analyse de variance (ANOVA)
+
+- Savoir effectuer des tests de comparaison multiples
+
+- Connaitre l’équivalent non paramétrique à un facteur (test de Kruskal-Wallis)
+
+## Croissance de plantes
+
+Le jeu de données portant sur la croissance de plantes est mis à votre disposition afin de comparer l'analyse de variance du test de Kruskal-Wallis.
+
+```{r, echo = TRUE}
+# Import packages
+SciViews::R
+# Import dataset
+(plant <- read("PlantGrowth", package = "datasets"))
+```
+
+Réalisez un résumé des données montrant la moyenne de la masse sèche de plantes par traitement. Indiquez également l'écart-type et le nombre d'observations par groupe. 
+
+```{r prepare_plant}
+plant <- read("PlantGrowth", package = "datasets")
+```
+Le snippet correspondant à cette instructions est **.hmanova1desc**
+
+```{r, echo = TRUE, eval = FALSE}
+DF %>.%
+  group_by(., XFACTOR) %>.%
+  summarise(., mean = mean(YNUM), sd = sd(YNUM), count = sum(!is.na(YNUM)))
+```
+
+```{r plant1, exercise = TRUE, exercise.setup = "prepare_plant"}
+
+```
+
+```{r plant1-solution}
+plant %>.%
+  group_by(., group) %>.%
+  summarise(., mean = mean(weight), sd = sd(weight), count = sum(!is.na(weight)))
+```
+
+```{r plant1-check}
+#TODO
+```
+
+Réalisez à présent un graphique de type nuage de point . Ajoutez également la moyenne et l'écart type.
+
+Il n'existe pas directement de snippet dédié à ce graphique cependant, vous êtes capable d'employer les instructions ci-dessous pour réaliser le graphique demandé.
+
+```{r, echo = TRUE, eval=FALSE}
+chart(data = DF, YNUM ~ XFACTOR) +
+  geom_jitter(alpha = 0.4, width = 0.2) +
+  stat_summary(geom = "point", fun.y = "mean") +
+  stat_summary(geom = "errorbar", width = 0.1,
+    fun.data = "mean_sdl", fun.args = list(mult = 1))
+```
+
+```{r plant2, exercise = TRUE, exercise.setup ="prepare_plant"}
+
+```
+
+```{r plant2-solution}
+chart(data = plant, weight ~ group) +
+  geom_jitter(alpha = 0.4, width = 0.2) +
+  stat_summary(geom = "point", fun.y = "mean") +
+  stat_summary(geom = "errorbar", width = 0.1,
+    fun.data = "mean_sdl", fun.args = list(mult = 1)) 
+```
+
+```{r plant2-check}
+#TODO
+```
+
+Réalisez maintenant une boite de dispersion montre la variation de masse sèche en fonction du traiement.
+
+```{r, echo = TRUE, eval=FALSE}
+chart(data = DF, YNUM ~ XFACTOR) +
+  geom_boxplot()
+```
+
+```{r plant3, exercise = TRUE, exercise.setup ="prepare_plant"}
+
+```
+
+```{r plant3-solution}
+chart(data = plant, weight ~ group) +
+  geom_boxplot()
+```
+
+```{r plant3-check}
+#TODO
+```
+
+Posez vous maintenant cette question avant de continuer l'analyse. Sur base du tableau de données et des trois graphiques précédents pensez vous qu'il y a une différence entre les traitements ? L'intuition n'est cependant pas un test statistique, réalisez donc une Anova et/ou kruskal-Wallis
+
+### Anova
+
+Vous devez tout d'abord vérifier l'homoscédasticité.
+
+Le snippet correspondant à cette instructions est **.hvbartlett**
+
+```{r, echo = TRUE, eval = FALSE}
+bartlett.test(data = DF, YNUM ~ XFACTOR)
+```
+
+```{r plant4, exercise = TRUE, exercise.setup = "prepare_plant"}
+
+
+```
+
+```{r plant4-solution}
+bartlett.test(data = plant, weight ~ group)
+```
+
+```{r plant4-check}
+#TODO
+```
+
+```{r quiz1}
+question("Y a t'il homoscédasticité des variances ?",
+         answer("oui", correct = TRUE),
+         answer("non"))
+```
+
+Réalisez votre anova. Le snippet correspondant à cette instructions est **.hmanova1**
+
+```{r, eval= FALSE, echo= TRUE}
+anova(anova. <- lm(data = DF, YNUM ~ XFACTOR))
+```
+
+```{r plant5, exercise = TRUE, exercise.setup = "prepare_plant"}
+
+```
+
+```{r plant5-solution}
+anova(anova. <- lm(data = plant, weight ~ group))
+```
+
+```{r plant5-check}
+#TODO
+```
+
+Vérifiez la normalité de vos résidus.  Le snippet correspondant à cette instruction est **.hmanova1**
+
+```{r echo = TRUE, eval = FALSE}
+#plot(anova., which = 2)
+anova. %>.%
+  chart(broom::augment(.), aes(sample = .std.resid)) +
+  geom_qq() +
+  #geom_qq_line(colour = "darkgray") +
+  labs(x = "Theoretical quantiles", y = "Standardized residuals") +
+  ggtitle("Normal Q-Q")
+```
+
+```{r prepare_plant1}
+plant <- read("PlantGrowth", package = "datasets")
+anova. <- lm(data = plant, weight ~ group)
+```
+
+```{r plant6, exercise = TRUE, exercise.setup = "prepare_plant1"}
+
+```
+
+```{r plant6-solution}
+#plot(anova., which = 2)
+anova. %>.%
+  chart(broom::augment(.), aes(sample = .std.resid)) +
+  geom_qq() +
+  #geom_qq_line(colour = "darkgray") +
+  labs(x = "Theoretical quantiles", y = "Standardized residuals") +
+  ggtitle("Normal Q-Q")
+```
+
+```{r plant6-check}
+#TODO
+```
+
+Complétez votre anova par une analyse post hoc. Le snippet correspondant à cette instruction est **.hmanovamult**
+
+```{r, echo = TRUE, eval = FALSE}
+summary(anovaComp. <- confint(multcomp::glht(anova.,
+  linfct = multcomp::mcp(XFACTOR = "Tukey")))) # Add a second factor if you want
+.oma <- par(oma = c(0, 5.1, 0, 0)); plot(anovaComp.); par(.oma); rm(.oma)
+```
+
+```{r plant7, exercise = TRUE, exercise.setup = "prepare_plant1"}
+
+```
+
+```{r plant7-solution}
+summary(anovaComp. <- confint(multcomp::glht(anova.,
+  linfct = multcomp::mcp(group = "Tukey")))) # Add a second factor if you want
+.oma <- par(oma = c(0, 5.1, 0, 0)); plot(anovaComp.); par(.oma); rm(.oma)
+```
+
+```{r plant7-check}
+#TODO
+```
+
+## Kruskal-Wallis
+
+Réalisez à présent un test de Kruskal-Wallis afin de comparer vos résultats. Le snippet correspondant à cette instruction est **.hnwilkindep**
+
+```{r, echo = TRUE, eval = FALSE}
+wilcox.test(data = DF, YNUM ~ XFACTOR,
+  alternative = "two.sided", conf.level = 0.95)
+```
+
+```{r plant8, exercise = TRUE, exercise.setup  ="prepare_plant"}
+
+```
+
+```{r plant8-solution}
+kruskal.test(data = plant, weight ~ group)
+```
+
+```{r plant8-check}
+#TODO
+```
+
+Suite à ce test vous pouvez réaliser une analyse complémentaire tout comme avec une anova. Le snippet correspondant à cette instruction est **.hnkrusmult**
+
+```{r, echo = TRUE, eval = FALSE}
+summary(kw_comp. <- nparcomp::nparcomp(data = DF, YNUM ~ XFACTOR))
+plot(kw_comp.)
+```
+
+```{r plant9, exercise = TRUE, exercise.setup = "prepare_plant"}
+
+```
+
+```{r plant9-solution}
+summary(kw_comp. <- nparcomp::nparcomp(data = plant, weight ~ group))
+plot(kw_comp.)
+```
+
+```{r plant9-check}
+#TODO
+```
+
+Posez vous les questions suivantes :
+
+- est ce que les résultats obtenus avec l'Anova et le Kruskal-Wallis coincident avec votre intuition ?
+- Les résultats obtenus avec l'Anova et le Kruskal-Wallis dans les deux cas sont similaire, est ce que cela était attendu ? 
+- Les résultats obtenus avec les comparaisons multiples sont ils similaires ? Lors de l'utilisation du test de comparaison multiple non paramétrique vous ne retrouvez pas de différence significative entre vos groupes, cela ne coincide pas avec ce que vous renvoie le Kruskal-Wallis. Que pouvez vous en déduire ? L'attitude d'un scientifique rigoureux doit être de recommencer l'expérience afin d'avoir un plus grand nombre de données pour réussir à confirmer ou infermer ces hypothèses de départ. La différence détectée par le kruskal wallis ne l'est plus pour un test de comparaison multiple, ce qui laisse planer le doute sur l'aspect significatif de notre test. Soyez vigilant 
+
+## Conclusion
+
+Bravo! Vous venez de terminer votre séance d'exercices dans un tutoriel "learnr". 
+
+Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
+
+```{r comm, exercise=TRUE, exercise.lines = 8}
+# Ajout de commentaires 
+# ...
+```
+
+```{r comm-check}
+# Not yet...
+```
