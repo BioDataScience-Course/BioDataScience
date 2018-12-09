@@ -1,0 +1,455 @@
+---
+title: "Module 11 : Analyse de la variance (ANOVA) à 2 facteurs"
+subtitle: "Traitement des données I"
+author: "Guyliann Engels & Philippe Grosjean"
+output:
+  learnr::tutorial
+tutorial:
+  id: "sdd1.11a"
+  version: 1.0.0
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+SciViews::R()
+
+options(tutorial.event_recorder = BioDataScience::record_sdd)
+tutorial_options(exercise.checker = BioDataScience::checker_sdd)
+tutorial_options(exercise.timelimit = 60)
+tutorial_options(exercise.cap = "Code R")
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
+
+library(BioDataScience)
+```
+
+```{r, echo=FALSE}
+fixedRow(
+  column(9, div(
+    img(src = 'images/BioDataScience-128.png', align = "left"),
+    h1("Science des données biologiques"),
+    "Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)"
+  )),
+  column(3, div(
+    textInput("user", "Utilisateur :", ""),
+    textInput("email", "Email :", "")
+  ))
+)
+textOutput("user") # This is newer shown, but required to trigger an event!
+textOutput("email") # Idem!
+```
+
+```{r, context="server"}
+output$user <- renderText({BioDataScience::user_name(input$user);""})
+output$email <- renderText({BioDataScience::user_email(input$email);""})
+updateTextInput(session, "user", value = BioDataScience::user_name())
+updateTextInput(session, "email", value = BioDataScience::user_email())
+```
+
+## Préambule
+
+Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord avec son interface [ici](http://biodatascience-course.sciviews.org/sdd-umons/learnr.html).
+
+![](images/attention.jpg)
+
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
+
+## Objectifs
+
+- Savoir effectuer une analyse de variance à 2 facteurs
+
+## Croissance des dents de cochons d'Inde
+
+Vous avez à plusieurs reprise étudié le jeu de données portant sur la croissance des dents de cochons d'Inde. 
+
+Tentez de répondre à la question suivante :
+
+**Y a t'il une différence de croissance des dents de cochons d'Inde en fonction de la supplémentation et de la dose administrée?**
+
+Reprennons la suite logique de l'analyse d'un jeu de données étape par étape.
+
+### Importation des données
+
+L'importation des données est la première étape lors de l'analyse des données.
+
+```{r, echo = TRUE}
+# Importation
+tooth <- read("ToothGrowth", package = "datasets")
+# Première visualisation des données
+tooth
+```
+
+### Traitement des données
+
+Commencez par convertir votre jeu de données afin que les variables y soient encodées de manière correcte. 
+La variable dose doit être encodé selon une variable facteur ordonnée.
+
+Utilisez pour ce faire la fonction as.ordered() et utilisez la fonction levels pour vérifier la bonne conversion.
+
+```{r tg_prepare}
+tooth <- read("ToothGrowth", package = "datasets")
+```
+
+```{r tg1, exercise = TRUE, exercise.setup = "tg_prepare"}
+
+```
+
+```{r tg1-solution}
+# utilisez la fonction as.ordered
+tooth$dose <- as.ordered(tooth$dose)
+# utilisez la fonction levels pour visualiser votre conversion de variable
+levels(tooth$dose)
+```
+
+```{r tg1-check}
+#TODO
+```
+
+Vous devez également ajouter via la fonction labelise() les labels et unités à chacune de vos variables
+
+| Variables 	| Labels             	| Unités 	|
+|-----------	|--------------------	|--------	|
+| len       	| Longueur des dents 	| mm     	|
+| supp      	| Supplémentation    	| NA     	|
+| dose      	| Dose               	| mg/J   	|
+
+```{r tg_prepare1}
+tooth <- read("ToothGrowth", package = "datasets")
+tooth$dose <- as.ordered(tooth$dose)
+```
+
+```{r tg2, exercise = TRUE, exercise.setup = "tg_prepare1"}
+DF <- labelise(DF, self = FALSE, label = list(), units = list())
+```
+
+```{r tg2-solution}
+tooth <- labelise(tooth, self = FALSE,
+  label = list(
+    len = "Longueur des dents",
+    supp = "Supplémentation",
+    dose = "Dose"
+  ),
+  units = list(
+    len = "mm",
+    supp = NA,
+    dose = "mg/J"
+  )
+)
+```
+
+```{r tg2-check}
+#TODO
+```
+
+Votre jeu de données est enfin prêt à être employé.
+
+### Visualisation des données sous la forme de graphique
+
+```{r tg_prepare2}
+tooth <- read("ToothGrowth", package = "datasets")
+tooth$dose <- as.ordered(tooth$dose)
+tooth <- labelise(tooth, self = FALSE,
+  label = list(
+    len = "Longueur des dents",
+    supp = "Supplémentation",
+    dose = "Dose"
+  ),
+  units = list(
+    len = "mm",
+    supp = NA,
+    dose = "mg/J"
+  )
+)
+```
+
+```{r}
+tooth <- read("ToothGrowth", package = "datasets")
+tooth$dose <- as.ordered(tooth$dose)
+tooth <- labelise(tooth, self = FALSE,
+  label = list(
+    len = "Longueur des dents",
+    supp = "Supplémentation",
+    dose = "Dose"
+  ),
+  units = list(
+    len = "mm",
+    supp = NA,
+    dose = "mg/J"
+  )
+)
+```
+
+Réalisez un premier graphique de type : 
+
+- boites de dispersion 
+
+Reproduisez le graphique suivant
+
+```{r}
+chart(data = tooth, len ~ supp %fill=% dose) +
+  geom_boxplot()
+```
+
+Le snippet correspondant à cette instructions est **.cbbox**
+
+```{r, echo = TRUE, eval=FALSE}
+chart(data = DF, YNUM ~ XFACTOR) +
+  geom_boxplot()
+```
+
+```{r tg3, exercise = TRUE, exercise.setup = "tg_prepare2"}
+
+```
+
+```{r tg3-solution}
+chart(data = tooth, len ~ supp %fill=% dose) +
+  geom_boxplot()
+```
+
+```{r tg3-check}
+#TODO
+```
+
+- moyenne avec l'écart-type 
+
+Repoduisez le graphique suivant 
+
+```{r}
+chart(data = tooth, len ~ supp %col=% dose) +
+  geom_jitter(alpha = 0.4, position = position_dodge(0.4)) +
+  stat_summary(geom = "point", fun.y = "mean", position = position_dodge(0.4)) +
+  stat_summary(geom = "errorbar", width = 0.1, position = position_dodge(0.4),
+    fun.data = "mean_sdl", fun.args = list(mult = 1))
+```
+
+Vous avez à votre dispostion les instructions suivantes :
+
+```{r, echo = TRUE, eval = FALSE}
+chart(data = DF, YNUM ~ XFACTOR %col=% XFACTOR2) +
+  geom_jitter(alpha = 0.4, position = position_dodge(0.4)) +
+  stat_summary(geom = "point", fun.y = "mean", position = position_dodge(0.4)) +
+  stat_summary(geom = "errorbar", width = 0.1, position = position_dodge(0.4),
+    fun.data = "mean_sdl", fun.args = list(mult = 1))
+```
+
+```{r tg4, exercise = TRUE, exercise.setup = "tg_prepare2"}
+
+```
+
+```{r tg4-solution}
+chart(data = tooth, len ~ supp %col=% dose) +
+  geom_jitter(alpha = 0.4, position = position_dodge(0.4)) +
+  stat_summary(geom = "point", fun.y = "mean", position = position_dodge(0.4)) +
+  stat_summary(geom = "errorbar", width = 0.1, position = position_dodge(0.4),
+    fun.data = "mean_sdl", fun.args = list(mult = 1))
+```
+
+```{r tg4-check}
+#TODO
+```
+
+- moyenne avec l'intervalle de confiance
+
+Reproduisez le graphique suivant 
+
+```{r}
+chart(data = tooth, len ~ supp %col=% dose) +
+  geom_jitter(alpha = 0.4, position = position_dodge(0.4)) +
+  stat_summary(geom = "point", fun.y = "mean", position = position_dodge(0.4)) +
+  stat_summary(geom = "errorbar", width = 0.1, position = position_dodge(0.4),
+    fun.data = "mean_cl_normal", fun.args = list(conf.int = 0.95))
+```
+
+Le snippet correspondant à cette instructions est **.cberrbar2**
+
+```{r, echo = TRUE, eval = FALSE}
+chart(data = DF, YNUM ~ XFACTOR1 %col=% XFACTOR2) +
+  geom_jitter(alpha = 0.4, position = position_dodge(0.4)) +
+  stat_summary(geom = "point", fun.y = "mean", position = position_dodge(0.4)) +
+  stat_summary(geom = "errorbar", width = 0.1, position = position_dodge(0.4),
+    fun.data = "mean_cl_normal", fun.args = list(conf.int = 0.95))
+```
+
+```{r tg5, exercise = TRUE, exercise.setup= "tg_prepare2"}
+
+```
+
+```{r tg5-solution}
+chart(data = tooth, len ~ supp %col=% dose) +
+  geom_jitter(alpha = 0.4, position = position_dodge(0.4)) +
+  stat_summary(geom = "point", fun.y = "mean", position = position_dodge(0.4)) +
+  stat_summary(geom = "errorbar", width = 0.1, position = position_dodge(0.4),
+    fun.data = "mean_cl_normal", fun.args = list(conf.int = 0.95))
+```
+
+```{r tg5-check}
+#TODO
+```
+
+### Visualisation des données sous la forme d'un tableau
+
+Reproduisez le tableau de données suivants :
+
+```{r}
+tooth %>.%
+  group_by(., supp, dose) %>.%
+  summarise(., mean = mean(len), sd = sd(len), count = sum(!is.na(len)))
+```
+
+Le snippet correspondant à cette instructions est **.hmanovadesc2**
+
+```{r, echo = TRUE, eval=FALSE}
+DF %>.%
+  group_by(., XFACTOR1, XFACTOR2) %>.%
+  summarise(., mean = mean(YNUM), sd = sd(YNUM), count = sum(!is.na(YNUM)))
+```
+
+```{r tg7, exercise = TRUE, exercise.setup = "tg-prepare2"}
+tooth %>.%
+  group_by(., supp, dose) %>.%
+  summarise(., mean = mean(len), sd = sd(len), count = sum(!is.na(len)))
+```
+
+```{r tg7-solution} 
+tooth %>.%
+  group_by(., supp, dose) %>.%
+  summarise(., mean = mean(len), sd = sd(len), count = sum(!is.na(len)))
+```
+
+```{r tg7-check} 
+#TODO
+```
+
+Vous avez employé différents outils afin de visualiser vos données. Vous pouvez à présent répondre à la question suivante avec un regard plus avisé :
+
+**Y a t'il une différence de croissance des dents de cochons d'Inde en fonction de la supplémentation et de la dose administrée?**
+
+### Anova à 2 facteurs
+
+Avant de pouvoir utiliser une analyse de variance à 2 faceurs, vous devez vérifier l'homoscédasticité.
+
+Utilisez un test de bartlett avec intéraction. Le snippet correspondant à cette instructions est **.hvbartlett**
+
+```{r, eval=FALSE, echo=TRUE}
+bartlett.test(data = DF, YNUM ~ interaction(XFACTOR1, XFACTOR2)
+```
+
+```{r tg8, exercise = TRUE, exercise.setup ="tg_prepare2"}
+
+```
+
+```{r tg8-solution}
+bartlett.test(data = tooth, len ~ interaction(supp,dose))
+```
+
+```{r tg9-check}
+#TODO
+```
+
+```{r quiz1}
+question("Y a t'il homogénéité des variances ?",
+         answer("Oui", correct = TRUE),
+         answer("Non"),
+         allow_retry = TRUE,
+         random_answer_order = TRUE,
+         incorrect = "Recommencez afin de trouver la bonne réponse",
+         correct = "Bravo, c'est correct")
+```
+
+Vous pouvez maintenant réaliser une analyse de variances à 2 facteurs. Le snippet correspondant à cette instructions est **.hmanova2**.
+
+```{r, echo= TRUE, eval=FALSE}
+anova(anova. <- lm(data = DF, YNUM ~ XFACTOR1 * XFACTOR2))
+```
+
+```{r tg10, exercise = TRUE, exercise.setup = "tg_prepare2"}
+
+```
+
+```{r tg10-solution}
+anova(anova. <- lm(data = tooth, len ~ supp * dose))
+```
+
+```{r tg10-check}
+#TODO
+```
+
+```{r quiz2}
+quiz(question("Y a t'il une différence significative entre les deux supplémentations administrées au seuil alpha de 5% ?",
+     answer("oui", correct = TRUE),
+     answer("non"),
+     allow_retry = TRUE,
+     incorrect = "Recommencez afin de trouver la bonne réponse",
+     correct = "Bravo, c'est correct"),
+     question("Y a t'il une différence significative entre les trois doses administrées au seuil alpha de 5% ?",
+     answer("oui", correct = TRUE),
+     answer("non"),
+     allow_retry = TRUE,
+     incorrect = "Recommencez afin de trouver la bonne réponse",
+     correct = "Bravo, c'est correct"),
+     question("Y a t'il une intéraction significative entre les  doses et les suppléments administrés au seuil alpha de 5% ?",
+     answer("oui", correct = TRUE),
+     answer("non"),
+     allow_retry = TRUE,
+     incorrect = "Recommencez afin de trouver la bonne réponse",
+     correct = "Bravo, c'est correct")
+     )
+```
+
+Réalisez à présent une analyse complémentaire de l'anova. Le snippet correspondant à cette instructions est **.hmanovamult**.
+
+```{r tg_prepare3}
+tooth <- read("ToothGrowth", package = "datasets")
+tooth$dose <- as.ordered(tooth$dose)
+tooth <- labelise(tooth, self = FALSE,
+  label = list(
+    len = "Longueur des dents",
+    supp = "Supplémentation",
+    dose = "Dose"
+  ),
+  units = list(
+    len = "mm",
+    supp = NA,
+    dose = "mg/J"
+  )
+)
+anova. <- lm(data = tooth, len ~ supp * dose)
+```
+
+```{r, echo= TRUE, eval=FALSE}
+summary(anovaComp. <- confint(multcomp::glht(anova.,
+  linfct = multcomp::mcp(XFACTOR = "Tukey")))) # Add a second factor if you want
+.oma <- par(oma = c(0, 5.1, 0, 0)); plot(anovaComp.); par(.oma); rm(.oma)
+```
+
+```{r tg11, exercise = TRUE, exercise.setup = "tg_prepare3"}
+
+```
+
+```{r tg11-solution}
+summary(anovaComp. <- confint(multcomp::glht(anova.,
+  linfct = multcomp::mcp(supp = "Tukey", dose = "Tukey")))) # Add a second factor if you want
+.oma <- par(oma = c(0, 5.1, 0, 0)); plot(anovaComp.); par(.oma); rm(.oma)
+```
+
+```{r tg11-check}
+#TODO
+```
+
+Vous venez de boucler votre analyse, sur l'analyse de la croissance des dents de cochons d'Inde.
+
+## Conclusion
+
+Bravo! Vous venez de terminer votre séance d'exercices dans un tutoriel "learnr". 
+
+Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
+
+```{r comm, exercise=TRUE, exercise.lines = 8}
+# Ajout de commentaires 
+# ...
+```
+
+```{r comm-check}
+# Not yet...
+```
