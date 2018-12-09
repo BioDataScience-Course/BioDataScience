@@ -1,5 +1,9 @@
 # BioDataScience News
 
+## Changes in version 0.17.0
+
+- Tutorial 11a_anova2 finalized
+
 ## Changes in version 0.16.0
 
 - Tutorial 10b_anova finalized
