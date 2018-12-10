@@ -6,7 +6,7 @@ output:
   learnr::tutorial
 tutorial:
   id: "sdd1.11a"
-  version: 1.0.0
+  version: 1.1.0
 runtime: shiny_prerendered
 ---
 
@@ -305,7 +305,7 @@ DF %>.%
   summarise(., mean = mean(YNUM), sd = sd(YNUM), count = sum(!is.na(YNUM)))
 ```
 
-```{r tg7, exercise = TRUE, exercise.setup = "tg-prepare2"}
+```{r tg7, exercise = TRUE, exercise.setup = "tg_prepare2"}
 tooth %>.%
   group_by(., supp, dose) %>.%
   summarise(., mean = mean(len), sd = sd(len), count = sum(!is.na(len)))
@@ -343,7 +343,7 @@ bartlett.test(data = DF, YNUM ~ interaction(XFACTOR1, XFACTOR2)
 bartlett.test(data = tooth, len ~ interaction(supp,dose))
 ```
 
-```{r tg9-check}
+```{r tg8-check}
 #TODO
 ```
 
