@@ -1,0 +1,424 @@
+---
+title: "Module 11 : Les différentes syntaxe dans R"
+subtitle: "Traitement des données I"
+author: "Guyliann Engels & Philippe Grosjean"
+output:
+  learnr::tutorial
+tutorial:
+  id: "sdd1.11b"
+  version: 0.0.1
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+SciViews::R()
+
+options(tutorial.event_recorder = BioDataScience::record_sdd)
+tutorial_options(exercise.checker = BioDataScience::checker_sdd)
+tutorial_options(exercise.timelimit = 60)
+tutorial_options(exercise.cap = "Code R")
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
+
+library(BioDataScience)
+#dataset
+urchin <- read("urchin_bio", package = "data.io", lang = "fr")
+```
+
+```{r, echo=FALSE}
+fixedRow(
+  column(9, div(
+    img(src = 'images/BioDataScience-128.png', align = "left"),
+    h1("Science des données biologiques"),
+    "Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)"
+  )),
+  column(3, div(
+    textInput("user", "Utilisateur :", ""),
+    textInput("email", "Email :", "")
+  ))
+)
+textOutput("user") # This is newer shown, but required to trigger an event!
+textOutput("email") # Idem!
+```
+
+```{r, context="server"}
+output$user <- renderText({BioDataScience::user_name(input$user);""})
+output$email <- renderText({BioDataScience::user_email(input$email);""})
+updateTextInput(session, "user", value = BioDataScience::user_name())
+updateTextInput(session, "email", value = BioDataScience::user_email())
+```
+
+## Préambule
+
+Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord avec son interface [ici](http://biodatascience-course.sciviews.org/sdd-umons/learnr.html).
+
+![](images/attention.jpg)
+
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
+
+## Objectifs
+
+- Comprendre différents types de syntaxe dans R
+
+## Syntaxe dans R
+
+Deux jeux de données vont être employés en parallèle afin de réaliser cette séance d'exercice. Les explications sont données avec le jeux de données biométrie humaine alors que les exercices sont à réaliser sur le jeu de données portant sur la biométrie des oursins. 
+
+Le jeu de données sur la biométrie humaine comprend 7 variables et 395 individus. 
+
+```{r}
+(biometry <- read("biometry", package = "BioDataScience", lang = "fr"))
+```
+
+Le jeu de données sur la biométrie des oursins comprend 19 variables et 421 individus.
+
+```{r}
+(urchin <- read("urchin_bio", package = "data.io", lang = "fr"))
+```
+
+### Calcul d'une nouvelle variable
+
+La taille (height) est exprimée en centimètre dans le jeu de données biometry. Si nous souhaitons convertir cette variable en mètre nous pouvons employer différentes instructions dans R.
+
+- Avec SciViews::R et tidyverse
+
+```{r, echo = TRUE}
+biometry %>.%
+  mutate(., height_m = height/100) -> biometry
+# visualisation des premières lignes du tableau
+head(biometry)
+```
+
+- R de base
+
+```{r, echo = TRUE}
+biometry$height_cm <- biometry$height/100
+# visualisation des premières lignes du tableau
+head(biometry)
+```
+
+Calculez le diamètre moyen avec la formule suivante sur les données urchin :
+
+$$diameter \ = \ \frac{(diameter1 + diameter2)}{2}$$
+Affichez ensuite les premières lignes du tableau comprennant votre nouvelles variable avec la fonction head()
+
+- Utilisez le language proposé par Sciviews::R et tidyverse
+
+```{r mutate1, exercise = TRUE}
+# calcul de diameter
+# 
+# visualisation avec head()
+# 
+```
+
+```{r mutate1-solution}
+urchin %>.%
+  mutate(., diameter = (diameter1+diameter2)/2) -> urchin
+head(urchin)
+```
+
+```{r mutate1-check}
+#TODO
+```
+
+- Utilisez le language R de base
+
+```{r mutate2, exercise = TRUE}
+# calcul du diameter
+# 
+# visualisation avec head()
+# 
+```
+
+```{r mutate2-solution}
+urchin$diameter <- (urchin$diameter1 + urchin$diameter2)/2
+head(urchin)
+```
+
+```{r mutate2-check}
+#TODO
+```
+
+### Sélection de variables dans un jeu de données 
+
+Si nous souhaitons réduire le jeu de données biometry afin d'obtenir un sous tableau comprennant uniquement la variable gender, weight et height, nous pouvons employer différentes instructions dans R.
+
+- Avec SciViews::R et tidyverse
+
+```{r, echo = TRUE}
+biometry %>.%
+   select(., gender, weight, height) -> biom_sub
+# visualisation des premières lignes du nouveau tableau
+head(biom_sub)
+```
+
+- Avec R de base
+
+```{r, echo = TRUE}
+# avec le nom des variables d'intérêts
+biom_sub <- biometry[ , c("gender", "weight", "height")]
+# visualisation des premières lignes du nouveau tableau
+head(biom_sub)
+```
+
+```{r, echo = TRUE}
+# avec la position des variables d'intérêts
+biom_sub <- biometry[c(1,3,4)]
+# visualisation des premières lignes du nouveau tableau
+head(biom_sub)
+```
+
+Sélectionnez les variables "origin", "height" and "weight" du jeu de données urchin. Visualier les premières lignes de votre nouveau tableau de données avec la fonction head().
+
+- Avec SciViews::R et tidyverse
+
+```{r select1, exercise = TRUE}
+
+```
+
+```{r select1-solution}
+urchin %>.%
+   select(., origin, weight, height) -> urchin_sub
+# visualisation des premières lignes du nouveau tableau
+head(urchin_sub)
+```
+
+```{r select1-check}
+#TODO
+```
+
+- Avec R de base et le nom des variables d'intérêts
+
+```{r select2, exercise = TRUE}
+
+```
+
+```{r select2-solution}
+# avec le nom des variables d'intérêts
+urchin_sub <- urchin[ , c("origin", "weight", "height")]
+# visualisation des premières lignes du nouveau tableau
+head(urchin_sub)
+```
+
+```{r select2-check}
+#TODO
+```
+
+- Avec R de base et la position des variables d'intérêts
+
+```{r select3, exercise = TRUE}
+
+```
+
+```{r select3-solution}
+# avec le nom des variables d'intérêts
+urchin_sub <- urchin[ , c(1, 4, 6)]
+# visualisation des premières lignes du nouveau tableau
+head(urchin_sub)
+```
+
+```{r select3-check}
+#TODO
+```
+
+Si nous souhaitons réduire le jeu de données biometry afin d'obtenir un sous tableau comprennant toute les variables à l'exception des variables  "day_birth", "year_measure" et "age", nous pouvons employer différentes instructions dans R.
+
+- Avec SciViews::R et tidyverse
+
+```{r, echo = TRUE}
+biometry %>.%
+   select(., - wrist, - year_measure, - age) -> biom_sub
+# visualisation des premières lignes du nouveau tableau
+head(biom_sub)
+```
+
+- Avec R de base
+
+```{r, echo = TRUE}
+# avec les positions des variables d'intérêts
+biom_sub <- biometry[ , -c(5, 6, 7)]
+# visualisation des premières lignes du nouveau tableau
+head(biom_sub)
+```
+
+```{r, echo = TRUE}
+# avec les positions des variables d'intérêts à nouveau
+biom_sub <- biometry[ , -c(5:7)]
+# visualisation des premières lignes du nouveau tableau
+head(biom_sub)
+```
+
+Si nous souhaitons réduire le jeu de données urchin afin d'obtenir un sous tableau comprennant toutes les variables à l'exception des variables  "diameter1", "diameter2", "skeleton", "lantern", "test" et "spines", nous pouvons employer différentes instructions dans R.
+
+Affichez ensuite les premières lignes du tableau comprennant votre nouvelles variable avec la fonction head()
+
+- Avec SciViews::R et tidyverse
+
+```{r select4, exercise = TRUE}
+
+```
+
+```{r select4-solution}
+urchin %>.%
+  select(., - diameter1, - diameter2, - skeleton, -lantern, - test, -spines) -> urchin_sub
+# visualisation des premières lignes du nouveau tableau
+head(urchin_sub)
+```
+
+```{r select4-check}
+#TODO
+```
+
+- Avec R de base et la position des variables
+
+```{r select5, exercise = TRUE}
+
+```
+
+```{r select5-solution}
+# avec les positions des variables d'intérêts à nouveau
+urchin_sub <- urchin[ , -c(2:3, 14:17)]
+# visualisation des premières lignes du nouveau tableau
+head(urchin_sub)
+```
+
+```{r select5-check}
+#TODO
+```
+
+### Sélection d'individus dans un jeu de données
+
+Si nous souhaitons réduire le jeu de données biometry afin d'obtenir un sous tableau comprennant uniquement les individus du genre masculin, nous pouvons employer différentes instructions dans R.
+
+- Avec SciViews::R et tidyverse
+
+```{r, echo = TRUE}
+biometry %>.%
+  filter(., gender == "M") -> biom_sub
+# visualisation des premières lignes du nouveau tableau
+head(biom_sub)
+```
+
+- Avec R de base
+
+```{r, echo = TRUE}
+biom_sub <- biometry[ biometry$gender=="M", ]
+# visualisation des premières lignes du nouveau tableau
+head(biom_sub)
+```
+
+Si nous souhaitons réduire le jeu de données urchin afin d'obtenir un sous tableau comprennant  uniquement les individus dont la hauteur est strictement supérieur à 30 mm , vous pouvez employer différentes instructions dans R.
+
+Affichez ensuite les premières lignes du tableau comprennant votre nouvelles variable avec la fonction head()
+
+- Avec SciViews::R et tidyverse
+
+```{r filter1, exercise = TRUE}
+
+```
+
+```{r filter1-solution}
+urchin %>.%
+  filter(., height > 30) -> urchin_sub
+# visualisation des premières lignes du nouveau tableau
+head(urchin_sub)
+```
+
+```{r filter1-check}
+#TODO
+```
+
+- Avec R de base 
+
+```{r filter2, exercise = TRUE}
+
+```
+
+```{r filter2-solution}
+urchin_sub <- urchin[ urchin$height > 30, ]
+# visualisation des premières lignes du nouveau tableau
+head(urchin_sub)
+```
+
+```{r filter2-check}
+#TODO
+```
+
+### Filtre des lignes et sélection de colonnes
+
+Si nous souhaitons réduire le jeu de données biometry afin d'obtenir un sous tableau comprennant uniquement les individus du genre féminin et dont la taille est supérieur ou égale à 180 cm. De plus, nous voulons que les variables gender, height, weigth  uniquement, nous pouvons employer différentes instructions dans R.
+
+- Avec SciViews::R et tidyverse
+
+```{r, echo = TRUE}
+biometry %>.%
+  filter(., gender =="W" & height >= 180) %>.%
+  select(., gender, height, weight) -> biom_sub
+# visualisation des premières lignes du nouveau tableau
+head(biom_sub)
+```
+
+- Avec R de base
+
+```{r}
+biom_sub <- biometry[biometry$gender =="W" & biometry$height >= 180, c(1, 3, 4)]
+# visualisation des premières lignes du nouveau tableau
+head(biom_sub)
+```
+
+Si nous souhaitons réduire le jeu de données urchin afin d'obtenir un sous tableau comprennant  uniquement les individus dont la hauteur est strictement supérieur à 30 mm et provenant d'élevage. De plus, ne gardez que les variables height, weight et skeleton. Vous pouvez employer différentes instructions dans R.
+
+Affichez ensuite les premières lignes du tableau comprennant votre nouvelles variable avec la fonction head()
+
+- Avec SciViews::R et tidyverse
+
+```{r filter3, exercise = TRUE}
+
+```
+
+```{r filter3-solution}
+urchin %>.%
+  filter(., origin == "Farm" & height > 30) %>.%
+  select(., height, weight, skeleton)
+```
+
+
+
+### Filtrer des lignes
+
+Maintenant que vous avez appris à sélectionner des colonnes d'intérêt, vous pouvez vous exercer à selectionner des colonnes et filtrer des lignes.
+
+```{r}
+# biometry[biometry$height > 180, c("gender", "weight", "height")]
+# 
+# biometry[biometry$gender == "W" & biometry$height > 180, c(1,3,4)]
+# 
+# biometry %>.%
+#   select(., c("gender", "weight", "height")) %>.%
+#   filter(., gender == "W" & height > 180)
+```
+
+Vous avez à plusieurs reprise étudié le jeu de données portant sur la croissance des dents de cochons d'Inde. 
+
+Tentez de répondre à la question suivante :
+
+**Y a t'il une différence de croissance des dents de cochons d'Inde en fonction de la supplémentation et de la dose administrée?**
+
+Reprennons la suite logique de l'analyse d'un jeu de données étape par étape.
+
+
+## Conclusion
+
+Bravo! Vous venez de terminer votre séance d'exercices dans un tutoriel "learnr". 
+
+Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
+
+```{r comm, exercise=TRUE, exercise.lines = 8}
+# Ajout de commentaires 
+# ...
+```
+
+```{r comm-check}
+# Not yet...
+```
