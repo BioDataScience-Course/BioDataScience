@@ -1,5 +1,9 @@
 # BioDataScience News
 
+## Changes in version 0.18.0
+
+- Tutorial 11b_syntaxr finalized
+
 ## Changes in version 0.17.0
 
 - Tutorial 11a_anova2 finalized

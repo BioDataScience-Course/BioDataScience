@@ -6,7 +6,7 @@ output:
   learnr::tutorial
 tutorial:
   id: "sdd1.11b"
-  version: 0.1.0
+  version: 1.0.0
 runtime: shiny_prerendered
 ---
 
