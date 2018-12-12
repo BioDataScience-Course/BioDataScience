@@ -407,7 +407,6 @@ head(urchin_sub)
 #TODO
 ```
 
-
 ## Conclusion
 
 Bravo! Vous venez de terminer votre séance d'exercices dans un tutoriel "learnr". 
