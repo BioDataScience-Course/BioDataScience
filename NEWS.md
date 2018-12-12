@@ -1,5 +1,9 @@
 # BioDataScience News
 
+## Changes in version 0.19.0
+
+- correction of bug to 11b and 11a
+
 ## Changes in version 0.18.2
 
 - Tutorial 11b_syntaxr finalized
