@@ -1,0 +1,209 @@
+---
+title: "Module 12 : Les coefficient de corrélation"
+subtitle: "Traitement des données I"
+author: "Guyliann Engels & Philippe Grosjean"
+output:
+  learnr::tutorial
+tutorial:
+  id: "sdd1.12a"
+  version: 1.0.0
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+SciViews::R()
+
+options(tutorial.event_recorder = BioDataScience::record_sdd)
+tutorial_options(exercise.checker = BioDataScience::checker_sdd)
+tutorial_options(exercise.timelimit = 60)
+tutorial_options(exercise.cap = "Code R")
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
+
+library(BioDataScience)
+#dataset
+urchin <- read("urchin_bio", package = "data.io", lang = "fr")
+```
+
+```{r, echo=FALSE}
+fixedRow(
+  column(9, div(
+    img(src = 'images/BioDataScience-128.png', align = "left"),
+    h1("Science des données biologiques"),
+    "Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)"
+  )),
+  column(3, div(
+    textInput("user", "Utilisateur :", ""),
+    textInput("email", "Email :", "")
+  ))
+)
+textOutput("user") # This is newer shown, but required to trigger an event!
+textOutput("email") # Idem!
+```
+
+```{r, context="server"}
+output$user <- renderText({BioDataScience::user_name(input$user);""})
+output$email <- renderText({BioDataScience::user_email(input$email);""})
+updateTextInput(session, "user", value = BioDataScience::user_name())
+updateTextInput(session, "email", value = BioDataScience::user_email())
+```
+
+## Préambule
+
+Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord avec son interface [ici](http://biodatascience-course.sciviews.org/sdd-umons/learnr.html).
+
+![](images/attention.jpg)
+
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
+
+## Objectifs
+
+- Comprendre les différents niveaux d’association de deux variables numériques.
+
+## La corrélation
+
+Vous avez à votre disposition un jeu de données sur la biométrie d'Iris.
+
+```{r, echo = TRUE}
+# Importation des données
+(iris <- read("iris", package = "datasets", lang = "fr"))
+```
+
+Utilisez la matrice de corrélation afin de mettre en avant la corrélation entre l'ensemble des vairables numérique disponible.
+
+```{r iris_prepa}
+iris <- read("iris", package = "datasets")
+```
+
+Vous avez à votre disposition le snippet : 
+
+```{r, echo, eval = FALSE, echo = TRUE}
+correlation(DF[, INDEX_EXPRESSION], use = "complete.obs", method = "pearson")
+```
+
+N'oubliez pas de sélectionner les variables que vous souhaitez étudier.
+
+```{r corr1, exercise = TRUE, exercise.setup = "iris_prepa"}
+
+```
+
+```{r corr1-solution}
+correlation(iris[, 1:4], use = "complete.obs", method = "pearson")
+```
+
+```{r corr1-check}
+# TODO
+```
+
+
+Vous pouvez également réaliser un graphique avec l'instruction suivante :
+
+```{r, echo = TRUE, eval = FALSE}
+plot(correlation(DF[, INDEX_EXPRESSION], use = "complete.obs", method = "pearson"))
+```
+
+```{r corr2, exercise = TRUE, exercise.setup = "iriss_prepa"}
+
+```
+ 
+```{r corr2-solution}
+plot(correlation(iris[, 1:4], use = "complete.obs", method = "pearson"))
+```
+
+```{r corr2-check}
+# TODO
+```
+
+En ajoutant l'argument type = "upper", vous pouvez n'afficher que la partie supérieur de votre graphique.
+
+```{r corr3, exercise = TRUE, exercise.setup = "iris_prepa"}
+
+```
+
+```{r corr3-solution}
+plot(correlation(iris[, 1:4], use = "complete.obs", method = "pearson"), type = "upper")
+```
+
+```{r corr3-check}
+# TODO
+```
+
+Répondez à présent à la question suivante.
+
+```{r quiz1}
+question("Quelles sont les variables les plus fortement corrélées ?(sélectionnez les deux variables les plus corrélées)",
+         answer("sepal_length"),
+         answer("sepal_width"),
+         answer("petal_length", correct = TRUE),
+         answer("petal_width", correct = TRUE),
+           allow_retry = TRUE,
+           incorrect = "Recommencez afin de trouver la bonne réponse",
+           correct = "Bravo, c'est correct")
+```
+
+Nous pouvons nous poser la question suivante :
+
+- **est ce que la largeur des sépales (sepal_width) et la longeur des pétales (petal_length) sont significativement corrélées au seuil alpha de 5% ? **
+
+```{r, echo = TRUE, eval = FALSE}
+cor.test(data = DF, ~ YNUM + XNUM,
+         alternative = "two.sided", method = "pearson")
+```
+
+```{r corr4, exercise = TRUE, exercise.setup = "iris_prepa"}
+
+```
+
+```{r corr4-solution}
+cor.test(data = iris, ~ petal_length + sepal_width,
+         alternative = "two.sided", method = "pearson")
+```
+
+```{r corr4-check}
+# TODO
+```
+
+```{r quiz2}
+question("Y a t'il une différence significative au seuil alpha de 5% ?",
+         answer("Oui", correct = TRUE),
+         answer("Non"))
+```
+
+
+- **est ce que la largeur des sépales (sepal_width) et la longeur des sépales () sont significativement corrélées au seuil alpha de 5% ? **
+
+```{r corr5, exercise = TRUE, exercise.setup = "iris_prepa"}
+
+```
+
+```{r corr5-solution}
+cor.test(data = iris, ~ sepal_length + sepal_width,
+         alternative = "two.sided", method = "pearson")
+```
+
+```{r corr5-check}
+# TODO
+```
+
+```{r quiz3}
+question("Y a t'il une différence significative au seuil alpha de 5% ?",
+         answer("Oui"),
+         answer("Non", correct = TRUE))
+```
+
+
+## Conclusion
+
+Bravo! Vous venez de terminer votre séance d'exercices dans un tutoriel "learnr". 
+
+Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
+
+```{r comm, exercise=TRUE, exercise.lines = 8}
+# Ajout de commentaires 
+# ...
+```
+
+```{r comm-check}
+# Not yet...
+```
