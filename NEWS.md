@@ -1,5 +1,9 @@
 # BioDataScience News
 
+## Changes in version 0.20.0
+
+- Tutorial 12a_correlation finalized
+
 ## Changes in version 0.19.0
 
 - correction of bug to 11b and 11a
