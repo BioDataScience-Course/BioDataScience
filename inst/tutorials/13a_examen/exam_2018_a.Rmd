@@ -1,0 +1,566 @@
+---
+title: "Examen de janvier 2018 : Version A"
+subtitle: "Traitement des données I"
+author: "Guyliann Engels & Philippe Grosjean"
+output:
+  learnr::tutorial
+tutorial:
+  id: "sdd1.13a"
+  version: 0.0.1
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+SciViews::R()
+
+options(tutorial.event_recorder = BioDataScience::record_sdd)
+tutorial_options(exercise.checker = BioDataScience::checker_sdd)
+tutorial_options(exercise.timelimit = 60)
+tutorial_options(exercise.cap = "Code R")
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
+
+library(BioDataScience)
+#dataset
+
+```
+
+```{r, echo=FALSE}
+fixedRow(
+  column(9, div(
+    img(src = 'images/BioDataScience-128.png', align = "left"),
+    h1("Science des données biologiques"),
+    "Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)"
+  )),
+  column(3, div(
+    textInput("user", "Utilisateur :", ""),
+    textInput("email", "Email :", "")
+  ))
+)
+textOutput("user") # This is newer shown, but required to trigger an event!
+textOutput("email") # Idem!
+```
+
+```{r, context="server"}
+output$user <- renderText({BioDataScience::user_name(input$user);""})
+output$email <- renderText({BioDataScience::user_email(input$email);""})
+updateTextInput(session, "user", value = BioDataScience::user_name())
+updateTextInput(session, "email", value = BioDataScience::user_email())
+```
+
+## Préambule
+
+Durant l'ensemble du cours, vous avez été confronté à des learnr afin de vérifier l'acquisition de différent concepts lié à la science des données biologiques. Votre examen vous est proposé sous le même format. 
+
+Vous avez 20 questions 
+
+![](images/attention.jpg)
+
+**Ne vous trompez pas dans votre adresse mail et votre identifiant Github**
+
+**N'oubliez pas de soumettre votre réponse après chaque exercice**
+
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
+
+
+## 1. Analyse d'un test statistique 
+
+Répondez aux question ci-dessus sur base du tableau proposé :
+
+```{r anova}
+iris <- data.io::read("iris", package = "datasets")
+sample(1:150, size = 100, replace = FALSE) -> t
+anova(anova. <- lm(data = iris[ t, ], petal_length ~ species))
+```
+
+Répondez aux question ci-dessous sur base du tableau proposé ci-dessus :
+
+```{r quiz_anova}
+quiz(question("De quelle analyse s'agit-il ?",
+              answer(text = "Anova", correct = TRUE),
+              answer(text = "Test de student"),
+              answer(text = "Chi^2"),
+              answer(text = "Test post-hoc"),
+              answer("Aucune des réponses proposées"),
+              random_answer_order = TRUE),
+     question("Combien d'observation compte cette analyse ?",
+              answer(text = "Aucune des réponses proposées", 
+                     correct = TRUE),
+              answer(text = "2"),
+              answer(text = "97"),
+              answer(text = "99"),
+              answer(text = "3"),
+              random_answer_order = TRUE))
+```
+
+## 2. Calcul de probabilité
+
+Sur base d'un questionnaire lié à l'indice de masse corporelle et l'activité physique, les chercheurs ont classé les individus en différents niveaux d'activité physique et d'IMC. Ils obtiennent le tableau suivant : 
+
+```{r}
+set.seed(43)
+imc <- data.frame("Sous-poids" = sample(20:70, size = 3), 
+                     "Normal" = sample(30:80, size = 3), 
+                     "Surpoids" = sample(10:60, size = 3),
+                     "Obésité" = sample(0:50, size = 3),
+                     row.names = c("Activité physique occasionnelle", "Activité physique régulière", "Activité physique de haut niveaux"))
+knitr::kable(imc, caption = "Tableau")
+```
+
+Afin de vous aider dans vos réfléxions, voici la somme des lignes et des colonnes
+
+```{r, echo=TRUE}
+# Somme des lignes
+rowSums(imc)
+# somme des colonnes
+colSums(imc)
+```
+
+Répondez au quiz ci-dessous sur base du tableau proposé ci-dessus :
+
+```{r proba_quiz}
+quiz(question("Quelle est la probabilité d'avoir une activité physique de haut niveaux ?",
+              answer("0.222", correct = TRUE),
+              answer("0.333"),
+              answer(" 0.521"),
+              answer(" 0.478"),
+              answer("Aucune réponse n'est correcte"),
+              random_answer_order = TRUE),
+     question("Quelle est la probabilité d'avoir une activité physique régulière et d'être obèse ?",
+              answer("0.463", correct = TRUE),
+              answer("..."),
+              answer("..."),
+              answer("..."),
+              answer("Aucune réponse n'est correcte"),
+              random_answer_order = TRUE)
+              )
+```
+
+Vous avez à votre disposition une zone de code que vous pouvez évidement employer comme une calculatrice. (Soumettez votre réflexion)
+
+```{r proba_ref, exercise = TRUE}
+
+```
+
+```{r proba_ref-check}
+#TODO
+```
+
+
+## 3. Moyenne 
+
+Calculez la moyenne, l'écart-type et le coefficient de variation du vecteur ci-dessous
+
+```{r moyenne, echo = TRUE}
+(x <- sample(20:30, size = 5))
+```
+
+```{r mean_quiz}
+quiz(question("Calculez la moyenne du vecteur x",
+              answer(sprintf("$%s$", mean(x)), correct = TRUE),
+              answer(sprintf("$%s$", mean(x[-1]))),
+              answer(sprintf("$%s$", mean(x)-1)),
+              answer(sprintf("$%s$", x[3])),
+              answer("Aucune réponse n'est correcte"),
+              random_answer_order = TRUE),
+     question("Calculez l'écart-type du vecteur x",
+              answer(sprintf("$%s$", sd(x)), correct = TRUE),
+              answer(sprintf("$%s$", sd(x[-1]))),
+              answer(sprintf("$%s$", sd(x)-1)),
+              answer(sprintf("$%s$", x[2])),
+              answer("Aucune réponse n'est correcte"),
+              random_answer_order = TRUE),
+     question("Calculez le coeficient de variation du vecteur x",
+              answer(sprintf("$%s$", 100*(sd(x)/mean(x))), correct = TRUE),
+              answer(sprintf("$%s$", 100*(sd(x[-1])/mean(x)))),
+              answer(sprintf("$%s$", 100*(sd(x)-1)/mean(x))),
+              answer(sprintf("$%s$", 100*(x[2]/mean(x)))),
+              answer("Aucune réponse n'est correcte"),
+              random_answer_order = TRUE)
+     )
+
+```
+
+Vous avez à votre disposition une zone de code que vous pouvez évidement employer comme une calculatrice. (Soumettez votre réflexion)
+
+```{r mean_ref, exercise = TRUE}
+
+```
+
+```{r mean_ref-check}
+#TODO
+```
+
+## 4. Choix d'un test statistique
+
+```{r pearson}
+question("Sélectionnez le test statistique permettant de vérifier la corrélation entre 2 variables",
+         answer("test de Bartlett"),
+         answer("test de Shapiro-wilk"),
+         answer("test de Friedman"),
+         answer("test de Pearson", correct = TRUE),
+         answer("Aucune des réponses proposées"),
+         random_answer_order = TRUE)
+```
+
+## 5. Analyse d'un graphique 
+
+```{r}
+set.seed(1000)
+df1 <- data_frame(x = rnorm(5000, 35, 5))
+df2 <- rbind(df1, data_frame(x = rnorm(7000, 60, 5)))
+chart(data = df2, ~ x) +
+  geom_histogram() +
+  labs(x = "", y = "")
+```
+
+Répondez à la question ci-dessous sur base du graphique ci-dessus:
+
+```{r histo}
+question("Définissez le mode et la symétrie de l'histogramme ci-dessus (vous devez sélectionner 2 réponses)",
+         answer("unimodal"),
+         answer("bimodal", correct = TRUE),
+         answer("multimodal"),
+         answer("symétrique", correct = TRUE), 
+         answer("asymétrique"))
+```
+
+## 6. Choix d'un test statistique
+
+Répondez aux questions ci-dessous
+
+```{r bartlet}
+quiz(question("Sélectionnez le test statistique permettant de vérifier l'homogénéité des variances",
+         answer("Test de Bartlett"),
+         answer("Test de Shapiro-wilk"),
+         answer("Test de Friedman"),
+         answer("Test de Pearson", correct = TRUE),
+         answer("Aucune des réponses proposées"),
+         random_answer_order = TRUE),
+     question("Y a t'il homoscédasticité des variances avec une p.value de 0.0003345 au seuil alpha de 0.05",
+              answer("Oui"),
+              answer("Non", correct = TRUE),
+         random_answer_order = TRUE))
+```
+
+## 7. Analyse d'un test statistique  
+
+Une étude est menée au sein d'une entreprise qui s'intéresse à la parité homme-femme en son sein.
+
+```{r}
+(tab <- as.table(c(Homme = 2301, Femme = 2438)))
+```
+
+```{r}
+chisq.test(tab, p = c(1/2, 1/2), rescale.p = FALSE)
+```
+
+Suite à l'analyse ci-dessus, répondez aux questions ci-dessous
+
+```{r chi2}
+quiz(question("De quel test s'agit-il ?",
+              answer(text = "chi^2 univarié", correct = TRUE),
+              answer(text = "chi^2 d'indépendance"),
+              answer("test de student univarié"),
+              answer("test de wilcoxon univarié"),
+              answer("Aucune des réponses proposées"),
+              random_answer_order = TRUE),
+     question("Y a t'il parité entre les homme et les femmes au seuil alpha de 0.05",
+              answer(text ="oui"),
+              answer(text = "non", correct = TRUE),
+              random_answer_order = TRUE))
+```
+
+## 8. distribution
+
+Les snippets vous donne les instructions suivantes afin de calculer les quantiles et les probabilités:
+
+```{r,echo = TRUE, eval = FALSE}
+### .iu : distribution uniforme 
+punif(QUANTILES, min = 0, max = 1, lower.tail = TRUE)
+qunif(PROBABILITIES, min = 0, max = 1, lower.tail = TRUE)
+
+### .in distribution normale
+pnorm(QUANTILES, mean = 0, sd = 1, lower.tail = TRUE)
+qnorm(PROBABILITIES, mean = 0, sd = 1, lower.tail = TRUE)
+
+### .il distribution log-normal
+plnorm(QUANTILES, meanlog = 0, sdlog = 1, lower.tail = TRUE)
+qlnorm(PROBABILITIES, meanlog = 0, sdlog = 1, lower.tail = TRUE)
+
+### .it distribution de student
+.mu <- 0; .s <- 1; pt((QUANTILES - .mu)/.s, df = DEGREES_OF_FREEDOM, lower.tail = TRUE)
+.mu <- 0; .s <- 1; .mu + .s * qt(PROBABILITIES, df = DEGREES_OF_FREEDOM, lower.tail = TRUE)
+
+### .ib distribution binomial
+pbinom(QUANTILES, size = N_TRIALS, prob = SUCCESS_PROB, lower.tail = TRUE)
+qbinom(PROBABILITIES, size = N_TRIALS, prob = SUCCESS_PROB, lower.tail = TRUE)
+
+### .ip distribution de poisson
+ppois(QUANTILES, lambda = MEAN_OCCURENCES, lower.tail = TRUE)
+qpois(PROBABILITIES, lambda = MEAN_OCCURENCES, lower.tail = TRUE)
+
+### .ic distribution chi2
+pchisq(QUANTILES, df = DEGREES_OF_FREEDOM, lower.tail = TRUE)
+qchisq(PROBABILITIES, df = DEGREES_OF_FREEDOM, lower.tail = TRUE)
+
+### .if distibution de F
+pf(QUANTILES, df1 = NUMERATOR_DF, df2 = DENOMINATOR_DF, lower.tail = TRUE)
+```
+
+Dans un champs de maïs dont la taille est infinie, dont la taille moyenne est de 140 cm et d'écart type de 25 cm. Quelle est la probabilité d'obtenir une plante de plus de 195 cm ? Utilisez la fonction adéquate
+
+```{r distri_normal, exercise = TRUE}
+
+```
+
+```{r distri_normal-check}
+#TODO
+pnorm(195, mean = 140, sd = 25, lower.tail = FALSE)
+```
+
+Dans un ce même champs de mais, quelle est la probabilité d'obtenir une plante dont la taille est comprise entre 120 et 130 cm ?
+
+```{r distri_normal2, exercise = TRUE}
+
+```
+
+```{r distri_normal2-check}
+pnorm(130, mean = 140, sd = 25, lower.tail = TRUE) - pnorm(120, mean = 140, sd = 25, lower.tail = TRUE)
+```
+
+## 9. Distribution 
+
+Les snippets vous donnent les instructions suivantes afin de calculer les quantiles et les probabilités:
+
+```{r,echo = TRUE, eval = FALSE}
+### .iu : distribution uniforme 
+punif(QUANTILES, min = 0, max = 1, lower.tail = TRUE)
+qunif(PROBABILITIES, min = 0, max = 1, lower.tail = TRUE)
+
+### .in distribution normale
+pnorm(QUANTILES, mean = 0, sd = 1, lower.tail = TRUE)
+qnorm(PROBABILITIES, mean = 0, sd = 1, lower.tail = TRUE)
+
+### .il distribution log-normal
+plnorm(QUANTILES, meanlog = 0, sdlog = 1, lower.tail = TRUE)
+qlnorm(PROBABILITIES, meanlog = 0, sdlog = 1, lower.tail = TRUE)
+
+### .it distribution de student
+.mu <- 0; .s <- 1; pt((QUANTILES - .mu)/.s, df = DEGREES_OF_FREEDOM, lower.tail = TRUE)
+.mu <- 0; .s <- 1; .mu + .s * qt(PROBABILITIES, df = DEGREES_OF_FREEDOM, lower.tail = TRUE)
+
+### .ib distribution binomial
+pbinom(QUANTILES, size = N_TRIALS, prob = SUCCESS_PROB, lower.tail = TRUE)
+qbinom(PROBABILITIES, size = N_TRIALS, prob = SUCCESS_PROB, lower.tail = TRUE)
+
+### .ip distribution de poisson
+ppois(QUANTILES, lambda = MEAN_OCCURENCES, lower.tail = TRUE)
+qpois(PROBABILITIES, lambda = MEAN_OCCURENCES, lower.tail = TRUE)
+
+### .ic distribution chi2
+pchisq(QUANTILES, df = DEGREES_OF_FREEDOM, lower.tail = TRUE)
+qchisq(PROBABILITIES, df = DEGREES_OF_FREEDOM, lower.tail = TRUE)
+
+### .if distibution de F
+pf(QUANTILES, df1 = NUMERATOR_DF, df2 = DENOMINATOR_DF, lower.tail = TRUE)
+```
+
+Nous avons à notre disposition une analyse de student imcomplète. 
+
+Nous avons à notre disposition un échantillon de 100 individus divisé en deux groupes équivalent. Nous avons également à notre disposition une valeur de quantile de -10.51, y a t'il un rejet de H0 au seuil alpha de 0.05 ?
+
+```{r distri3, exercise = TRUE}
+
+```
+
+```{r distri3-check}
+#TODO
+.mu <- 0; .s <- 1; pt((-10.51 - .mu)/.s, df = 98, lower.tail = TRUE)
+.mu <- 0; .s <- 1; .mu + .s * qt(0.05, df = 98, lower.tail = TRUE)
+```
+
+```{r distri3_quiz}
+question("Y a t'il une rejet de H0 ?",
+         answer("oui", correct = TRUE),
+         answer("non"),
+         random_answer_order = TRUE)
+```
+
+## 10. test de student :
+
+```{r}
+weight <- data_frame(weight = c(rnorm(n = 250, mean = 100, sd = 10), 
+                      rnorm(n = 250, mean = 110, sd = 10)), 
+           area = rep(c("a", "b"), each = 250))
+weight$area <- as.factor(weight$area)
+```
+
+```{r student1_prepa}
+weight <- data_frame(weight = c(rnorm(n = 250, mean = 100, sd = 10), 
+                      rnorm(n = 250, mean = 110, sd = 10)), 
+           area = rep(c("a", "b"), each = 250))
+weight$area <- as.factor(weight$area)
+```
+Vous avez à votre disposition le jeu de données `weight` dont voici quelques informations :
+
+```{r, echo = TRUE}
+# nom du jeu de données : weight
+# nom des variables du jeu de données
+names(weight)
+# résumé des variables
+summary(weight)
+```
+
+Vous avez à votre disposition les varaintes du test de student présent dans le snippets
+
+```{r, echo = TRUE, eval = FALSE}
+# .hm
+# .hmttestindep: independent Student's t-test
+t.test(data = ${1:DF}, ${2:YNUM} ~ ${3:XFACTOR}, alternative = "two.sided", conf.level = 0.95, var.equal = TRUE)
+
+# .hmttestpaired: paired Student's t-test
+t.test(${1:DF}\$XNUM, ${1:DF}\$YNUM, alternative = "two.sided", conf.level = 0.95, paired = TRUE)
+
+# .hmttestuni: univariate Student's t-test
+t.test(${1:DF}\$2:XNUM, alternative = "two.sided", mu = 0, conf.level = 0.95)
+```
+
+```{r student1, exercise = TRUE, exercise.setup = "student1_prepa"}
+
+```
+
+```{r student1-check}
+# TODO
+```
+
+```{r stu_quiz}
+question("Y a t'il une différence significative au seuil alpha de 0.05 de masse entre les deux zones étudiée pour la masse monitorée",
+         answer("oui", correct = TRUE),
+         answer("non"), 
+         random_answer_order = TRUE)
+```
+
+
+## 11. Distribution 3
+
+Décrivez la distribution suivante :
+
+$Y \sim LN(42, 5)$
+
+Utilisez la dièse avant de répondre dans la zone de code
+
+```{r distri_ln, exercise = TRUE}
+# Insérez votre réponse dans cette zone de code
+# 
+# 
+```
+
+```{r distri_ln-check}
+#TODO
+```
+
+## 12. Anova
+
+Quels sont les conditions d'application d'une anova à un facteur ?
+
+Utilisez la dièse avant de répondre dans la zone de code
+
+```{r anova_cond, exercise = TRUE}
+#
+#
+#
+```
+
+```{r anova_cond-check}
+#TODO
+```
+
+## 13. Distribution
+
+Commentez l'expression suivantes
+
+$Y \sim t(42, 5, 25)$
+
+```{r distri_stu}
+#
+#
+#
+```
+
+```{r distri_stu-check}
+#TODO
+```
+
+## 14. Corrélation
+
+Sur base de la matrice de corrélation ci-dessous :
+
+```{r, echo=FALSE}
+library(MASS)
+data("crabs")
+crabs_cor <- crabs[, c(4:8)]
+pander::pander(cor(x = crabs_cor, y = NULL, use = "complete.obs", method = "spearman"))
+```
+
+```{r quiz_corr}
+question("Quelles sont les variables les plus corrélées ? (vous devez sélectionner 2 réponses)",
+              answer("FL"),
+              answer("RW"),
+              answer("CL", correct = TRUE),
+              answer("CW", correct = TRUE),
+              answer("BD"),
+              random_answer_order = TRUE)
+```
+
+
+## 15. Type de tableau
+
+Des chercheurs ont étudié l'affiliation politique: socialiste (PS), front national (FN) ou républicain (UMP), de citoyens français d'après leur genre: Homme ou Femme. 
+
+Voici les résultats de cette étude :
+
+```{r, include= TRUE, echo= FALSE}
+M <- as.table(rbind(c(762, 327, 468), c(484, 239, 477)))
+dimnames(M) <- list(gender = c("F", "H"),
+                    party = c("PS","FN", "UMP"))
+kable(M, caption = "Affiliation politique en fonction du genre de citoyens français. \\label{politique}")
+```
+
+- Comment s’appelle ce type de tableau? 
+
+```{r tab, exercise = TRUE}
+#
+#
+#
+```
+
+```{r tab-check}
+# Tableau de contingence à double entrée
+```
+
+- Quelles en sont les caractéristiques de ce type de tableau?
+
+```{r tab1, exercise = TRUE}
+
+```
+
+```{r tab1-check}
+# Le tableau de contingence comptabilise les occurrences - les fréquences - d’événements disjoints telles qu’observées expérimentalement.
+```
+
+## Conclusion
+
+Vous venez de terminer votre examen.
+
+Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
+
+```{r comm, exercise=TRUE, exercise.lines = 8}
+# Ajout de commentaires 
+# ...
+```
+
+```{r comm-check}
+# Not yet...
+```
