@@ -101,24 +101,24 @@ Réalisé par le service d'Écologie numérique des Milieux aquatiques, Universi
 <tbody>
 <tr class="odd">
 <td>Activité physique occasionnelle</td>
-<td align="right">43</td>
-<td align="right">31</td>
-<td align="right">32</td>
-<td align="right">26</td>
+<td align="right">34</td>
+<td align="right">52</td>
+<td align="right">40</td>
+<td align="right">49</td>
 </tr>
 <tr class="even">
 <td>Activité physique régulière</td>
 <td align="right">63</td>
-<td align="right">55</td>
-<td align="right">45</td>
-<td align="right">36</td>
+<td align="right">58</td>
+<td align="right">15</td>
+<td align="right">4</td>
 </tr>
 <tr class="odd">
 <td>Activité physique de haut niveau</td>
-<td align="right">57</td>
-<td align="right">68</td>
-<td align="right">18</td>
-<td align="right">17</td>
+<td align="right">42</td>
+<td align="right">39</td>
+<td align="right">30</td>
+<td align="right">43</td>
 </tr>
 </tbody>
 </table>
@@ -126,19 +126,19 @@ Réalisé par le service d'Écologie numérique des Milieux aquatiques, Universi
 <pre class="r"><code># Somme des lignes
 (rowSums(imc) -&gt; x)</code></pre>
 <pre><code> Activité physique occasionnelle      Activité physique régulière 
-                             132                              199 
+                             175                              140 
 Activité physique de haut niveau 
-                             160 </code></pre>
+                             154 </code></pre>
 <pre class="r"><code># Somme des colonnes
 (colSums(imc) -&gt; y)</code></pre>
 <pre><code>Sous.poids     Normal   Surpoids    Obésité 
-       163        154         95         79 </code></pre>
+       139        149         85         96 </code></pre>
 <pre class="r"><code># Somme totale d&#39;observations
 sum(x)</code></pre>
-<pre><code>[1] 491</code></pre>
+<pre><code>[1] 469</code></pre>
 <pre class="r"><code>sum(y)</code></pre>
-<pre><code>[1] 491</code></pre>
-<p>Vous avez à votre disposition une zone de code que vous pouvez évidement employer comme une calculatrice.</p>
+<pre><code>[1] 469</code></pre>
+<p>Vous avez à votre disposition une zone de code.</p>
 <div class="tutorial-exercise" data-label="proba_imc_cal" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
@@ -149,27 +149,27 @@ sum(x)</code></pre>
 <tr>
 <td>
 
-<div id="htmlwidget-015d8bf5df071fa2463d" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-30be2a9c3b1a9e38ef00" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-015d8bf5df071fa2463d">{"x":{"question":"Quelle est la probabilité d&#39;avoir une activité physique de haut niveaux ?","answers":[{"option":"\\(0.33\\)","correct":true,"message":null},{"option":"\\(0.6\\)","correct":false,"message":null},{"option":"\\(0.48\\)","correct":false,"message":null},{"option":"\\(1.08\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"label":"qeq_proba_imc-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Quelle est la probabilité d&#39;avoir une activité physique de haut niveaux ?","a":[{"option":"\\(0.33\\)","correct":true,"message":null},{"option":"\\(0.6\\)","correct":false,"message":null},{"option":"\\(0.48\\)","correct":false,"message":null},{"option":"\\(1.08\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-30be2a9c3b1a9e38ef00">{"x":{"question":"Quelle est la probabilité d&#39;avoir une activité physique de haut niveau ?","answers":[{"option":"\\(0.33\\)","correct":true,"message":null},{"option":"\\(0.44\\)","correct":false,"message":null},{"option":"\\(0.49\\)","correct":false,"message":null},{"option":"\\(0.93\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"label":"qeq_proba_imc-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Quelle est la probabilité d&#39;avoir une activité physique de haut niveau ?","a":[{"option":"\\(0.33\\)","correct":true,"message":null},{"option":"\\(0.44\\)","correct":false,"message":null},{"option":"\\(0.49\\)","correct":false,"message":null},{"option":"\\(0.93\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 <tr>
 <td>
 
-<div id="htmlwidget-2b12ff62bab1c73f297b" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-f0cb1daded9c2a8ccd2a" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-2b12ff62bab1c73f297b">{"x":{"question":"Quelle est la probabilité d&#39;avoir une activité physique régulière ou d&#39;être obèse ?","answers":[{"option":"\\(0.49\\)","correct":true,"message":null},{"option":"\\(0.6\\)","correct":false,"message":null},{"option":"\\(0.53\\)","correct":false,"message":null},{"option":"\\(1.48\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"label":"qeq_proba_imc-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Quelle est la probabilité d&#39;avoir une activité physique régulière ou d&#39;être obèse ?","a":[{"option":"\\(0.49\\)","correct":true,"message":null},{"option":"\\(0.6\\)","correct":false,"message":null},{"option":"\\(0.53\\)","correct":false,"message":null},{"option":"\\(1.48\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-f0cb1daded9c2a8ccd2a">{"x":{"question":"Quelle est la probabilité d&#39;avoir une activité physique régulière ou d&#39;être obèse ?","answers":[{"option":"\\(0.49\\)","correct":true,"message":null},{"option":"\\(0.44\\)","correct":false,"message":null},{"option":"\\(0.47\\)","correct":false,"message":null},{"option":"\\(1.49\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"label":"qeq_proba_imc-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Quelle est la probabilité d&#39;avoir une activité physique régulière ou d&#39;être obèse ?","a":[{"option":"\\(0.49\\)","correct":true,"message":null},{"option":"\\(0.44\\)","correct":false,"message":null},{"option":"\\(0.47\\)","correct":false,"message":null},{"option":"\\(1.49\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 </table>
@@ -178,9 +178,8 @@ sum(x)</code></pre>
 <div id="section-moyenne" class="section level2">
 <h2>2. Moyenne</h2>
 <p>Calculez la moyenne, l’écart-type et le coefficient de variation du vecteur ci-dessous</p>
-<pre class="r"><code>(x &lt;- round(sample(20:30, size = 5) + rnorm(n = 5,mean = 0,sd = 1),2))</code></pre>
-<pre><code>[1] 18.08 23.35 23.29 25.53 25.71</code></pre>
-<p>Vous avez à votre disposition une zone de code que vous pouvez évidement employer comme une calculatrice. (Soumettez votre réflexion)</p>
+<pre><code>[1] 20.75 26.23 17.96 24.83 28.46</code></pre>
+<p>Vous avez à votre disposition une zone de code</p>
 <div class="tutorial-exercise" data-label="mean_cal" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
@@ -191,40 +190,40 @@ sum(x)</code></pre>
 <tr>
 <td>
 
-<div id="htmlwidget-370fa58fbd761380c714" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-560bc6c5eb8161dfef80" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-370fa58fbd761380c714">{"x":{"question":"Calculez la moyenne du vecteur x","answers":[{"option":"\\(23.19\\)","correct":true,"message":null},{"option":"\\(24.47\\)","correct":false,"message":null},{"option":"\\(22.19\\)","correct":false,"message":null},{"option":"\\(23.29\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"label":"qeq_moyenne-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Calculez la moyenne du vecteur x","a":[{"option":"\\(23.19\\)","correct":true,"message":null},{"option":"\\(24.47\\)","correct":false,"message":null},{"option":"\\(22.19\\)","correct":false,"message":null},{"option":"\\(23.29\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-560bc6c5eb8161dfef80">{"x":{"question":"Calculez la moyenne du vecteur ","answers":[{"option":"\\(23.65\\)","correct":true,"message":null},{"option":"\\(24.37\\)","correct":false,"message":null},{"option":"\\(22.65\\)","correct":false,"message":null},{"option":"\\(17.96\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"label":"qeq_moyenne-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Calculez la moyenne du vecteur ","a":[{"option":"\\(23.65\\)","correct":true,"message":null},{"option":"\\(24.37\\)","correct":false,"message":null},{"option":"\\(22.65\\)","correct":false,"message":null},{"option":"\\(17.96\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 <tr>
 <td>
 
-<div id="htmlwidget-76c11946eaeb2e053716" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-0efc5b928d041e744d27" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-76c11946eaeb2e053716">{"x":{"question":"Calculez l&#39;écart-type du vecteur x","answers":[{"option":"\\(3.08\\)","correct":true,"message":null},{"option":"\\(1.33\\)","correct":false,"message":null},{"option":"\\(0.08\\)","correct":false,"message":null},{"option":"\\(23.35\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"label":"qeq_moyenne-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Calculez l&#39;écart-type du vecteur x","a":[{"option":"\\(3.08\\)","correct":true,"message":null},{"option":"\\(1.33\\)","correct":false,"message":null},{"option":"\\(0.08\\)","correct":false,"message":null},{"option":"\\(23.35\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-0efc5b928d041e744d27">{"x":{"question":"Calculez l&#39;écart-type du vecteur","answers":[{"option":"\\(4.24\\)","correct":true,"message":null},{"option":"\\(4.53\\)","correct":false,"message":null},{"option":"\\(1.24\\)","correct":false,"message":null},{"option":"\\(26.23\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"label":"qeq_moyenne-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Calculez l&#39;écart-type du vecteur","a":[{"option":"\\(4.24\\)","correct":true,"message":null},{"option":"\\(4.53\\)","correct":false,"message":null},{"option":"\\(1.24\\)","correct":false,"message":null},{"option":"\\(26.23\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 <tr>
 <td>
 
-<div id="htmlwidget-3cb6aca89fa775723e30" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-0a09f0c587667a3feeef" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-3cb6aca89fa775723e30">{"x":{"question":"Calculez le coefficient de variation du vecteur x en pourcent","answers":[{"option":"\\(13.29\\)","correct":true,"message":null},{"option":"\\(5.74\\)","correct":false,"message":null},{"option":"\\(9\\)","correct":false,"message":null},{"option":"\\(100.68\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"label":"qeq_moyenne-3","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Calculez le coefficient de variation du vecteur x en pourcent","a":[{"option":"\\(13.29\\)","correct":true,"message":null},{"option":"\\(5.74\\)","correct":false,"message":null},{"option":"\\(9\\)","correct":false,"message":null},{"option":"\\(100.68\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-0a09f0c587667a3feeef">{"x":{"question":"Calculez le coefficient de variation du vecteur en pourcent","answers":[{"option":"\\(17.94\\)","correct":true,"message":null},{"option":"\\(19.15\\)","correct":false,"message":null},{"option":"\\(14\\)","correct":false,"message":null},{"option":"\\(110.93\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"label":"qeq_moyenne-3","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Calculez le coefficient de variation du vecteur en pourcent","a":[{"option":"\\(17.94\\)","correct":true,"message":null},{"option":"\\(19.15\\)","correct":false,"message":null},{"option":"\\(14\\)","correct":false,"message":null},{"option":"\\(110.93\\)","correct":false,"message":null},{"option":"Aucune réponse n&#39;est correcte","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 </table>
@@ -233,6 +232,7 @@ sum(x)</code></pre>
 <div id="section-analyse-dun-histogramme" class="section level2">
 <h2>3. Analyse d’un histogramme</h2>
 <p>Réalisez un histogramme sur base de la variable <code>x</code> du jeu de donnée <code>df</code>.</p>
+<p><strong>Des snippets sont mis à votre disposition en fin de question</strong></p>
 <pre class="r"><code># nom du jeu de données : df
 # nom des colonnes
 names(df)</code></pre>
@@ -254,12 +254,6 @@ df &lt;- rbind(df1, data_frame(x = rnorm(7000, 60, 5)))</code></pre>
 <div class="tutorial-exercise" data-label="eqc_histo" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"histo_prepa","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
-<div class="tutorial-exercise-support" data-label="eqc_histo-check" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
-<pre class="text"><code># TODO
-chart(data = df2, ~ x) +
-  geom_histogram() +
-  labs(x = &quot;&quot;, y = &quot;&quot;)</code></pre>
-</div>
 <p>Répondez à la question ci-dessous sur base du graphique ci-dessus:</p>
 <div class="panel panel-default">
 <div class="panel-heading tutorial-panel-heading">Quiz</div>
@@ -267,32 +261,31 @@ chart(data = df2, ~ x) +
 <tr>
 <td>
 
-<div id="htmlwidget-09e74c0ee42b8e1a4ff4" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-fa009aedcdfed47cafbd" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-09e74c0ee42b8e1a4ff4">{"x":{"question":"Définissez le mode de l&#39;histogramme","answers":[{"option":"unimodal","correct":false,"message":null},{"option":"bimodal","correct":true,"message":null},{"option":"multimodal","correct":false,"message":null}],"label":"qeq_histo-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Définissez le mode de l&#39;histogramme","a":[{"option":"unimodal","correct":false,"message":null},{"option":"bimodal","correct":true,"message":null},{"option":"multimodal","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-fa009aedcdfed47cafbd">{"x":{"question":"Définissez le mode de l&#39;histogramme","answers":[{"option":"unimodal","correct":false,"message":null},{"option":"bimodal","correct":true,"message":null},{"option":"multimodal","correct":false,"message":null}],"label":"qeq_histo-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Définissez le mode de l&#39;histogramme","a":[{"option":"unimodal","correct":false,"message":null},{"option":"bimodal","correct":true,"message":null},{"option":"multimodal","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 <tr>
 <td>
 
-<div id="htmlwidget-970b95b39f904a9d8c5c" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-ec8b236225db89057dbe" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-970b95b39f904a9d8c5c">{"x":{"question":"Définissez la symétrie de l&#39;histogramme","answers":[{"option":"symétrique","correct":true,"message":null},{"option":"asymétrique","correct":false,"message":null}],"label":"qeq_histo-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Définissez la symétrie de l&#39;histogramme","a":[{"option":"symétrique","correct":true,"message":null},{"option":"asymétrique","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-ec8b236225db89057dbe">{"x":{"question":"Définissez la symétrie des sous-populations de l&#39;histogramme","answers":[{"option":"symétrique","correct":true,"message":null},{"option":"asymétrique","correct":false,"message":null}],"label":"qeq_histo-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Définissez la symétrie des sous-populations de l&#39;histogramme","a":[{"option":"symétrique","correct":true,"message":null},{"option":"asymétrique","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 </table>
 </div>
-<p>Les snippets suivants sont mis à votre disposition :</p>
 <pre class="r"><code>## Charts ###############################################################################################
 # ...charts
 #..c
@@ -396,34 +389,33 @@ chart(data = ${1:DF}, ~${2:VARNUM}) +
 </div>
 <div id="section-choix-dun-test-statistique" class="section level2">
 <h2>4. Choix d’un test statistique</h2>
-<p>Répondez aux questions ci-dessous</p>
 <div class="panel panel-default">
 <div class="panel-heading tutorial-panel-heading">Quiz</div>
 <table class="table quiz-table">
 <tr>
 <td>
 
-<div id="htmlwidget-26ba9ca4424bd05a19c4" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-984ca1c26518209eda22" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-26ba9ca4424bd05a19c4">{"x":{"question":"Sélectionnez les tests statistiques qui permettent de vérifier l&#39;homogénéité des variances","answers":[{"option":"Test de Bartlett","correct":true,"message":null},{"option":"Test de Shapiro-wilk","correct":false,"message":null},{"option":"Test de Friedman","correct":false,"message":null},{"option":"Test de Pearson","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"label":"qeq_bartlet-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Sélectionnez les tests statistiques qui permettent de vérifier l&#39;homogénéité des variances","a":[{"option":"Test de Bartlett","correct":true,"message":null},{"option":"Test de Shapiro-wilk","correct":false,"message":null},{"option":"Test de Friedman","correct":false,"message":null},{"option":"Test de Pearson","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-984ca1c26518209eda22">{"x":{"question":"Sélectionnez les tests statistiques qui permettent de vérifier l&#39;homogénéité des variances","answers":[{"option":"Test de Bartlett","correct":true,"message":null},{"option":"Test de Shapiro-wilk","correct":false,"message":null},{"option":"Test de Friedman","correct":false,"message":null},{"option":"Test de Pearson","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"label":"qeq_bartlet-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Sélectionnez les tests statistiques qui permettent de vérifier l&#39;homogénéité des variances","a":[{"option":"Test de Bartlett","correct":true,"message":null},{"option":"Test de Shapiro-wilk","correct":false,"message":null},{"option":"Test de Friedman","correct":false,"message":null},{"option":"Test de Pearson","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 <tr>
 <td>
 
-<div id="htmlwidget-3f704877be65c0455dcc" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-43a6b7a88ee3f4e735ea" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-3f704877be65c0455dcc">{"x":{"question":"Y a t&#39;il homoscédasticité avec une p.value de 0.0003 au seuil \\(\\alpha\\) de 0.05","answers":[{"option":"Oui","correct":false,"message":null},{"option":"Non","correct":true,"message":null}],"label":"qeq_bartlet-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Y a t&#39;il homoscédasticité avec une p.value de 0.0003 au seuil \\(\\alpha\\) de 0.05","a":[{"option":"Oui","correct":false,"message":null},{"option":"Non","correct":true,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-43a6b7a88ee3f4e735ea">{"x":{"question":"Y a t&#39;il homoscédasticité avec une valeur de p de 0.0003 au seuil \\(\\alpha\\) de 0.05","answers":[{"option":"Oui","correct":false,"message":null},{"option":"Non","correct":true,"message":null}],"label":"qeq_bartlet-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Y a t&#39;il homoscédasticité avec une valeur de p de 0.0003 au seuil \\(\\alpha\\) de 0.05","a":[{"option":"Oui","correct":false,"message":null},{"option":"Non","correct":true,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 </table>
@@ -439,34 +431,34 @@ chart(data = ${1:DF}, ~${2:VARNUM}) +
 
 data:  tab
 X-squared = 3.9605, df = 1, p-value = 0.04658</code></pre>
-<p>Suite à l’analyse ci-dessus, répondez aux questions ci-dessous</p>
+<p>Suite à l’analyse ci-dessus, répondez aux questions ci-dessous :</p>
 <div class="panel panel-default">
 <div class="panel-heading tutorial-panel-heading">Quiz</div>
 <table class="table quiz-table">
 <tr>
 <td>
 
-<div id="htmlwidget-06b7205ac32376ced3fa" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-b8b67603872a6320f3cb" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-06b7205ac32376ced3fa">{"x":{"question":"De quel test s&#39;agit-il ?","answers":[{"option":"chi<sup>2<\/sup> univarié","correct":true,"message":null},{"option":"chi<sup>2<\/sup> d&#39;indépendance","correct":false,"message":null},{"option":"test de student univarié","correct":false,"message":null},{"option":"test de wilcoxon univarié","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"label":"qeq_chi2-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"De quel test s&#39;agit-il ?","a":[{"option":"chi<sup>2<\/sup> univarié","correct":true,"message":null},{"option":"chi<sup>2<\/sup> d&#39;indépendance","correct":false,"message":null},{"option":"test de student univarié","correct":false,"message":null},{"option":"test de wilcoxon univarié","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-b8b67603872a6320f3cb">{"x":{"question":"De quel test s&#39;agit-il ?","answers":[{"option":"chi<sup>2<\/sup> univarié","correct":true,"message":null},{"option":"chi<sup>2<\/sup> d&#39;indépendance","correct":false,"message":null},{"option":"test de Student univarié","correct":false,"message":null},{"option":"test de Wilcoxon univarié","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"label":"qeq_chi2-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"De quel test s&#39;agit-il ?","a":[{"option":"chi<sup>2<\/sup> univarié","correct":true,"message":null},{"option":"chi<sup>2<\/sup> d&#39;indépendance","correct":false,"message":null},{"option":"test de Student univarié","correct":false,"message":null},{"option":"test de Wilcoxon univarié","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 <tr>
 <td>
 
-<div id="htmlwidget-03946c36a7f9b7978630" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-beb1a343253fde15c623" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-03946c36a7f9b7978630">{"x":{"question":"Y a t&#39;il parité entre les homme et les femmes au seuil alpha de 0.05","answers":[{"option":"oui","correct":false,"message":null},{"option":"non","correct":true,"message":null}],"label":"qeq_chi2-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Y a t&#39;il parité entre les homme et les femmes au seuil alpha de 0.05","a":[{"option":"oui","correct":false,"message":null},{"option":"non","correct":true,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-beb1a343253fde15c623">{"x":{"question":"Y a t&#39;il parité entre les homme et les femmes au seuil alpha de 0.05","answers":[{"option":"oui","correct":false,"message":null},{"option":"non","correct":true,"message":null}],"label":"qeq_chi2-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Y a t&#39;il parité entre les homme et les femmes au seuil alpha de 0.05","a":[{"option":"oui","correct":false,"message":null},{"option":"non","correct":true,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 </table>
@@ -474,11 +466,42 @@ X-squared = 3.9605, df = 1, p-value = 0.04658</code></pre>
 </div>
 <div id="section-calcul-de-quantiles-et-de-probabilites" class="section level2">
 <h2>6. Calcul de quantiles et de probabilités</h2>
-<p>Dans un champs de maïs (Considérez le nombre de plant de mais comme très grand), dont la taille moyenne est de 138 cm et d’écart type de 11 cm. Quelle est la probabilité d’obtenir une plante de plus de 197 cm ? Utilisez la fonction adéquate.</p>
+<p>Dans un champs de maïs (Considérez le nombre de plant de mais comme très grand), dont la taille moyenne est de 138 cm et d’écart type de 11 cm.</p>
+<p><strong>Des snippets sont mis à votre disposition en fin de question</strong></p>
 <div class="tutorial-exercise" data-label="dnorm_cal" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
-<p>Les snippets vous donnent les instructions suivantes afin de calculer les quantiles et les probabilités:</p>
+<div class="panel panel-default">
+<div class="panel-heading tutorial-panel-heading">Quiz</div>
+<table class="table quiz-table">
+<tr>
+<td>
+
+<div id="htmlwidget-086311415f9cf4809b8b" style="width:100%;height:auto;", class = "quiz html-widget">
+<div class="panel panel-default">
+<div class="panel-body quizArea">
+</div>
+</div>
+</div>
+
+<script type="application/json" data-for="htmlwidget-086311415f9cf4809b8b">{"x":{"question":"Quelle est la probabilité d&#39;obtenir une plante de plus de \\(197\\) cm ?","answers":[{"option":"\\(0\\)","correct":true,"message":null},{"option":"\\(0.7065\\)","correct":false,"message":null},{"option":"\\(1\\)","correct":false,"message":null},{"option":"\\(0\\)","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"label":"qeq_dnorm-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Quelle est la probabilité d&#39;obtenir une plante de plus de \\(197\\) cm ?","a":[{"option":"\\(0\\)","correct":true,"message":null},{"option":"\\(0.7065\\)","correct":false,"message":null},{"option":"\\(1\\)","correct":false,"message":null},{"option":"\\(0\\)","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+</td>
+</tr>
+<tr>
+<td>
+
+<div id="htmlwidget-e95c4a2dee655656e7f4" style="width:100%;height:auto;", class = "quiz html-widget">
+<div class="panel panel-default">
+<div class="panel-body quizArea">
+</div>
+</div>
+</div>
+
+<script type="application/json" data-for="htmlwidget-e95c4a2dee655656e7f4">{"x":{"question":"quelle est la probabilité d&#39;obtenir une plante dont la taille est comprise entre \\(134\\) et \\(87\\) cm ?","answers":[{"option":"\\(0.3581\\)","correct":true,"message":null},{"option":"\\(-0.6418\\)","correct":false,"message":null},{"option":"\\(0.3746\\)","correct":false,"message":null},{"option":"\\(0.3581\\)","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"label":"qeq_dnorm-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"quelle est la probabilité d&#39;obtenir une plante dont la taille est comprise entre \\(134\\) et \\(87\\) cm ?","a":[{"option":"\\(0.3581\\)","correct":true,"message":null},{"option":"\\(-0.6418\\)","correct":false,"message":null},{"option":"\\(0.3746\\)","correct":false,"message":null},{"option":"\\(0.3581\\)","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+</td>
+</tr>
+</table>
+</div>
 <pre class="r"><code>### .iu : distribution uniforme 
 punif(QUANTILES, min = 0, max = 1, lower.tail = TRUE)
 qunif(PROBABILITIES, min = 0, max = 1, lower.tail = TRUE)
@@ -509,37 +532,6 @@ qchisq(PROBABILITIES, df = DEGREES_OF_FREEDOM, lower.tail = TRUE)
 
 ### .if distibution de F
 pf(QUANTILES, df1 = NUMERATOR_DF, df2 = DENOMINATOR_DF, lower.tail = TRUE)</code></pre>
-<div class="panel panel-default">
-<div class="panel-heading tutorial-panel-heading">Quiz</div>
-<table class="table quiz-table">
-<tr>
-<td>
-
-<div id="htmlwidget-30fc93360c58a904c1b7" style="width:100%;height:auto;", class = "quiz html-widget">
-<div class="panel panel-default">
-<div class="panel-body quizArea">
-</div>
-</div>
-</div>
-
-<script type="application/json" data-for="htmlwidget-30fc93360c58a904c1b7">{"x":{"question":"Quelle est la probabilité d&#39;obtenir une plante de plus de \\(197\\) cm ?","answers":[{"option":"\\(0\\)","correct":true,"message":null},{"option":"\\(0.68\\)","correct":false,"message":null},{"option":"\\(1\\)","correct":false,"message":null},{"option":"\\(0\\)","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"label":"qeq_dnorm-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Quelle est la probabilité d&#39;obtenir une plante de plus de \\(197\\) cm ?","a":[{"option":"\\(0\\)","correct":true,"message":null},{"option":"\\(0.68\\)","correct":false,"message":null},{"option":"\\(1\\)","correct":false,"message":null},{"option":"\\(0\\)","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
-</td>
-</tr>
-<tr>
-<td>
-
-<div id="htmlwidget-a51c7a9a097d71a44186" style="width:100%;height:auto;", class = "quiz html-widget">
-<div class="panel panel-default">
-<div class="panel-body quizArea">
-</div>
-</div>
-</div>
-
-<script type="application/json" data-for="htmlwidget-a51c7a9a097d71a44186">{"x":{"question":"quelle est la probabilité d&#39;obtenir une plante dont la taille est comprise entre \\(134\\) et \\(47\\) cm ?","answers":[{"option":"\\(0.36\\)","correct":true,"message":null},{"option":"\\(-0.64\\)","correct":false,"message":null},{"option":"\\(0.37\\)","correct":false,"message":null},{"option":"\\(0.36\\)","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"label":"qeq_dnorm-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"quelle est la probabilité d&#39;obtenir une plante dont la taille est comprise entre \\(134\\) et \\(47\\) cm ?","a":[{"option":"\\(0.36\\)","correct":true,"message":null},{"option":"\\(-0.64\\)","correct":false,"message":null},{"option":"\\(0.37\\)","correct":false,"message":null},{"option":"\\(0.36\\)","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
-</td>
-</tr>
-</table>
-</div>
 </div>
 <div id="section-test-de-student" class="section level2">
 <h2>7. Test de Student :</h2>
@@ -564,7 +556,8 @@ summary(weight)</code></pre>
  Mean   :100.33         
  3rd Qu.:102.71         
  Max.   :112.32         </code></pre>
-<p>Réalisez un test de Student bilatéral avec un seuil <span class="math inline">\(\alpha\)</span> de 0.05% et de variance inégale.</p>
+<p>Réalisez un test de Student bilatéral avec un seuil <span class="math inline">\(\alpha\)</span> de 0.05 et de variance inégale.</p>
+<p><strong>Des snippets sont mis à votre disposition en fin de question</strong></p>
 <div class="tutorial-exercise" data-label="student1" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"student1_prepa","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
@@ -574,32 +567,31 @@ summary(weight)</code></pre>
 <tr>
 <td>
 
-<div id="htmlwidget-70cbab91c9639ac65474" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-fd5d9bdfb57e71dd6674" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-70cbab91c9639ac65474">{"x":{"question":"quels sont les résultats de ce test ?","answers":[{"option":"t = \\(-1.452\\), df = \\(27.994\\), p-value = 0.1575","correct":true,"message":null},{"option":"t = \\(-1.452\\), df = \\(28\\), p-value = 0.1575","correct":false,"message":null},{"option":"t = \\(-1.452\\), df = \\(28\\), p-value = 0.0787","correct":false,"message":null},{"option":"t = \\(-1.452\\), df = \\(27.994\\), p-value = 0.0787","correct":false,"message":null}],"label":"qeq_stu-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"quels sont les résultats de ce test ?","a":[{"option":"t = \\(-1.452\\), df = \\(27.994\\), p-value = 0.1575","correct":true,"message":null},{"option":"t = \\(-1.452\\), df = \\(28\\), p-value = 0.1575","correct":false,"message":null},{"option":"t = \\(-1.452\\), df = \\(28\\), p-value = 0.0787","correct":false,"message":null},{"option":"t = \\(-1.452\\), df = \\(27.994\\), p-value = 0.0787","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-fd5d9bdfb57e71dd6674">{"x":{"question":"quels sont les résultats de ce test ?","answers":[{"option":"t = \\(-1.452\\), df = \\(27.994\\), p-value = 0.1575","correct":true,"message":null},{"option":"t = \\(-1.452\\), df = \\(28\\), p-value = 0.1575","correct":false,"message":null},{"option":"t = \\(-1.452\\), df = \\(28\\), p-value = 0.0787","correct":false,"message":null},{"option":"t = \\(-1.452\\), df = \\(27.994\\), p-value = 0.0787","correct":false,"message":null}],"label":"qeq_stu-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"quels sont les résultats de ce test ?","a":[{"option":"t = \\(-1.452\\), df = \\(27.994\\), p-value = 0.1575","correct":true,"message":null},{"option":"t = \\(-1.452\\), df = \\(28\\), p-value = 0.1575","correct":false,"message":null},{"option":"t = \\(-1.452\\), df = \\(28\\), p-value = 0.0787","correct":false,"message":null},{"option":"t = \\(-1.452\\), df = \\(27.994\\), p-value = 0.0787","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 <tr>
 <td>
 
-<div id="htmlwidget-cea7805ead17a507653c" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-8375e44e14ebb93e3cf6" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-cea7805ead17a507653c">{"x":{"question":"Y a t&#39;il une différence significative au seuil \\(\\alpha\\) de 0.05 de masse entre les deux zones étudiée pour la masse monitorée","answers":[{"option":"oui","correct":false,"message":null},{"option":"non","correct":true,"message":null}],"label":"qeq_stu-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Y a t&#39;il une différence significative au seuil \\(\\alpha\\) de 0.05 de masse entre les deux zones étudiée pour la masse monitorée","a":[{"option":"oui","correct":false,"message":null},{"option":"non","correct":true,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-8375e44e14ebb93e3cf6">{"x":{"question":"Y a t&#39;il une différence significative au seuil \\(\\alpha\\) de 0.05 de masse entre les deux zones étudiées pour la masse monitorée","answers":[{"option":"oui","correct":false,"message":null},{"option":"non","correct":true,"message":null}],"label":"qeq_stu-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Y a t&#39;il une différence significative au seuil \\(\\alpha\\) de 0.05 de masse entre les deux zones étudiées pour la masse monitorée","a":[{"option":"oui","correct":false,"message":null},{"option":"non","correct":true,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 </table>
 </div>
-<p>Vous avez à votre disposition les variantes du test de Student présent dans les snippets.</p>
 <pre class="r"><code># .hm
 # .hmttestindep: independent Student&#39;s t-test
 t.test(data = ${1:DF}, ${2:YNUM} ~ ${3:XFACTOR}, alternative = &quot;two.sided&quot;, conf.level = 0.95, var.equal = TRUE)
@@ -612,16 +604,15 @@ t.test(${1:DF}\$2:XNUM, alternative = &quot;two.sided&quot;, mu = 0, conf.level 
 </div>
 <div id="section-distribution" class="section level2">
 <h2>8. Distribution</h2>
-<p>Répondez à la question suivante</p>
 
-<div id="htmlwidget-44a5e086ac6faf5c2df1" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-12508568163a3bcd91b3" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-44a5e086ac6faf5c2df1">{"x":{"question":"Quels sont les paramètres de la distribution associé au test de Student","answers":[{"option":"\\(\\mu\\)","correct":true,"message":null},{"option":"\\(\\sigma / \\sqrt{n}\\)","correct":true,"message":null},{"option":"n-1","correct":true,"message":null},{"option":"degré de liberté","correct":true,"message":null},{"option":"degré de liberté intra-groupe","correct":false,"message":null},{"option":"degré de lberté inter-groupe","correct":false,"message":null},{"option":"\\(\\sigma\\)","correct":false,"message":null},{"option":"écart-type","correct":true,"message":null},{"option":"nombre d&#39;essai","correct":false,"message":null},{"option":"probabilité de succès","correct":false,"message":null},{"option":"lambda","correct":false,"message":null},{"option":"moyenne","correct":true,"message":null}],"label":"qeq_t","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Quels sont les paramètres de la distribution associé au test de Student","a":[{"option":"\\(\\mu\\)","correct":true,"message":null},{"option":"\\(\\sigma / \\sqrt{n}\\)","correct":true,"message":null},{"option":"n-1","correct":true,"message":null},{"option":"degré de liberté","correct":true,"message":null},{"option":"degré de liberté intra-groupe","correct":false,"message":null},{"option":"degré de lberté inter-groupe","correct":false,"message":null},{"option":"\\(\\sigma\\)","correct":false,"message":null},{"option":"écart-type","correct":true,"message":null},{"option":"nombre d&#39;essai","correct":false,"message":null},{"option":"probabilité de succès","correct":false,"message":null},{"option":"lambda","correct":false,"message":null},{"option":"moyenne","correct":true,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-12508568163a3bcd91b3">{"x":{"question":"Quels sont les paramètres de la distribution T ?","answers":[{"option":"\\(\\mu\\)","correct":true,"message":null},{"option":"n-1","correct":true,"message":null},{"option":"degré de liberté","correct":true,"message":null},{"option":"degré de liberté intra-groupe","correct":false,"message":null},{"option":"degré de lberté inter-groupe","correct":false,"message":null},{"option":"\\(\\sigma\\)","correct":false,"message":null},{"option":"écart-type","correct":true,"message":null},{"option":"nombre d&#39;essai","correct":false,"message":null},{"option":"probabilité de succès","correct":false,"message":null},{"option":"lambda","correct":false,"message":null},{"option":"moyenne","correct":true,"message":null}],"label":"qeq_t","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Quels sont les paramètres de la distribution T ?","a":[{"option":"\\(\\mu\\)","correct":true,"message":null},{"option":"n-1","correct":true,"message":null},{"option":"degré de liberté","correct":true,"message":null},{"option":"degré de liberté intra-groupe","correct":false,"message":null},{"option":"degré de lberté inter-groupe","correct":false,"message":null},{"option":"\\(\\sigma\\)","correct":false,"message":null},{"option":"écart-type","correct":true,"message":null},{"option":"nombre d&#39;essai","correct":false,"message":null},{"option":"probabilité de succès","correct":false,"message":null},{"option":"lambda","correct":false,"message":null},{"option":"moyenne","correct":true,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="section-correlation" class="section level2">
 <h2>9. Corrélation</h2>
@@ -689,14 +680,14 @@ t.test(${1:DF}\$2:XNUM, alternative = &quot;two.sided&quot;, mu = 0, conf.level 
 </tbody>
 </table>
 
-<div id="htmlwidget-9ac37380e9ebbe66dbe8" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-96c0bac24b68394ff9ba" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-9ac37380e9ebbe66dbe8">{"x":{"question":"Quelles sont les variables les plus corrélées ? (vous devez sélectionner 2 réponses)","answers":[{"option":"FL","correct":false,"message":null},{"option":"RW","correct":false,"message":null},{"option":"CL","correct":true,"message":null},{"option":"CW","correct":true,"message":null},{"option":"BD","correct":false,"message":null}],"label":"qeq_corr","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Quelles sont les variables les plus corrélées ? (vous devez sélectionner 2 réponses)","a":[{"option":"FL","correct":false,"message":null},{"option":"RW","correct":false,"message":null},{"option":"CL","correct":true,"message":null},{"option":"CW","correct":true,"message":null},{"option":"BD","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-96c0bac24b68394ff9ba">{"x":{"question":"Quelles sont les variables les plus corrélées ? (vous devez sélectionner 2 réponses)","answers":[{"option":"FL","correct":false,"message":null},{"option":"RW","correct":false,"message":null},{"option":"CL","correct":true,"message":null},{"option":"CW","correct":true,"message":null},{"option":"BD","correct":false,"message":null}],"label":"qeq_corr","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Quelles sont les variables les plus corrélées ? (vous devez sélectionner 2 réponses)","a":[{"option":"FL","correct":false,"message":null},{"option":"RW","correct":false,"message":null},{"option":"CL","correct":true,"message":null},{"option":"CW","correct":true,"message":null},{"option":"BD","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="section-test-de-comparaisons-multiples" class="section level2">
 <h2>10. Test de comparaisons multiples</h2>
@@ -722,7 +713,12 @@ summary(is)</code></pre>
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sum Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mean Sq"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"437.1028","3":"218.5514000","4":"1180.161","5":"2.856777e-91","_rn_":"species"},{"1":"147","2":"27.2226","3":"0.1851878","4":"NA","5":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>Suite à l’analyse des résultats ci-dessus, réalisez un test de comparaison multiple de Tukey (si cela est nécéssaire)</p>
+<p>Suite à l’analyse des résultats ci-dessus, réalisez un test de comparaison multiple de Tukey.</p>
+<p><strong>Des snippets sont mis à votre disposition en fin de question</strong></p>
+<div class="tutorial-exercise-support" data-label="resi_prepa" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>is &lt;- data.io::read(&quot;iris&quot;, package = &quot;datasets&quot;, lang = &quot;fr&quot;)
+anova(anova. &lt;- lm(data = is, petal_length ~ species))</code></pre>
+</div>
 <div class="tutorial-exercise" data-label="tukey" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"resi_prepa","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
@@ -732,32 +728,31 @@ summary(is)</code></pre>
 <tr>
 <td>
 
-<div id="htmlwidget-5b41f1b449b47bcbfdac" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-dcae2ab93a5d17a6024c" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-5b41f1b449b47bcbfdac">{"x":{"question":"est-il nécessaire de réaliser une test de comparaison multiple de Tukey ? ","answers":[{"option":"oui","correct":true,"message":null},{"option":"non","correct":false,"message":null}],"label":"qeq_tukey-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":false,"json":{"info":{"name":"","main":""},"questions":[{"q":"est-il nécessaire de réaliser une test de comparaison multiple de Tukey ? ","a":[{"option":"oui","correct":true,"message":null},{"option":"non","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-dcae2ab93a5d17a6024c">{"x":{"question":"Est-il nécessaire de réaliser une test de comparaisons multiples de Tukey ? ","answers":[{"option":"oui","correct":true,"message":null},{"option":"non","correct":false,"message":null}],"label":"qeq_tukey-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":false,"json":{"info":{"name":"","main":""},"questions":[{"q":"Est-il nécessaire de réaliser une test de comparaisons multiples de Tukey ? ","a":[{"option":"oui","correct":true,"message":null},{"option":"non","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 <tr>
 <td>
 
-<div id="htmlwidget-a29ee76e070ba788362d" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-5c1e8a9931428e152f7d" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-a29ee76e070ba788362d">{"x":{"question":"quelles sont les combinaisons de variable significativements différentes au seuil alpha de 0.05","answers":[{"option":"versicolor - setosa","correct":true,"message":null},{"option":"virginica - setosa","correct":true,"message":null},{"option":"virginica - versicolor","correct":true,"message":null},{"option":"Aucune des propositions","correct":false,"message":null}],"label":"qeq_tukey-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":false,"json":{"info":{"name":"","main":""},"questions":[{"q":"quelles sont les combinaisons de variable significativements différentes au seuil alpha de 0.05","a":[{"option":"versicolor - setosa","correct":true,"message":null},{"option":"virginica - setosa","correct":true,"message":null},{"option":"virginica - versicolor","correct":true,"message":null},{"option":"Aucune des propositions","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-5c1e8a9931428e152f7d">{"x":{"question":"Quelles sont les combinaisons de variables significativements différentes au seuil alpha de 0.05","answers":[{"option":"versicolor - setosa","correct":true,"message":null},{"option":"virginica - setosa","correct":true,"message":null},{"option":"virginica - versicolor","correct":true,"message":null},{"option":"aucune des propositions","correct":false,"message":null}],"label":"qeq_tukey-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":false,"json":{"info":{"name":"","main":""},"questions":[{"q":"Quelles sont les combinaisons de variables significativements différentes au seuil alpha de 0.05","a":[{"option":"versicolor - setosa","correct":true,"message":null},{"option":"virginica - setosa","correct":true,"message":null},{"option":"virginica - versicolor","correct":true,"message":null},{"option":"aucune des propositions","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 </table>
 </div>
-<p>Vous avez à votre disposition les snippets suivants provenant de la section <code>.hm</code></p>
 <pre class="r"><code># ..hypothesis tests: means
 #.hm
 
@@ -826,27 +821,27 @@ t.test(${1:DF}\$2:XNUM,
 <tr>
 <td>
 
-<div id="htmlwidget-fdeaf74ea3553e35ac37" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-39051ad46600f6cab666" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-fdeaf74ea3553e35ac37">{"x":{"question":"De quelle analyse s&#39;agit-il ?","answers":[{"option":"Anova","correct":true,"message":null},{"option":"Test de student","correct":false,"message":null},{"option":"Chi<sup>2<\/sup>","correct":false,"message":null},{"option":"Test post-hoc","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"label":"quiz_anova-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"De quelle analyse s&#39;agit-il ?","a":[{"option":"Anova","correct":true,"message":null},{"option":"Test de student","correct":false,"message":null},{"option":"Chi<sup>2<\/sup>","correct":false,"message":null},{"option":"Test post-hoc","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-39051ad46600f6cab666">{"x":{"question":"De quelle analyse s&#39;agit-il ?","answers":[{"option":"Anova","correct":true,"message":null},{"option":"Test de student","correct":false,"message":null},{"option":"Chi<sup>2<\/sup>","correct":false,"message":null},{"option":"Test post-hoc","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"label":"quiz_anova-1","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"De quelle analyse s&#39;agit-il ?","a":[{"option":"Anova","correct":true,"message":null},{"option":"Test de student","correct":false,"message":null},{"option":"Chi<sup>2<\/sup>","correct":false,"message":null},{"option":"Test post-hoc","correct":false,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 <tr>
 <td>
 
-<div id="htmlwidget-4e01812f597a303a682a" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-cfdd21a82c54cd41be43" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-4e01812f597a303a682a">{"x":{"question":"Combien d&#39;observation compte cette analyse ?","answers":[{"option":"Aucune des réponses proposées","correct":true,"message":null},{"option":"2","correct":false,"message":null},{"option":"97","correct":false,"message":null},{"option":"99","correct":false,"message":null},{"option":"3","correct":false,"message":null}],"label":"quiz_anova-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Combien d&#39;observation compte cette analyse ?","a":[{"option":"Aucune des réponses proposées","correct":true,"message":null},{"option":"2","correct":false,"message":null},{"option":"97","correct":false,"message":null},{"option":"99","correct":false,"message":null},{"option":"3","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-cfdd21a82c54cd41be43">{"x":{"question":"Combien d&#39;observation compte cette analyse ?","answers":[{"option":"Aucune des réponses proposées","correct":true,"message":null},{"option":"2","correct":false,"message":null},{"option":"97","correct":false,"message":null},{"option":"99","correct":false,"message":null},{"option":"3","correct":false,"message":null}],"label":"quiz_anova-2","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Combien d&#39;observation compte cette analyse ?","a":[{"option":"Aucune des réponses proposées","correct":true,"message":null},{"option":"2","correct":false,"message":null},{"option":"97","correct":false,"message":null},{"option":"99","correct":false,"message":null},{"option":"3","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </td>
 </tr>
 </table>
@@ -855,17 +850,17 @@ t.test(${1:DF}\$2:XNUM,
 <div id="section-choix-dun-test-statistique-1" class="section level2">
 <h2>12 . Choix d’un test statistique</h2>
 
-<div id="htmlwidget-e8beaea23aa8e9f8ec09" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-71969ecfd2360baad87e" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-e8beaea23aa8e9f8ec09">{"x":{"question":"Sélectionnez les tests statistiques qui permettent de vérifier la corrélation entre 2 variables","answers":[{"option":"test de Bartlett","correct":false,"message":null},{"option":"test de Shapiro-wilk","correct":false,"message":null},{"option":"test de Friedman","correct":false,"message":null},{"option":"test de Pearson","correct":true,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"label":"pearson","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Sélectionnez les tests statistiques qui permettent de vérifier la corrélation entre 2 variables","a":[{"option":"test de Bartlett","correct":false,"message":null},{"option":"test de Shapiro-wilk","correct":false,"message":null},{"option":"test de Friedman","correct":false,"message":null},{"option":"test de Pearson","correct":true,"message":null},{"option":"Aucune des réponses proposées","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-71969ecfd2360baad87e">{"x":{"question":"Sélectionnez les tests statistiques qui permettent de vérifier la corrélation entre 2 variables","answers":[{"option":"test de Bartlett","correct":false,"message":null},{"option":"test de Shapiro-wilk","correct":false,"message":null},{"option":"test de Friedman","correct":false,"message":null},{"option":"test de Pearson","correct":true,"message":null},{"option":"aucune des réponses proposées","correct":false,"message":null}],"label":"pearson","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Sélectionnez les tests statistiques qui permettent de vérifier la corrélation entre 2 variables","a":[{"option":"test de Bartlett","correct":false,"message":null},{"option":"test de Shapiro-wilk","correct":false,"message":null},{"option":"test de Friedman","correct":false,"message":null},{"option":"test de Pearson","correct":true,"message":null},{"option":"aucune des réponses proposées","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </div>
-<div id="section-realisation-dune-boite-de-dispersion" class="section level2">
-<h2>13. Réalisation d’une boite de dispersion</h2>
+<div id="section-remaniement-dun-tableau-de-donnees" class="section level2">
+<h2>13. Remaniement d’un tableau de données</h2>
 <pre class="r"><code>#nom du jeu de données : density
 names(density)</code></pre>
 <pre><code>[1] &quot;area&quot;  &quot;densi&quot;</code></pre>
@@ -877,7 +872,8 @@ names(density)</code></pre>
  D:20   Mean   :11.862  
  E:20   3rd Qu.:12.882  
         Max.   :16.617  </code></pre>
-<p>Vous devez retirer les zone (<code>area</code>) <strong>B</strong> et <strong>E</strong> et ne garder que les densité strictement supérier à 12.5.</p>
+<p>Vous devez retirer les zones (<code>area</code>) <strong>B</strong> et <strong>E</strong> et ne garder que les valeurs de densité strictement supériere à 12.5.</p>
+<p><strong>Des snippets sont mis à votre disposition en fin de question</strong></p>
 <div class="tutorial-exercise-support" data-label="rema_cal_prep" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>set.seed(43)
 rep(c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;), each = 20) -&gt; t
@@ -892,15 +888,14 @@ density &lt;- data_frame(area = as.factor(t) , densi = tt)</code></pre>
 <script type="application/json" data-opts-chunk="1">{"fig.width":6.5,"fig.height":4,"fig.retina":2,"fig.align":"default","fig.keep":"high","fig.show":"asis","out.width":624,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.timelimit":60,"exercise.setup":"rema_cal_prep","exercise.checker":["function (label, user_code, solution_code, check_code, envir_result, ","    evaluate_result, ...) ","{","    list(message = \"Your answer is recorded!\", correct = TRUE, ","        type = \"info\", location = \"append\")","}"]}</script>
 </div>
 
-<div id="htmlwidget-4227a7699d2d6f104f67" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-4f6ca77d41187ae1a3db" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-4227a7699d2d6f104f67">{"x":{"question":"Combien y a t&#39;il de ligne dans ce tableau réduit ?","answers":[{"option":"\\(8\\)","correct":true,"message":null},{"option":"\\(30\\)","correct":false,"message":null},{"option":"\\(11\\)","correct":false,"message":null},{"option":"\\(9\\)","correct":false,"message":null},{"option":"\\(60\\)","correct":false,"message":null}],"label":"qeq_rema","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Combien y a t&#39;il de ligne dans ce tableau réduit ?","a":[{"option":"\\(8\\)","correct":true,"message":null},{"option":"\\(30\\)","correct":false,"message":null},{"option":"\\(11\\)","correct":false,"message":null},{"option":"\\(9\\)","correct":false,"message":null},{"option":"\\(60\\)","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
-<p>Vous avez à votre disposition les snippets suivants :</p>
+<script type="application/json" data-for="htmlwidget-4f6ca77d41187ae1a3db">{"x":{"question":"Combien y a t&#39;il de ligne dans ce tableau réduit ?","answers":[{"option":"\\(8\\)","correct":true,"message":null},{"option":"\\(30\\)","correct":false,"message":null},{"option":"\\(11\\)","correct":false,"message":null},{"option":"\\(9\\)","correct":false,"message":null},{"option":"\\(60\\)","correct":false,"message":null}],"label":"qeq_rema","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Combien y a t&#39;il de ligne dans ce tableau réduit ?","a":[{"option":"\\(8\\)","correct":true,"message":null},{"option":"\\(30\\)","correct":false,"message":null},{"option":"\\(11\\)","correct":false,"message":null},{"option":"\\(9\\)","correct":false,"message":null},{"option":"\\(60\\)","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>#.dosel select cases
 DF %&gt;.%
   filter(., CONDITIONS) -&gt; DF2
@@ -909,29 +904,27 @@ DF %&gt;.%
 </div>
 <div id="section-distribution-de-fischer" class="section level2">
 <h2>14. Distribution de Fischer</h2>
-<p>Répondez à la question suivante</p>
 
-<div id="htmlwidget-3a367c3ccb58fe08b68e" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-b07fa926767401588e3c" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-3a367c3ccb58fe08b68e">{"x":{"question":"A quels tests statistiques pouvez associer la distribution de Fischer","answers":[{"option":"Anova","correct":true,"message":null},{"option":"Test t de Student","correct":false,"message":null},{"option":"Test de Kruskal-Wallis","correct":false,"message":null},{"option":"Test post-hoc de Tukey","correct":false,"message":null},{"option":"Test de Wilcoxon","correct":false,"message":null},{"option":"Test de chi<sup>2<\/sup>","correct":false,"message":null}],"label":"qeq_f","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"A quels tests statistiques pouvez associer la distribution de Fischer","a":[{"option":"Anova","correct":true,"message":null},{"option":"Test t de Student","correct":false,"message":null},{"option":"Test de Kruskal-Wallis","correct":false,"message":null},{"option":"Test post-hoc de Tukey","correct":false,"message":null},{"option":"Test de Wilcoxon","correct":false,"message":null},{"option":"Test de chi<sup>2<\/sup>","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-b07fa926767401588e3c">{"x":{"question":"A quels tests statistiques pouvez vous associer la distribution de Fischer","answers":[{"option":"Anova","correct":true,"message":null},{"option":"Test t de Student","correct":false,"message":null},{"option":"Test de Kruskal-Wallis","correct":false,"message":null},{"option":"Test post-hoc de Tukey","correct":false,"message":null},{"option":"Test de Wilcoxon","correct":false,"message":null},{"option":"Test de chi<sup>2<\/sup>","correct":false,"message":null}],"label":"qeq_f","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"A quels tests statistiques pouvez vous associer la distribution de Fischer","a":[{"option":"Anova","correct":true,"message":null},{"option":"Test t de Student","correct":false,"message":null},{"option":"Test de Kruskal-Wallis","correct":false,"message":null},{"option":"Test post-hoc de Tukey","correct":false,"message":null},{"option":"Test de Wilcoxon","correct":false,"message":null},{"option":"Test de chi<sup>2<\/sup>","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="section-conditions-dapplication" class="section level2">
 <h2>15. Conditions d’application</h2>
-<p>Répondez à la question suivante</p>
 
-<div id="htmlwidget-92a5e675a0f53c601f68" style="width:100%;height:auto;", class = "quiz html-widget">
+<div id="htmlwidget-c1c046cd107e5045b144" style="width:100%;height:auto;", class = "quiz html-widget">
 <div class="panel panel-default">
 <div class="panel-body quizArea">
 </div>
 </div>
 </div>
 
-<script type="application/json" data-for="htmlwidget-92a5e675a0f53c601f68">{"x":{"question":"Sélectionnez les conditions d&#39;application d&#39;un test de Kruskal-Wallis ?","answers":[{"option":"échantillon représentatif (par exemple, aléatoire)","correct":true,"message":null},{"option":"observations indépendantes","correct":true,"message":null},{"option":"variable dite réponse quantitative","correct":true,"message":null},{"option":"variable dite explicative qualitative à trois niveaux ou plus","correct":true,"message":null},{"option":"les distributions au sein des différentes sous-population sont, si possible, similaires mais de forme quelconque","correct":true,"message":null},{"option":"distribution normale des résidus","correct":false,"message":null},{"option":"homoscédasticité","correct":false,"message":null},{"option":"distribution de la population normale ou approximativement normale","correct":false,"message":null},{"option":"une variable facteur dite explicative à deux niveaux","correct":false,"message":null}],"label":"qeq_kruskal","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":false,"json":{"info":{"name":"","main":""},"questions":[{"q":"Sélectionnez les conditions d&#39;application d&#39;un test de Kruskal-Wallis ?","a":[{"option":"échantillon représentatif (par exemple, aléatoire)","correct":true,"message":null},{"option":"observations indépendantes","correct":true,"message":null},{"option":"variable dite réponse quantitative","correct":true,"message":null},{"option":"variable dite explicative qualitative à trois niveaux ou plus","correct":true,"message":null},{"option":"les distributions au sein des différentes sous-population sont, si possible, similaires mais de forme quelconque","correct":true,"message":null},{"option":"distribution normale des résidus","correct":false,"message":null},{"option":"homoscédasticité","correct":false,"message":null},{"option":"distribution de la population normale ou approximativement normale","correct":false,"message":null},{"option":"une variable facteur dite explicative à deux niveaux","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-c1c046cd107e5045b144">{"x":{"question":"Sélectionnez les conditions d&#39;application d&#39;un test de Kruskal-Wallis ?","answers":[{"option":"échantillon représentatif (par exemple, aléatoire)","correct":true,"message":null},{"option":"observations indépendantes","correct":true,"message":null},{"option":"variable dite réponse quantitative","correct":true,"message":null},{"option":"variable dite explicative qualitative à trois niveaux ou plus","correct":true,"message":null},{"option":"les distributions au sein des différentes sous-population sont, si possible, similaires mais de forme quelconque","correct":true,"message":null},{"option":"distribution normale des résidus","correct":false,"message":null},{"option":"homoscédasticité","correct":false,"message":null},{"option":"distribution de la population normale ou approximativement normale","correct":false,"message":null},{"option":"une variable facteur dite explicative à deux niveaux","correct":false,"message":null}],"label":"qeq_kruskal","skipStartButton":true,"perQuestionResponseAnswers":true,"perQuestionResponseMessaging":true,"preventUnanswered":true,"displayQuestionCount":false,"displayQuestionNumber":false,"disableRanking":true,"nextQuestionText":"","checkAnswerText":"Submit Answer","allowRetry":false,"randomSortAnswers":true,"json":{"info":{"name":"","main":""},"questions":[{"q":"Sélectionnez les conditions d&#39;application d&#39;un test de Kruskal-Wallis ?","a":[{"option":"échantillon représentatif (par exemple, aléatoire)","correct":true,"message":null},{"option":"observations indépendantes","correct":true,"message":null},{"option":"variable dite réponse quantitative","correct":true,"message":null},{"option":"variable dite explicative qualitative à trois niveaux ou plus","correct":true,"message":null},{"option":"les distributions au sein des différentes sous-population sont, si possible, similaires mais de forme quelconque","correct":true,"message":null},{"option":"distribution normale des résidus","correct":false,"message":null},{"option":"homoscédasticité","correct":false,"message":null},{"option":"distribution de la population normale ou approximativement normale","correct":false,"message":null},{"option":"une variable facteur dite explicative à deux niveaux","correct":false,"message":null}],"correct":"Correct!","incorrect":"Incorrect."}]}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="section-reproduction-dun-graphique" class="section level2">
 <h2>16. Reproduction d’un graphique</h2>
@@ -952,6 +945,7 @@ names(df)</code></pre>
  Mean   :160.770   Mean   :170.66                  
  3rd Qu.:234.662   3rd Qu.:244.18                  
  Max.   :315.348   Max.   :331.31                  </code></pre>
+<p><strong>Des snippets sont mis à votre disposition en fin de question</strong></p>
 <div class="tutorial-exercise-support" data-label="reprod_prepa" data-caption="Code R" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <pre class="text"><code>set.seed(43)
 df &lt;- data_frame(x = 1:300 + rnorm(n = 300, mean = 10, sd = 5), 
