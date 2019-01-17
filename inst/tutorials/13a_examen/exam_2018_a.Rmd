@@ -6,7 +6,7 @@ output:
   learnr::tutorial
 tutorial:
   id: "sdd1.13a"
-  version: 0.4.0
+  version: 1.0.0
 runtime: shiny_prerendered
 ---
 
@@ -376,15 +376,15 @@ quiz(question("De quel test s'agit-il ?",
 
 ```{r}
 # moyenne 
-m <- sample(x = 120:180, size = 1)
+m <- sample(x = 120:140, size = 1)
 # écart-type
-s <- sample(x = 1:25, size = 1)
+s <- sample(x = 20:30, size = 1)
 # valeur d'intérêt
-q <- sample(x = 100:230, size = 1)
+q <- sample(x = 140:150, size = 1)
 # valeur d'intérêt 2
-y <- sample(x = 110:150, size = 1)
+y <- sample(x = 130:140, size = 1)
 # valeur d'intérêt 3
-y1 <- sample(x = 80:100, size = 1)
+y1 <- sample(x = 110:120, size = 1)
 ```
 
 Dans un champs de maïs (Considérez le nombre de plant de mais comme très grand), dont la taille moyenne est de `r m`  cm et d'écart type de `r s` cm. 
@@ -398,14 +398,22 @@ Dans un champs de maïs (Considérez le nombre de plant de mais comme très gran
 ```{r}
 # Q1
 q1 <- pnorm(q, mean = m, sd = s, lower.tail = FALSE)
-q2 <- pnorm(q + 10, mean = m, sd = m-s, lower.tail = TRUE)
-q3 <- pnorm(m, mean = q, sd = s, lower.tail = FALSE)
-q4 <- pnorm(m, mean = q - m, sd = s, lower.tail = FALSE)
+q2 <- pnorm(q - 10, mean = m, sd = m-s, lower.tail = TRUE)
+q3 <- pnorm(q, mean = m, sd = s, lower.tail = TRUE)
+q4 <- pnorm(q - 20, mean = m, sd = s, lower.tail = FALSE)
 # p1
-p1 <- pnorm(y, mean = m, sd = s, lower.tail = TRUE) - pnorm(y1, mean = m, sd = s, lower.tail = TRUE)
-p2 <- pnorm(y, mean = m, sd = s, lower.tail = TRUE) - pnorm(y1, mean = m-s, sd = s, lower.tail = FALSE)
-p3 <- pnorm(y, mean = q, sd = q, lower.tail = TRUE) - pnorm(y1, mean = m-s, sd = s/2, lower.tail = TRUE)
-p4 <- pnorm(y, mean = m, sd = s, lower.tail = TRUE) - pnorm(y1, mean = q, sd = s, lower.tail = TRUE)
+p1 <- pnorm(y, mean = m, sd = s, 
+            lower.tail = TRUE) - pnorm(y1, mean = m, sd = s, 
+                                       lower.tail = TRUE)
+p2 <- pnorm(y - 5, mean = m, sd = s, 
+            lower.tail = TRUE) - pnorm(y1, mean = m-s, sd = s, 
+                                       lower.tail = TRUE)
+p3 <- pnorm(y, mean = q, sd = q, 
+            lower.tail = TRUE) - pnorm(y1 +20, mean = m, sd = s/2,
+                                       lower.tail = TRUE)
+p4 <- pnorm(y, mean = m, sd = s, 
+            lower.tail = TRUE) - pnorm(y1, mean = q, sd = s, 
+                                       lower.tail = TRUE)
 ```
 
 ```{r qeq_dnorm}
@@ -419,7 +427,7 @@ quiz(question(
   random_answer_order = TRUE
   ),
 question(
-  sprintf("quelle est la probabilité d'obtenir une plante dont la taille est comprise entre $%s$ et $%s$ cm ?", y, y1), 
+  sprintf("Quelle est la probabilité d'obtenir une plante dont la taille est comprise entre $%s$ et $%s$ cm ?", y, y1), 
   answer(sprintf("$%s$", round(p1, 4)),correct = TRUE),
   answer(sprintf("$%s$", round(p2, 4))),
   answer(sprintf("$%s$", round(p3, 4))),
