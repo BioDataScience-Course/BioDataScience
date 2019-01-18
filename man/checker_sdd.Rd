@@ -33,5 +33,7 @@ by the tutorials and is not intended for the end-user.
 \seealso{
 \code{\link[=run]{run()}}
 }
-\concept{record events from the BioDataScience package}
+\concept{
+record events from the BioDataScience package
+}
 \keyword{utilities}

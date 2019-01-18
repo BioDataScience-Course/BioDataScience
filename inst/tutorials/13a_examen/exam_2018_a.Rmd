@@ -1,12 +1,12 @@
 ---
-title: "Examen de janvier 2018 : Version A"
+title: "Examen de janvier 2019 : Version A"
 subtitle: "Traitement des données I"
 author: "Guyliann Engels & Philippe Grosjean"
 output:
   learnr::tutorial
 tutorial:
   id: "sdd1.13a"
-  version: 1.0.0
+  version: 1.1.0
 runtime: shiny_prerendered
 ---
 
@@ -51,7 +51,7 @@ updateTextInput(session, "email", value = BioDataScience::user_email())
 
 ## Préambule
 
-Durant l'ensemble du cours, vous avez été confronté à des learnr afin de vérifier l'acquisition de différents concepts lié à la science des données biologiques. Votre examen vous est proposé sous le même format. 
+Durant l'ensemble de ce cours, vous avez été confronté à des learnr afin de vérifier l'acquisition de différents concepts liés à la science des données biologiques. Votre examen vous est proposé sous le même format. 
 
 Ce questionnaire comprend 16 questions dont 15 questions à choix multiples avec la cotation suivantes :
 
@@ -508,7 +508,7 @@ Réalisez un test de Student bilatéral avec un seuil $\alpha$ de 0.05 et de var
 
 ```{r qeq_stu}
 quiz(
-  question("quels sont les résultats de ce test ?",
+  question("Quels sont les résultats de ce test ?",
          answer("t = $-1.452$, df = $27.994$, p-value = 0.1575", correct = TRUE),
          answer("t = $-1.452$, df = $28$, p-value = 0.1575"),
          answer("t = $-1.452$, df = $28$, p-value = 0.0787"),
@@ -726,7 +726,7 @@ names(density)
 summary(density)
 ```
 
-Vous devez retirer les zones (`area`) **B** et **E** et ne garder que les valeurs de densité strictement supériere à 12.5. 
+Vous devez retirer les zones (`area`) **B** et **E** et ne garder que les valeurs de densité strictement supérieures à 12.5. 
 
 **Des snippets sont mis à votre disposition en fin de question**
 

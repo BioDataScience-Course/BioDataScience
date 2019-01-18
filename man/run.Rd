@@ -36,5 +36,7 @@ run("02b_nuage_points")
 \seealso{
 \code{\link[=run_tutorial]{run_tutorial()}}
 }
-\concept{run interactive learnr documents from the BioDataScience package}
+\concept{
+run interactive learnr documents from the BioDataScience package
+}
 \keyword{utilities}
