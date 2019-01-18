@@ -1,5 +1,9 @@
 # BioDataScience News
 
+## Changes in version 0.22.0
+
+- Tutorial examen_b finalized
+
 ## Changes in version 0.21.0
 
 - Tutorial examen_a finalized
