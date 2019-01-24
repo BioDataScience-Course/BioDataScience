@@ -1,0 +1,55 @@
+---
+title: " test des learnr "
+subtitle: "Traitement des données I"
+author: "Guyliann Engels & Philippe Grosjean"
+output:
+  learnr::tutorial
+tutorial:
+  id: "sdd1.0a"
+  version: 0.0.1
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+SciViews::R()
+
+options(tutorial.event_recorder = BioDataScience::record_sdd)
+tutorial_options(exercise.checker = BioDataScience::checker_sdd)
+tutorial_options(exercise.timelimit = 60)
+tutorial_options(exercise.cap = "Code R")
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
+
+library(BioDataScience)
+#dataset
+
+```
+
+```{r, echo=FALSE}
+fixedRow(
+  column(9, div(
+    img(src = 'images/BioDataScience-128.png', align = "left"),
+    h1("Science des données biologiques"),
+    "Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)"
+  )),
+  column(3, div(
+    textInput("user", "Utilisateur :", ""),
+    textInput("email", "Email :", "")
+  ))
+)
+textOutput("user") # This is newer shown, but required to trigger an event!
+textOutput("email") # Idem!
+```
+
+```{r, context="server"}
+output$user <- renderText({BioDataScience::user_name(input$user);""})
+output$email <- renderText({BioDataScience::user_email(input$email);""})
+updateTextInput(session, "user", value = BioDataScience::user_name())
+updateTextInput(session, "email", value = BioDataScience::user_email())
+```
+
+## Préambule
+
+Ce learnr a pour objectif de tester les possibilités qu'offre le package learnR.
+
