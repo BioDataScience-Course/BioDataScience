@@ -1,0 +1,318 @@
+---
+title: "Mise au point de learnr : "
+subtitle: "Traitement des données I"
+author: "Guyliann Engels & Philippe Grosjean"
+output:
+  learnr::tutorial
+tutorial:
+  id: "sdd1.0a"
+  version: 0.0.2
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+SciViews::R()
+
+options(tutorial.event_recorder = BioDataScience::record_sdd)
+tutorial_options(exercise.checker = BioDataScience::checker_sdd)
+tutorial_options(exercise.timelimit = 60)
+tutorial_options(exercise.cap = "Code R")
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
+
+library(BioDataScience)
+#dataset
+
+```
+
+```{r, echo=FALSE}
+fixedRow(
+  column(9, div(
+    img(src = 'images/BioDataScience-128.png', align = "left"),
+    h1("Science des données biologiques"),
+    "Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)"
+  )),
+  column(3, div(
+    textInput("user", "Utilisateur :", ""),
+    textInput("email", "Email :", "")
+  ))
+)
+textOutput("user") # This is newer shown, but required to trigger an event!
+textOutput("email") # Idem!
+```
+
+```{r, context="server"}
+output$user <- renderText({BioDataScience::user_name(input$user);""})
+output$email <- renderText({BioDataScience::user_email(input$email);""})
+updateTextInput(session, "user", value = BioDataScience::user_name())
+updateTextInput(session, "email", value = BioDataScience::user_email())
+```
+
+## Préambule
+
+Ce learnr a pour objectif de mettre en avant dans un document clair et structuré des possiblités offertes par le package learnr.
+
+## Question
+
+Learnr offre la possibilité de réaliser des quiz 
+
+```{r q1}
+question("Quelle est le nom de ce cours",
+         answer("Science des données I", correct = TRUE),
+         answer("Biostatistique et probabilité"))
+```
+
+Pour ce premier exercice il y a donc deux possibilités
+
+```{r q2}
+question("Quelle sont les noms des ce cours en lien avec ces tutoriels?",
+         answer("Science des données I", correct = TRUE),
+         answer("Science des données II", correct = TRUE),
+         answer("Science des données III", correct = TRUE),
+         answer("Biostatistique et probabilité"),
+         answer("Biostatistique"),
+         answer("Biostatistique appliquée"))
+```
+
+Pour ce second exercice, il y a plusieurs valeurs correctes.
+
+Pour ce troisième exercice, il est possible de personnaliser messages d'erreur et de réussite
+
+```{r q3}
+question("Quelle sont les noms des ce cours en lien avec ces tutoriels?",
+         answer("Science des données I", correct = TRUE),
+         answer("Science des données II", correct = TRUE),
+         answer("Science des données III", correct = TRUE),
+         answer("Biostatistique et probabilité", message = "Il s'agit de l'ancien nom du cours de science des données I"),
+         answer("Biostatistique"),
+         answer("Biostatistique appliquée"),
+         correct = "Bravo !!",
+         incorrect = "C'est dommage")
+```
+
+On peut donc mettre un message général pour la réussite(*correct =*, attention l'argument correct dans la fonction answer prend comme réponse TRUE ou FALSE) ou l'échec et mettre un message personnaliser pour chaque réponse (*message =*).
+
+Il est possible d'entrer des équations mathématique et des éléments calculés et donc facilement modifiable avec la fonction *sprintf()*. Chaque étudiant qui va ouvrir le learnr va avoir des nombre différent pour réaliser son quiz. 
+
+```{r}
+# creation d'un vecteur 
+(x <- round(sample(20:30, size = 5) + rnorm(n = 5,mean = 0,sd = 1), 2))
+```
+
+
+```{r q4}
+question("Calculez la moyenne du vecteur ($\\mu$)",
+              answer(sprintf("$%s$", 
+                             round(mean(x), 2)), correct = TRUE),
+              answer(sprintf("$%s$", round(mean(x[-1]), 2))),
+              answer("Aucune réponse n'est correcte"))
+```
+
+La fonction `sprintf()` est très intéressante pour rendre les séances d'exercice unique
+
+- si on utilise f
+
+```{r}
+sprintf("%f", pi) # avec 6 décimale par défaut
+sprintf("%.1f", pi)
+sprintf("%.2f", pi)
+sprintf("%.3f", pi) # arrondi à 3 termes
+```
+
+- si on utilise e ou E
+
+```{r}
+sprintf("%e", pi)
+sprintf("%E", pi)
+```
+
+- si on utilise G ou g, il va tenir compte de la valeur pour la rende sous forme de e+ ou non 
+
+```{r}
+sprintf("%g", pi)
+sprintf("%g",   1e6 * pi) # -> exponential
+sprintf("%.9g", 1e6 * pi) # -> "fixed"
+sprintf("%G", 1e-6 * pi)
+```
+
+
+- si on utilise s , c'est pour les caracères
+
+```{r}
+sprintf("%s is %f feet tall\n", "Sven", 7.1)
+```
+
+On peut également permuter les questions et permettre de retenter sa chance
+
+```{r q5}
+question("Quelle sont les noms des ce cours en lien avec ces tutoriels?",
+         answer("Science des données I", correct = TRUE),
+         answer("Science des données II", correct = TRUE),
+         answer("Science des données III", correct = TRUE),
+         answer("Biostatistique et probabilité", message = "Il s'agit de l'ancien nom du cours de science des données I"),
+         answer("Biostatistique"),
+         answer("Biostatistique appliquée"),
+         correct = "Bravo !!",
+         incorrect = "C'est dommage",
+         allow_retry = TRUE,
+         random_answer_order = TRUE)
+```
+
+On peut enfin réaliser un quiz() comprenant plusieurs question
+
+```{r q6}
+quiz(question("Calculez la moyenne du vecteur ",
+              answer(sprintf("%f", 
+                             mean(x)), correct = TRUE),
+              answer(sprintf("%f", mean(x[-1]))),
+              answer(sprintf("%f", 
+                             mean(x)-1, 2)),
+              answer(sprintf("%f", 
+                             x[3])),
+              answer("Aucune réponse n'est correcte"),
+              random_answer_order = TRUE),
+     question("Calculez l'écart-type du vecteur",
+              answer(sprintf("%f", 
+                             sd(x)), correct = TRUE),
+              answer(sprintf("%f", 
+                             sd(x[-1]))),
+              answer(sprintf("%f", 
+                             sd(x)-3)),
+              answer(sprintf("%f", 
+                             x[2])),
+              answer("Aucune réponse n'est correcte"),
+              random_answer_order = TRUE))
+```
+
+Un second exemple de question plus élaborée
+
+```{r}
+(x <- round(sample(20:30, size = 5) + rnorm(n = 5,mean = 0,sd = 1), 2))
+```
+
+```{r}
+i <- sample(1:3, size = 1) #
+t <-c("moyenne", "écart-type", "médiane")
+tt <- c(mean(x), sd(x), median(x))
+```
+
+```{r q7}
+question(sprintf("Calculer la %s du vecteur ci-dessus", t[i]),
+         answer(sprintf("%s", tt[i]), correct = TRUE),
+         answer(sprintf("%f", tt[i]), correct = TRUE),
+         answer("..D"))
+```
+
+## Format
+
+il est possible d'mployer learn dans différents formats comme html_document mais il conseille le format de learnr
+
+## Exercice 
+
+```{r exo1, exercise = TRUE, exercise.cap = "blablabla", exercise.startover = FALSE, exercise.eval = TRUE}
+
+```
+
+option des chuncks avec exo,
+
+- exercise.cap : nom du chunck
+- exercise.eval : ...(à tester)
+- exercise.lines : ne semble pas fonctionner
+- exercise.timelimit : ne semble pas fonctionner
+- exercise.checker : (système de correction à tester)
+- exercise.completion : (à tester)
+- exercise.diagnostics : (à tester)
+- exercise.startover : avec l'argument FALSE on peut empecher que cela soit ré-exécuter
+
+
+### Les setups
+
+```{r, echo = TRUE}
+is <- data.io::read("iris", package = "datasets", lang = "fr")
+```
+
+Pour préparer un exercice il faut donner à R les jeux de données nécessaires. Attention, l'environnement lié au chunk prepa_test est dédié uniqement à l'exercice et ne permet pas d'etre utiliser en dehors du chunks d'exo. Même en utilisant l'argument echo = TRUE le chunk prepa_test ne s'affiche pas.
+
+Reproduisez le graphique suivant :
+
+```{r, echo = TRUE}
+plot(data = is, petal_length ~ sepal_length, 
+     col = species)
+```
+
+Réaliser un nuage de point en r de base de la longueur des pétales en fonction de la longueur des sépales 
+
+```{r prepa_test, echo = TRUE}
+# importation des données
+is <- data.io::read("iris", package = "datasets", lang = "fr")
+```
+
+```{r iris_plot, exercise = TRUE, echo = TRUE, exercise.setup = "prepa_test"}
+
+```
+
+
+```{r iris_plot-check, echo = TRUE}
+#TODO
+```
+
+Pour pouvoir réaliser une soumission de l'exercice, il faut prévoir un chunk de correction.
+
+### Les astuces et les solutions 
+
+Afin d'aider l'étudiant, il est possible de lui fournir de l'aide ou la solution  avec hint et solution
+
+reprenons le même exercice que ci-dessus
+
+
+
+```{r, echo = TRUE}
+is <- data.io::read("iris", package = "datasets", lang = "fr")
+```
+
+Pour préparer un exercice il faut donner à R les jeux de données nécessaires. Attention, l'environnement lié au chunk prepa_test est dédié uniqement à l'exercice et ne permet pas d'etre utiliser en dehors du chunks d'exo. Même en utilisant l'argument echo = TRUE le chunk prepa_test ne s'affiche pas.
+
+Reproduisez le graphique suivant :
+
+```{r, echo = TRUE}
+plot(data = is, petal_length ~ sepal_length, 
+     col = species)
+```
+
+Réaliser un nuage de point en r de base de la longueur des pétales en fonction de la longueur des sépales 
+
+```{r prepa_test1, echo = TRUE}
+# importation des données
+is <- data.io::read("iris", package = "datasets", lang = "fr")
+```
+
+```{r iris_plot1, exercise = TRUE, echo = TRUE, exercise.setup = "prepa_test1"}
+
+```
+
+```{r iris_plot1-hint-1}
+# utiliser la fonction plot
+plot()
+```
+
+```{r iris_plot1-hint-2}
+# utiliser la fonction plot
+plot(data = is, )
+```
+
+```{r iris_plot1-hint-3}
+# utiliser la fonction plot
+plot(data = is, petal.length ~ sepal.length, )
+```
+
+```{r iris_plot1-solution}
+plot(data = is, petal_length ~ sepal_length, 
+     col = species)
+```
+
+```{r iris_plot1-check, echo = TRUE}
+#TODO
+```
+
+Si on décide d'employer des aides (hint), on ne peut pas employer l'argument solution (solution). Il faut faire un choix. La solution sera compris comme dernière solution.
