@@ -53,3 +53,107 @@ updateTextInput(session, "email", value = BioDataScience::user_email())
 
 Ce learnr a pour objectif de tester les possibilités qu'offre le package learnR.
 
+## quiz
+
+Sue base de la suite de valeurs ci-dessous : 
+
+```{r}
+(x <- round(sample(20:30, size = 5) + rnorm(n = 5,mean = 0,sd = 1), 2))
+```
+
+```{r mean, exercise = TRUE}
+
+```
+
+```{r quiz}
+quiz(question("Calculez la moyenne du vecteur ",
+              answer(sprintf("%f", 
+                             mean(x)), correct = TRUE),
+              answer(sprintf("%f", mean(x[-1]))),
+              answer(sprintf("%f", 
+                             mean(x)-1, 2)),
+              answer(sprintf("%f", 
+                             x[3])),
+              answer("Aucune réponse n'est correcte"),
+              random_answer_order = TRUE,
+              correct = "Bravo !!",
+              incorrect = "C'est dommage"),
+     question("Calculez l'écart-type du vecteur",
+              answer(sprintf("%f", 
+                             sd(x)), correct = TRUE),
+              answer(sprintf("%f", 
+                             sd(x[-1]))),
+              answer(sprintf("%f", 
+                             sd(x)-3)),
+              answer(sprintf("%f", 
+                             x[2])),
+              answer("Aucune réponse n'est correcte"),
+              random_answer_order = TRUE,
+              correct = "Bravo !!",
+              incorrect = "C'est dommage"))
+```
+
+
+## Reproduction d'un graphique  - analyse du code
+
+Reproduisez le graphique suivant à l'aide du jeu de données `df` dont un résumé vous est proposé ci-dessous.
+
+```{r}
+set.seed(43)
+df <- data_frame(x = 1:300 + rnorm(n = 300, mean = 10, sd = 5), 
+                   y = x + rnorm(n = 300, mean = 10, sd = 5),
+                   zone = as.factor(rep(c("A", "B"), times = 150)),
+                   area = as.factor(rep(1:3, times = 100))
+                   )
+df[(nrow(df)-20):(nrow(df)), 2] <- NA
+```
+
+```{r}
+chart(df, y ~ x%col=% area | zone) +
+  geom_point(na.rm = TRUE)
+```
+
+avec le jeu de donnée df
+
+```{r, echo = TRUE}
+# nom du jeu de données df
+# names
+names(df)
+summary(df)
+```
+
+**Des snippets sont mis à votre disposition en fin de question**
+
+```{r reprod_prepa}
+set.seed(43)
+df <- data_frame(x = 1:300 + rnorm(n = 300, mean = 10, sd = 5), 
+                   y = x + rnorm(n = 300, mean = 10, sd = 5),
+                   zone = as.factor(rep(c("A", "B"), times = 150)),
+                   area = as.factor(rep(1:3, times = 100))
+                   )
+df[(nrow(df)-20):(nrow(df)), 2] <- NA
+```
+
+```{r qec_reprod, exercise = TRUE, exercise.setup = "reprod_prepa"}
+
+```
+
+```{r qec_reprod-check}
+#TODO
+```
+
+
+## Conclusion
+
+Vous venez de terminer votre séance d'exercice.
+
+Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
+
+```{r comm, exercise=TRUE, exercise.lines = 8}
+# Ajout de commentaires 
+# ...
+```
+
+```{r comm-check}
+# Not yet...
+```
