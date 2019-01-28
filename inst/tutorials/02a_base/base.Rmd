@@ -3,7 +3,7 @@ title: "Les bases de R : découverte de l'outil"
 author : "Guyliann Engels & Philippe Grosjean"
 tutorial:
   id: "sdd1.02a"
-  version: 1.0.0
+  version: 1.1.0
 output: 
   learnr::tutorial:
     progressive: true
@@ -76,7 +76,7 @@ Ce tutoriel vous propose une suite d'activités afin d'apprendre les rudiments d
 
 ## R, une calculette scientifique
 
-Vous pouvez tout d'abord employer R comme une calculatrice (ce qui est bien réducteur de la puissance de cet outil). Les opérations de base sont directement utilisable dans R. 
+Vous pouvez tout d'abord employer R comme une calculatrice (ce qui est bien réducteur de la puissance de cet outil). Les opérations de base sont directement utilisables dans R. 
 
 | Opération           | Symbole  | Exemple | Réponse de R  |
 |:--------------------|:--------:|:-------:|:-------------:|
@@ -147,7 +147,7 @@ b <- 4 + 3
 a + b # Somme de a et b
 ```
 
-Notez aussi que tout de qui suit un dièse (`#`) dans R est considéré comme un **commentaire**, et n'est pas interprété par le programme. Servez-vous en pour documenter vos instructions !
+Notez aussi que tout de suite qu' un dièse (`#`) dans R est considéré comme un **commentaire**, et n'est pas interprété par le programme. Servez-vous en pour documenter vos instructions !
 
 **A retenir :**
 
@@ -157,7 +157,9 @@ Notez aussi que tout de qui suit un dièse (`#`) dans R est considéré comme un
 - Evitez d'utiliser des caractères accentués dans les noms.
 - R fait la différence entre majuscules et minuscules : `x` est différent de `X`.
 - Un nom commençant par un point sera "caché" (non visible dans l'onglet **Environnement** de RStudio)
-- Utilisez des noms courts, mais représentatifs du contenu de l'objet. Si possible, séparez les mots par un trait souligné, et utilisez uniquement des lettres minuscules. On a coutume d'utiliser des noms anglais, car cela facilite l'échange de code avec des collègues internationaux (oui, ça vous arrivera... donc, prenez directement des bonnes habitudes). Exemples corrects : `x`, `v1`, `initial_date`, `final_date`, `elapsed_time`. Exemples incorrects : `toto`, `Toto2`, `FinalDate`, `fd` or `FD` or `fi_dat` (pour final date), `date_finale`, `laatse_datum`.
+- Utilisez des noms courts, mais représentatifs du contenu de l'objet. Si possible, séparez les mots par un trait souligné, et utilisez uniquement des lettres minuscules. On a coutume d'utiliser des noms anglais, car cela facilite l'échange de code avec des collègues internationaux (oui, ça vous arrivera... donc, prenez directement des bonnes habitudes). 
+    + Exemples corrects : `x`, `v1`, `initial_date`, `final_date`, `elapsed_time`.
+    + Exemples incorrects : `toto`, `Toto2`, `FinalDate`, `fd` or `FD` or `fi_dat` (pour final date), `date_finale`, `laatse_datum`.
 
 A vous de jouer !
 

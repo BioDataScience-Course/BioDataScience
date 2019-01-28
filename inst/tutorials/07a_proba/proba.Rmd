@@ -6,7 +6,7 @@ output:
   learnr::tutorial
 tutorial:
   id: "sdd1.07a"
-  version: 1.0.0
+  version: 1.0.1
 runtime: shiny_prerendered
 ---
 
@@ -98,8 +98,8 @@ quiz(
   question(" Lors d'un lancé de pièce, quelle est la probabilité d'obtenir 4 fois pile ? ",
            answer("Pr{P.P.P.P}", correct = TRUE),
            answer("Pr{P et P et P et P", correct = TRUE),
-           answer("Pr{P+P+P+P" ),
-           answer("Pr{P ou P ou P ou P"),
+           answer("Pr{P+P+P+P}" ),
+           answer("Pr{P ou P ou P ou P}"),
            random_answer_order = TRUE,
            allow_retry = TRUE,
            incorrect = "Recommencez afin de trouver la bonne réponse",

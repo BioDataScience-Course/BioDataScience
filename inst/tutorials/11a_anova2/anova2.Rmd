@@ -6,7 +6,7 @@ output:
   learnr::tutorial
 tutorial:
   id: "sdd1.11a"
-  version: 1.1.0
+  version: 1.1.1
 runtime: shiny_prerendered
 ---
 
@@ -306,9 +306,7 @@ DF %>.%
 ```
 
 ```{r tg7, exercise = TRUE, exercise.setup = "tg_prepare2"}
-tooth %>.%
-  group_by(., supp, dose) %>.%
-  summarise(., mean = mean(len), sd = sd(len), count = sum(!is.na(len)))
+
 ```
 
 ```{r tg7-solution} 

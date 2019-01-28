@@ -99,7 +99,7 @@ quiz(caption = "Tableau de données",
            answer("Quantitative continue"),
            answer("Quantitative discrète"),
            answer("Qualitative ordonnée"),
-           answer("qualitative non ordonnée", correct = TRUE)
+           answer("Qualitative non ordonnée", correct = TRUE)
            ),
   question("Quel est le type de la variable **age** ? ",
            random_answer_order = TRUE,
@@ -109,7 +109,7 @@ quiz(caption = "Tableau de données",
            answer("Quantitative continue", correct = TRUE),
            answer("Quantitative discrète"),
            answer("Qualitative ordonnée"),
-           answer("qualitative non ordonnée")
+           answer("Qualitative non ordonnée")
            ),
   question("Quel est le type de la variable **travail** ? ",
            random_answer_order = TRUE,

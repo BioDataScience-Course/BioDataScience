@@ -4,7 +4,7 @@ sutitle: "L'obésité"
 author : "Guyliann Engels & Philippe Grosjean"
 tutorial:
   id: "sdd1.02b"
-  version: 1.1.0
+  version: 1.2.0
 output:
   learnr::tutorial:
     fig_caption: yes
@@ -23,7 +23,7 @@ SciViews::R()
 #library(knitr)
 #library(BioDataScience)
 
-biometry <- read("biometry", package = "BioDataScience")
+biometry <- read("biometry", package = "BioDataScience", lang = "fr")
 ```
 
 ```{r, echo=FALSE}
@@ -104,7 +104,7 @@ Le point d'interrogation devant notre jeu de données renvoit vers une page d'ai
 
 ```{r, echo = TRUE}
 biometry %>.%
-  select(., -c("day_birth","wrist", "year_measure")) -> bio
+  select(., -c(day_birth, wrist, year_measure)) -> bio
 ```
 
   
@@ -139,7 +139,7 @@ Continuons à manipuler notre tableau en sélectionnant des colonnes et en filtr
 ```{r, echo=TRUE}
 bio %>.%
   filter(., gender == "W") %>.% # sélectionne les femmes
-  select(., - c("age")) %>.% # retire la colonne age
+  select(., - age) %>.% # retire la colonne age
   head(., n = 8) %>.% # Garde les huit premières lignes
   knitr::kable(., align = "c")
 ```
@@ -167,7 +167,7 @@ chart(biometry, ~ age %fill=% gender | gender)+
   scale_fill_viridis_d()
 ```
 
-- Les graphiques en violon couplée avec des boites de dispersion montre que les hommes sont plus grands et plus lourds que les femmes dans notre jeu de données. 
+- Les graphiques en violon couplés avec des boites de dispersion montrent que les hommes sont plus grands et plus lourds que les femmes dans notre jeu de données. 
 
 ```{r, echo=TRUE}
 a <- chart(biometry, formula = height ~ gender %fill=% gender) +
@@ -261,6 +261,8 @@ Réalisez maintenant par vous-mêmes le calcul sur notre deuxième individu :
 |  2 |    M   |      93     |     191     |
 
 L'espace ci-dessous est une zône où vous pouvez entrer du code R. Le bouton `Run Code` permet ensuite de l'exécuter et de visualiser le résultat. Vous pouvez modifier autant de fois qu'il faut l'expression, et utiliser plusieurs fois `Run Code`. Lorsque vous êtes satisfait du résultat, cliquez sur `Submit Answer`. Dans les tutoriaux, la `Solution` est également accessible, mais faites l'exercice par vous-même d'abord ! Dans les tests, vous n'y aurez pas accès, évidemment.
+
+Calculez l'IMC de l'homme ci-dessus de 191 cm et de 93 kg.
 
 ```{r id2_imc, exercise=TRUE}
 
@@ -374,7 +376,7 @@ woman
 
 Avez-vous remarqué la différence dans la façon d'encoder des valeurs numériques et des chaines de caractères ?
 
-Réalisez-les mêmes opérations sur les individus de 8 à 12 : 
+Réalisez-les mêmes opérations sur les individus de 8 à 12 (inspirez vous des instructions ci-dessus) : 
 
 | id | gender | weight [kg] | height [cm] |
 |:--:|:------:|:-----------:|:-----------:|
@@ -661,6 +663,9 @@ La fonction `summary()` permet d'obtenir un résumé complet d'un tableau de don
 # Résumé des données
 summary(bio_100)
 # Nombre d'obèses : 12 /100 = 12%
+bio_100 %>.%
+  filter(., bmi_schedule == "obese") %>.%
+  nrow(.) / nrow(bio_100) * 100 # Nbre lignes filtrées / nbre total * 100
 ```
 
 ```{r prepare4}

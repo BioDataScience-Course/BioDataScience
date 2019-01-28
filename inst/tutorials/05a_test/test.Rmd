@@ -6,7 +6,7 @@ output:
   learnr::tutorial
 tutorial:
   id: "sdd1.05a"
-  version: 1.0.0
+  version: 1.1.0
 runtime: shiny_prerendered
 ---
 
@@ -199,7 +199,7 @@ Employez le chainage pour résoudre cette exercice.
 
 **Nom du jeu de données et des variables importantes** 
 
-```{r, echo = TRUE}
+```{r}
 variable <- c("crabs", names(crabs), "n()", "mean()", "kable()", "group_by()", "filter()" )
 sample(variable)
 ```

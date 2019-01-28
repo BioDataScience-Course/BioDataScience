@@ -3,7 +3,7 @@ title: "Le nuage de point : faire un graphique dans R"
 author : "Guyliann Engels & Philippe Grosjean"
 tutorial:
   id: "sdd1.02c"
-  version: 1.0.0
+  version: 1.1.0
 output:
   learnr::tutorial:
     progressive: true
@@ -273,7 +273,7 @@ chart(DF, formula = YNUM ~ XNUM) +
 ```
 
 
-```{r 2factor_graph-hint}
+```{r 2factor_graph-hint-1}
 urchin <- dplyr::filter(urchin, sex != "NA")
 
 chart(DF, formula = YNUM ~ XNUM %col=% FACTOR1 %shape=% FACTOR2) +
@@ -313,17 +313,17 @@ chart(DF, formula = YNUM ~ XNUM) +
   geom_point()
 ```
 
-```{r log_log-hint}
+```{r log_log-hint-1}
 chart(urchin, formula = log(YNUM) ~ log(XNUM)) +
   geom_point()
 ```
 
-```{r log_log-hint-1}
+```{r log_log-hint-2}
 chart(urchin, formula = log(YNUM) ~ log(XNUM) %col=% FACTOR) +
   geom_point()
 ```
 
-```{r log_log-hint-2}
+```{r log_log-hint-3}
 chart(urchin, formula = log(height) ~ log(weight) %col=% origin) +
   geom_point(na.rm = TRUE)
 ```

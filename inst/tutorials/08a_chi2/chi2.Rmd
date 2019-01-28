@@ -6,7 +6,7 @@ output:
   learnr::tutorial
 tutorial:
   id: "sdd1.08a"
-  version: 1.0.0
+  version: 1.0.1
 runtime: shiny_prerendered
 ---
 
@@ -234,7 +234,7 @@ Utilisez les snippets afin de déterminer la probabilités délimitant l'aire à
 ```{r quiz3}
 question("Comparez votre réponse obtenue par calcul avec le quantile lié au seuil alpha de 0.05",
          answer(sprintf("Rejet de $H_{0}$"), correct = TRUE),
-         answer(sprintf("garde de $H_{0}$")),
+         answer(sprintf("Garde de $H_{0}$")),
            random_answer_order = TRUE,
            allow_retry = TRUE,
            incorrect = "Recommencez afin de trouver la bonne réponse",

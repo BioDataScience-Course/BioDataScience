@@ -6,7 +6,7 @@ output:
   learnr::tutorial
 tutorial:
   id: "sdd1.09b"
-  version: 1.0.0
+  version: 1.0.1
 runtime: shiny_prerendered
 ---
 
@@ -357,7 +357,7 @@ wilcox.test(data = dopamine, concentration ~ treatment,
 
 ```{r quiz4}
 quiz(
-  question("Rejetter H_0 lorsque H_0 est vraie est :",
+  question("Rejetter $H_0$ lorsque $H_0$ est vraie est :",
          answer("correct"),
          answer("Une erreur de première espèce associée au risque $\\alpha$", correct = TRUE),
          answer("une erreur de seconde espèce associée au risque $\\beta$"),

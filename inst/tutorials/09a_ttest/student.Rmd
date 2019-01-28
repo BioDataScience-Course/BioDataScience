@@ -6,7 +6,7 @@ output:
   learnr::tutorial
 tutorial:
   id: "sdd1.09a"
-  version: 1.0.0
+  version: 1.0.1
 runtime: shiny_prerendered
 ---
 
@@ -104,10 +104,16 @@ var <- sample(x = 1:20, size = 5)
 ```
 
 ```{r mean, exercise = TRUE, exercise.setup = "prepare"}
+set.seed(42)
+var <- sample(x = 1:20, size = 5)
+# calculer la moyenne
+ 
 
 ```
 
 ```{r mean-solution}
+set.seed(42)
+var <- sample(x = 1:20, size = 5)
 # Caculez la moyenne
 mean(var)
 ```
@@ -154,11 +160,17 @@ quiz(
 Il existe dans R la fonction `sd()` qui permet de calculer l'écart-type d'un échantillon. Calculez l'écart-type via cette fonction sur la série de nombre proposée ci-dessus (nom de la variable : `var`).
 
 ```{r mean1, exercise = TRUE, exercise.setup = "prepare"}
+set.seed(42)
+var <- sample(x = 1:20, size = 5)
+# Caculez l'écart-type
+
 
 ```
 
 ```{r mean1-solution}
-# Caculez la moyenne
+set.seed(42)
+var <- sample(x = 1:20, size = 5)
+# Caculez l'écart-type
 sd(var)
 ```
 
