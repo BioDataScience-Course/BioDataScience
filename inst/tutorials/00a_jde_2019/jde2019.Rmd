@@ -1,0 +1,148 @@
+---
+title: "Découverte des quiz interactifs en Science des données biologiques I : visualisation et inférence"
+author: "Guyliann Engels & Philippe Grosjean"
+output:
+  learnr::tutorial
+tutorial:
+  id: "sdd1.00a"
+  version: 0.0.1
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+SciViews::R()
+
+options(tutorial.event_recorder = BioDataScience::record_sdd)
+tutorial_options(exercise.checker = BioDataScience::checker_sdd)
+tutorial_options(exercise.timelimit = 60)
+tutorial_options(exercise.cap = "Code R")
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
+
+```
+
+```{r, echo=FALSE}
+fixedRow(
+  column(9, div(
+    img(src = 'images/BioDataScience-128.png', align = "left"),
+    h1("Science des données biologiques"),
+    "Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)"
+  )),
+  column(3, div(
+    textInput("user", "Utilisateur :", ""),
+    textInput("email", "Email :", "")
+  ))
+)
+textOutput("user") # This is newer shown, but required to trigger an event!
+textOutput("email") # Idem!
+```
+
+```{r, context="server"}
+output$user <- renderText({BioDataScience::user_name(input$user);""})
+output$email <- renderText({BioDataScience::user_email(input$email);""})
+updateTextInput(session, "user", value = BioDataScience::user_name())
+updateTextInput(session, "email", value = BioDataScience::user_email())
+```
+
+## Préambule
+
+Vous vous trouvez au sein d'un tutoriel interactif construits avec `learnr`. La première chose à vérifier à l’ouverture du tutoriel interactif est le `nom d’utilisateur` et votre adresse email. En effet, votre progression sera enregistrée, mais cela ne peut se faire que si vous renseignez ces données correctement avant de travailler dans le tutoriel `learnr`.
+
+Le learnr est un outil pédagogique mis au point afin de proposer des tutoriaux interactifs comprennant des illustrations, des questions à choix multiples, des exercices R, … 
+
+Des questions ouvertes (sous la forme zones de codes R) vous sont proposées dans les exercices. Elles vous permettent d’expérimenter directement des instructions dans R depuis le document learnr. Pour exécuter ces instructions, il faut cliquer sur `Run Code`. Vous pouvez le faire autant de fois que vous le voulez. Modifiez le code, cliquez Run Code, analysez le résultat, modifiez votre code, recliquez Run Code, etc… juqu’à ce que vous soyez satisfait du résultat. Finissez l’exercice et soumettez votre réponse en cliquant sur `Submit Answer`. 
+
+Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord avec son interface [ici](http://biodatascience-course.sciviews.org/sdd-umons/learnr.html).
+
+![](images/attention.jpg)
+
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
+
+## Objectifs
+
+- Découvrir les quiz de type `learnr`
+
+## Questions à choix muliples
+
+La 9ième marche pour le climat s'est déroulé le jeudi 7 mars à Louvain-la-Neuve. De nombreux jeunes militent chaque semaine dans la rue afin d'inciter le monde politique a proposé des changements ambitieux pour préserver notre planète. De nombreux slogants sont mis en avant par les manifestants le rechauffement climatique, la perte de biodiversité, l'écologie,... Nous vous proposons un petit quiz sur certaine de ces notions. 
+
+```{r quiz_climat}
+quiz(
+  question("Combien de ministres ont en charge la politique énergétique 
+           et climatique en belgique ?",
+           answer("1"),
+           answer("2"),
+           answer("3"),
+           answer("4", correct = TRUE, message = "test"),
+           answer("8"),
+           allow_retry = TRUE,
+           incorrect = "Recommencez afin de trouver la bonne réponse, le système politique belge n'est pas simple",
+           correct = "Bravo, c'est correct ! En effet, le système politique belge
+                        n'est pas simple. Nous avons 4 ministres en charge de la politique environnementale en belgique: Marie-Christine Marghem (ministre fédérale), Céline Fremault (ministre à la région Bruxelloise), Koen Van den Heuvel (ministre à la région flamande) et Paul Furlan (ministre à la région wallonne) "
+           ),
+  question("Quelle est l'année la plus chaude (température moyenne annuelle à Uccle) en Belgique entre 1833 et 2018",
+           answer("1989", message = "Avec une moyenne annuelle de 11,26°C, l'année 1989 se place à la 8ieme position"),
+           answer("2007", message = "Avec une moyenne annuelle de 11,52°C, l'année 2007 se place à la 4ieme position"),
+           answer("2014", correct = TRUE),
+           answer("2018", message = "Avec une moyenne annuelle de 11,85°C, l'année 2018 se place à la 2ieme position"),
+           allow_retry = TRUE,
+           incorrect = "Recommencez afin de trouver la bonne réponse : ",
+           correct = "Bravo, c'est correct ! L'année 2014 est l'année la plus chaude
+           enregistrées avec une température moyenne annuelle de 11,93°C. 
+           Depuis 1999 toutes les années font partie du top 20 à 
+           l'exception de 2010, 2012 et 2013"),
+  question("Les changement climatique est souvent associé à l' **écologie**. Quel célébre scientifique invente le terme écologie ?",
+           answer("Ernst Haeckel", correct = TRUE),
+           answer("Charles Darwin", message = "Charles Darwin écrit l'Origine des espèces qui établit les premiers pas de la théorie de l'évolution."),
+           answer("Carl von Linné", message = "Carl von Linné propose le système de classification des espèces."),
+           answer("Alexanre de Humbolt", message = "Alexandre de Humbolt n'a pas inventé 
+                  le terme. Il est cependant, le père de l'écologie scientifique en
+                  trouvant des associations entre la température et les espèce 
+                  par exemple."),
+           random_answer_order = TRUE,
+           allow_retry = TRUE,
+           incorrect = "Recommencez afin de trouver la bonne réponse : ",
+           correct = "Bravo, c'est correct ! Ernst Haeckel est 
+           l'inventeur du terme écologie"
+           )
+)
+```
+
+Comme vous avez pu vous en rendre compte en répondant aux questions ci-dessus. Ces questions sont formatives et peuvent être recommencées afin de trouver la bonne réponse. De plus, les réponses bonnes comme mauvaises peuvent être associé à une explication complémentaire.
+
+## Questions ouvertes
+
+Répondez à la question ouverte suivantes : 
+
+Reproduisez le graphique suivant :
+
+
+
+
+## Conclusion
+
+Bravo! Vous venez de terminer votre séance d'exercices dans un tutoriel "learnr". 
+
+Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
+
+```{r quiz_ep}
+question("Comment évalueriez-vous globalement cet outils pédagogiques",
+     answer("Excellent", correct = TRUE),
+     answer("Bon", correct = TRUE),
+     answer("Satisfaisant", correct = TRUE),
+     answer("insuffisant", correct = TRUE),
+     answer("Très insuffisant", correct = TRUE),
+     allow_retry = TRUE,
+     type = "single")
+```
+
+
+```{r comm, exercise=TRUE, exercise.lines = 8}
+# Ajout de commentaires 
+# ...
+```
+
+```{r comm-check}
+# Not yet...
+```
