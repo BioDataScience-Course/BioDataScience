@@ -1,0 +1,12 @@
+name: transfo_data
+title: transfo_data
+username:
+account: guyliannengels
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 783848
+bundleId: 1933335
+url: https://guyliannengels.shinyapps.io/transfo_data/
+when: 1552395041.02006
+asMultiple: FALSE
+asStatic: FALSE

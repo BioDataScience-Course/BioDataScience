@@ -8,35 +8,24 @@
 #
 
 library(shiny)
-SciViews::R
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
 
   # Application title
-  titlePanel("Variation de l'axe X et de l'axe Y"),
+  titlePanel("Transformations des données"),
 
   # Sidebar with a slider input for number of bins
   sidebarLayout(
     sidebarPanel(
-       sliderInput("scalex",
-                   "Echelle de l'axe X",
-                   min = -50,
-                   max = 500,
-                   value = c(0,100),
-                   step = 20),
-       sliderInput("scaley",
-                   "Echelle de l'axe y",
-                   min = -50,
-                   max = 150,
-                   value = c(0,50),
-                   step = 10)
+       selectInput("transfox", "Transformation souhaitée de l'axe X : la masse",
+                  choices = c("Aucune", "Logarithme", "Racine carrée")),
+       selectInput("transfoy", "Transformation souhaitée de l'axe y : la hauteur",
+                   choices = c("Aucune", "Logarithme", "Racine carrée"))
     ),
-
     # Show a plot of the generated distribution
     mainPanel(
-       plotOutput("scaleplot")
+       plotOutput("transfo_plot")
     )
   )
 ))
-
