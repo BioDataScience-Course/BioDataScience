@@ -1,12 +1,12 @@
 ---
-title: "Quiz interactif en Science des données biologiques I : visualisation et inférence"
+title: "Quiz interactif en science des données biologiques I : visualisation et inférence"
 author: "Guyliann Engels & Philippe Grosjean"
 output:
   learnr::tutorial:
     theme: "united"
 tutorial:
   id: "sdd1.00a"
-  version: 1.0.0
+  version: 1.1.0
 runtime: shiny_prerendered
 ---
 
@@ -64,7 +64,7 @@ Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord a
 
 - Découvrir les quiz de type `learnr` composés de questions ouvertes et de questions à choix muliples.
 
-## Questions à choix muliples
+## Questions à choix multiples
 
 Ce vendredi 15 mars 2019 est une journée de grève e de manifestation pour le climat. De nombreux jeunes militent depuis plusieurs semaines dans la rue afin d'inciter le monde politique à proposer des changements ambitieux pour préserver notre planète. De nombreux slogans sont mis en avant par les manifestants comme le réchauffement climatique, la perte de biodiversité, l'écologie, ... Nous vous proposons un petit quiz sur ces notions.
 
@@ -97,7 +97,7 @@ quiz(
            answer("Ernst Haeckel", correct = TRUE),
            answer("Charles Darwin", message = "Charles Darwin écrit l'**Origine des espèces** qui établit les premiers pas de la théorie de l'évolution."),
            answer("Carl von Linné", message = "Carl von Linné propose le système de classification des espèces."),
-           answer("Alexandre de Humboldt", message = "Alexandre de Humboldt n'a pas inventé 
+           answer("Alexander von Humboldt", message = "Alexander von Humboldt n'a pas inventé 
                   le terme. Il est cependant, le père de l'écologie scientifique en
                   trouvant des associations entre la température et les espèces 
                   par exemple."),
@@ -116,7 +116,7 @@ Comme vous avez pu vous en rendre compte en répondant aux questions ci-dessus. 
 
 Répondez aux questions ouvertes suivantes : 
 
-D'après les dernières recherches la température de cette mer augmente de 0.053°C annuellement. La température moyenne annuelle de la mer du Nord est de 13.5°C. 
+La température moyenne annuelle en surface de la Mer du Nord est de 13.5°C. D'après les dernières recherches la température de cette mer augmente de 0.053°C annuellement.
 
 - Quelle sera la température moyenne en 2030 ?  
 
@@ -158,13 +158,12 @@ Afin de tester vos instructions, cliquez sur `Run Code`. Lorsque vous êtes sati
 # TODO
 ```
 
-Actuellement la réponse de l'exercice est donnée comme dernier indice de la question (`Hints`) ou via l'onglet solution (`Solution`). Une correcetion automatique est en cours d'implémentation. 
+Actuellement la réponse de l'exercice est donnée comme dernier indice de la question (`Hints`) ou via l'onglet solution (`Solution`). Une correction automatique est en cours d'implémentation. 
 
 ## Conclusion
 
 Bravo! Vous venez de terminer votre séance d'exercices dans un tutoriel `learnr`. 
 
-Laissez-nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utiliser un dièse (`#`) devant vos phrases.
 
 ```{r quiz_ep}
 question("Comment évalueriez-vous globalement cet outils pédagogiques",
@@ -174,9 +173,10 @@ question("Comment évalueriez-vous globalement cet outils pédagogiques",
      answer("insuffisant", correct = TRUE),
      answer("Très insuffisant", correct = TRUE),
      allow_retry = TRUE,
-     type = "single")
+     type = "single", correct = "Merci, votre avis est enregistré.")
 ```
 
+Laissez-nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Pour placer un commentaire dans une zone de code R, vous devez utiliser un dièse (`#`) devant vos phrases.
 
 ```{r comm, exercise=TRUE, exercise.lines = 8}
 # Ajout de commentaires 
