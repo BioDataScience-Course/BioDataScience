@@ -9,11 +9,15 @@
 
 library(shiny)
 
+titlePanel_h4 <- function(title, windowTitle = title) {
+  tagList(tags$head(tags$title(windowTitle)), h4(title))
+}
+
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
 
   # Application title
-  titlePanel("Transformations des données"),
+  titlePanel_h4("Transformations des données"),
 
   # Sidebar with a slider input for number of bins
   sidebarLayout(

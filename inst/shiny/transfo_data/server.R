@@ -11,7 +11,6 @@ library(shiny)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-
   urchin <- data.io::read("urchin_bio", package = "data.io", lang = "fr")
 
   output$transfo_plot <- renderPlot({
@@ -46,5 +45,4 @@ shinyServer(function(input, output) {
       ggplot2::labs( x = labx, y = laby)
     chart::combine_charts(list(a,b))
   })
-
 })

@@ -5,8 +5,8 @@ account: guyliannengels
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 781245
-bundleId: 1933228
+bundleId: 1939856
 url: https://guyliannengels.shinyapps.io/scatterplot/
-when: 1552391542.59664
+when: 1552577973.77793
 asMultiple: FALSE
 asStatic: FALSE
