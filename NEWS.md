@@ -1,5 +1,8 @@
 # BioDataScience News
 
+## Changes in version 0.23.1
+
+- Review tutorials 00 and 02 with svbox2019
 
 ## Changes in version 0.23.0
 
