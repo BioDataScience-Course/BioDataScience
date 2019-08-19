@@ -1,12 +1,12 @@
 ---
-title: "Examen de janvier 2019 : Version A"
+title: "Examen aout 2019 : Version A"
 subtitle: "Traitement des données I"
 author: "Guyliann Engels & Philippe Grosjean"
 output:
   learnr::tutorial
 tutorial:
   id: "sdd1.13c"
-  version: 0.0.1
+  version: 1.0.0
 runtime: shiny_prerendered
 ---
 
@@ -67,7 +67,7 @@ Ce questionnaire comprend 21 questions dont 20 questions à choix multiples
 
 Le jeu de données `growth` est mis à votre disposition comprenant la variable `weight` et la variable `height`. 
 
-Réalisez un nuage de point avec la variable `weight` en abscisse et `height` en ordonnée. 
+Réalisez un nuage de points avec la variable `weight` en abscisse et `height` en ordonnée. 
 
 **Des snippets sont mis à votre disposition en fin de question**
 
@@ -808,7 +808,7 @@ density %>.%
   nrow(.)-> t111
 ```
 
-Des scientifiques réalisent des pêches sur 100 stations d'intérêts afin d'étudier la diversité des poissons dans les cours d'eaux de wallonie. Ils s'interessent tout particulièrement à l'espèce *Barbus barbus* L. 1758. A la suite de leurs recensements, ils souhaitent connaitre le nombre de station dans les zones A,C,D dont la densité relative en barbeau est supérieur à 12.5 % par rapport à l'ensemble des poissons pêchés. 
+Des scientifiques réalisent des pêches sur 100 stations d'intérêts afin d'étudier la diversité des poissons dans les cours d'eau de wallonie. Ils s'intéressent tout particulièrement à l'espèce *Barbus barbus* L. 1758. A la suite de leurs recensements, ils souhaitent connaitre le nombre de stations dans les zones A,C,D dont la densité relative en barbeau est supérieure à 12.5 % par rapport à l'ensemble des poissons pêchés. 
 
 Ils mettent à votre disposition un jeu de données qui se nomme `density` avec deux variables les zones (`area`) et la densité relative (`densi`) de barbeau commun par rapport à l'ensemble des poissons pêchés. 
 
@@ -1007,7 +1007,7 @@ p4 <- pnorm(y, mean = m, sd = s,
                                        lower.tail = TRUE)
 ```
 
-Dans un champs de maïs (Considérez le nombre de plant de mais comme très grand), dont la taille moyenne est de `r m`  cm et d'écart type de `r s` cm. 
+Dans un champ de maïs (Considérez le nombre de plants de maïs comme très grand), dont la taille moyenne est de `r m`  cm et d'écart type de `r s` cm. 
 
 **Des snippets sont mis à votre disposition en fin de question**
 
@@ -1205,7 +1205,7 @@ plot(0:(${1:MEAN_OCCURENCES}+20), dpois(0:(${1:MEAN_OCCURENCES}+20), lambda = ${
 
 ## Croissance d' *Ailuropoda melanoleuca* (David, 1868)
 
-Plusieurs naissances d' *Ailuropoda melanoleuca* (David, 1868) se sont déroulés au sein du centre de recherche et d'élevage du panda géant situé dans la province du Sichuan (Chine). Les scientifiques ont pesés les nouveaux nés et voici les masses en gramme de ces derniers : 
+Plusieurs naissances d' *Ailuropoda melanoleuca* (David, 1868) se sont déroulés au sein du centre de recherche et d'élevage du panda géant situé dans la province du Sichuan (Chine). Les scientifiques ont pesé les nouveaux nés et voici les masses en grammes de ces derniers : 
 
 ```{r mean01}
 # fixation de l'aléatoire pour préparer la question
@@ -1230,7 +1230,7 @@ f3b <- f2b + rnorm(n = 1)
 f4 <- "Aucune réponse citée n'est correcte"
 ```
 
-Les scientifiques souhaite connaitres la moyenne et l'écart-type pour ces 5 nouveaux individus. Vous avez à votre disposition une zone de code afin de réaliser vos calculs.
+Les scientifiques souhaitent connaitre la moyenne et l'écart-type pour ces 5 nouveaux individus. Vous avez à votre disposition une zone de code afin de réaliser vos calculs.
 
 ```{r mean01_cal, exercise = TRUE}
 
