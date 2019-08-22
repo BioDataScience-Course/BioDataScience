@@ -1,5 +1,9 @@
 # BioDataScience News
 
+## Changes in version 0.25.0
+
+- Review of the all tutoriels (00a - 13c) with the **svbox 2018**
+
 ## Changes in version 0.24.0
 
 - Tutorial examen_c finalized
