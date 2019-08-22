@@ -86,18 +86,50 @@ run <- function(tutorial, ..., update = ask, ask = interactive()) {
     github_response(req)
   }
 
+  get_last_tag <- function() {
+    # Check if run from within a SciViews Box
+    hostname <- ""
+    if (file.exists("/etc/hostname"))
+      hostname <- readLines("/etc/hostname")[1]
+    if (!grepl("^box[0-9]{4}", hostname))
+      warning(paste("Not run from withing a SciViews Box:",
+        "no update and expect weird behavior of the tutorials"))
+
+    # Get the year of the SciViews Box
+    box_year <- substr(hostname, 4, 7)
+    # Pattern is v[box_year].x.y
+    v_pat <- paste0("^[vV]", box_year, "\\.[0-9]+\\.[0-9]+$")
+
+    # Get all tags for BioDataScience
+    good_tags <- character(0)
+    all_tags_data <- try(github_GET(
+      "repos/BioDataScience-Course/BioDataScience/releases"),
+      silent = TRUE)
+    if (!inherits(all_tags_data, "try-error")) {
+      all_tags <- sapply(all_tags_data, getElement, "tag_name")
+      # Keep only tags related to this svbox
+      good_tags <- all_tags[grepl(v_pat, all_tags)]
+    }
+    # Return latest (first one) among all valid tags
+    if (length(good_tags)) good_tags[1] else NULL
+  }
+
   # Look what is latest release and compare with current version of the package
   updated <- FALSE
   if (isTRUE(update)) {
-    last_tag <- try(github_GET(
-      "repos/BioDataScience-Course/BioDataScience/releases/latest")$tag_name,
-      silent = TRUE)
-    if (!inherits(last_tag, "try-error") &&
-        grepl("^[vV][0-9]+\\.[0-9]+\\.[0-9]+$", last_tag)) {
+    #last_tag <- try(github_GET(
+    #  "repos/BioDataScience-Course/BioDataScience/releases/latest")$tag_name,
+    #  silent = TRUE)
+    #if (!inherits(last_tag, "try-error") &&
+    #    grepl("^[vV][0-9]+\\.[0-9]+\\.[0-9]+$", last_tag)) {
+    last_tag <- get_last_tag()
+    if (!is.null(last_tag)) {
       last_rel <- sub("^[vV]([0-9]+\\.[0-9]+)\\.([0-9]+)$", "\\1-\\2", last_tag)
       curr_rel <- sub("^([0-9]+\\.[0-9]+)\\.([0-9]+)$", "\\1-\\2",
         packageVersion("BioDataScience"))
-      status <- try(compareVersion(last_rel, curr_rel) > 0, silent = TRUE)
+      # In previous version we tested if compareVersion() > 0, but here, we
+      # rather check if it is different, cf. may need to downgrade possibly
+      status <- try(compareVersion(last_rel, curr_rel) != 0, silent = TRUE)
       if (!inherits(status, "try-error")) {
         if (status > 0) {
           # We need to update the package

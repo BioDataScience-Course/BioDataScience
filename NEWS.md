@@ -1,57 +1,75 @@
 # BioDataScience News
 
+## Changes in version 2018.0.0
+
+- `run()` modified to install latest release matching svbox year.
+
+
 ## Changes in version 0.25.0
 
-- Review of the all tutoriels (00a - 13c) with the **svbox 2018**
+- Review of the all tutorials (00a - 13c) with the **svbox 2018**
 
 ## Changes in version 0.24.0
 
 - Tutorial examen_c finalized
 
+
 ## Changes in version 0.23.1
 
 - Review tutorials 00 and 02 with svbox2019
+
 
 ## Changes in version 0.23.0
 
 - Review of the all tutoriels (02a - 12a)
 
+
 ## Changes in version 0.22.0
 
 - Tutorial examen_b finalized
+
 
 ## Changes in version 0.21.0
 
 - Tutorial examen_a finalized
 
+
 ## Changes in version 0.20.0
 
 - Tutorial 12a_correlation finalized
 
+
 ## Changes in version 0.19.0
 
-- correction of bug to 11b and 11a
+- Correction of bugs to 11b and 11a
+
 
 ## Changes in version 0.18.2
 
 - Tutorial 11b_syntaxr finalized
+
 - Tutorial 11a_anova2 finalized
+
 
 ## Changes in version 0.18.0
 
 - Tutorial 11b_syntaxr finalized
 
+
 ## Changes in version 0.17.0
 
 - Tutorial 11a_anova2 finalized
+
 
 ## Changes in version 0.16.0
 
 - Tutorial 10b_anova finalized
 
+
 ## Changes in version 0.15.0
 
 - Tutorial 10a_anova finalized
+
 - Addition of a test shiny app (histogram.R)
 
 
@@ -64,32 +82,40 @@
 
 - Tutorial 09a_student finalized
 
+
 ## Changes in version 0.12.1
 
 - Tutorial 08b_chi2 finalized
-- add html file 08b_chi2
+
+- Add html file 08b_chi2
+
 
 ## Changes in version 0.12.0
 
 - Tutorial 08b_chi2 finalized
 
+
 ## Changes in version 0.11.0
 
 - Tutorial 08a_chi2 finalized
+
 
 ## Changes in version 0.10.0
 
 - Tutorial 07b_distri finalized
 
+
 ## Changes in version 0.9.0
 
 - Tutorial 07a_proba finalized
+
 - Tutorial 06a_test finalized
 
 
 ## Changes in version 0.8.0
 
 - Tutorial 05a_test finalized
+
 
 ## Changes in version 0.7.0
 
