@@ -1,5 +1,9 @@
 # BioDataScience News
 
+## Changes in version 2019.0.0
+
+- Review of the all tutorials (00a - 13c) with the **svbox 2019**
+
 ## Changes in version 2018.0.0
 
 - `run()` modified to install latest release matching svbox year.
