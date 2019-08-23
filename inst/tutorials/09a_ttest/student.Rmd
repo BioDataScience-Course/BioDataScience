@@ -1,5 +1,5 @@
 ---
-title: "Module 8 : Test de Student"
+title: "Module 9 : Test de Student"
 subtitle: "Traitement des données I"
 author: "Guyliann Engels & Philippe Grosjean"
 output:
