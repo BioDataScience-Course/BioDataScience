@@ -4,6 +4,11 @@
 
 - Review of the all tutorials (00a - 13c) with the **svbox 2019**
 
+- Internal function `collect_sdd()` now has `user =` and `password =` arguments
+  and the user/password used by default by `record_sdd()` cannot read data in
+  the database anymore.
+
+
 ## Changes in version 2018.0.0
 
 - `run()` modified to install latest release matching svbox year.
