@@ -1,5 +1,9 @@
 # BioDataScience News
 
+## Changes in version 2019.1.0
+
+- Review of the all tutorials (00a - 13c) with the **svbox 2019**
+
 ## changes in version 2018.1.0
 
 - Review of the all tutorials (00a - 13c) with the **svbox 2018** and with the new function `collect_sdd()` 
