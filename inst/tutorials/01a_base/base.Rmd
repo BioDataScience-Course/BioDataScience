@@ -3,7 +3,7 @@ title: "Les différents outils de la science des données biologiques"
 author : "Guyliann Engels, Raphael Conotte & Philippe Grosjean"
 tutorial:
   id: "sdd1.01a"
-  version: 0.1.0
+  version: 1.0.0
 output: 
   learnr::tutorial:
     progressive: true
@@ -49,7 +49,7 @@ Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord a
 
 ![](images/attention.jpg)
 
-> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collectés afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
 
 ## Gestion de projet 
 
@@ -150,7 +150,7 @@ quiz(
 
 ### Situation 2
 
-Le chercheur 2 s'intéressent au projet du chercheur 1. Il s'y intéresse, y travaille et propose des modifications afin d'améliorer ce projet. 
+Le chercheur 2 s'intéresse au projet du chercheur 1, travaille dessus et propose des modifications afin l'améliorer. 
 
 Sur base de l'image ci-dessous et de la situation précisée précédemment, répondez aux questions suivantes.
 
@@ -239,7 +239,7 @@ quiz(
 
 ## Conclusion
 
-Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
+Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utiliser un dièse (`#`) devant vos phrases.
 
 ```{r comm, exercise=TRUE, exercise.lines=8}
 # Ajout de commentaires 
