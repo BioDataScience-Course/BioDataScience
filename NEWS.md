@@ -1,5 +1,9 @@
 # BioDataScience News
 
+# ## Changes in version 2019.2.0
+
+- tutorial 01a_base finalized
+
 ## Changes in version 2019.1.0
 
 - Review of the all tutorials (00a - 13c) with the **svbox 2019**
