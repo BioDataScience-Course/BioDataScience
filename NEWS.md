@@ -1,6 +1,10 @@
 # BioDataScience News
 
-# ## Changes in version 2019.2.0
+## Changes in version 2019.3.0
+
+- tutorial 01a_base finalized
+
+## Changes in version 2019.2.0
 
 - tutorial 01a_base finalized
 
