@@ -1,5 +1,9 @@
 # BioDataScience News
 
+## Changes in version 2019.4.0
+
+- tutorial 06b_recombinaison finalized
+
 ## Changes in version 2019.3.0
 
 - tutorial 01a_base finalized
