@@ -6,7 +6,7 @@ output:
   learnr::tutorial 
 tutorial:
   id: "sdd1.06b"
-  version: 1.0.0
+  version: 1.1.0
 runtime: shiny_prerendered
 ---
 
@@ -240,7 +240,7 @@ bacteria <- tibble(
 )
 ```
 
-```{r separate, exercise = TRUE, exercise.setup = "long-prep"}
+```{r separate, exercise = TRUE, exercise.setup = "separate-prep"}
 head(bacteria)
 summary(bacteria)
 ```
@@ -315,7 +315,7 @@ weight <- tibble(
 )
 ```
 
-```{r join1, exercise = TRUE, exercise.setup = "join-prep"}
+```{r join1, exercise = TRUE, exercise.setup = "join_prep"}
 head(physico)
 summary(physico)
 
@@ -345,7 +345,7 @@ full_join(physico, weight, by = "aqua") %>.%
   knitr::kable(.)
 ```
 
-```{r join2, exercise = TRUE, exercise.setup = "join-prep"}
+```{r join2, exercise = TRUE, exercise.setup = "join_prep"}
 head(physico)
 summary(physico)
 
@@ -375,7 +375,7 @@ inner_join(physico, weight, by = "aqua") %>.%
   knitr::kable(.)
 ```
 
-```{r join3, exercise = TRUE, exercise.setup = "join-prep"}
+```{r join3, exercise = TRUE, exercise.setup = "join_prep"}
 head(physico)
 summary(physico)
 
