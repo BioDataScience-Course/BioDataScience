@@ -56,7 +56,7 @@ Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord a
 
 ![](images/attention.jpg)
 
-> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collectés afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
 
 
 ## Objectif
@@ -74,7 +74,7 @@ R est un programme **Open Source** qui permet la manipulation, la visualisation 
 
 ### Manipuler
 
-En partant d'un tableau de données relatif à de la biométrie humaine contenant 395 observations. Ce jeu de données comprend 7 variables : 
+En partant d'un tableau de données relatif à de la biométrie humaine contenant 395 observations et 7 variables : 
 
 ```{r, echo=TRUE}
 # Chargement de SciViews::R
@@ -92,7 +92,7 @@ SciViews::R
 
 - Le jeu de données est disponible dans un package R : `BioDataScience`, spécialement préparé pour ce cours.
 
-- L'anglais est la langue la plus employé en science des données. Les jeux de données employées seront encodé en anglais. 
+- L'anglais est la langue la plus employée en science des données. Les jeux de données employées seront encodés en anglais. 
 
 Le point d'interrogation devant notre jeu de données renvoit vers une page d'aide.
 
@@ -110,9 +110,9 @@ biometry %>.%
   
 **Notez ceci :**
 
-Nous utilisons ici le chaînage (%>.%) et une sélection en éliminant des colonnes du tableau que nous n’utiliserons pas (la 3ème, la 7èmeet la 8ème).
+Nous utilisons ici le chaînage (%>.%) et une sélection en éliminant des colonnes du tableau que nous n’utiliserons pas (la 3ème, la 7ème et la 8ème).
 
-L’assignation du résultat est plus lisible quand elle est réalisée à la fin (-> bio) lorsqu’on utilise un chaînage d’instructions.
+Lorsqu’on utilise un chaînage d’instructions, l’assignation du résultat est plus lisible quand elle est réalisée à la fin (-> bio).
 
 
 La fonction `kable()` du package `knitr` peut être appelée directement sans charger le package à l'aide de l'instruction `knitr::kable()`. Elle permet de formatter correctement un tableau dans Markdown. Utilisons-là maintenant pour présenter les huit premières lignes de notre jeu de données.
@@ -234,7 +234,7 @@ Rappelez-vous de la formule qui est :
 
 $$BMI (kg/m^2) = \frac{weight(kg)}{height(m)^2}$$
 
-On peut employer les opérations mathématiques de base avec R. elles respectent l'ordre de priorité des opérateurs mathématiques. Au besoin, il est possible d'indiquer explicitement, ou de modifier les priorités avec des parenthèses comme `3 * (2 + 1)`.
+On peut employer les opérations mathématiques de base avec R. Elles respectent l'ordre de priorité des opérateurs mathématiques. Au besoin, il est possible d'indiquer explicitement, ou de modifier les priorités avec des parenthèses comme `3 * (2 + 1)`.
 
 | Opérations de base | Symboles |
 |:-------------------|:--------:|
@@ -250,7 +250,7 @@ La formule mathématique se traduit donc comme suit en une instruction que R peu
 50 / 1.70^2
 ```
 
-**Notez ceci :** R indique un `[1]` devant la réponse. En fait, R travaille avec des vecteurs (même si ici, le vecteur ne contient qu'un seul élément). Ainsi, le nombre entre crochets devant indique la position dans le vecteur. Ce calcul sur vecteurs nous sera très utile lorsque nous traoterons l'ensemble du tableau. En effet, le même calcul sera _automatiquement distribué_ sur tous les individus !
+**Notez ceci :** R indique un `[1]` devant la réponse. En fait, R travaille avec des vecteurs (même si ici, le vecteur ne contient qu'un seul élément). Ainsi, le nombre entre crochets devant indique la position dans le vecteur. Ce calcul sur vecteurs nous sera très utile lorsque nous traiterons l'ensemble du tableau. En effet, le même calcul sera _automatiquement distribué_ sur tous les individus !
 
 L'IMC de cette femme indique qu'elle est en `sous-poids` selon l'échelle de l'OMS.
 
@@ -290,7 +290,7 @@ Vous vous retrouvez rapidement avec 5 nouveaux individus femmes et hommes.
 |  6 |    W   |      66     |     179     |
 |  7 |    W   |      54     |     168     |
 
-Le calcul un à un de l'IMC de chaque individu va très rapidement devenir fastidueux. R permet de créer des vecteurs que l'on peut affecter à des symboles avec la flèche `<-` (constituée du signe plus petit que immédiatemment suivi du signe moins) comme le montre l'exemple ci-dessous. Pour rassembler plusieurs valeurs dans un vecteur on les "concatène"s avec la fonction `c()` : 
+Le calcul un à un de l'IMC de chaque individu deviendra très rapidement fastidueux. R permet de créer des vecteurs que l'on peut affecter à des symboles avec la flèche `<-` (constituée du signe plus petit que immédiatemment suivi du signe moins) comme le montre l'exemple ci-dessous. Pour rassembler plusieurs valeurs dans un vecteur on les "concatène"s avec la fonction `c()` : 
 
 ```{r, echo=TRUE}
 # Assignation des valeurs de masses dans un vecteur nommé `weight`
@@ -307,7 +307,7 @@ weight_w / height_w^2
 
 - Choisissez bien les noms de vos objets. Ces noms doivent être courts, mais informatifs concernant leur contenu.
 
-- Rappelez-vous que noms acceptables commencent par une lettre, et comportent ensuite des lettres, chiffres, le trait souligné `_` ou le point `.`.
+- Rappelez-vous que des noms acceptables commencent par une lettre, et comportent ensuite des lettres, chiffres, le trait souligné `_` ou le point `.`.
 
 - Comme il est difficile de mémoriser la casse d'un nom, il est conseillé d'utiliser uniquement des lettres minuscules.
 
@@ -315,7 +315,7 @@ weight_w / height_w^2
 
 - Eviter d'utiliser des caractères accentués.
 
-- Si possible, utilisez des noms en anglais. Certainement si votre travail sera échangé avec d'autres scientifiques en international, ... mais c'est une bonne habitude à prendre même sur votre propre code. Pour reprendre l'exemple précendet `wrist_circumference`
+- Si possible, utilisez des noms en anglais. Certainement si votre travail sera échangé avec d'autres scientifiques en international, ... mais c'est une bonne habitude à prendre même sur votre propre code. Pour reprendre l'exemple précedent `wrist_circumference`
 
 Réalisez les mêmes opérations sur les individus de 8 à 12.
 
@@ -358,7 +358,7 @@ weight_m / height_m^2
 
 ## Encodage d'un tableau de données 
 
-Il devient rapidement évident qu'il est plus simple que nos observations de terrain soient rassemblées en un jeu de données structuré. Pour cela vous allez créer ce qu'on appelle un **"data frame"** (qui se traduit en français par "tableau de données") dans R. La fonction qui permet de le créer est `data_frame()`. Cette dernière va permettre de combiner vos différents vecteurs colonne par colonne dans un tableau.
+Il devient rapidement évident qu'il est plus simple que nos observations de terrain soient rassemblées en un jeu de données structuré. Pour cela vous allez créer ce qu'on appelle un **"data frame"** (qui se traduit en français par "tableau de données") dans R. La fonction qui permet de le créer est `data_frame()`. Cette dernière permet de combiner vos différents vecteurs colonne par colonne dans un tableau.
 
 Dans `data_frame()`, vous entrerez vos différents vecteurs comme autant d'**arguments** de la fonction, séparés par une `,`. De plus, vous pouvez nommer vos colonnes en donnant des noms aux arguments de type `nom = valeur`. Analysez avec attention l'exemple ci-dessous.
 
@@ -606,7 +606,7 @@ head(biometry)
 # Not yet...
 ```
 
-Votre nouvelle variable comprend une succession de lignes complétées par des chaines de caractères. Organisez cette variable de votre tableau de données avec la fonction `factor()`. Observez la nouvelle structuration de la suite d'instructions. Vous observez pour la première fois l'opérateur `$`. Dans l'exemple ci-dessous, lorsque vous utilisez `bio_100$echelle_imc`, vous pouvez l'interprétez comme : "dans le tableau de données `bio_100`, je prend la colonne/variable `echell_imc`. La fonction `factor()` s'applique donc sur cette colonne (dont le vecteur est extrait). Avec l'argument `levels`, vous spécifiez l'ordre des différents niveaux de votre variable à classer. 
+Votre nouvelle variable comprend une succession de lignes complétées par des chaines de caractères. Organisez cette variable de votre tableau de données avec la fonction `factor()`. Observez la nouvelle structuration de la suite d'instructions. Vous observez pour la première fois l'opérateur `$`. Dans l'exemple ci-dessous, lorsque vous utilisez `bio_100$echelle_imc`, vous pouvez l'interprétez comme : "dans le tableau de données `bio_100`, je prend la colonne/variable `echelle_imc`. La fonction `factor()` s'applique donc sur cette colonne (dont le vecteur est extrait). Avec l'argument `levels`, vous spécifiez l'ordre des différents niveaux de votre variable à classer. 
 
 Classer votre nouvelle variable avec le jeu de données `bio_100`.
 
@@ -616,9 +616,9 @@ bio_100$bmi_schedule <- factor(bio_100$bmi_schedule,
 bio_100
 ```
 
-En apparence, pas grand changement, mais maintenant, nous avons indiqué un ordre logique de progression dans les différents **niveaux** (`levels`) de la variable. Ici, nous pourrions faire encore mieux. Si nous utilisons la fonction `ordered()` à la place de `factor()`, avec les mêmes arguments, nous indiquons à R qu'en plus, les différents niveaux sont classés du plus petit au plus grand (`underweight` < `normal weight`< `overweight`< `obese`). Nous pouvons voir la façon dans les différents niveaux sont encodés à l'aide de la fonction `levels()`.
+En apparence, pas grand changement, mais maintenant, nous avons indiqué un ordre logique de progression dans les différents **niveaux** (`levels`) de la variable. Ici, nous pourrions faire encore mieux. Si nous utilisons la fonction `ordered()` à la place de `factor()`, avec les mêmes arguments, nous indiquons à R qu'en plus, les différents niveaux sont classés du plus petit au plus grand (`underweight` < `normal weight`< `overweight`< `obese`). Nous pouvons voir la façon dont les différents niveaux sont encodés à l'aide de la fonction `levels()`.
 
-Classer votre nouvelle variable  avec le jeu de données `bio` tout entier, et en utilisant `ordered()` ici.
+Classer votre nouvelle variable avec le jeu de données `bio` tout entier, et en utilisant `ordered()` ici.
 
 ```{r prepare3}
 biometry <- read("biometry", package = "BioDataScience", lang="fr")
@@ -719,7 +719,7 @@ biometry %>.%
 # Not yet...
 ```
 
-Vos résultats concorde t'il avec les valeurs avancées dans les médias ? Représentons la distribution du bmi de nos individus sondés.
+Vos résultats concordent-ils avec les valeurs avancées dans les médias ? Représentons la distribution du bmi de nos individus sondés.
 
 ```{r, echo = TRUE}
 chart(bio_100, ~ bmi %fill=% gender) +
@@ -763,7 +763,7 @@ Durant cette séance, vous avez appris à :
 - Rassembler des données dans un tableau "data frame"
 - Remanier un tableau de données 
 
-Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
+Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utiliser un dièse (`#`) devant vos phrases.
 
 ```{r comm, exercise=TRUE, exercise.lines=8}
 # Ajout de commentaires 

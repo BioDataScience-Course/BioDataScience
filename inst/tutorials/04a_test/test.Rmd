@@ -61,7 +61,7 @@ Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord a
 
 ![](images/attention.jpg)
 
-> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collectés afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
 
 
 ## Objectifs
@@ -510,7 +510,7 @@ quiz(
            answer("l'écart-type"),
   random_answer_order = TRUE,
   allow_retry = TRUE),
-  question("Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que veut la médiane ?",
+  question("Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que vaut la médiane ?",
            answer("4.25", correct = TRUE),
            answer("3.35"),
            answer("4.95"),
@@ -518,7 +518,7 @@ quiz(
            answer("4.3"),
   random_answer_order = TRUE,
   allow_retry = TRUE),
-  question("Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que veut le premier quartile ?",
+  question("Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que vaut le premier quartile ?",
            answer("4.25"),
            answer("3.35", correct = TRUE),
            answer("4.95"),
@@ -526,7 +526,7 @@ quiz(
            answer("2.9"),
   random_answer_order = TRUE,
   allow_retry = TRUE),
-  question("Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que veut le troisième quartile ?",
+  question("Sur base de la suite de nombre suivante : 0.1, 4.3, 9.4, 5, 4.9, 2.9, 3.8, 4.2 que vaut le troisième quartile ?",
            answer("4.95", correct = TRUE),
            answer("3.35"),
            answer("4.25"),

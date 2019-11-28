@@ -1,0 +1,415 @@
+---
+title: "Module 6 : Recombinaison de tableaux"
+subtitle: "Traitement des données I"
+author: "Guyliann Engels & Philippe Grosjean"
+output:
+  learnr::tutorial 
+tutorial:
+  id: "sdd1.06b"
+  version: 1.2.0
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(knitr)
+SciViews::R()
+
+options(tutorial.event_recorder = BioDataScience::record_sdd)
+tutorial_options(exercise.checker = BioDataScience::checker_sdd)
+tutorial_options(exercise.timelimit = 60)
+tutorial_options(exercise.cap = "Code R")
+knitr::opts_chunk$set(echo = FALSE, comment = NA)
+
+library(BioDataScience)
+
+```
+
+```{r, echo=FALSE}
+fixedRow(
+  column(9, div(
+    img(src = 'images/BioDataScience-128.png', align = "left"),
+    h1("Science des données biologiques"),
+    "Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)"
+  )),
+  column(3, div(
+    textInput("user", "Utilisateur :", ""),
+    textInput("email", "Email :", "")
+  ))
+)
+textOutput("user") # This is newer shown, but required to trigger an event!
+textOutput("email") # Idem!
+```
+
+```{r, context="server"}
+output$user <- renderText({BioDataScience::user_name(input$user);""})
+output$email <- renderText({BioDataScience::user_email(input$email);""})
+updateTextInput(session, "user", value = BioDataScience::user_name())
+updateTextInput(session, "email", value = BioDataScience::user_email())
+```
+
+
+## Préambule
+
+Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord avec son interface [ici](http://biodatascience-course.sciviews.org/sdd-umons/learnr.html).
+
+![](images/attention.jpg)
+
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
+
+
+## Objectifs
+
+- Recombiner des tableaux de données
+
+
+## De large vers long
+
+```{r wide-init}
+time <- 1990:1995
+tree <- rep(c("arbre_1", "arbre_2"), each = length(time))
+size <- c((time - 1990 + 12)*2, (time - 1990 + 15)*2.5)
+
+long <- tibble(
+  year = c(time, time),
+  tree = tree,
+  circumf = size
+)
+
+width <- spread(long, key = year, value =  circumf)
+
+long1 <- gather(width, key = "year", value = "circumf", "1990":"1995")
+```
+
+Sur base du tableau ci-dessous :
+
+```{r}
+knitr::kable(width)
+```
+
+Modifiez le tableau `width` afin d'obtenir le tableau suivant que vous nommerez `long`:
+
+```{r}
+knitr::kable(long1)
+```
+
+```{r wide-prep}
+time <- 1990:1995
+tree <- rep(c("arbre_1", "arbre_2"), each = length(time))
+size <- c((time - 1990 + 12)*2, (time - 1990 + 15)*2.5)
+
+long <- tibble(
+  year = c(time, time),
+  tree = tree,
+  circumf = size
+)
+
+width <- spread(long, key = year, value =  circumf)
+```
+
+```{r wide, exercise = TRUE, exercise.setup = "wide-prep"}
+head(width)
+summary(width)
+```
+
+```{r wide-hint-1}
+# snippet correspondant
+DF %>.%
+  gather(., key = KEY, value = VALUE, 1:3, na.rm = TRUE) -> DF2
+```
+
+```{r wide-hint-2}
+# snippet correspondant
+width %>.%
+  gather(., key = KEY, value = VALUE, 1:3, na.rm = TRUE) -> long
+```
+
+```{r wide-solution}
+# snippet correspondant
+width %>.%
+  gather(., key = "year", value = "circumf", "1990":"1995", na.rm = TRUE) -> long
+```
+
+```{r wide-check}
+# TODO 
+```
+
+
+## De long vers large
+
+```{r long-init}
+gr_age <- c("Jeune", "Adulte","Senior")
+period <- c(1992, 1995, 1998)
+popu <- c(2185103, 6311109, 1525785, 
+          2196799, 6337067, 1596532,
+          2180816, 6332857, 1678591)
+
+demography <- tibble(
+  groupe_age = rep(gr_age, times = 3),
+  year = rep(period, each= 3),
+  population = popu
+)
+
+demo <- spread(demography, key = year, value = population)
+```
+
+Sur base du tableau ci-dessous :
+
+```{r}
+knitr::kable(demography)
+```
+
+Modifiez le tableau `demography` afin d'obtenir le tableau suivant que vous nommerez `demo`:
+
+```{r}
+knitr::kable(demo)
+```
+
+
+```{r long-prep}
+gr_age <- c("Jeune", "Adulte","Senior")
+period <- c(1992, 1995, 1998)
+popu <- c(2185103, 6311109, 1525785, 
+          2196799, 6337067, 1596532,
+          2180816, 6332857, 1678591)
+
+demography <- tibble(
+  groupe_age = rep(gr_age, times= 3),
+  year = rep(period, each= 3),
+  population = popu
+)
+```
+
+```{r long, exercise = TRUE, exercise.setup = "long-prep"}
+head(demography)
+summary(demography)
+```
+
+```{r long-hint-1}
+# snippet correspondant
+DF %>.%
+  spread(., key = KEY, value = VALUE, drop = TRUE) -> DF2
+```
+
+```{r long-hint-2}
+demography %>.%
+  spread(., key = KEY, value = VALUE, drop = TRUE) -> demo
+```
+
+```{r long-solution}
+# snippet correspondant
+demo <- spread(demography, key = year, value = population)
+```
+
+```{r long-check}
+# TODO 
+```
+
+
+## Diviser des colonnes dans un tableau
+
+```{r separate_init}
+bacteria <- tibble(
+  measure = paste(rep(c("ind1", "ind2", "ind3"), each = 3), 
+                 rep(c("2019-04-25", "2019-04-26", "2019-04-27"), times = 3), 
+                 sep = "_"),
+  value = c((11:13)^3, (11:13)^4, (11:13)^5)
+)
+
+bact <- separate(bacteria, col = "measure", into = c("rep", "date"), sep = "_" )
+```
+
+Sur base du tableau ci-dessous :
+
+```{r}
+knitr::kable(bacteria)
+```
+
+Modifiez le tableau `bacteria` afin d'obtenir le tableau suivant que vous nommerez `bact`:
+
+```{r}
+knitr::kable(bact)
+```
+
+```{r separate_prep}
+bacteria <- tibble(
+  measure = paste(rep(c("ind1", "ind2", "ind3"), each = 3), 
+                 rep(c("2019-04-25", "2019-04-26", "2019-04-27"), times = 3), 
+                 sep = "_"),
+  value = c((10:12)^3, (10:12)^4, (10:12)^5)
+)
+```
+
+```{r separate, exercise = TRUE, exercise.setup = "separate_prep"}
+head(bacteria)
+summary(bacteria)
+```
+
+```{r separate-hint-1}
+# snippet correspondant
+DF %>.%
+  separate(., col = VARNAME, into = c("VAR1", "VAR2"), sep = "[^[:alnum:]]+") -> DF2
+```
+
+
+```{r separate-solution}
+# snippet correspondant
+bact <- separate(bacteria, col = "measure", into = c("rep", "date"), sep = "_" )
+```
+
+```{r separate-check}
+# TODO 
+```
+
+
+## Combinaison de deux tableaux
+
+Les scientifiques réalisent une expérience avec plusieurs aquariums expérimentals. Ils ont encodé les données dans deux tableux distincs.
+
+```{r join_init}
+set.seed(42)
+
+physico <- tibble(
+  aqua = letters[1:5],
+  temp = rnorm(n = 5,mean = 25, sd = 2),
+  salinity = rnorm(n = 5, mean = 35,  sd = 2)
+)
+
+weight <- tibble(
+  aqua = letters[2:6],
+  weight = rnorm(n = 5, mean = 1.5, sd = 0.5)
+)
+```
+
+Le premier tableau `physico` mis à votre disposition est le suivant :
+
+```{r}
+knitr::kable(physico)
+```
+
+Le second tableau `weight` mis à votre disposition est le suivant :
+
+```{r}
+knitr::kable(weight)
+```
+
+- Reproduisez le tableau ci-dessous : 
+
+```{r}
+left_join(physico, weight, by = "aqua") %>.%
+  knitr::kable(.)
+```
+
+```{r join_prep}
+set.seed(42)
+
+physico <- tibble(
+  aqua = letters[1:5],
+  temp = rnorm(n = 5,mean = 25, sd = 2),
+  salinity = rnorm(n = 5, mean = 35,  sd = 2)
+)
+
+weight <- tibble(
+  aqua = letters[2:6],
+  weight = rnorm(n = 5, mean = 1.5, sd = 0.5)
+)
+```
+
+```{r join1, exercise = TRUE, exercise.setup = "join_prep"}
+head(physico)
+summary(physico)
+
+head(weight)
+summary(weight)
+```
+
+```{r join1-hint-1}
+# snippet correspondant
+DF <- left_join(DATAFRAME1, DATAFRAME2, by = VAR)
+knitr::kable(DF)
+```
+
+```{r join1-solution}
+ph_weight <- left_join(physico, weight, by = "aqua")
+knitr::kable(ph_weight)
+```
+
+```{r join1-check}
+# TODO
+```
+
+- Reproduisez le tableau ci-dessous : 
+
+```{r}
+full_join(physico, weight, by = "aqua") %>.%
+  knitr::kable(.)
+```
+
+```{r join2, exercise = TRUE, exercise.setup = "join_prep"}
+head(physico)
+summary(physico)
+
+head(weight)
+summary(weight)
+```
+
+```{r join2-hint-1}
+# snippet correspondant
+DF <- full_join(DATAFRAME1, DATAFRAME2, by = VAR)
+knitr::kable(DF)
+```
+
+```{r join2-solution}
+ph_weight <- full_join(physico, weight, by = "aqua")
+knitr::kable(ph_weight)
+```
+
+```{r join2-check}
+# TODO
+```
+
+- Reproduisez le tableau ci-dessous : 
+
+```{r}
+inner_join(physico, weight, by = "aqua") %>.%
+  knitr::kable(.)
+```
+
+```{r join3, exercise = TRUE, exercise.setup = "join_prep"}
+head(physico)
+summary(physico)
+
+head(weight)
+summary(weight)
+```
+
+```{r join3-hint-1}
+# snippet correspondant
+DF <- inner_join(DATAFRAME1, DATAFRAME2, by = VAR)
+knitr::kable(DF)
+```
+
+```{r join3-solution}
+ph_weight <- inner_join(physico, weight, by = "aqua")
+knitr::kable(ph_weight)
+```
+
+```{r join3-check}
+# TODO
+```
+
+## Conclusion
+
+Bravo! Vous venez de terminer votre séance d'exercices dans un tutoriel "learnr". 
+
+Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
+
+```{r comm, exercise=TRUE, exercise.lines = 8}
+# Ajout de commentaires 
+# ...
+```
+
+```{r comm-check}
+# Not yet...
+```
+

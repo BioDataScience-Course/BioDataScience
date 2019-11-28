@@ -49,7 +49,7 @@ Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord a
 
 ![](images/attention.jpg)
 
-> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collectés afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
 
 
 ## Objectif
@@ -92,7 +92,7 @@ Vous pouvez tout d'abord employer R comme une calculatrice (ce qui est bien réd
 
 - R retourne une réponse précédée de `[1]`. Nous verrons plus loin qu'il retourne en réalité un vecteur, même si ce vecteur ne contient qu'un seul item. Le `[1]` indique la position dans le vecteur.
 
-Voici un premier exemple d'instruction R tel qu'il se présente dans les tutoriels (les instructions à rentrer dans R sont présentées dans des cadres gris) suivie de la réponse renvoyée par le logiciel (cadre blanc juste en dessous) :
+Voici un premier exemple d'instruction R tel qu'elle se présente dans les tutoriels (les instructions à rentrer dans R sont présentées dans des cadres gris) suivie de la réponse renvoyée par le logiciel (cadre blanc juste en dessous) :
 
 ```{r calculatrice, echo=TRUE}
 3 + 2
@@ -204,7 +204,7 @@ v3 <- c("noir", "jaune", "rouge")
 
 **Astuce :**
 
-- Pour créer un vecteur d'une séquence continue de nombre, tel 2, 3, 4, 5, vous pouvez utiiser l'opérateur `:` en plaçant le nombre initial de la série devant et le nombre final derrière.
+- Pour créer un vecteur d'une séquence continue de nombre, tel 2, 3, 4, 5, vous pouvez utiliser l'opérateur `:` en plaçant le nombre initial de la série devant et le nombre final derrière.
 
 ```{r serie, echo=TRUE}
 # La série

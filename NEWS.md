@@ -1,5 +1,33 @@
 # BioDataScience News
 
+## Changes in version 2019.6.0
+
+- correction tutorial 06b_recombinaison 
+
+## Changes in version 2019.5.0
+
+- correction tutorial 06b_recombinaison 
+
+## Changes in version 2019.4.0
+
+- tutorial 06b_recombinaison finalized
+
+## Changes in version 2019.3.0
+
+- tutorial 01a_base finalized
+
+## Changes in version 2019.2.0
+
+- tutorial 01a_base finalized
+
+## Changes in version 2019.1.0
+
+- Review of the all tutorials (00a - 13c) with the **svbox 2019**
+
+## changes in version 2018.1.0
+
+- Review of the all tutorials (00a - 13c) with the **svbox 2018** and with the new function `collect_sdd()` 
+
 ## Changes in version 2019.0.0
 
 - Review of the all tutorials (00a - 13c) with the **svbox 2019**

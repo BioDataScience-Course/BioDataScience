@@ -62,7 +62,7 @@ Si vous n'avez jamais utilisé de tutoriel "learnr", familiarisez-vous d'abord a
 
 ![](images/attention.jpg)
 
-> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collecté afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
+> Conformément au RGPD ([Règlement Général sur la Protection des Données](https://ec.europa.eu/info/law/law-topic/data-protection/reform/rules-business-and-organisations/principles-gdpr_fr)), nous sommes tenus de vous informer de ce que vos résultats seront collectés afin de suivre votre progression. **Les données seront enregistrées au nom de l'utilisateur apparaissant en haut de cette page. Corrigez si nécessaire !** En utilisant ce tutoriel, vous marquez expressément votre accord pour que ces données puissent être collectées par vos enseignants et utilisées pour vous aider et vous évaluer. Après avoir été anonymisées, ces données pourront également servir à des études globales dans un cadre scientifique et/ou éducatif uniquement.
 
 
 ## Objectifs
@@ -266,7 +266,7 @@ chart(urchin, formula = height ~ weight %col=% origin) +
 # Not yet...
 ```
 
-Reproduisez le graphique suivant qui représente la variation de la taille en fonction de la masse des oursins. L'orgine  et le sex de ces derniers sont mis en évidence par la couleur et la forme. 
+Reproduisez le graphique suivant qui représente la variation de la taille en fonction de la masse des oursins. L'orgine et le sexe de ces derniers sont mis en évidence par la couleur et la forme, respectivement. 
 
 
 **Nom du jeu de données et des variables importantes** 
@@ -293,7 +293,7 @@ chart(urchin, formula = height ~ weight %col=% origin %shape=% sex) +
 
 ## Conclusion 
 
-Bravo! Vous venez de terminer votre séance d'exercie dans un  tutoriel "learnr". 
+Bravo! Vous venez de terminer votre séance d'exercie dans un tutoriel "learnr". 
 
 Laissez nous vos impressions sur cet outil pédagogique ou expérimentez encore dans la zone ci-dessous. Rappelez-vous que pour placer un commentaire dans une zone de code R, vous devez utilisez un dièse (`#`) devant vos phrases.
 
