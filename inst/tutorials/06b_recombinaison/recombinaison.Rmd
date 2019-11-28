@@ -6,7 +6,7 @@ output:
   learnr::tutorial 
 tutorial:
   id: "sdd1.06b"
-  version: 1.1.0
+  version: 1.2.0
 runtime: shiny_prerendered
 ---
 
@@ -240,7 +240,7 @@ bacteria <- tibble(
 )
 ```
 
-```{r separate, exercise = TRUE, exercise.setup = "separate-prep"}
+```{r separate, exercise = TRUE, exercise.setup = "separate_prep"}
 head(bacteria)
 summary(bacteria)
 ```
