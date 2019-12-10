@@ -6,7 +6,7 @@
 #' case that database is not accessible, the data is stored locally. This
 #' function uses your plain email to send your records. Note that, once the
 #' email is created, the local version of your records is reset. So, if you
-#' finally decide to NOT send the eamil, these records are lost (in this case,
+#' finally decide to NOT send the email, these records are lost (in this case,
 #' call your teachers to recover them, if you have to.)
 #'
 #' @return The data are returned invisibly.
