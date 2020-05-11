@@ -59,7 +59,7 @@ observeEvent(input$email, {
   if (input$email == "") {
     shinyFeedback::feedbackWarning("email", input$email == "", "Complétez votre email")
   } else {
-    shinyFeedback::feedbackDanger("email", !grepl(
+    shinyFeedback::feedbackWarning("email", !grepl(
       "^[a-zA-Z\\-\\._0-9]+\\.[a-zA-Z\\-\\._0-9]+@student\\.umons\\.ac\\.be$",
       input$email),
       "Utilisez prenom.nom@student.umons.ac.be")
