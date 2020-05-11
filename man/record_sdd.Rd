@@ -37,7 +37,5 @@ function is used by learnr tutorials and is not for end-users.
 \seealso{
 \code{\link[=run]{run()}}
 }
-\concept{
-record events from the BioDataScience package
-}
+\concept{record events from the BioDataScience package}
 \keyword{utilities}

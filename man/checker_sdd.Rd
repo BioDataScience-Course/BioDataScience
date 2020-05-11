@@ -4,8 +4,15 @@
 \alias{checker_sdd}
 \title{A default checker that just aknowledge submission}
 \usage{
-checker_sdd(label, user_code, solution_code, check_code, envir_result,
-  evaluate_result, ...)
+checker_sdd(
+  label,
+  user_code,
+  solution_code,
+  check_code,
+  envir_result,
+  evaluate_result,
+  ...
+)
 }
 \arguments{
 \item{label}{The label for the learnr exercice.}
@@ -33,7 +40,5 @@ by the tutorials and is not intended for the end-user.
 \seealso{
 \code{\link[=run]{run()}}
 }
-\concept{
-record events from the BioDataScience package
-}
+\concept{record events from the BioDataScience package}
 \keyword{utilities}

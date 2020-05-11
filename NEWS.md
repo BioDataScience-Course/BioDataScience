@@ -1,5 +1,10 @@
 # BioDataScience News
 
+## Changes in version 2020.0.9000
+
+- ShinyFeedback added to learnrs and check_login() function to verify login and
+  email of the user, Internet connexion and database access.
+
 ## Changes in version 2019.6.0
 
 - correction tutorial 06b_recombinaison 

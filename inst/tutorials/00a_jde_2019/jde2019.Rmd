@@ -38,8 +38,12 @@ fixedRow(
     textInput("email", "Email :", "", placeholder = "prenom.nom@student.umons.ac.be"),
     actionButton("check", "Vérification"),
       helpText(
-        "Test login, email et accès à la base de données..."),
-      strong(textOutput("check_output"))
+        "Test login, email et accès à la base de données... "),
+    strong(textOutput("check_output")),
+    tags$a(
+      href = "https://biodatascience-course.sciviews.org/credentials", 
+        "[page d'aide]"),
+      
   ))
 )
 textOutput("user") # This is newer shown, but required to trigger an event!
@@ -66,15 +70,17 @@ updateTextInput(session, "user", value = BioDataScience::user_name())
 updateTextInput(session, "email", value = BioDataScience::user_email())
 
 response <- eventReactive(input$check, {
-  #if (isTRUE(
-  #  any(tab_user$login %in% input$user2) & any(tab_user$email %in% input$email2)
-  #    )) {
-  #    res <- "Tes données sont validées, lance toi dans to learnR"
-  #  } else {
-  #    res <- "STOP !!!!"
-  #  }#
-  #  res
-  ".... to be tested here!"
+  res <- BioDataScience::check_login(input$user, input$email)
+  if (!is.na(res["login"])) {
+    if (res["login"]) {
+      shinyFeedback::feedbackSuccess("user", TRUE)
+      shinyFeedback::feedbackSuccess("email", TRUE)
+    } else {
+      shinyFeedback::feedbackDanger("user", TRUE, "Vérifiez votre login")
+      shinyFeedback::feedbackDanger("email", TRUE, "Vérifiez votre email")
+    }
+  }
+  comment(res)
   })
 output$check_output <- renderText({response()})
 ```

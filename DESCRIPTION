@@ -1,6 +1,6 @@
 Package: BioDataScience
 Type: Package
-Version: 2020.0.0
+Version: 2020.0.9000
 Title: A Series of Learnr Documents for Biological Data Science (test login)
 Description: Interactive documents using learnr for studying biological data science.
 Authors@R: c(
@@ -18,5 +18,5 @@ LazyData: true
 URL: https://github.com/BioDataScience-Course/BioDataScience
 BugReports: https://github.com/BioDataScience-Course/BioDataScience/issues
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.0
+RoxygenNote: 7.1.0
 VignetteBuilder: knitr
