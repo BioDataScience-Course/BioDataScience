@@ -1,7 +1,7 @@
 Package: BioDataScience
 Type: Package
-Version: 2019.6.0
-Title: A Series of Learnr Documents for Biological Data Science
+Version: 2020.0.0
+Title: A Series of Learnr Documents for Biological Data Science (test login)
 Description: Interactive documents using learnr for studying biological data science.
 Authors@R: c(
   person("Philippe", "Grosjean", role = c("aut", "cre"),

@@ -1,18 +1,20 @@
 ---
-title: "Quiz interactif en science des données biologiques I : visualisation et inférence"
+title: "SDD I (00a) : visualisation et inférence"
 author: "Guyliann Engels & Philippe Grosjean"
 output:
   learnr::tutorial:
     theme: "united"
 tutorial:
   id: "sdd1.00a"
-  version: 1.1.0
+  version: 1.1.9000
 runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}
 library(learnr)
 library(knitr)
+library(shiny)
+library(shinyFeedback)
 SciViews::R()
 
 options(tutorial.event_recorder = BioDataScience::record_sdd)
@@ -25,14 +27,19 @@ knitr::opts_chunk$set(echo = FALSE, comment = NA)
 
 ```{r, echo=FALSE}
 fixedRow(
-  column(9, div(
+  column(6, div(
     img(src = 'images/BioDataScience-128.png', align = "left"),
     h1("Science des données biologiques"),
     "Réalisé par le service d'Écologie numérique des Milieux aquatiques, Université de Mons (Belgique)"
   )),
-  column(3, div(
+  column(6, div(
+    shinyFeedback::useShinyFeedback(),
     textInput("user", "Utilisateur :", ""),
-    textInput("email", "Email :", "")
+    textInput("email", "Email :", "", placeholder = "prenom.nom@student.umons.ac.be"),
+    actionButton("check", "Vérification"),
+      helpText(
+        "Test login, email et accès à la base de données..."),
+      strong(textOutput("check_output"))
   ))
 )
 textOutput("user") # This is newer shown, but required to trigger an event!
@@ -40,10 +47,36 @@ textOutput("email") # Idem!
 ```
 
 ```{r, context="server"}
+observeEvent(input$user,
+  shinyFeedback::feedbackWarning("user", input$user == "", "Complétez votre login")
+)
 output$user <- renderText({BioDataScience::user_name(input$user);""})
+observeEvent(input$email, {
+  if (input$email == "") {
+    shinyFeedback::feedbackWarning("email", input$email == "", "Complétez votre email")
+  } else {
+    shinyFeedback::feedbackDanger("email", !grepl(
+      "^[a-zA-Z\\-\\._0-9]+\\.[a-zA-Z\\-\\._0-9]+@student\\.umons\\.ac\\.be$",
+      input$email),
+      "Utilisez prenom.nom@student.umons.ac.be")
+  }
+})
 output$email <- renderText({BioDataScience::user_email(input$email);""})
 updateTextInput(session, "user", value = BioDataScience::user_name())
 updateTextInput(session, "email", value = BioDataScience::user_email())
+
+response <- eventReactive(input$check, {
+  #if (isTRUE(
+  #  any(tab_user$login %in% input$user2) & any(tab_user$email %in% input$email2)
+  #    )) {
+  #    res <- "Tes données sont validées, lance toi dans to learnR"
+  #  } else {
+  #    res <- "STOP !!!!"
+  #  }#
+  #  res
+  ".... to be tested here!"
+  })
+output$check_output <- renderText({response()})
 ```
 
 ## Préambule
