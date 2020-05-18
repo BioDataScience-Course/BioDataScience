@@ -46,7 +46,7 @@ fixedRow(
       
   ))
 )
-textOutput("user") # This is newer shown, but required to trigger an event!
+textOutput("user") # This is never shown, but required to trigger an event!
 textOutput("email") # Idem!
 ```
 
