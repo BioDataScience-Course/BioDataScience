@@ -1,5 +1,9 @@
 # BioDataScience News
 
+## Changes in version 2020.1.9000
+
+- In `record_sdd()`, date is now recorded in GMT timezone and with microseconds.
+
 ## Changes in version 2020.0.9000
 
 - ShinyFeedback added to learnrs and check_login() function to verify login and
