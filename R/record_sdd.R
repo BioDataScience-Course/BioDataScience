@@ -34,10 +34,11 @@ record_sdd <- function(tutorial_id, tutorial_version, user_id, event, data) {
       correct <- ""
   }
   data$correct <- NULL
-  entry <- data.frame(date = Sys.time(), tutorial = tutorial_id,
-    version = tutorial_version, user = user_id, user_name = user_name(),
-    user_email = user_email(), label = label, correct = correct, event = event,
-    data = list_to_json(data))
+  entry <- data.frame(
+    date = format(Sys.time(), format = "%Y-%m-%d %H:%M:%OS6", tz = "GMT"),
+    tutorial = tutorial_id, version = tutorial_version, user = user_id,
+    user_name = user_name(), user_email = user_email(), label = label,
+    correct = correct, event = event, data = list_to_json(data))
   # Not a good idea: if user never clicks "Submit", nothing is fed to database
   #if (correct == "") {
   #  add_file_base64(entry, file = bds_file)

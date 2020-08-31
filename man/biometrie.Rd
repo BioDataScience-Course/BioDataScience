@@ -4,7 +4,8 @@
 \name{biometrie}
 \alias{biometrie}
 \title{Mesure de biometrie humaine}
-\format{Un tableau de données de 7 variables:
+\format{
+Un tableau de données de 7 variables:
 \describe{
 \item{\code{genre}}{une variable facteur à deux niveaux :
 Homme (H) et Femme (F).}
@@ -14,7 +15,8 @@ Homme (H) et Femme (F).}
 \item{\code{poignet}}{Circomférence du poignet (en mm).}
 \item{\code{ddm}}{Date des mesures.}
 \item{\code{age}}{Age des individus lors de la prise des mesures.}
-}}
+}
+}
 \usage{
 biometrie
 }

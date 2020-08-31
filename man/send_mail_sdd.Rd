@@ -17,7 +17,7 @@ Your submissions are send to a central database. However, in
 case that database is not accessible, the data is stored locally. This
 function uses your plain email to send your records. Note that, once the
 email is created, the local version of your records is reset. So, if you
-finally decide to NOT send the eamil, these records are lost (in this case,
+finally decide to NOT send the email, these records are lost (in this case,
 call your teachers to recover them, if you have to.)
 }
 \examples{
@@ -30,7 +30,5 @@ run("02b_nuage_points")
 \seealso{
 \code{\link[=run]{run()}}
 }
-\concept{
-run interactive learnr documents from the BioDataScience package
-}
+\concept{run interactive learnr documents from the BioDataScience package}
 \keyword{utilities}
