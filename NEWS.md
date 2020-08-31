@@ -4,7 +4,7 @@
 
 - In `record_sdd()`, date is now recorded in GMT timezone and with microseconds.
 - An `init()` function is added to set globally `MONGO_URL` and `MONGO_BASE`
-  environment variables for lerarndown Shiny and learnr applications.
+  environment variables for learndown Shiny and learnr applications.
 
 ## Changes in version 2019.6.0
 
