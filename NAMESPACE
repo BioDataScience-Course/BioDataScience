@@ -2,6 +2,7 @@
 
 export(check_login)
 export(checker_sdd)
+export(init)
 export(record_sdd)
 export(run)
 export(send_mail_sdd)
