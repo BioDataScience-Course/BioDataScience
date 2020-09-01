@@ -1,6 +1,8 @@
-# BioDataScience News
+# BioDataScience 2020.0.9001
 
-## Changes in version 2020.0.9000
+- Separate `MONGO_SER` and `MONGO_PASSWORD` variables in `init()` and do not set them if already there.
+
+# BioDataScience 2020.0.9000
 
 - In `record_sdd()`, date is now recorded in GMT timezone and with microseconds.
 - An `init()` function is added to set globally `MONGO_URL` and `MONGO_BASE`

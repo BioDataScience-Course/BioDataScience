@@ -11,7 +11,10 @@ Nothing, the function is used for its side-effect of creating global
 variables.
 }
 \description{
-Initialize the environment for our BioDataScience courses
+This function creates several environment variables that are widely used by
+other packages and applications. Currently, \code{MONGO_URL}, \code{MONGO_BASE},
+\code{MONGO_USER} and \code{MONGO_PASSWORD} are set to default values if not already
+there.
 }
 \examples{
 # Use this at the beginning of your learndown Shiny or learnr applications
