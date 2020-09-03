@@ -1,6 +1,6 @@
 Package: BioDataScience
 Type: Package
-Version: 2020.0.9002
+Version: 2020.0.0
 Title: A Series of Learnr Documents for Biological Data Science
 Description: Interactive documents using learnr for studying biological data science.
 Authors@R: c(
@@ -10,9 +10,8 @@ Authors@R: c(
   email = "guyliann.engels@umons.ac.be"))
 Maintainer: Philippe Grosjean <phgrosjean@sciviews.org>
 Depends: R (>= 3.3.0)
-Imports: learnr, httr, jsonlite, remotes, svMisc, mongolite (>= 1.5)
-Suggests: SciViews, ggplot2, ggpubr, data.io, flow, chart, covr, knitr, testthat
-License: CC BY-SA 4.0
+Suggests: covr, knitr, testthat
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/BioDataScience-Course/BioDataScience

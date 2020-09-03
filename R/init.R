@@ -1,10 +1,10 @@
 #' Initialize the environment for our BioDataScience courses
 #'
-#' This function creates several environment variables that are widely used by
-#' other packages and applications. Currently, `MONGO_URL`, `MONGO_URL_SERVER`
+#' This function creates several environment variables that are used by other
+#' packages and applications. Currently, `MONGO_URL`, `MONGO_URL_SERVER`
 #' (the later one is used if the application is run from a server),
-#' `MONGO_BASE`, `MONGO_USER` and `MONGO_PASSWORD` are set to default values if
-#' not already there.
+#' `MONGO_BASE`, `MONGO_USER`, `MONGO_PASSWORD` and `LOCAL_STORAGE` are set to
+#' default values if not already defined.
 #'
 #' @return Nothing, the function is used for its side-effect of creating global
 #' variables.
@@ -13,7 +13,7 @@
 #' @examples
 #' # Use this at the beginning of your learndown Shiny or learnr applications
 #' BioDataScience::init()
-#' # Now, you have access to MONGO_URL and MONGO_BASE
+#' # Now, you have access to MONGO_URL and MONGO_BASE and others
 #' Sys.getenv("MONGO_URL")
 #' Sys.getenv("MONGO_BASE")
 init <- function() {
@@ -28,6 +28,8 @@ init <- function() {
     Sys.setenv(MONGO_USER = "sdd")
   if (Sys.getenv("MONGO_PASSWORD") == "")
     Sys.setenv(MONGO_PASSWORD = "sdd")
+  if (Sys.getenv("LOCAL_STORAGE") == "")
+    Sys.setenv(LOCAL_STORAGE = "~/.local/share/R/learnr/biodatascience")
   # ... other global stuff to do here...
-  return()
+  invisible()
 }

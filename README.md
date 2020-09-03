@@ -1,4 +1,4 @@
-# BioDataScience - Learnr Documents
+# BioDataScience - Initialize R environment for BioDataScience courses
 
 [![Linux & OSX Build Status](https://travis-ci.org/SciViews/BioDataScience.svg )](https://travis-ci.org/SciViews/BioDataScience)
 [![Win Build Status](https://ci.appveyor.com/api/projects/status/github/SciViews/BioDataScience?branch=master&svg=true)](http://ci.appveyor.com/project/phgrosjean/BioDataScience)
@@ -40,10 +40,10 @@ Latest devel version of **BioDataScience** (source + Windows binaires for the la
 
 ## Usage
 
-Make the **BioDataScience** package available in your R session:
+There is really only one useful function: `init()` whose role is to initialize a series of variables required by the BioDataScience packages.
 
 ```r
-library("BioDataScience")
+BioDataScience::init()
 ```
 
 Get help about this package:

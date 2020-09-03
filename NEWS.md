@@ -1,10 +1,16 @@
+# BioDataScience 2020.0.0
+
+- Clean up finished. Most code moved to learndown. Learnr tutorials and Shiny
+applications moved to BioDataScience1.
+
 # BioDataScience 2020.0.9002
 
 - Add `MONGO_URL_SERVER` environmlent variable in `init()`.
 
 # BioDataScience 2020.0.9001
 
-- Separate `MONGO_USER` and `MONGO_PASSWORD` variables in `init()` and do not set them if already there.
+- Separate `MONGO_USER` and `MONGO_PASSWORD` variables in `init()` and do not
+set them if already there.
 
 # BioDataScience 2020.0.9000
 

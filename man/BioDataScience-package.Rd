@@ -3,14 +3,7 @@
 \docType{package}
 \name{BioDataScience-package}
 \alias{BioDataScience-package}
-\title{A Series of Learnr Documents for BioDataScience}
+\title{Base configuration for BioDataScience}
 \description{
-Material for the course.
+Configure the R environment for the BioDartaScience course using \code{\link[=init]{init()}}.
 }
-\section{Important functions}{
-
-\itemize{
-\item \code{\link[=run]{run()}} is the main function to launch learnr interactive documents
-}
-}
-
