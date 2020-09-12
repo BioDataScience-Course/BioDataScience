@@ -1,6 +1,7 @@
-#' Base configuration for BioDataScience
+#' Base configuration functions for BioDataScience
 #'
-#' Configure the R environment for the BioDartaScience course using [init()].
+#' Record user informations using [sign_in()] (or erase them using [sign_out()]).
+#' Access the MongoDB database for the course through [config()].
 #'
 #' @docType package
 #' @name BioDataScience-package

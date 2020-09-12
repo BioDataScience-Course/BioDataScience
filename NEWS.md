@@ -2,10 +2,12 @@
 
 - Clean up finished. Most code moved to learndown. Learnr tutorials and Shiny
 applications moved to BioDataScience1.
+- The package now contains `config()`, `sign_in()` and `sign_out()` only for
+database access and user identification.
 
 # BioDataScience 2020.0.9002
 
-- Add `MONGO_URL_SERVER` environmlent variable in `init()`.
+- Add `MONGO_URL_SERVER` environment variable in `init()`.
 
 # BioDataScience 2020.0.9001
 

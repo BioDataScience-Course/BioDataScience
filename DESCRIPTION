@@ -1,8 +1,8 @@
 Package: BioDataScience
 Type: Package
 Version: 2020.0.0
-Title: A Series of Learnr Documents for Biological Data Science
-Description: Interactive documents using learnr for studying biological data science.
+Title: Configuration for Biological Data Science Course
+Description: User sign in and sign out for the course.
 Authors@R: c(
   person("Philippe", "Grosjean", role = c("aut", "cre"),
   email = "phgrosjean@sciviews.org"),
@@ -10,6 +10,7 @@ Authors@R: c(
   email = "guyliann.engels@umons.ac.be"))
 Maintainer: Philippe Grosjean <phgrosjean@sciviews.org>
 Depends: R (>= 3.3.0)
+Imports: learndown
 Suggests: covr, knitr, testthat
 License: MIT + file LICENSE
 Encoding: UTF-8

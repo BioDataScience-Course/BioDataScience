@@ -3,7 +3,8 @@
 \docType{package}
 \name{BioDataScience-package}
 \alias{BioDataScience-package}
-\title{Base configuration for BioDataScience}
+\title{Base configuration functions for BioDataScience}
 \description{
-Configure the R environment for the BioDartaScience course using \code{\link[=init]{init()}}.
+Record user informations using \code{\link[=sign_in]{sign_in()}} (or erase them using \code{\link[=sign_out]{sign_out()}}).
+Access the MongoDB database for the course through \code{\link[=config]{config()}}.
 }
