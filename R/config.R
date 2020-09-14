@@ -33,8 +33,8 @@ sign_in <- function(data, debug = Sys.getenv("LEARNDOWN_DEBUG", 0) != 0) {
 #' @rdname config
 #' @export
 sign_out <- function(debug = Sys.getenv("LEARNDOWN_DEBUG", 0) != 0) {
-  learndown::sign_out(title = "D\u00e9senregistement",
-    message = "Confirmez-vous que vous voulez vous d\u00e9senregistrer (votre activit\u00e9 dans les tutoriels learnr et les applications Shiny ne sera plus enregistr\u00e9e) ?",
+  learndown::sign_out(title = "D\u00e9senregistrement",
+    message = "Confirmez-vous que vous voulez vous d\u00e9senregistrer de BioDataScience (votre activit\u00e9 dans les tutoriels learnr et les applications Shiny ne sera plus enregistr\u00e9e) ?",
     cache = "~/.biodatascience_user",
     debug = debug)
 }
