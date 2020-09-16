@@ -9,7 +9,7 @@ Authors@R: c(
   person("Guyliann", "Engels", role = "aut",
   email = "guyliann.engels@umons.ac.be"))
 Maintainer: Philippe Grosjean <phgrosjean@sciviews.org>
-Depends: R (>= 3.3.0)
+Depends: R (>= 3.5.0)
 Imports: learndown
 Suggests: covr, knitr, testthat
 License: MIT + file LICENSE

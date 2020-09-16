@@ -4,9 +4,7 @@
 \alias{config}
 \alias{sign_in}
 \alias{sign_out}
-\title{Configure the R environment to access my MongoDB database, and provide or
-cache user information for reuse in learnr and shiny applications that are
-run locally.}
+\title{Configure the R environment to access my database and to register users}
 \usage{
 config(debug = Sys.getenv("LEARNDOWN_DEBUG", 0) != 0)
 
@@ -26,6 +24,8 @@ this case, the string must start with "fingerprint=".}
 access test).
 }
 \description{
-Environment variables are added with infos about my database and files
-are written in the user's directory with cache data.
+These functions configure the R environment to allow recording of learnr and
+Shiny apps activity in a database, for a given user. Environment variables
+are added with infos about my database and files are written in the user's``
+directory with cache data.
 }
