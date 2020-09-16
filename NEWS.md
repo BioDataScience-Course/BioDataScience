@@ -1,7 +1,8 @@
 # BioDataScience 2020.0.0
 
 - Clean up finished. Most code moved to learndown. Learnr tutorials and Shiny
-applications moved to BioDataScience1.
+applications moved to {BioDataScience1}.
+-The datasets`biometry` and `biometrie` are left here.
 - The package now contains `config()`, `sign_in()` and `sign_out()` only for
 database access and user identification.
 

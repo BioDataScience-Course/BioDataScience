@@ -13,3 +13,6 @@ Makefile
 ^\.Rproj\.user$
 ^.*\.Rproj$
 LICENSE.md
+
+data-raw
+data-raw/*
