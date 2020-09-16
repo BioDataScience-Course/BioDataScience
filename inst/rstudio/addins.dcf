@@ -1,0 +1,4 @@
+Name: Sign out
+Description: Sign out current user
+Binding: sign_out_addin
+Interactive: true

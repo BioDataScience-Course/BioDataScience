@@ -2,9 +2,13 @@
 
 - Clean up finished. Most code moved to learndown. Learnr tutorials and Shiny
 applications moved to {BioDataScience1}.
--The datasets`biometry` and `biometrie` are left here.
+
+- The datasets`biometry` and `biometrie` are left here.
+
 - The package now contains `config()`, `sign_in()` and `sign_out()` only for
 database access and user identification.
+
+- A sign ou addin is added.
 
 # BioDataScience 2020.0.9002
 
@@ -18,6 +22,7 @@ set them if already there.
 # BioDataScience 2020.0.9000
 
 - In `record_sdd()`, date is now recorded in GMT timezone and with microseconds.
+
 - An `init()` function is added to set globally `MONGO_URL` and `MONGO_BASE`
   environment variables for learndown Shiny and learnr applications.
 
