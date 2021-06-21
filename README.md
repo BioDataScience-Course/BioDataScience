@@ -1,4 +1,4 @@
-# BioDataScience - Initialize R environment for BioDataScience courses
+# BioDataScience - Initialize the R environment for BioDataScience courses at the University of Mons, Belgium
 
 [![Linux & OSX Build Status](https://travis-ci.org/SciViews/BioDataScience.svg )](https://travis-ci.org/SciViews/BioDataScience)
 [![Win Build Status](https://ci.appveyor.com/api/projects/status/github/SciViews/BioDataScience?branch=master&svg=true)](http://ci.appveyor.com/project/phgrosjean/BioDataScience)
@@ -12,7 +12,7 @@
 
 ### Latest stable version
 
-The latest stable version of **BioDataScience** can simply be installed from [CRAN](http://cran.r-project.org):
+The latest stable version of {BioDataScience} can be installed from [CRAN](http://cran.r-project.org) (note: not yet!):
 
 ```r
 install.packages("BioDataScience")
@@ -21,26 +21,26 @@ install.packages("BioDataScience")
 
 ### Development version
 
-Make sure you have the **devtools** R package installed:
+Make sure you have the {remotes} R package installed:
 
 ```r
-install.packages("devtools")
+install.packages("remotes")
 ```
 
-Use `install_github()` to install the **BioDataScience** package from Github (source from **master** branch will be recompiled on your machine):
+Use `install_github()` to install the {BioDataScience} package from Github (source from **master** branch will be recompiled on your machine):
 
 ```r
-devtools::install_github("BioDataScience-Course/BioDataScience")
+remotes::install_github("BioDataScience-Course/BioDataScience")
 ```
 
-R should install all required dependencies automatically, and then it should compile and install **BioDataScience**.
+R should install all required dependencies automatically, and then it should compile and install {BioDataScience}.
 
-Latest devel version of **BioDataScience** (source + Windows binaires for the latest stable version of R at the time of compilation) is also available from [appveyor](https://ci.appveyor.com/project/phgrosjean/BioDataScience/build/artifacts).
+Latest development version of {BioDataScience} (source + Windows binaries for the latest stable version of R at the time of compilation) is also available from [appveyor](https://ci.appveyor.com/project/phgrosjean/BioDataScience/build/artifacts).
 
 
 ## Usage
 
-There is really only one useful function: `init()` whose role is to initialize a series of variables required by the BioDataScience packages.
+There is really only one useful function: `init()` whose role is to initialize a series of variables required by the various {BioDataScienceX} packages.
 
 ```r
 BioDataScience::init()
@@ -58,4 +58,4 @@ For further instructions, please, refer to these help pages.
 
 ## Note to developers
 
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.

@@ -3,7 +3,7 @@
 \docType{data}
 \name{biometry}
 \alias{biometry}
-\title{Measure of human biometry at Hainaut, Belgium}
+\title{Measure of human biometry in Belgium}
 \format{
 A data frame with 7 variables and 395 observations:
 \describe{
@@ -11,9 +11,9 @@ A data frame with 7 variables and 395 observations:
 \item{\code{day_birth}}{Day of birth (YYYY-MM-DD).}
 \item{\code{weight}}{Weight (in kg).}
 \item{\code{height}}{Height (in cm).}
-\item{\code{wrist}}{Wrist circumfernce (in mm).}
+\item{\code{wrist}}{Wrist girth (in mm).}
 \item{\code{year_measure}}{Year of the biometric measure.}
-\item{\code{age}}{Age of people.}
+\item{\code{age}}{Age of the person.}
 }
 }
 \usage{
@@ -21,6 +21,6 @@ biometry
 }
 \description{
 Measure of human biometry to study health status with several index
-as Body Weight Index (BMI) between 2013 an 2017.
+as Body Mass Index (BMI) between 2013 an 2017.
 }
 \keyword{datasets}

@@ -3,7 +3,7 @@
 \docType{package}
 \name{BioDataScience-package}
 \alias{BioDataScience-package}
-\title{Base configuration functions for BioDataScience}
+\title{Base configuration functions for BioDataScience course at the University of Mons, Belgium}
 \description{
 Record user informations using \code{\link[=sign_in]{sign_in()}} (or erase them using \code{\link[=sign_out]{sign_out()}}).
 Access the MongoDB database for the course through \code{\link[=config]{config()}}.

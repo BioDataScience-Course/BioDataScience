@@ -3,9 +3,9 @@
 \docType{data}
 \name{biometrie}
 \alias{biometrie}
-\title{Mesure de biometrie humaine}
+\title{Mesure de biométrie humaine}
 \format{
-Un tableau de données de 7 variables:
+Un tableau de données de 7 variables et 395 observations:
 \describe{
 \item{\code{genre}}{une variable facteur à deux niveaux :
 Homme (H) et Femme (F).}
@@ -14,15 +14,15 @@ Homme (H) et Femme (F).}
 \item{\code{taille}}{Taille des individus (en cm).}
 \item{\code{poignet}}{Circomférence du poignet (en mm).}
 \item{\code{ddm}}{Date des mesures.}
-\item{\code{age}}{Age des individus lors de la prise des mesures.}
+\item{\code{age}}{Âge des individus lors de la prise de mesures.}
 }
 }
 \usage{
 biometrie
 }
 \description{
-Compilation d'un ensemble de mesures biometriques réalisée par les étudiants
-de l'UMONS dans le cadre du cours de biostatistique et probabilités
+Compilation d'un ensemble de mesures biométriques réalisée par les étudiants
+de l'Université de Mons dans le cadre du cours de biostatistique et probabilités
 entre 2013 et 2017.
 }
 \examples{
