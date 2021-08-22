@@ -1,6 +1,6 @@
 Package: BioDataScience
 Type: Package
-Version: 2021.0.9000
+Version: 2021.0.0
 Title: Configuration for Biological Data Science Course
 Description: User sign in and sign out for the Biological Data Science courses
   at the University of Mons, Belgium.
