@@ -1,3 +1,7 @@
+# BioDataScience 2021.1.0
+
+- `sdd_info()` function and corresponfing RStudio addin are introduced for easily sharing small pieces of text in a central repository.
+
 # BioDataScience 2021.0.0
 
 -   Dependency moved from {learndown} to {learnitdown}. Preparation of series 2021-2022.
