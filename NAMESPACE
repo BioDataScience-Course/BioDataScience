@@ -2,6 +2,9 @@
 
 export(config)
 export(obfuscator)
+export(render_all_rmd_project)
 export(sdd_info)
 export(sign_in)
 export(sign_out)
+import(rmarkdown)
+import(rprojroot)

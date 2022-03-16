@@ -7,3 +7,8 @@ Name: Sign out
 Description: Sign out current user
 Binding: sign_out_addin
 Interactive: true
+
+Name: Check my project
+Description: Check my data science project
+Binding: check_project_addin
+Interactive: true

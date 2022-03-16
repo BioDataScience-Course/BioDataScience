@@ -1,3 +1,8 @@
+# BioDataScience 2021.2.0
+
+- `render_all_rmd_project()` function is used to convert to html documents all Rmarkdown files in a project.
+- `Check my project` addin is an Rstudio addin used to validate several criteria on a project like the compilation of Rmarkdown.
+
 # BioDataScience 2021.1.0
 
 - `sdd_info()` function and corresponfing RStudio addin are introduced for easily sharing small pieces of text in a central repository.
