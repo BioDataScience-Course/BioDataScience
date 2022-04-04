@@ -1,6 +1,7 @@
 # BioDataScience 2021.2.0
 
-- `render_all_rmd_project()` function is used to convert to html documents all Rmarkdown files in a project.
+- `render_sdd()` function convert a Rmarkdown files to html document with specific arguments.
+- `corr_rmd()` function is used to try to convert all Rmarkdown files in a project to html documents. If a document does not compile, a copy is created.
 - `Check my project` addin is an Rstudio addin used to validate several criteria on a project like the compilation of Rmarkdown.
 
 # BioDataScience 2021.1.0
