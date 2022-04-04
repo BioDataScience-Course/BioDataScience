@@ -22,7 +22,7 @@ check_project_addin <- function() {
   server <- function(input, output, session) {
 
     res_proj <- rprojroot::find_root(rprojroot::is_rstudio_project, path = ".")
-    res <- BioDataScience::render_all_rmd_project(".")
+    res <- BioDataScience::corr_rmd(".", correction = FALSE)
 
     output$proj_dir <- shiny::renderText({
       print(res_proj)
