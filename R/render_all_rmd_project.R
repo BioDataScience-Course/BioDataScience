@@ -1,21 +1,29 @@
-#' Convert to HTML documents all Rmarkdown in a project
+#' Convert to HTML documents an Rmarkdown with specific rules
 #'
-#'Find all R markdown files in a Rstudio project and try to convert then an HTML document.
-#'This functions use \code{html_document()} and a serie of predefined arguments
-#'in order to meet the requirements of the biological data science course.
+#' Convert Rmarkdown file in an HTML document a serie of predefined arguments
+#' in order to meet the requirements of the biological data science course.
+#' This functions use \code{render()} and \code{html_document()}
 #'
-#' @param path the path of the project
-#' @param correction If the correction is TRUE, a copy of rmd file do not convert is created.
 #'
-#' @import rprojroot rmarkdown
+#' @param path the path of the Rmd file.
+#' @param ... The arguments of render()
 #'
-#' @return  a data.frame with the results of the compilations in html
+#' @import rmarkdown
+#'
+#' @return  an html document
 #' @export
 #'
 #' @examples
 #' #library(pfunctions)
-#' #test <- render_all_rmd_project()
+#' #test <- render_sdd(path = "file.Rmd")
 #'
+render_sdd <- function(path, ...){
+  rmarkdown::render(path,
+      output_format = rmarkdown::html_document(
+        toc = TRUE, number_sections = TRUE, code_folding = "hide",
+        anchor_sections = TRUE, self_contained = FALSE), quiet = TRUE)
+}
+
 render_all_rmd_project <- function(path = ".", correction = FALSE) {
 
   # Check if us a rstuio project
