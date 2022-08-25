@@ -1,6 +1,6 @@
 # BioDataScience 2021.1.0
 
-- `sdd_info()` function and corresponfing RStudio addin are introduced for easily sharing small pieces of text in a central repository.
+- `sdd_info()` function and corresponding RStudio addin are introduced for easily sharing small pieces of text in a central repository.
 
 # BioDataScience 2021.0.0
 
