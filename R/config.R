@@ -49,19 +49,14 @@ obfuscator <- function() {
 }
 
 # BioDataScience configuration
-.key         <- "BioDataScience-Course_2021"
+.key         <- "BioDataScience-Course_2022"
 .msg         <- "Mot de passe de votre cours (si oubli\u00E9, le demander par mail \u00E0 sdd@sciviews.org):"
 .msg2        <- "Mot de passe de d\u00E9chiffrage learnr:"
-.url         <- "https://wp.sciviews.org/biodatascience_config_2021"
-.user_file   <- "~/.biodatascience_user_2021"
-.config_file <- "~/.biodatascience_config_2021"
-.pass_admin  <- "o0MCeHci7zqJqJxurnxW5yU/21ZcyReqeIvBSNjEBbw/1MnHyoPeDMmfYo4u133P"
-.pass_conf   <- "K9RrzXHETpZ9WAUX6tsM1vwivfKYqRke5jg73rB2nezt3IujO6yT2k3XMxcQuK7c"
-.pass_user   <- "Etlc0+7OlJ7xj7a2SW+tvhNR+UGDjsXERfmkvWYxXTA1U1gxj3qGhjfrYt4TVgoI"
-.iv_user     <- "1638369746832634"
-.pass_check  <- "iX8AgLBBDpFrBtFV9zFNMA=="
-# TODO: Old version, to be deleted!!!
-## These items should better be hidden... but how?
-#.pass_conf <- "$G8rLCuk4D7g!G%!kH@BzzvWKpa&LT6d"
-#.pass_user <- "R*.px_#:4hVXZ#d#&,0fU52lEzc6.,Qv"
-#.iv_user <- "1638369746832634"
+.url         <- "https://wp.sciviews.org/biodatascience_config_2022"
+.user_file   <- "~/.biodatascience_user_2022"
+.config_file <- "~/.biodatascience_config_2022"
+.pass_admin  <- "z5s25kX6stUbnaNn2cnaPiYhHpbtAxVxIXE9t33IdLcDd+0g1bHehOPjcpuDYLt7"
+.pass_conf   <- "2oZksEbOynHmQZm8dxKhSyXWLmtC/vJ1aZ5Fc8+zUHTqmifYh7NU7GmGzyiumfBI"
+.pass_user   <- "2lbIi4yX6EPm0Pen3U38WBimRYT/oFwvSmlM3aIi09a1o9o20FyBuR06uuUI83dF"
+.iv_user     <- "4551412035512466"
+.pass_check  <- "zH/P5QBVtFckKsz8mstaVQ=="

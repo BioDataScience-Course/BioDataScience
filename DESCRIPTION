@@ -1,6 +1,6 @@
 Package: BioDataScience
 Type: Package
-Version: 2021.1.0
+Version: 2022.0.0
 Title: Configuration for Biological Data Science Course
 Description: User sign in and sign out for the Biological Data Science courses
   at the University of Mons, Belgium.
@@ -10,7 +10,7 @@ Authors@R: c(
   person("Guyliann", "Engels", role = "aut",
   email = "guyliann.engels@umons.ac.be"))
 Maintainer: Philippe Grosjean <phgrosjean@sciviews.org>
-Depends: R (>= 3.5.0)
+Depends: R (>= 4.1.0)
 Imports: learnitdown
 Suggests: covr, knitr, rmarkdown, testthat
 Remotes: SciViews/learnitdown
@@ -19,6 +19,6 @@ LazyData: true
 URL: https://github.com/BioDataScience-Course/BioDataScience
 BugReports: https://github.com/BioDataScience-Course/BioDataScience/issues
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 VignetteBuilder: knitr
 Encoding: UTF-8

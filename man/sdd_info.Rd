@@ -15,7 +15,7 @@ sdd_info(echo = TRUE, skipNul = TRUE)
 The downloaded text is returned invisibly.
 }
 \description{
-Use this function to get small peices of text from a centralized repository.
+Use this function to get small pieces of text from a centralized repository.
 This is a convenience function to retrieve, say, links, pieces of R code, or
 other textual information in relation with the current BioDataScience course.
 To be used only by students currently involved in a course.

@@ -1,6 +1,10 @@
+# BioDataScience 2022.0.0
+
+-   New version for academic year 2022-2023. New passwords for users and databases.
+
 # BioDataScience 2021.1.0
 
-- `sdd_info()` function and corresponding RStudio addin are introduced for easily sharing small pieces of text in a central repository.
+-   `sdd_info()` function and corresponding RStudio addin are introduced for easily sharing small pieces of text in a central repository.
 
 # BioDataScience 2021.0.0
 
