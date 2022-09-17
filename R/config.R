@@ -49,7 +49,7 @@ obfuscator <- function() {
 }
 
 # BioDataScience configuration
-.key         <- "BioDataScience-Course_2022"
+.key         <- "SDD_PASSWORD_2022" # Was "BioDataScience-Course_2022"
 .msg         <- "Mot de passe de votre cours (si oubli\u00E9, le demander par mail \u00E0 sdd@sciviews.org):"
 .msg2        <- "Mot de passe de d\u00E9chiffrage learnr:"
 .url         <- "https://wp.sciviews.org/biodatascience_config_2022"

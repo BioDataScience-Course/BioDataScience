@@ -1,3 +1,7 @@
+# BioDataScience 2022.1.0
+
+-   Course key changed to match Saturn Cloud workflow.
+
 # BioDataScience 2022.0.0
 
 -   New version for academic year 2022-2023. New passwords for users and databases.
