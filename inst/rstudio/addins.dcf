@@ -3,6 +3,11 @@ Description: Get current SDD information
 Binding: sdd_info_addin
 Interactive: false
 
+Name: User info
+Description: Get current user data
+Binding: sdd_user_addin
+Interactive: false
+
 Name: Sign out
 Description: Sign out current user
 Binding: sign_out_addin

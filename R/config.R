@@ -49,14 +49,14 @@ obfuscator <- function() {
 }
 
 # BioDataScience configuration
-.key         <- "SDD_PASSWORD_2022" # Was "BioDataScience-Course_2022"
-.msg         <- "Mot de passe de votre cours (si oubli\u00E9, le demander par mail \u00E0 sdd@sciviews.org):"
+.key         <- "SDD_PASSWORD_2023"
+.msg         <- "Mot de passe de votre cours:"
 .msg2        <- "Mot de passe de d\u00E9chiffrage learnr:"
-.url         <- "https://wp.sciviews.org/biodatascience_config_2022"
-.user_file   <- "~/.biodatascience_user_2022"
-.config_file <- "~/.biodatascience_config_2022"
-.pass_admin  <- "z5s25kX6stUbnaNn2cnaPiYhHpbtAxVxIXE9t33IdLcDd+0g1bHehOPjcpuDYLt7"
-.pass_conf   <- "2oZksEbOynHmQZm8dxKhSyXWLmtC/vJ1aZ5Fc8+zUHTqmifYh7NU7GmGzyiumfBI"
-.pass_user   <- "2lbIi4yX6EPm0Pen3U38WBimRYT/oFwvSmlM3aIi09a1o9o20FyBuR06uuUI83dF"
+.url         <- "https://wp.sciviews.org/biodatascience_config_2023"
+.user_file   <- "~/.biodatascience_user_2023"
+.config_file <- "~/.biodatascience_config_2023"
+.pass_admin  <- "WZ2H5D4+hYcFv1x0YGw1pVv8O2WDKKHMTULK5U/h4Y5ikJPat6gaE4ruXTYx5DaJ"
+.pass_conf   <- "ThsS2dmhy6mwl84IgULEB+e4uBLXniaq829hh9GiSj0IoFjEmV3PEH2hbQDsiArx"
+.pass_user   <- "QbAwU9vjg7RVYTks7Ktmd4FIrs1Xn++4uCFB4o3QPvzjB0uekVQLhOkEvhP7fYic"
 .iv_user     <- "4551412035512466"
-.pass_check  <- "zH/P5QBVtFckKsz8mstaVQ=="
+.pass_check  <- "4UYMB125fhjUGb1yZMPPpA=="
