@@ -6,7 +6,7 @@ Interactive: false
 Name: User info
 Description: Get current user data
 Binding: sdd_user_addin
-Interactive: false
+Interactive: true
 
 Name: Sign out
 Description: Sign out current user
