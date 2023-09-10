@@ -1,5 +1,8 @@
 # RStudio addins
 
+sdd_repo_issue_addin <- function()
+  sdd_repo_issue()
+
 sdd_info_addin <- function()
   sdd_info()
 

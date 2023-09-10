@@ -11,7 +11,7 @@ Authors@R: c(
   email = "guyliann.engels@umons.ac.be"))
 Maintainer: Philippe Grosjean <phgrosjean@sciviews.org>
 Depends: R (>= 4.2.0)
-Imports: learnitdown
+Imports: learnitdown, gert, rstudioapi
 Suggests: 
     covr,
     knitr,

@@ -2,6 +2,8 @@
 
 -   New version for academic year 2022-2023. New passwords.
 
+-   New addin "New repo issue", paired with function `sdd_repo_issue()` for easily creating a new issue in the currently edited repository.
+
 # BioDataScience 2022.1.0
 
 -   Course key changed to match Saturn Cloud workflow.

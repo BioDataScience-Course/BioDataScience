@@ -3,5 +3,8 @@
 export(config)
 export(obfuscator)
 export(sdd_info)
+export(sdd_repo_issue)
 export(sign_in)
 export(sign_out)
+importFrom(gert,git_remote_info)
+importFrom(utils,browseURL)
