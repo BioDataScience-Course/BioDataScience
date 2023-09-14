@@ -1,3 +1,7 @@
+# BioDataScience 2023.0.1
+
+-   Small correction in `biometrie`: "circomférence du poignet" (typo), but corrected anyway into "tour de poignet", and no unit for "année de la mesure" (idem in `biometry`).
+
 # BioDataScience 2023.0.0
 
 -   New version for academic year 2022-2023. New passwords.

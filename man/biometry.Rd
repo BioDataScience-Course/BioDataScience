@@ -7,13 +7,13 @@
 \format{
 A data frame with 7 variables and 395 observations:
 \describe{
-\item{\code{gender}}{A \strong{factor} with two levels: \code{"Men"}, and \code{"Women"}.}
+\item{\code{gender}}{A \strong{factor} with two levels: \code{"M"}, and \code{"W"}.}
 \item{\code{day_birth}}{Day of birth (YYYY-MM-DD).}
 \item{\code{weight}}{Weight (in kg).}
 \item{\code{height}}{Height (in cm).}
 \item{\code{wrist}}{Wrist girth (in mm).}
-\item{\code{year_measure}}{Year of the biometric measure.}
-\item{\code{age}}{Age of the person.}
+\item{\code{year_measure}}{Year of the measure.}
+\item{\code{age}}{Age of the person (in years).}
 }
 }
 \usage{

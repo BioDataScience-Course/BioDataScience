@@ -5,7 +5,7 @@
       day_birth    = "Date de naissance",
       weight       = "Masse",
       height       = "Taille",
-      wrist        = "Circomférence du poignet",
+      wrist        = "Tour de poignet",
       year_measure = "Année de la mesure",
       age          = "Age"),
     units = list(
@@ -14,7 +14,7 @@
       weight       = "kg",
       height       = "cm",
       wrist        = "mm",
-      year_measure = "année",
+      year_measure = NA,
       age          = "année"),
     as_labelled = as_labelled)
 

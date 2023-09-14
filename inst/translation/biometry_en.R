@@ -14,7 +14,7 @@
       weight       = "kg",
       height       = "cm",
       wrist        = "mm",
-      year_measure = "year",
+      year_measure = NA,
       age          = "year"),
     as_labelled = as_labelled)
 
