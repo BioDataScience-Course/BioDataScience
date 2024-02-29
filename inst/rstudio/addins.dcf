@@ -3,6 +3,11 @@ Description: Create an issue in the current GitHub repository
 Binding: sdd_repo_issue_addin
 Interactive: true
 
+Name: Disk space info
+Description: Get disk space info on /home/jovyan
+Binding: disk_info_addin
+Interactive: false
+
 Name: SDD info
 Description: Get current SDD information
 Binding: sdd_info_addin

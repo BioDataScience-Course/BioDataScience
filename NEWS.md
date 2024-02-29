@@ -1,3 +1,7 @@
+# BioDataScience 2023.1.0
+
+-   An RStudio addin to check disk space used in `/home/jovyan` is added (useful for SaturnCloud). The corresponding function is `disk_info()`, which allows for testing other disks than the one corresponding to `/home/jovyan` (or all disks with `path = ""`).
+
 # BioDataScience 2023.0.1
 
 -   Small correction in `biometrie`: "circomférence du poignet" (typo), but corrected anyway into "tour de poignet", and no unit for "année de la mesure" (idem in `biometry`).
