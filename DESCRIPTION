@@ -1,6 +1,6 @@
 Package: BioDataScience
 Type: Package
-Version: 2023.1.0
+Version: 2024.0.0
 Title: Configuration for Biological Data Science Course
 Description: User sign in and sign out for the Biological Data Science courses
   at the University of Mons, Belgium.
@@ -23,7 +23,7 @@ LazyData: true
 URL: https://github.com/BioDataScience-Course/BioDataScience
 BugReports: https://github.com/BioDataScience-Course/BioDataScience/issues
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 VignetteBuilder: knitr
 Encoding: UTF-8
 Language: en-US

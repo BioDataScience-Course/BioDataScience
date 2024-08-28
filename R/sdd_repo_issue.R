@@ -7,7 +7,7 @@
 #'   currently edited (and a warning is issued too).
 #' @export
 #' @importFrom gert git_remote_info
-#' @umportFrom rstudioapi showDialog
+#' @importFrom rstudioapi showDialog
 #'
 #' @examples
 #' sdd_repo_issue()
