@@ -3,7 +3,7 @@
 #' Record user informations using [sign_in()] (or erase them using [sign_out()]).
 #' Access the MongoDB database for the course through [config()].
 #'
-#' @name SciViews-package
+#' @name BioDataScience-package
 "_PACKAGE"
 
 # The following block is used by usethis to automatically manage
