@@ -22,3 +22,8 @@ Name: Sign out
 Description: Sign out current user
 Binding: sign_out_addin
 Interactive: true
+
+Name: Switch repo (https <-> ssh)
+Description: Switch between HTTPS and SSH for the current GitHub repository
+Binding: switch_repo_addin
+Interactive: false

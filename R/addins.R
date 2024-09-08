@@ -14,3 +14,6 @@ sdd_user_addin <- function()
 
 sign_out_addin <- function()
   sign_out()
+
+switch_repo_addin <- function()
+  invisible(switch_repo())

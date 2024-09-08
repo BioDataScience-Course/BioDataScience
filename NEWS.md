@@ -2,6 +2,8 @@
 
 -   New version for academic year 2024-2024. New passwords.
 
+-   New function `switch_repo()` and new addin to easily switch a GitHub repository between HTTP and SHH remote URL.
+
 # BioDataScience 2023.1.0
 
 -   An RStudio addin to check disk space used in `/home/jovyan` is added (useful for SaturnCloud). The corresponding function is `disk_info()`, which allows for testing other disks than the one corresponding to `/home/jovyan` (or all disks with `path = ""`).
