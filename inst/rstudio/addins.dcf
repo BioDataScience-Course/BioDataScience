@@ -1,3 +1,8 @@
+Name: Help
+Description: Get help about R or statistical topics
+Binding: sdd_help_addin
+Interactive: true
+
 Name: New repo issue
 Description: Create an issue in the current GitHub repository
 Binding: sdd_repo_issue_addin
@@ -16,11 +21,6 @@ Interactive: false
 Name: User info
 Description: Get current user data
 Binding: sdd_user_addin
-Interactive: true
-
-Name: Sign out
-Description: Sign out current user
-Binding: sign_out_addin
 Interactive: true
 
 Name: Switch repo (https <-> ssh)

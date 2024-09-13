@@ -2,7 +2,11 @@
 
 -   New version for academic year 2024-2024. New passwords.
 
--   New function `switch_repo()` and new addin to easily switch a GitHub repository between HTTP and SHH remote URL.
+-   New function `switch_repo()` and new addin to easily switch a GitHub repository between HTTP and SSH remote URL.
+
+-   Sign out RStudio addin eliminated. The corresponding function `sign_out()` is still available.
+
+-   Help addin added.
 
 # BioDataScience 2023.1.0
 
