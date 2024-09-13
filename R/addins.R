@@ -61,8 +61,6 @@ switch_repo_addin <- function()
 
     # Only look for a function if selection is short
     if (nchar(cur_sel) < 40) {
-      message(fun)
-
       #If cur_sel is something like ns::fun, we already know ns
       if (grepl("::", cur_sel)) {
         fun <- sub("^([^:]+)(::)([^(]+)(.*)$", "\\3", cur_sel)
