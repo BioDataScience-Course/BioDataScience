@@ -55,7 +55,7 @@ switch_repo_addin <- function()
       cur_sel <- ""
     # Default empty message for functions
     alt_fun_msg <- em(
-      "Select the name of a function in an editor",
+      "Select the name of a known function in an editor",
       "before calling this addin if you want help on it..."
     )
 
@@ -257,6 +257,10 @@ switch_repo_addin <- function()
 
     server <- function(input, output, session) {
 
+      observeEvent(input$cancel, {
+        stopApp(NULL)
+      })
+
       observeEvent(input$done, {
         # Save selection of engine and language
         svMisc::assign_temp("sdd_help_engine", input$engine)
@@ -308,12 +312,17 @@ switch_repo_addin <- function()
     message <- warning_message
   }
 
-  context <- try(suppressMessages(get_help(message)), silent = TRUE)
-  if (inherits(context, "try-error")) {
-    message("Error while invoking help: ", context)
-  } else if (is.null(context) || !length(context) || !is.list(context)) {
+  #context <- try(suppressMessages(get_help(message)), silent = TRUE)
+  #if (inherits(context, "try-error")) {
+  #  stop("Error while invoking help: ", context)
+  #} else if (is.null(context) || !length(context) || !is.list(context)) {
+  #  # User cancelled or nothing selected
+  #  return(invisible())
+  #}
+  context <- get_help(message)
+  if (is.null(context) || !length(context) || !is.list(context)) {
     # User cancelled or nothing selected
-    invisible(return())
+    return(invisible())
   }
 
   # Possibly escape "
