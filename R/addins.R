@@ -35,7 +35,7 @@ switch_repo_addin <- function()
 #' @importFrom methods findFunction
 #' @importFrom svMisc assign_temp get_temp
 #' @importFrom rstudioapi sendToConsole
-#' @importFrom utils methods
+#' @importFrom utils ? methods
 .sdd_help_addin <- function() {
 
   get_help <- function(message) {
@@ -55,12 +55,12 @@ switch_repo_addin <- function()
       cur_sel <- ""
     # Default empty message for functions
     alt_fun_msg <- em(
-      "Select the name of a known function in an editor",
+      "Select the name of a function in an editor",
       "before calling this addin if you want help on it..."
     )
 
     # Only look for a function if selection is short
-    if (nchar(cur_sel) < 40) {
+    if (nchar(cur_sel) < 120) {
       #If cur_sel is something like ns::fun, we already know ns
       if (grepl("::", cur_sel)) {
         fun <- sub("^([^:]+)(::)([^(]+)(.*)$", "\\3", cur_sel)
@@ -77,7 +77,11 @@ switch_repo_addin <- function()
         }
         alt_fun_msg <- ""
       } else {# Find the function and its namespace
-        cur_fun <- sub("^([^(]+)(.*)$", "\\1", cur_sel)
+        if (grepl("(", cur_sel, fixed = TRUE)) {
+          cur_fun <- sub("^([^(]+)(.*)$", "\\1", cur_sel)
+        } else {
+          cur_fun <- sub("^([.a-zA-Z0-9_$]+)(.*)$", "\\1", cur_sel)
+        }
         if (cur_fun == "") {
           fun_env_names <- character(0) # Nothing
         } else {
@@ -103,8 +107,16 @@ switch_repo_addin <- function()
         }
         l <- length(fun_env_names)
         if (!l) {# Function not found
-          fun <- ""
-          ns <- ""
+          # Ask help system directly
+          cmd <- parse(text = paste0("?", cur_fun))
+          if (length(eval(cmd))) {# Help page found
+            fun <- cur_fun
+            ns <- "" # Unknown
+            alt_fun_msg <- ""
+          } else {# Not found
+            fun <- ""
+            ns <- ""
+          }
         } else if (l == 1) { # || (l == 2 &&
           # Only one function with this name found
           fun <- cur_fun
@@ -312,14 +324,7 @@ switch_repo_addin <- function()
     message <- warning_message
   }
 
-  #context <- try(suppressMessages(get_help(message)), silent = TRUE)
-  #if (inherits(context, "try-error")) {
-  #  stop("Error while invoking help: ", context)
-  #} else if (is.null(context) || !length(context) || !is.list(context)) {
-  #  # User cancelled or nothing selected
-  #  return(invisible())
-  #}
-  context <- get_help(message)
+  context <- suppressMessages(get_help(message))
   if (is.null(context) || !length(context) || !is.list(context)) {
     # User cancelled or nothing selected
     return(invisible())
@@ -404,10 +409,6 @@ switch_repo_addin <- function()
 
 #' Get word or selection at cursor
 #'
-#' Uses the {rstudioapi} to get the word the cursor is on or active selection in
-#' the active document. This is useful for addins that want bind keys to trigger
-#' commands using the cursor context.
-#'
 #' This function defines a word as a possibly namespaced R symbol. So a cursor
 #' on the name of `pkg::var(foo)` will return 'pkg::var'. `$` is considered a
 #' separator.
@@ -417,9 +418,12 @@ switch_repo_addin <- function()
 #'
 #' @returns a character vector containing the current word at the cursor or
 #' primary selection
-#' @importFrom rstudioapi getActiveDocumentContext primary_selection
+#' @importFrom rstudioapi getSourceEditorContext primary_selection
 .get_word_or_selection <- function() {
-  context <- rstudioapi::getActiveDocumentContext()
+  # PhG: this work only in R scripts, but not Rmd files
+  # -> getSourceEditorContext instead
+  #context <- rstudioapi::getActiveDocumentContext()
+  context <- rstudioapi::getSourceEditorContext()
   current_selection <- rstudioapi::primary_selection(context)
   if (!.is_zero_length_selection(current_selection)) {
     return(current_selection$text)

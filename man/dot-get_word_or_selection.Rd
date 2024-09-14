@@ -11,15 +11,11 @@ a character vector containing the current word at the cursor or
 primary selection
 }
 \description{
-Uses the {rstudioapi} to get the word the cursor is on or active selection in
-the active document. This is useful for addins that want bind keys to trigger
-commands using the cursor context.
-}
-\details{
 This function defines a word as a possibly namespaced R symbol. So a cursor
 on the name of \code{pkg::var(foo)} will return 'pkg::var'. \code{$} is considered a
 separator.
-
+}
+\details{
 If there are any selections the primary selection takes precedence and is
 returned.
 }
