@@ -36,6 +36,7 @@ switch_repo_addin <- function()
 #' @importFrom svMisc assign_temp get_temp
 #' @importFrom rstudioapi sendToConsole
 #' @importFrom utils ? methods
+#' @importFrom httr2 request req_body_json req_headers req_perform
 .sdd_help_addin <- function() {
 
   get_help <- function(message) {
@@ -108,12 +109,17 @@ switch_repo_addin <- function()
         l <- length(fun_env_names)
         if (!l) {# Function not found
           # Ask help system directly
-          cmd <- parse(text = paste0("?", cur_fun))
-          if (length(eval(cmd))) {# Help page found
-            fun <- cur_fun
-            ns <- "" # Unknown
-            alt_fun_msg <- ""
-          } else {# Not found
+          if (cur_fun != "") {
+            cmd <- parse(text = paste0("?", cur_fun))
+            if (length(eval(cmd))) {# Help page found
+              fun <- cur_fun
+              ns <- "" # Unknown
+              alt_fun_msg <- ""
+            } else {# Not found
+              fun <- ""
+              ns <- ""
+            }
+          } else {# No function?
             fun <- ""
             ns <- ""
           }
@@ -396,6 +402,26 @@ switch_repo_addin <- function()
   #message(help_code)
   rstudioapi::sendToConsole(help_code, execute = TRUE, echo = TRUE,
     focus = FALSE)
+
+  # If help page (not chatbot), record the data in the database
+  if (context$engine == "SciViews Chatbot")
+    return(invisible(help_code))
+
+  chat_url <- getOption("SciViews.chatbot.url",
+    Sys.getenv("SCIVIEWS_CHATBOT_URL", ""))
+  api_key <- Sys.getenv("CONNECT_API_KEY", "")
+  if (chat_url != "" && api_key != "") {
+    help_url <- paste0(dirname(chat_url), "/help")
+    request <- httr2::request(help_url) |>
+      httr2::req_headers("Accept" = "application/json",
+        "Authorization" = paste("Key", api_key))
+    context$code <- help_code
+    request <- request |>
+      httr2::req_body_json(context)
+    res <- try(httr2::req_perform(request), silent = TRUE)
+    svMisc::assign_temp("sdd_help_result", res, replace.existing = TRUE)
+  }
+
   invisible(help_code)
 }
 
