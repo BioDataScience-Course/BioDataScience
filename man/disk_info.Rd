@@ -4,7 +4,7 @@
 \alias{disk_info}
 \title{Show disk information}
 \usage{
-disk_info(path = "/home/jovyan", intern = FALSE)
+disk_info(path = "~", intern = FALSE)
 }
 \arguments{
 \item{path}{The path to look for.}

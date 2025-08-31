@@ -17,6 +17,6 @@
 #' @examples
 #' disk_info()
 #' disk_info("")
-disk_info <- function(path = "/home/jovyan", intern = FALSE) {
+disk_info <- function(path = "~", intern = FALSE) {
   system(paste("df -h", path), intern = intern)
 }

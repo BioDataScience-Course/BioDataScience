@@ -360,15 +360,15 @@ switch_repo_addin <- function()
       code_arg <- if (is.null(context$info)) "" else
         sprintf("code = \"%s\", ", esc(context$info))
       switch(context$topic,
-        fun      = sprintf("SciViews::ai_explain_function(\"%s\"%s)",
+        fun      = sprintf("helpai::ai_explain_function(\"%s\"%s)",
           context$question, lang_arg),
-        code     = sprintf("SciViews::ai_explain_code(\"%s\"%s)",
+        code     = sprintf("helpai::ai_explain_code(\"%s\"%s)",
           esc(context$question), lang_arg),
-        error    = sprintf("SciViews::ai_explain_error(%serror = \"%s\"%s)",
+        error    = sprintf("helpai::ai_explain_error(%serror = \"%s\"%s)",
           code_arg, esc(context$question), lang_arg),
-        term     = sprintf("SciViews::ai_explain_term(\"%s\"%s)",
+        term     = sprintf("helpai::ai_explain_term(\"%s\"%s)",
           esc(context$question), lang_arg),
-        question = sprintf("SciViews::ai_ask(\"%s\"%s)",
+        question = sprintf("helpai::ai_ask(\"%s\"%s)",
           esc(context$question), lang_arg)
       )
     },

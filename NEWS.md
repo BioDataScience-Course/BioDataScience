@@ -1,3 +1,9 @@
+# BioDataScience 2025.0.0
+
+-   New version for academic year 2025-2026. New passwords.
+
+-   The chatbot RStudio addin now uses helpai instead of SciViews. New dependency to helpai.
+
 # BioDataScience 2024.1.0
 
 -   Help addin recording.

@@ -1,29 +1,48 @@
 Package: BioDataScience
 Type: Package
-Version: 2024.1.0
-Title: Configuration for Biological Data Science Course
+Version: 2025.0.0
+Title: Configuration for Biological Data Science Course at UMONS
 Description: User sign in and sign out for the Biological Data Science courses
   at the University of Mons, Belgium.
-Authors@R: c(
+Authors@R: c( 
   person("Philippe", "Grosjean", role = c("aut", "cre"),
-  email = "phgrosjean@sciviews.org"),
-  person("Guyliann", "Engels", role = "aut",
-  email = "guyliann.engels@umons.ac.be"))
+    email = "phgrosjean@sciviews.org",
+    comment = c(ORCID = "0000-0002-2694-9471")),
+  person("Guyliann", "Engels", role = c("aut"),
+    email = "guyliann.engels@umons.ac.be",
+    comment = c(ORCID = "0000-0001-9514-1014")))
 Maintainer: Philippe Grosjean <phgrosjean@sciviews.org>
-Depends: R (>= 4.2.0)
-Imports: learnitdown, gert, rstudioapi, shiny, miniUI, shinyAce, methods, utils, svMisc, httr2
+Depends:
+    R (>= 4.4.0)
+Imports:
+    learnitdown (>= 1.8.0),
+    gert (>= 2.1.5),
+    rstudioapi (>= 0.17.1),
+    shiny (>= 1.10.0),
+    miniUI (>= 0.1.1.1),
+    shinyAce (>= 0.4.4),
+    methods (>= 4.4.0),
+    utils (>= 4.4.0),
+    svMisc (>= 1.6.0),
+    helpai (>= 0.1.0),
+    httr2 (>= 1.1.2)
 Suggests: 
-    covr,
-    knitr,
-    rmarkdown,
-    testthat
-Remotes: SciViews/learnitdown
+    covr (>= 3.5.0),
+    knitr (>= 1.42),
+    rmarkdown (>= 2.21),
+    spelling (>= 2.2.1),
+    testthat (>= 3.0.0)
+Remotes:
+    SciViews/helpai,
+    SciViews/learnitdown,
+    SciViews/svMisv
 License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/BioDataScience-Course/BioDataScience
 BugReports: https://github.com/BioDataScience-Course/BioDataScience/issues
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
-VignetteBuilder: knitr
+RoxygenNote: 7.3.2
 Encoding: UTF-8
 Language: en-US
+ByteCompile: yes
+Config/testthat/edition: 3

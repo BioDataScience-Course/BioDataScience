@@ -49,14 +49,14 @@ obfuscator <- function() {
 }
 
 # BioDataScience configuration
-.key         <- "SDD_PASSWORD_2024"
+.key         <- "SDD_PASSWORD_2025"
 .msg         <- "Mot de passe de votre cours:"
 .msg2        <- "Mot de passe de d\u00E9chiffrage learnr:"
-.url         <- "https://wp.sciviews.org/biodatascience_config_2024"
-.user_file   <- "~/.biodatascience_user_2024"
-.config_file <- "~/.biodatascience_config_2024"
-.pass_admin  <- "8UOuCPeIyHPpg1yd4OstNyMEqwlyJEQuu08IXvgReMdl8nQMFaFVpf7rDJxpwmQi"
-.pass_conf   <- "IgGD/TuBvCxTlwzz+uAg5DTQ38dG7HRQaG1Q1+Y7nQrbhZ7vgUwR7xOXhri/2J3u"
-.pass_user   <- "+ZWun28oDX8B+yshnfu1Tv0HyAIYQvjfSHnG2iE1Xn2nt5njia58JbakEwWonoml"
-.iv_user     <- "9515136956351670"
-.pass_check  <- "VFaBnRKh9WARWyvtaqhpKA=="
+.url         <- "https://wp.sciviews.org/biodatascience_config_2025"
+.user_file   <- "~/.biodatascience_user_2025"
+.config_file <- "~/.biodatascience_config_2025"
+.pass_admin  <- "Jnn6GH26nV5Y6dMRXUpYx5G4oU8zXY4tQqV37OZERAs="
+.pass_conf   <- "rwxun3aYqz8TsA0pB3JQgj7QFzYB4KwH+ORTJX10B2vRd3hX4EkI4JgGP25xT3DC"
+.pass_user   <- "463Aq20z1PqMf88TsH6LXJIrdojq0GqQ3BPOT3sxmNslkc5XMTxEAKyVzrHbRQiA"
+.iv_user     <- "9515146957321630"
+.pass_check  <- "yftUFGicGLQfjB4LrYnd0w=="

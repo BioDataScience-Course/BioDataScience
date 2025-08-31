@@ -9,5 +9,6 @@
 # The following block is used by usethis to automatically manage
 # roxygen namespace tags. Modify with care!
 ## usethis namespace: start
+#' @importFrom helpai ai_ask ai_explain_code ai_explain_error ai_explain_function ai_explain_term
 ## usethis namespace: end
 NULL
