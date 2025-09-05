@@ -35,7 +35,7 @@ Suggests:
 Remotes:
     SciViews/helpai,
     SciViews/learnitdown,
-    SciViews/svMisv
+    SciViews/svMisc
 License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/BioDataScience-Course/BioDataScience
